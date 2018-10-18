@@ -1,0 +1,41 @@
+USE CASE 1
+Name: RecordProblem
+Participating Actors: Patient
+Goal: Record patient's problem with a title, date started, and a brief description.
+Trigger: Patient clicks 'Record Problem' button.
+PreCondition: Patient knows what the problem is.
+PostCondition: On success, problem is recorded.
+
+Basic Flow:
+1. System prompts patient to enter title, date started and a brief description.
+2. User enters title, date started and a brief description.
+3. System saves data entered by user.
+
+Exceptions:
+3. Title/Description exceeds maximum length.
+3.1 System displays error message
+3.2 System returns to step 1.
+
+USE CASE 2
+Name: ViewProblemsList
+Participating Actors: Patient
+Goal: Display list of patient's problems, with their titles, dates, and number of records.
+Trigger: Patient clicks 'View Problems List' button.
+PreCondition: There are recorded problems.
+PostCondition: On success, list of of patient's problems, with their titles, dates, and number of records is displayed.
+
+USE CASE 3
+Name: EditProblemDetails
+Participating Actors: Patient
+Goal: Save changes made by user about previously recorded problem
+Trigger: 
+PreCondition:
+PostCondition: 
+
+USE CASE 4
+Name: DeleteProblem
+Participating Actors: Patient
+Goal: 
+Trigger: 
+PreCondition:
+PostCondition: 
