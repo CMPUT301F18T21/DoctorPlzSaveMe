@@ -5,7 +5,7 @@ import android.test.ActivityInstrumentationTestCase2;
 public class ProblemsListTest extends ActivityInstrumentationTestCase2 {
 
     public ProblemsListTest(){
-        super(com.erikligai.doctorplzsaveme.MainActivity.class);
+        super(com.erikligai.doctorplzsaveme.MainProblemActivity.class);
     }
 
     public void testAddProblem(){
