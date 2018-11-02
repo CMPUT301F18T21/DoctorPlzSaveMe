@@ -1,11 +1,13 @@
 package com.erikligai.doctorplzsaveme;
+import junit.framework.TestCase;
 
-import android.test.ActivityInstrumentationTestCase2;
+//import android.test.ActivityInstrumentationTestCase2;
 
-public class ProblemsListTest extends ActivityInstrumentationTestCase2 {
+
+public class ProblemsListTest extends TestCase {
 
     public ProblemsListTest(){
-        super(com.erikligai.doctorplzsaveme.MainProblemActivity.class);
+        super(String.valueOf(MainActivity.class));
     }
 
     public void testAddProblem(){
