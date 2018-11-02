@@ -4,7 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 
 public class PatientListTest extends ActivityInstrumentationTestCase2 {
 
-    public PatientListTestsListTest(){
+    public PatientListTest(){
         super(com.erikligai.doctorplzsaveme.NewPatientActivity.class);
     }
 
@@ -14,6 +14,5 @@ public class PatientListTest extends ActivityInstrumentationTestCase2 {
         patients.add(patient);
         assertTrue(patient.hasPatient(patient));
     }
-
 
 }
