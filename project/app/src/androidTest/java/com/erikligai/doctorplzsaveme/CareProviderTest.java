@@ -4,9 +4,9 @@ import junit.framework.TestCase;
 
 public class CareProviderTest extends TestCase {
     public void testAddPatient(){
-        PatientList patients = new PatientList();
-        Profile patient = new Patient("me@test.ca","7805555555","TestMe");
-        patients.add(patient);
+        CareProvider careProvider = new CareProvider();
+        Patient patient = new Patient("name");
+        careProvider.addPatient(patient);
         assertTrue(patient.hasPatient(patient));
     }
 }
