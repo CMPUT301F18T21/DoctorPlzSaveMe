@@ -1,8 +1,7 @@
 package com.erikligai.doctorplzsaveme;
+import junit.framework.TestCase;
 
-import android.test.ActivityInstrumentationTestCase2;
-
-public class RecordListTest extends ActivityInstrumentationTestCase2 {
+public class RecordListTest extends TestCase {
 
     public RecordListTest(){
         super(com.erikligai.doctorplzsaveme.NewPatientActivity.class);
