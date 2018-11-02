@@ -8,14 +8,14 @@ public class ProfilesListTest extends ActivityInstrumentationTestCase2 {
         super(com.erikligai.doctorplzsaveme.NewPatientActivity.class);
     }
 
-    public void testAddPatient(){
+    public void testAddPatientProfile(){
         ProfilesList profiles = new ProfilesList();
         Profile patient = new Patient("me@test.ca","7805555555","TestMe");
         profiles.add(patient);
         assertTrue(profile.hasProfile(patient));
     }
 
-    public void testAddProvider(){
+    public void testAddProviderProfile(){
         ProfilesList profiles = new ProfilesList();
         Profile provider = new Provider("me@test.ca","7805555555","TestMe");
         profiles.add(provider);
