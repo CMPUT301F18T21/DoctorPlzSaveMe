@@ -7,6 +7,6 @@ public class CareProviderTest extends TestCase {
         CareProvider careProvider = new CareProvider();
         Patient patient = new Patient("name");
         careProvider.addPatient(patient);
-        assertTrue(patient.hasPatient(patient));
+        assertTrue(careProvider.hasPatient(patient));
     }
 }

@@ -20,7 +20,7 @@ public class ProfilesListTest extends TestCase {
     @Test
     public void testAddPatientProfile(){
         ProfilesList profiles = new ProfilesList();
-        Profile patient = new Patient("me@test.ca","7805555555","TestMe");
+        Profile patient = new Patient("name");
         profiles.add(patient);
         assertTrue(profiles.hasProfile(patient));
     }
@@ -28,7 +28,7 @@ public class ProfilesListTest extends TestCase {
     @Test
     public void testAddProviderProfile(){
         ProfilesList profiles = new ProfilesList();
-        Profile careProvider = new CareProvider("me@test.ca","7805555555","TestMe");
+        Profile careProvider = new CareProvider("name");
         profiles.add(careProvider);
         assertTrue(profiles.hasProfile(careProvider));
     }
