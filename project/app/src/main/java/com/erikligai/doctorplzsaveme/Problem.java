@@ -32,4 +32,8 @@ public class Problem {
     public long details() {
         return blank;
     }
+
+    public void addComment(Comment comment) {
+
+    }
 }
