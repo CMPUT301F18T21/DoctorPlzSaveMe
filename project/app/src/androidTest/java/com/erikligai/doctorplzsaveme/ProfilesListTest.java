@@ -1,12 +1,12 @@
 package com.erikligai.doctorplzsaveme;
 
 //import junit.framework.TestCase;
-import com.google.common.truth.Truth.assertThat;
+//import com.google.common.truth.Truth.assertThat;
 
 import junit.framework.TestCase;
 
-
 import org.junit.Test;
+
 
 //import junit.framework.TestCase;
 //import android.test.ActivityInstrumentationTestCase2;
