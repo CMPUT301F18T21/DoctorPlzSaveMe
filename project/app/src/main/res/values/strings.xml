@@ -1,3 +1,58 @@
 <resources>
     <string name="app_name">DoctorPlzSaveMe</string>
+    <string name="patient_or_cp">Are you a patient or care provider?</string>
+    <string name="patient_button">PATIENT</string>
+    <string name="care_provider_button">CARE PROVIDER</string>
+
+    <string name="new_patient_title">New Patient</string>
+    <string name="new_patient">It looks like you are a new patient! Please enter your info below.</string>
+    <string name="email_hint">email address</string>
+    <string name="phone_number_hint">phone number</string>
+    <string name="create_profile_button">CREATE PROFILE</string>
+
+    <string name="patient_menu_title">Patient Menu</string>
+    <string name="view_problems_button">View Problems</string>
+    <string name="view_locations_button">View Locations</string>
+    <string name="upload_body_location_photo_button">Upload Body Location Photo</string>
+    <string name="view_edit_profile_button">View/Edit Profile</string>
+
+    <string name="problems_title">Problems</string>
+    <string name="Xrecords"> records</string>
+    <string name="menu_view_edit_records">View/Add Records</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_delete">Delete</string>
+
+    <string name="view_locations_title">Record/Problem Locations</string>
+
+    <string name="view_edit_profile_title">Your Profile</string>
+    <string name="user_id">User ID: </string>
+    <string name="cancel_button">CANCEL</string>
+    <string name="save_changes_button">SAVE CHANGES</string>
+
+    <string name="view_edit_records_title"> Records</string>
+    <string name="menu_view_edit_record">View/Edit Record</string>
+    <string name="view_record_photos">VIEW PHOTOS</string>
+
+    <string name="record_info_title">Record Info</string>
+    <string name="record_title_hint">record title</string>
+    <string name="comment_hint">comment</string>
+    <string name="tap_add_photo">Tap to add a photo!</string>
+    <string name="indicate_where">Please indicate where it is on your body</string>
+    <string name="geolocation_title">Geolocation</string>
+    <string name="back_cancel_changes">BACK (CANCEL CHANGES)</string>
+    <string name="back">BACK</string>
+    <string name="next">NEXT</string>
+    <string name="save_record">SAVE RECORD</string>
+
+    <string name="search_problem">Search for problems by keyword</string>
+    <string name="related_problems">RELATED PROBLEMS</string>
+
+    <string name="search_records">Search for records</string>
+    <string name="keyword">KEYWORD</string>
+    <string name="geolocation">GEOLOCATION</string>
+    <string name="body_location">BODY LOCATION</string>
+    <string name="search_records_keyword">Search for records by keyword</string>
+    <string name="related_records">RELATED RECORDS</string>
+    <string name="enter_location">Enter a location...</string>
+
 </resources>
