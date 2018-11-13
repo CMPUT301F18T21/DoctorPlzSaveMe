@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DoctorPlzSaveMe</string>
+    <string name="view_problems">View Problems</string>
+    <string name="action_search">Search</string>
+    <string name="problems">Problems</string>
 </resources>
