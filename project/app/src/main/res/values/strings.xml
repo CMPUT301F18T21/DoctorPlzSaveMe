@@ -3,4 +3,7 @@
     <string name="view_problems">View Problems</string>
     <string name="action_search">Search</string>
     <string name="problems">Problems</string>
+    <string name="view_edit_problem">View/Edit Problem</string>
+    <string name="edit_date">Edit Start Date</string>
+    <string name="edit_problem">Edit Problem</string>
 </resources>
