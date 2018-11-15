@@ -39,14 +39,6 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_search_toolbar, menu);
-
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: //back button
@@ -76,13 +68,11 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
 
     /** Called when the user taps the Edit Date button */
     public void editDate(View view) {
-        Intent intent = new Intent(this, EditProblemActivity.class);
-        startActivity(intent);
+
     }
 
     /** Called when the user taps the View Problems button */
     public void editProblem(View view) {
-        Intent intent = new Intent(this, EditProblemActivity.class);
-        startActivity(intent);
+
     }
 }

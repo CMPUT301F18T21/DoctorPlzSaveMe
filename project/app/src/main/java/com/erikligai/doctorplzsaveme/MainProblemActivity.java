@@ -70,7 +70,6 @@ public class MainProblemActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search_toolbar, menu);
-
         return true;
     }
 
@@ -85,6 +84,8 @@ public class MainProblemActivity extends AppCompatActivity {
                 // User chose the "Settings" item, show the app settings UI...
                 Log.d("toolbar", "search function!");
                 //calls ProblemSearchActivity
+                Intent intent = new Intent(this, ProblemSearchActivity.class);
+                startActivity(intent);
                 return true;
 
             default:
