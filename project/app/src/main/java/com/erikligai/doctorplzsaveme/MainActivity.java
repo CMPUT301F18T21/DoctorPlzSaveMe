@@ -19,6 +19,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button one = findViewById(R.id.viewProblemsButton);
         one.setOnClickListener(this); // calling onClick() method
+
+        Button viewLocationBtn = findViewById(R.id.viewLocationButton);
+        viewLocationBtn.setOnClickListener(this);
+
+        Button uploadBodyLocationBtn = findViewById(R.id.uploadBodyLocationButton);
+        uploadBodyLocationBtn.setOnClickListener(this);
     }
 
     @Override
@@ -29,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.viewProblemsButton:
                 viewProblems(findViewById(R.id.content));
                 break;
-
+//            case R.id.viewLocationButton:
+//                viewProblems(findViewById(R.id.content));
             default:
                 break;
         }

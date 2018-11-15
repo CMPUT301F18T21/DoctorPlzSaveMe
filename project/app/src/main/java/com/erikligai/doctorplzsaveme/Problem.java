@@ -12,6 +12,9 @@ public class Problem {
     ArrayList<Record> records = new ArrayList<Record>();
 
     public Problem(String test, String new_problem, Date date) {
+        this.title = test;
+        this.description = new_problem;
+        this.date = new Date();
     }
 
     public String getTitle() {
