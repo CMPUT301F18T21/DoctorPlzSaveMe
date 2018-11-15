@@ -9,4 +9,7 @@
     <string name="view_add_records">View/Add Records</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="view_locations">View Locations</string>
+    <string name="upload_body_location">Upload Body Location Photo</string>
+    <string name="view_edit_profile">View/Edit Profile</string>
 </resources>
