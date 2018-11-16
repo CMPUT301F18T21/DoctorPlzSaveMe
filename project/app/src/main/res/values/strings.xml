@@ -6,10 +6,22 @@
     <string name="view_edit_problem">View/Edit Problem</string>
     <string name="edit_date">Edit Start Date</string>
     <string name="edit_problem">Edit Problem</string>
+    <string name="edit_desc">Edit Description</string>
     <string name="view_add_records">View/Add Records</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="view_locations">View Locations</string>
     <string name="upload_body_location">Upload Body Location Photo</string>
     <string name="view_edit_profile">View/Edit Profile</string>
+    <string name="search_for_records">Search for Records</string>
+    <string name="keyword">Keyword</string>
+    <string name="body_location">Body Location</string>
+    <string name="geolocation">Geolocation</string>
+    <string name="no_desc">No description added!</string>
+    <string name="edit_problem_hint">Enter Problem here</string>
+    <string name="edit_desc_hint">Enter Description here</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="toaster_title">Problem Edited!</string>
+    <string name="toaster_desc">Description Updated!</string>
 </resources>

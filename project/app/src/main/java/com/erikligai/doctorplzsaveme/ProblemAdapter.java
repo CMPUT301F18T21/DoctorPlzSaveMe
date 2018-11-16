@@ -1,9 +1,11 @@
 package com.erikligai.doctorplzsaveme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,13 +48,13 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         @Override
         public void onClick(View v) {
             if (mOnEntryClickListener != null) {
-                mOnEntryClickListener.onEntryClick(getLayoutPosition());
+                mOnEntryClickListener.onEntryClick(getAdapterPosition());
             }
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ProblemAdapter(ArrayList<Problem> myDataset) {
+    ProblemAdapter(ArrayList<Problem> myDataset) {
         mDataset = myDataset;
     }
 
@@ -96,13 +98,19 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
                         switch (item.getItemId()) {
                             case R.id.problem_menu1:
                                 //handle menu1 click
+                                ClickMenuOne();
                                 return true;
+
                             case R.id.problem_menu2:
                                 //handle menu2 click
+                                ClickMenuTwo();
                                 return true;
+
                             case R.id.problem_menu3:
                                 //handle menu3 click
+                                ClickMenuThree();
                                 return true;
+
                             default:
                                 return false;
                         }
@@ -112,6 +120,28 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
                 popup.show();
 
             }
+
+            void ClickMenuOne(){
+                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
+                intent.putExtra("Pos", holder.getAdapterPosition());
+                Log.d("rview", "view/add");
+                holder.itemView.getContext().startActivity(intent);
+            }
+
+            void ClickMenuTwo(){
+                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
+                intent.putExtra("Pos", holder.getAdapterPosition());
+                Log.d("rview", "edit");
+                holder.itemView.getContext().startActivity(intent);
+            }
+
+            void ClickMenuThree(){
+                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
+                intent.putExtra("Pos", holder.getAdapterPosition());
+                Log.d("rview", "delete");
+                holder.itemView.getContext().startActivity(intent);
+            }
+
         });
     }
 
@@ -127,7 +157,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         void onEntryClick(int position);
     }
 
-    public void setOnEntryClickListener(OnEntryClickListener onEntryClickListener) {
+    void setOnEntryClickListener(OnEntryClickListener onEntryClickListener) {
         mOnEntryClickListener = onEntryClickListener;
     }
 }
