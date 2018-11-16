@@ -48,13 +48,13 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         @Override
         public void onClick(View v) {
             if (mOnEntryClickListener != null) {
-                mOnEntryClickListener.onEntryClick(getLayoutPosition());
+                mOnEntryClickListener.onEntryClick(getAdapterPosition());
             }
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ProblemAdapter(ArrayList<Problem> myDataset) {
+    ProblemAdapter(ArrayList<Problem> myDataset) {
         mDataset = myDataset;
     }
 
@@ -71,7 +71,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Problem problem = mDataset.get(position);
@@ -121,23 +121,23 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
             }
 
-            public void ClickMenuOne(){
+            void ClickMenuOne(){
                 Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
-                intent.putExtra("Pos", position);
+                intent.putExtra("Pos", holder.getAdapterPosition());
                 Log.d("rview", "view/add");
                 holder.itemView.getContext().startActivity(intent);
             }
 
-            public void ClickMenuTwo(){
+            void ClickMenuTwo(){
                 Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
-                intent.putExtra("Pos", position);
+                intent.putExtra("Pos", holder.getAdapterPosition());
                 Log.d("rview", "edit");
                 holder.itemView.getContext().startActivity(intent);
             }
 
-            public void ClickMenuThree(){
+            void ClickMenuThree(){
                 Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
-                intent.putExtra("Pos", position);
+                intent.putExtra("Pos", holder.getAdapterPosition());
                 Log.d("rview", "delete");
                 holder.itemView.getContext().startActivity(intent);
             }
@@ -157,7 +157,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         void onEntryClick(int position);
     }
 
-    public void setOnEntryClickListener(OnEntryClickListener onEntryClickListener) {
+    void setOnEntryClickListener(OnEntryClickListener onEntryClickListener) {
         mOnEntryClickListener = onEntryClickListener;
     }
 }
