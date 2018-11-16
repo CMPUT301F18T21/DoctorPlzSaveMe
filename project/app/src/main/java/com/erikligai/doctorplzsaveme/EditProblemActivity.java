@@ -1,7 +1,9 @@
 package com.erikligai.doctorplzsaveme;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,14 +13,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TooManyListenersException;
 
 public class EditProblemActivity extends AppCompatActivity implements View.OnClickListener{
     private Problem problem;
@@ -40,9 +45,11 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         dateText = findViewById(R.id.problem_date);
         Button editDate = findViewById(R.id.editDateButton);
         Button editProblem = findViewById(R.id.editProblemButton);
+        Button editDesc = findViewById(R.id.editDescButton);
 
         editDate.setOnClickListener(this);
         editProblem.setOnClickListener(this);
+        editDesc.setOnClickListener(this);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -76,7 +83,11 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
 
             case R.id.editProblemButton:
                 //call editProblemActivity
-                editProblem(findViewById(R.id.content));
+                editProblem();
+                break;
+
+            case R.id.editDescButton:
+                editDesc();
                 break;
         }
     }
@@ -102,9 +113,72 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
     }
 
-    /** Called when the user taps the View Problems button */
-    public void editProblem(View view) {
+    /** Called when the user taps the Edit Problems button */
+    public void editProblem() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = View.inflate(this, R.layout.dialog_edit_problem, null);
+        builder.setView(dialogView);
 
+        final EditText edit = dialogView.findViewById(R.id.edit_title_text);
+
+        builder.setTitle(R.string.edit_problem)
+                .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do something
+                        String text = edit.getText().toString();
+                        try {
+                            problem.setTitle(text);
+                            displayProblem();
+                            displayToaster(getString(R.string.toaster_title));
+                        } catch (TooLongProblemTitleException e) {
+                            e.printStackTrace();
+                            displayToaster(e.getMessage());
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // do nothing
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    /** Called when the user taps the Edit Description button */
+    public void editDesc() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = View.inflate(this, R.layout.dialog_edit_desc, null);
+        builder.setView(dialogView);
+
+        final EditText edit = dialogView.findViewById(R.id.edit_desc_text);
+
+        builder.setTitle(R.string.edit_desc)
+                .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do something
+                        String text = edit.getText().toString();
+                        try {
+                            problem.setDesc(text);
+                            displayProblem();
+                            displayToaster(getString(R.string.toaster_desc));
+                        } catch (TooLongProblemDescException e) {
+                            e.printStackTrace();
+                            displayToaster(e.getMessage());
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // do nothing
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     public void displayProblem(){
@@ -120,5 +194,10 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         } else{
             descText.setText(desc);
         }
+    }
+
+    private void displayToaster(String text){
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

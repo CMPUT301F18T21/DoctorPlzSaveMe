@@ -39,4 +39,22 @@ public class Problem {
     public void addComment(Comment comment) {
 
     }
+
+    public void setTitle(String title) throws TooLongProblemTitleException{
+        if (title.length()>30){
+            throw new TooLongProblemTitleException("This title is too long! Please enter a comment with less than 30 character!");
+        }
+        this.title = title;
+    }
+
+    public void setDesc(String desc) throws TooLongProblemDescException{
+        if (title.length()>300){
+            throw new TooLongProblemDescException("This description is too long! Please enter a comment with less than 30 character!");
+        }
+        this.description = desc;
+    }
+
+    public void setDate(Date date){
+        this.date = date;
+    }
 }
