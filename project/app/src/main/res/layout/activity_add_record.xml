@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editRecordComment"
         android:layout_width="360dp"
         android:layout_height="182dp"
         android:layout_marginStart="16dp"
@@ -39,24 +39,28 @@
         app:layout_constraintTop_toBottomOf="@+id/editRecordTitle" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/nextButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="NEXT"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editRecordComment" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="87dp"
+        android:id="@+id/backButton1"
+        android:layout_width="89dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="BACK"
+        app:layout_constraintEnd_toStartOf="@+id/nextButton1"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editRecordComment" />
 </android.support.constraint.ConstraintLayout>
