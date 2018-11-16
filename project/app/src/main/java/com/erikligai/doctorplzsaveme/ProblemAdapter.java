@@ -1,9 +1,11 @@
 package com.erikligai.doctorplzsaveme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,7 +71,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Problem problem = mDataset.get(position);
@@ -96,13 +98,19 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
                         switch (item.getItemId()) {
                             case R.id.problem_menu1:
                                 //handle menu1 click
+                                ClickMenuOne();
                                 return true;
+
                             case R.id.problem_menu2:
                                 //handle menu2 click
+                                ClickMenuTwo();
                                 return true;
+
                             case R.id.problem_menu3:
                                 //handle menu3 click
+                                ClickMenuThree();
                                 return true;
+
                             default:
                                 return false;
                         }
@@ -112,6 +120,28 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
                 popup.show();
 
             }
+
+            public void ClickMenuOne(){
+                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
+                intent.putExtra("Pos", position);
+                Log.d("rview", "view/add");
+                holder.itemView.getContext().startActivity(intent);
+            }
+
+            public void ClickMenuTwo(){
+                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
+                intent.putExtra("Pos", position);
+                Log.d("rview", "edit");
+                holder.itemView.getContext().startActivity(intent);
+            }
+
+            public void ClickMenuThree(){
+                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
+                intent.putExtra("Pos", position);
+                Log.d("rview", "delete");
+                holder.itemView.getContext().startActivity(intent);
+            }
+
         });
     }
 

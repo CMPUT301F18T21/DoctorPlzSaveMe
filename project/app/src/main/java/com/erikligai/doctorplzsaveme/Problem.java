@@ -14,7 +14,7 @@ public class Problem {
     public Problem(String test, String new_problem, Date date) {
         this.title = test;
         this.description = new_problem;
-        this.date = new Date();
+        this.date = date;
     }
 
     public String getTitle() {

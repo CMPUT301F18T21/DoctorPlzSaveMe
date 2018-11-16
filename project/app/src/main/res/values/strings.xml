@@ -16,4 +16,5 @@
     <string name="keyword">Keyword</string>
     <string name="body_location">Body Location</string>
     <string name="geolocation">Geolocation</string>
+    <string name="no_desc">No description added!</string>
 </resources>

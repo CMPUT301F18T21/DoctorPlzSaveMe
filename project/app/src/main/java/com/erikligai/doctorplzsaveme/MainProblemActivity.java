@@ -14,15 +14,16 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainProblemActivity extends AppCompatActivity {
     private ProblemAdapter adapter;
     private ArrayList<Problem> problems = new ArrayList<>();
 
     //sample problem list
-    Problem p1 = new Problem("Problem 1","Problem Description 1",null);
-    Problem p2 = new Problem("Problem 2","Problem Description 2",null);
-    Problem p3 = new Problem("Problem 3","Problem Description 3",null);
+    Problem p1 = new Problem("Problem 1","Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd",new Date());
+    Problem p2 = new Problem("Problem 2","Problem Description 2",new Date());
+    Problem p3 = new Problem("Problem 3","Problem Description 3",new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class MainProblemActivity extends AppCompatActivity {
             public void onEntryClick(int position) {
                 Intent intent = new Intent(getApplicationContext(), EditProblemActivity.class);
                 intent.putExtra("Pos", position);
+                Log.d("rview",Integer.toString(position));
                 startActivity(intent);
             }
         });
