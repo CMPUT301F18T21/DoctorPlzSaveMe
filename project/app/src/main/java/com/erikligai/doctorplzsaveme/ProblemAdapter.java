@@ -122,10 +122,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
             }
 
             void ClickMenuOne(){
-                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
                 Log.d("rview", "view/add");
-                holder.itemView.getContext().startActivity(intent);
             }
 
             void ClickMenuTwo(){
@@ -136,10 +133,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
             }
 
             void ClickMenuThree(){
-                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
                 Log.d("rview", "delete");
-                holder.itemView.getContext().startActivity(intent);
             }
 
         });
