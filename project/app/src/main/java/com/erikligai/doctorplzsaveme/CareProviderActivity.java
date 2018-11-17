@@ -28,6 +28,8 @@ public class CareProviderActivity extends AppCompatActivity {
     private void addPatients() {
         Log.d(TAG, "addPatients: preparing patients");
 
+
+
         mPatientIds.add("1");
         mPatientEmails.add("ligai@ualberta.ca");
         mPatientPhones.add("031491234");
