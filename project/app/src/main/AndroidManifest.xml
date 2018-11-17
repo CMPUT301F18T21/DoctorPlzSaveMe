@@ -20,6 +20,17 @@
         <activity android:name=".EditProblemActivity" />
         <activity android:name=".AddProblemActivity" />
         <activity android:name=".ProblemSearchActivity"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDVlgnS4qmnaTGp5HVS0awSCWoCePieuJI"
+            />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
 
 </manifest>
