@@ -1,13 +1,11 @@
 package com.erikligai.doctorplzsaveme;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class NewProfileActivity extends AppCompatActivity {
 
@@ -22,12 +20,12 @@ public class NewProfileActivity extends AppCompatActivity {
 
         createProfile = (Button) findViewById(R.id.createProfileButton);
         emailInputText = (TextView) findViewById(R.id.emailInputText);
-        phoneInputText = (TextView) findViewById(R.id.phoneInputText);
+        phoneInputText = (TextView) findViewById(R.id.phoneText);
 
         createProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // add profile to DB and launch ViewProblemsActivity
+                // TODO: add profile to DB and launch ViewProblemsActivity
             }
         });
 

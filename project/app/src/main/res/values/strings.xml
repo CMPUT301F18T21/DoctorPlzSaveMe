@@ -25,7 +25,7 @@
     <string name="view_locations_title">Record/Problem Locations</string>
 
     <string name="view_edit_profile_title">Your Profile</string>
-    <string name="user_id">User ID: </string>
+    <string name="user_id">User ID:\u0020</string>
     <string name="cancel_button">CANCEL</string>
     <string name="save_changes_button">SAVE CHANGES</string>
 
