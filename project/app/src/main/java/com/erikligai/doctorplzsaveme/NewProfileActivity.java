@@ -1,13 +1,10 @@
 package com.erikligai.doctorplzsaveme;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class NewProfileActivity extends AppCompatActivity {
 
