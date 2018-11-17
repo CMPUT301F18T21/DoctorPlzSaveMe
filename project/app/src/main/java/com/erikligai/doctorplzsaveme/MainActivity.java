@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme;
 
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -35,8 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.viewProblemsButton:
                 viewProblems(findViewById(R.id.content));
                 break;
-//            case R.id.viewLocationButton:
-//                viewProblems(findViewById(R.id.content));
+            case R.id.uploadBodyLocationButton:
+                uploadBodyLocation(findViewById(R.id.content));
+                break;
             default:
                 break;
         }
@@ -47,4 +49,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, MainProblemActivity.class);
         startActivity(intent);
     }
+
+    public void uploadBodyLocation(View view) {
+        dispatchTakePictureIntent();
+    }
+
+    /** Functions for taking a photo */
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, 1);           //REQUEST_IMAGE_CAPTURE
+        }
+    }
+
 }
