@@ -38,11 +38,15 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+
         <activity android:name=".CPProblemListActivity"></activity>
         <activity android:name=".CPProblemSearchActivity" />
-        <activity android:name=".RecordSearchActivity">
+        <activity android:name=".RecordSearchActivity"></activity>
 
-        </activity>
+        <activity
+            android:name=".MainMapsActivity"
+            android:label="@string/title_activity_main_maps"></activity>
+
     </application>
 
 </manifest>
