@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DoctorPlzSaveMe</string>
+    <string name="records">My records</string>
 </resources>

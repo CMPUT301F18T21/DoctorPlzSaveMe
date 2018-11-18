@@ -1,6 +1,20 @@
 package com.erikligai.doctorplzsaveme;
 
+import java.util.Date;
+
 public class Record {
+    private String title;
+    private Date date;
+    private String comment;
+    private Photo photo;
+    private BodyLocation bodyLocation;
+    private Geolocation geoLocation;
+
+    public Record(String title,Date date, String comment){
+        this.title = title;
+        this.date = date;
+        this.comment = comment;
+    }
 
     public void addPhoto(Photo photo) {
 
