@@ -20,6 +20,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".MainProblemActivity" />
         <activity android:name=".EditProblemActivity" />
@@ -37,9 +38,15 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+
+        <activity android:name=".CPProblemListActivity"></activity>
+        <activity android:name=".CPProblemSearchActivity" />
+        <activity android:name=".RecordSearchActivity"></activity>
+
         <activity
             android:name=".MainMapsActivity"
             android:label="@string/title_activity_main_maps"></activity>
+
     </application>
 
 </manifest>
