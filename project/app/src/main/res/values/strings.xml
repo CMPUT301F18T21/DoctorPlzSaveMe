@@ -24,4 +24,5 @@
     <string name="cancel">Cancel</string>
     <string name="toaster_title">Problem Edited!</string>
     <string name="toaster_desc">Description Updated!</string>
+    <string name="title_activity_main_maps">Record/Problem Locations</string>
 </resources>

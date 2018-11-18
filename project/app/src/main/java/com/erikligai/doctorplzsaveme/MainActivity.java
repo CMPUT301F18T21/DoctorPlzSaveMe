@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.uploadBodyLocationButton:
                 uploadBodyLocation(findViewById(R.id.content));
                 break;
+            case R.id.viewLocationButton:
+                viewLocation(findViewById(R.id.content));
+                break;
             default:
                 break;
         }
@@ -52,6 +55,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void uploadBodyLocation(View view) {
         dispatchTakePictureIntent();
+    }
+
+    public void viewLocation(View view) {
+        Intent intent = new Intent(this, MainMapsActivity.class);
+        startActivity(intent);
     }
 
     /** Functions for taking a photo */
