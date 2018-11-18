@@ -24,4 +24,6 @@
     <string name="cancel">Cancel</string>
     <string name="toaster_title">Problem Edited!</string>
     <string name="toaster_desc">Description Updated!</string>
+    <string name="view_records">view records</string>
+    <string name="view_add_comment">view/add comment</string>
 </resources>
