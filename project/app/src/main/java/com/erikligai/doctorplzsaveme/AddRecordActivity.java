@@ -30,6 +30,7 @@ public class AddRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openRecordListActivity();
+
             }
         });
 
@@ -48,8 +49,10 @@ public class AddRecordActivity extends AppCompatActivity {
         Intent intent = new Intent(this,AddBodylocationActivity.class);
         startActivity(intent);
     }
+
     private void openRecordListActivity(){
         Intent intent = new Intent(this,RecordListActivity.class);
         startActivity(intent);
     }
+
 }
