@@ -45,6 +45,11 @@ public class MainMapsActivity extends FragmentActivity implements OnMapReadyCall
         LatLng melbourne = new LatLng(-37.772202, 144.999405);
         mMap.addMarker(new MarkerOptions().position(melbourne).title("Marker in Melbourne"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        //for record in recordList
+        // LatLng location = record.getGeolocation();
+        // mMap.addMarker(new MarkerOptions().position(location).title(record.getProblem));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(location)); // move camera to last added location.
     }
 
     
