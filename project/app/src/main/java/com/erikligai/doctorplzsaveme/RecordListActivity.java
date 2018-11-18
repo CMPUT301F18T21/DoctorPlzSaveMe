@@ -13,13 +13,13 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class RecordListActivity extends AppCompatActivity {
-    //private RecordAdapter adapter;
+    private RecordAdapter adapter;
     private ArrayList<Record> records = new ArrayList<>();
 
     //sample record list
-    Record r1 = new Record("Record1",null,"reordDescription");
-    Record r2 = new Record("Record1",null,"reordDescription");
-    Record r3 = new Record("Record1",null,"reordDescription");
+    Record r1 = new Record("Record1",null,"recordDescription");
+    Record r2 = new Record("Record1",null,"recordDescription");
+    Record r3 = new Record("Record1",null,"recordDescription");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,15 +50,16 @@ public class RecordListActivity extends AppCompatActivity {
         recordRecycler.setLayoutManager(layoutManager);
 
 
-//        adapter = new RecordAdapter(problems);
-//        recordRecycler.setAdapter(adapter);
-//        adapter.setOnEntryClickListener(new RecordAdapter.OnEntryClickListener() {
-//            @Override
-//            public void onEntryClick(int position) {
-////                Intent intent = new Intent(getApplicationContext(), EditProblemActivity.class);
-////                intent.putExtra("Pos", position);
-////                startActivity(intent);
-//            }
-//        });
+        adapter = new RecordAdapter(records);
+        recordRecycler.setAdapter(adapter);
+        adapter.setOnEntryClickListener(new RecordAdapter.OnEntryClickListener() {
+            @Override
+            public void onEntryClick(int position) {
+//                Intent intent = new Intent(getApplicationContext(), EditProblemActivity.class);
+//                intent.putExtra("Pos", position);
+//                startActivity(intent);
+                Log.d("rview", Integer.toString(position));
+            }
+        });
     }
 }

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">DoctorPlzSaveMe</string>
     <string name="records">My records</string>
+    <string name="delete">Delete</string>
+    <string name="view_edit_record">View/Edit Record</string>
 </resources>

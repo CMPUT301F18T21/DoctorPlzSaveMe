@@ -12,8 +12,20 @@ public class Record {
 
     public Record(String title,Date date, String comment){
         this.title = title;
-        this.date = date;
+        this.date = new Date();
         this.comment = comment;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     public void addPhoto(Photo photo) {
