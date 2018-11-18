@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class AddBodylocationActivity extends AppCompatActivity {
 
-    private Button backBtn2,nextBtn2;
+    private Button backBtn2,nextBtn2,addPhotoBtn,addBodylocationBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,8 @@ public class AddBodylocationActivity extends AppCompatActivity {
         // Get buttons
         backBtn2 = findViewById(R.id.backButton2);
         nextBtn2 = findViewById(R.id.nextButton2);
+        addPhotoBtn  =findViewById(R.id.addPhotoButton);
+        addBodylocationBtn = findViewById(R.id.addBodylocationButton);
 
         backBtn2.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -21,7 +21,7 @@ public class AddRecordActivity extends AppCompatActivity {
 
         // Get buttons
         backBtn1 = findViewById(R.id.backButton1);
-        nextBtn1 = findViewById(R.id.nextButton1);
+        nextBtn1 = findViewById(R.id.editNextButton3);
         // Set title & comment editText
         commentText = findViewById(R.id.editRecordComment);
         titleText = findViewById(R.id.editRecordTitle);
