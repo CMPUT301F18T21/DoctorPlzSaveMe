@@ -16,15 +16,19 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private ArrayList<String> mPatientIds = new ArrayList<>();
-    private ArrayList<String> mPatientEmails = new ArrayList<>();
-    private ArrayList<String> mPatientPhones = new ArrayList<>();
+    private ArrayList<Patient> mPatients;
+
+//    private ArrayList<String> mPatientIds = new ArrayList<>();
+//    private ArrayList<String> mPatientEmails = new ArrayList<>();
+//    private ArrayList<String> mPatientPhones = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(ArrayList<String> mPatientIds, ArrayList<String> mPatientEmails, ArrayList<String> mPatientPhones, Context mContext) {
-        this.mPatientIds = mPatientIds;
-        this.mPatientEmails = mPatientEmails;
-        this.mPatientPhones = mPatientPhones;
+    public RecyclerViewAdapter(ArrayList<Patient> patients, Context mContext) {
+//        this.mPatientIds = mPatientIds;
+//        this.mPatientEmails = mPatientEmails;
+//        this.mPatientPhones = mPatientPhones;
+
+        this.mPatients = patients;
         this.mContext = mContext;
     }
 
@@ -38,22 +42,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder called");
-        viewHolder.patientID.setText(mPatientIds.get(i)); // obtains id at index
-        viewHolder.patientEmail.setText(mPatientEmails.get(i)); // obtains email at index
-        viewHolder.patientPhone.setText(mPatientPhones.get(i)); // obtains phone at index
+        viewHolder.patientID.setText(mPatients.get(i).getID()); // obtains id at index
+        viewHolder.patientEmail.setText(mPatients.get(i).getEmail()); // obtains email at index
+        viewHolder.patientPhone.setText(mPatients.get(i).getPhone()); // obtains phone at index
 
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mPatientIds.get(i));
-                Toast.makeText(mContext, mPatientIds.get(i), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
+                Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mPatientIds.size();
+        return mPatients.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

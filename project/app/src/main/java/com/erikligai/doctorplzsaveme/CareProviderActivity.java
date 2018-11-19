@@ -13,12 +13,13 @@ import android.view.View;
 import java.util.ArrayList;
 
 public class CareProviderActivity extends AppCompatActivity {
-
     private static final String TAG = "CareProviderActivity";
 
-    private ArrayList<String> mPatientIds = new ArrayList<>();
-    private ArrayList<String> mPatientEmails = new ArrayList<>();
-    private ArrayList<String> mPatientPhones = new ArrayList<>();
+    private ArrayList<Patient> patientList = new ArrayList<>();
+
+//    private ArrayList<String> mPatientIds = new ArrayList<>();
+//    private ArrayList<String> mPatientEmails = new ArrayList<>();
+//    private ArrayList<String> mPatientPhones = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,29 +46,36 @@ public class CareProviderActivity extends AppCompatActivity {
     private void addPatients() {
         Log.d(TAG, "addPatients: preparing patients");
 
-        mPatientIds.add("1");
-        mPatientEmails.add("ligai@ualberta.ca");
-        mPatientPhones.add("031491234");
+        patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
+        patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
+        patientList.add(new Patient("Daniil", "3", "bam@ualberta.ca", "746746"));
+        patientList.add(new Patient("Weng", "4", "asdfadf@ualberta.ca", "0918234"));
+        patientList.add(new Patient("Iyun", "5", "asdfasdf@ualberta.ca", "1234869023"));
+        patientList.add(new Patient("Bruce", "6", "owerti@ualberta.ca", "6458349"));
 
-        mPatientIds.add("2");
-        mPatientEmails.add("qwer@ualberta.ca");
-        mPatientPhones.add("3284578345");
-
-        mPatientIds.add("3");
-        mPatientEmails.add("tyui@ualberta.ca");
-        mPatientPhones.add("234123");
-
-        mPatientIds.add("4");
-        mPatientEmails.add("opas@ualberta.ca");
-        mPatientPhones.add("745625653");
-
-        mPatientIds.add("5");
-        mPatientEmails.add("dfgh@ualberta.ca");
-        mPatientPhones.add("1432956873");
-
-        mPatientIds.add("6");
-        mPatientEmails.add("jklz@ualberta.ca");
-        mPatientPhones.add("091782341");
+//        mPatientIds.add("1");
+//        mPatientEmails.add("ligai@ualberta.ca");
+//        mPatientPhones.add("031491234");
+//
+//        mPatientIds.add("2");
+//        mPatientEmails.add("qwer@ualberta.ca");
+//        mPatientPhones.add("3284578345");
+//
+//        mPatientIds.add("3");
+//        mPatientEmails.add("tyui@ualberta.ca");
+//        mPatientPhones.add("234123");
+//
+//        mPatientIds.add("4");
+//        mPatientEmails.add("opas@ualberta.ca");
+//        mPatientPhones.add("745625653");
+//
+//        mPatientIds.add("5");
+//        mPatientEmails.add("dfgh@ualberta.ca");
+//        mPatientPhones.add("1432956873");
+//
+//        mPatientIds.add("6");
+//        mPatientEmails.add("jklz@ualberta.ca");
+//        mPatientPhones.add("091782341");
 
         initRecyclerView();
     }
@@ -75,7 +83,7 @@ public class CareProviderActivity extends AppCompatActivity {
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mPatientIds, mPatientEmails, mPatientPhones, this);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(patientList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
