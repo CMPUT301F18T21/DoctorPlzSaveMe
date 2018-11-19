@@ -3,7 +3,6 @@ package com.erikligai.doctorplzsaveme;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,8 +34,8 @@ public class CareProviderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(CareProviderActivity.this, AddPatientActivity.class));
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
             }
         });
 
@@ -52,30 +51,6 @@ public class CareProviderActivity extends AppCompatActivity {
         patientList.add(new Patient("Weng", "4", "asdfadf@ualberta.ca", "0918234"));
         patientList.add(new Patient("Iyun", "5", "asdfasdf@ualberta.ca", "1234869023"));
         patientList.add(new Patient("Bruce", "6", "owerti@ualberta.ca", "6458349"));
-
-//        mPatientIds.add("1");
-//        mPatientEmails.add("ligai@ualberta.ca");
-//        mPatientPhones.add("031491234");
-//
-//        mPatientIds.add("2");
-//        mPatientEmails.add("qwer@ualberta.ca");
-//        mPatientPhones.add("3284578345");
-//
-//        mPatientIds.add("3");
-//        mPatientEmails.add("tyui@ualberta.ca");
-//        mPatientPhones.add("234123");
-//
-//        mPatientIds.add("4");
-//        mPatientEmails.add("opas@ualberta.ca");
-//        mPatientPhones.add("745625653");
-//
-//        mPatientIds.add("5");
-//        mPatientEmails.add("dfgh@ualberta.ca");
-//        mPatientPhones.add("1432956873");
-//
-//        mPatientIds.add("6");
-//        mPatientEmails.add("jklz@ualberta.ca");
-//        mPatientPhones.add("091782341");
 
         initRecyclerView();
     }
