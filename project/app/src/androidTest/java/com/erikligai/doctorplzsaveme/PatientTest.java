@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class PatientTest extends TestCase {
     public void testAddProblem(){
-        Patient patient = new Patient("name");
+        Patient patient = new Patient("name", "id", "email", "phone");
         Date date = new Date();
         Problem problem = new Problem("test","New Problem", date);
         patient.addProblem(problem);

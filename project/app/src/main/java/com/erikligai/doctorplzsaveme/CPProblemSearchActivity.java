@@ -40,7 +40,10 @@ public class CPProblemSearchActivity extends AppCompatActivity {
         careProviderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                // Here it should open a new activity where the care provider's patients are listed in a recycler view
+
+                // open new activity
+                startActivity(new Intent(MainActivity.this, CareProviderActivity.class));
 
             }
         });
@@ -48,3 +51,4 @@ public class CPProblemSearchActivity extends AppCompatActivity {
     }
 
 }
+

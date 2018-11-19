@@ -19,6 +19,7 @@
         <activity android:name=".PatientActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -54,9 +55,15 @@
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
-
         </activity>
-
+        <activity android:name=".CareProviderActivity" />
+        <activity android:name=".AddPatientActivity"></activity>
+        <activity android:name=".EditProfileActivity"
+            android:label="@string/view_edit_profile_title">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

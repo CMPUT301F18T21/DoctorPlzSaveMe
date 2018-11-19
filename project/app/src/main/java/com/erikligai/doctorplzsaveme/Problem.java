@@ -20,8 +20,14 @@ public class Problem {
         this.date = new Date();
     }
 
+    public Problem(String title, String description, Date date) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
+    }
+
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getDescription() {
@@ -29,7 +35,7 @@ public class Problem {
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public ArrayList<Record> getRecords(){
@@ -52,10 +58,6 @@ public class Problem {
         return blank;
     }
 
-    public void addComment(Comment comment) {
-
-    }
-
     public void setTitle(String title) throws TooLongProblemTitleException{
         if (title.length()>30){
             throw new TooLongProblemTitleException("This title is too long! Please enter a comment with less than 30 character!");
@@ -74,7 +76,7 @@ public class Problem {
         this.date = date;
     }
 
-    public void setRecords(Record record){
+    public void setRecords(Record record) {
         records.add(record);
     }
 }
