@@ -51,7 +51,7 @@ public class AddRecordActivity extends AppCompatActivity {
     }
 
     private void openRecordListActivity(){
-        Intent intent = new Intent(this,RecordListActivity.class);
+        Intent intent = new Intent(this,MainRecordActivity.class);
         startActivity(intent);
     }
 

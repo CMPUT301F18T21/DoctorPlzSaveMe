@@ -10,7 +10,7 @@ public class Record {
     private BodyLocation bodyLocation;
     private Geolocation geoLocation;
 
-    public Record(String title,Date date, String comment){
+    public Record(String title, String comment){
         this.title = title;
         this.date = new Date();
         this.comment = comment;

@@ -1,6 +1,5 @@
 package com.erikligai.doctorplzsaveme;
 
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,18 +11,18 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class RecordListActivity extends AppCompatActivity {
+public class MainRecordActivity extends AppCompatActivity {
     private RecordAdapter adapter;
     private ArrayList<Record> records = new ArrayList<>();
 
     //sample record list
-    Record r1 = new Record("Record1",null,"recordDescription");
-    Record r2 = new Record("Record1",null,"recordDescription");
-    Record r3 = new Record("Record1",null,"recordDescription");
+    Record r1 = new Record("Record1","recordDescription");
+    Record r2 = new Record("Record1","recordDescription");
+    Record r3 = new Record("Record1","recordDescription");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_list);
+        setContentView(R.layout.activity_main_record);
 
         records.add(r1);
         records.add(r2);

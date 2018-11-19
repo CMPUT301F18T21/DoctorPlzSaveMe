@@ -17,22 +17,23 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MainProblemActivity extends AppCompatActivity {
-    private ProblemAdapter adapter;
+    public ProblemAdapter adapter;
     private ArrayList<Problem> problems = new ArrayList<>();
+    private ArrayList<Problem> temp_problems = new ArrayList<>();
 
-    //sample problem list
-    Problem p1 = new Problem("Problem 1", "Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd", new Date());
-    Problem p2 = new Problem("Problem 2", "Problem Description 2", new Date());
-    Problem p3 = new Problem("Problem 3", "Problem Description 3", new Date());
+//    //sample problem list
+//    Problem p1 = new Problem("Problem 1", "Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd");
+//    Problem p2 = new Problem("Problem 2", "Problem Description 2");
+//    Problem p3 = new Problem("Problem 3", "Problem Description 3");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_problem);
 
-        problems.add(p1);
-        problems.add(p2);
-        problems.add(p3);
+//        problems.add(p1);
+//        problems.add(p2);
+//        problems.add(p3);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -56,6 +57,7 @@ public class MainProblemActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         problemRView.setLayoutManager(layoutManager);
 
+        loadfromES();
 
         adapter = new ProblemAdapter(problems);
         problemRView.setAdapter(adapter);
@@ -98,5 +100,34 @@ public class MainProblemActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    private void loadfromES() {
+        ElasticsearchProblemController.GetProblemsTask getProblemsTask = new ElasticsearchProblemController.GetProblemsTask();
+        getProblemsTask.execute("");
+
+        try {
+            temp_problems = getProblemsTask.get();
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the tweets from the async object");
+        }
+        problems.clear();
+        problems.addAll(temp_problems);
+    }
+
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        loadfromES();
+        adapter.notifyDataSetChanged();
+    }
+
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        Log.d("abc","onresume");
+        loadfromES();
+        adapter.notifyDataSetChanged();
     }
 }
