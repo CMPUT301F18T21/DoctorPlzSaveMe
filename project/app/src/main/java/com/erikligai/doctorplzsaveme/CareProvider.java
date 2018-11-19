@@ -25,7 +25,7 @@ public class CareProvider implements Profile {
     }
 
     public boolean hasPatient(Patient patient) {
-        return true;
+        return mPatientList.contains(patient);
     }
 }
 
