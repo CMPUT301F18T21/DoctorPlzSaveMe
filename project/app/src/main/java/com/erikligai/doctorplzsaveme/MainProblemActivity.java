@@ -56,6 +56,7 @@ public class MainProblemActivity extends AppCompatActivity {
         problemRView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         problemRView.setLayoutManager(layoutManager);
+        problemRView.setNestedScrollingEnabled(false);
 
         loadfromES();
 
