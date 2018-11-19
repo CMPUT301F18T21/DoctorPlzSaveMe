@@ -17,6 +17,14 @@ public class Problem {
         this.date = date;
     }
 
+    public void setTitle(String newTitle) {
+        this.title = newTitle;
+    }
+
+    public void setDescription(String newDescription) {
+        this.description = newDescription;
+    }
+
     public String getTitle() {
         return this.title;
     }
@@ -29,19 +37,19 @@ public class Problem {
         return this.date;
     }
 
-    public void edit(String changed, String changes, String s) {
-    }
-
-    public long details() {
-        return blank;
-    }
-
     public void addComment(Comment comment) {
         this.comments.add(comment);
-
     }
 
-    public ArrayList getComments() {
+    public void addRecord(Record record) {
+        this.records.add(record);
+    }
+
+    public ArrayList<Comment> getComments() {
         return this.comments;
+    }
+
+    public ArrayList<Record> getRecords() {
+        return this.records;
     }
 }
