@@ -27,7 +27,7 @@ public class AddProblemActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainProblemActivity();
+                finish();
             }
         });
 
@@ -36,6 +36,10 @@ public class AddProblemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String title = titleText.getText().toString();
                 String description = descriptionText.getText().toString();
+                Problem newProblem = new Problem(title,description);
+                ElasticsearchProblemController.AddProblemsTask addTweetsTask = new ElasticsearchProblemController.AddProblemsTask();
+                addTweetsTask.execute(newProblem);
+                finish();
             }
         });
     }
