@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class CPProblemSearchActivity extends AppCompatActivity {
 
     private Button patientButton;
     private Button careProviderButton;
@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        setContentView(R.layout.activity_cpproblem_search);
 
         patientButton = (Button) findViewById(R.id.patient_button);
         careProviderButton = (Button) findViewById(R.id.care_provider_button);
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 // NewProfileActivity or the DisplayProblems activity
 
                 // for now, just do NewProfileActivity, for testing
-                startActivity(new Intent(MainActivity.this, NewProfileActivity.class));
+                startActivity(new Intent(CPProblemSearchActivity.this, NewProfileActivity.class));
             }
         });
 
