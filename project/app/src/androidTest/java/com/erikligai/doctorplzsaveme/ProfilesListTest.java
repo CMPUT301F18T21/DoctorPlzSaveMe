@@ -14,7 +14,7 @@ import org.junit.Test;
 public class ProfilesListTest extends TestCase {
 
 //    public ProfilesListTest(){
-//        super(com.erikligai.doctorplzsaveme.MainActivity.class);
+//        super(com.erikligai.doctorplzsaveme.PatientActivity.class);
 //    }
 
     @Test
