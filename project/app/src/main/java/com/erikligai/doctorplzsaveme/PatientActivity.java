@@ -18,8 +18,11 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        Button one = findViewById(R.id.viewProblemsButton);
-        one.setOnClickListener(this); // calling onClick() method
+        Button viewProblemsBtn = findViewById(R.id.viewProblemsButton);
+        viewProblemsBtn.setOnClickListener(this); // calling onClick() method
+
+        Button editProfileBtn = findViewById(R.id.editProfileButton);
+        editProfileBtn.setOnClickListener(this);
 
         Button viewLocationBtn = findViewById(R.id.viewLocationButton);
         viewLocationBtn.setOnClickListener(this);
@@ -39,6 +42,9 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.uploadBodyLocationButton:
                 uploadBodyLocation(findViewById(R.id.content));
                 break;
+            case R.id.editProfileButton:
+                editProfile(findViewById(R.id.content));
+                break;
             case R.id.viewLocationButton:
                 viewLocation(findViewById(R.id.content));
                 break;
@@ -55,6 +61,11 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
 
     public void uploadBodyLocation(View view) {
         dispatchTakePictureIntent();
+    }
+
+    public void editProfile(View view) {
+        Intent intent = new Intent(this, EditProfileActivity.class);
+        startActivity(intent);
     }
 
     public void viewLocation(View view) {

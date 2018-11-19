@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,7 +27,8 @@ public class NewProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // add profile to DB and launch ViewProblemsActivity
-
+                Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
+                startActivity(intent);
             }
         });
 

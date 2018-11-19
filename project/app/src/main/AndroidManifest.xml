@@ -15,15 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <activity android:name=".PatientActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".MainRecordActivity" />
         <activity android:name=".MainProblemActivity" />
         <activity android:name=".EditProblemActivity" />
@@ -41,14 +39,12 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-
-        <activity android:name=".CPProblemListActivity"></activity>
+        <activity android:name=".CPProblemListActivity" />
         <activity android:name=".CPProblemSearchActivity" />
-        <activity android:name=".RecordSearchActivity"></activity>
-
+        <activity android:name=".RecordSearchActivity" />
         <activity
             android:name=".MainMapsActivity"
-            android:label="@string/title_activity_main_maps"></activity>
+            android:label="@string/title_activity_main_maps" />
         <activity
             android:name=".NewProfileActivity"
             android:label="@string/new_patient_title">
@@ -57,13 +53,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".CareProviderActivity" />
-        <activity android:name=".AddPatientActivity"></activity>
-        <activity android:name=".EditProfileActivity"
+        <activity android:name=".AddPatientActivity" />
+        <activity
+            android:name=".EditProfileActivity"
             android:label="@string/view_edit_profile_title">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".PatientActivity"></activity>
     </application>
 
 </manifest>

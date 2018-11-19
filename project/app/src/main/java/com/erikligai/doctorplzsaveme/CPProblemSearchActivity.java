@@ -43,7 +43,7 @@ public class CPProblemSearchActivity extends AppCompatActivity {
                 // Here it should open a new activity where the care provider's patients are listed in a recycler view
 
                 // open new activity
-                startActivity(new Intent(MainActivity.this, CareProviderActivity.class));
+                startActivity(new Intent(CPProblemSearchActivity.this, CareProviderActivity.class));
 
             }
         });
