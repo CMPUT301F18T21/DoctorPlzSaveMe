@@ -19,7 +19,6 @@
         <activity android:name=".PatientActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,6 +48,14 @@
         <activity
             android:name=".MainMapsActivity"
             android:label="@string/title_activity_main_maps"></activity>
+        <activity
+            android:name=".NewProfileActivity"
+            android:label="@string/new_patient_title">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 
