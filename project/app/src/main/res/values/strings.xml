@@ -26,6 +26,7 @@
 
     <string name="view_edit_profile_title">Your Profile</string>
     <string name="user_id">User ID: </string>
+
     <string name="cancel_button">CANCEL</string>
     <string name="save_changes_button">SAVE CHANGES</string>
 
@@ -56,3 +57,4 @@
     <string name="enter_location">Enter a location...</string>
 
 </resources>
+
