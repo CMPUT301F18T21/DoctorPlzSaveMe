@@ -11,11 +11,14 @@ public class Problem {
     ArrayList<Comment> comments = new ArrayList<Comment>();
     ArrayList<Record> records = new ArrayList<Record>();
 
-    public Problem(String test, String new_problem, Date date) {
+    public Problem(String title, String description, Date date) {
+        this.title = title;
+        this.description = description;
+        this.date = date;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getDescription() {
@@ -23,7 +26,7 @@ public class Problem {
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public void edit(String changed, String changes, String s) {
@@ -34,6 +37,11 @@ public class Problem {
     }
 
     public void addComment(Comment comment) {
+        this.comments.add(comment);
 
+    }
+
+    public ArrayList getComments() {
+        return this.comments;
     }
 }

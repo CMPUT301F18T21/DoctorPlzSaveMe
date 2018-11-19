@@ -1,6 +1,8 @@
 package com.erikligai.doctorplzsaveme;
 
 import junit.framework.TestCase;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -10,7 +12,7 @@ public class ProblemTest extends TestCase {
         String description = "problem description";
         Date date = Calendar.getInstance().getTime();
         Problem problem = new Problem(title, description, date);
-        assertTrue("Problem title is incorrect", description.equals(problem.getTitle()));
+        assertTrue("Problem title is incorrect", title.equals(problem.getTitle()));
     }
 
     public void testDescription() {
@@ -36,6 +38,8 @@ public class ProblemTest extends TestCase {
         Date date = Calendar.getInstance().getTime();
         Problem problem = new Problem(title, description, date);
         problem.addComment(comment);
+        ArrayList<Comment> commentList = problem.getComments();
+        assertTrue(commentList.contains(comment));
     }
 
 
