@@ -12,4 +12,15 @@ public class PatientTest extends TestCase {
         patient.addProblem(problem);
         assertTrue(patient.hasProblem(problem));
     }
+
+    // tests delete problem
+    public void testDeleteProblem() {
+        Patient patient = new Patient("name", "id", "email", "phone");
+        Date date = new Date();
+        Problem problem = new Problem("test","New Problem", date);
+        patient.addProblem(problem);
+        patient.deleteProblem(problem);
+        assertFalse(patient.getProblemList().contains(problem));
+    }
+
 }
