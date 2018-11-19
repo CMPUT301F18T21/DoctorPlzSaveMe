@@ -18,18 +18,18 @@ import java.util.ArrayList;
 import static android.content.ContentValues.TAG;
 
 public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.AddPatientViewHolder> implements Filterable {
-//    private ArrayList<Patient> mPatients;
-//
-//    private ArrayList<Patient> mPatientsCopy;
+    private ArrayList<Patient> mPatients;
 
-    private ArrayList<String> mPatientIds = new ArrayList<>();
-    private ArrayList<String> mPatientEmails = new ArrayList<>();
-    private ArrayList<String> mPatientPhones = new ArrayList<>();
+    private ArrayList<Patient> mPatientsCopy;
+
+//    private ArrayList<String> mPatientIds = new ArrayList<>();
+//    private ArrayList<String> mPatientEmails = new ArrayList<>();
+//    private ArrayList<String> mPatientPhones = new ArrayList<>();
     private Context mContext;
 
-    private ArrayList<String> mPatientIdsCopy;
-    private ArrayList<String> mPatientEmailsCopy;
-    private ArrayList<String> mPatientPhonesCopy;
+//    private ArrayList<String> mPatientIdsCopy;
+//    private ArrayList<String> mPatientEmailsCopy;
+//    private ArrayList<String> mPatientPhonesCopy;
 
     public static class AddPatientViewHolder extends RecyclerView.ViewHolder {
         TextView patientID;
@@ -45,15 +45,30 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
         }
     }
 
-    public AddPatientAdapter(ArrayList<String> mPatientIds, ArrayList<String> mPatientEmails, ArrayList<String> mPatientPhones, Context mContext) {
-        this.mPatientIds = mPatientIds;
-        this.mPatientEmails = mPatientEmails;
-        this.mPatientPhones = mPatientPhones;
+//    public AddPatientAdapter(ArrayList<String> mPatientIds, ArrayList<String> mPatientEmails, ArrayList<String> mPatientPhones, Context mContext) {
+//        this.mPatientIds = mPatientIds;
+//        this.mPatientEmails = mPatientEmails;
+//        this.mPatientPhones = mPatientPhones;
+//        this.mContext = mContext;
+//
+//        mPatientIdsCopy = new ArrayList<>(mPatientIds);
+//        mPatientEmailsCopy = new ArrayList<>(mPatientEmails);
+//        mPatientPhonesCopy = new ArrayList<>(mPatientPhones);
+//    }
+
+    public AddPatientAdapter(ArrayList<Patient> patients, Context mContext) {
+        this.mPatients = patients;
+
+//        this.mPatientIds = mPatientIds;
+//        this.mPatientEmails = mPatientEmails;
+//        this.mPatientPhones = mPatientPhones;
         this.mContext = mContext;
 
-        mPatientIdsCopy = new ArrayList<>(mPatientIds);
-        mPatientEmailsCopy = new ArrayList<>(mPatientEmails);
-        mPatientPhonesCopy = new ArrayList<>(mPatientPhones);
+        this.mPatientsCopy = new ArrayList<>(mPatients);
+
+//        mPatientIdsCopy = new ArrayList<>(mPatientIds);
+//        mPatientEmailsCopy = new ArrayList<>(mPatientEmails);
+//        mPatientPhonesCopy = new ArrayList<>(mPatientPhones);
     }
 
 
@@ -66,22 +81,22 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
 
     @Override
     public void onBindViewHolder(@NonNull AddPatientViewHolder addPatientViewHolder, final int i) {
-        addPatientViewHolder.patientID.setText(mPatientIds.get(i)); // obtains id at index
-        addPatientViewHolder.patientEmail.setText(mPatientEmails.get(i)); // obtains email at index
-        addPatientViewHolder.patientPhone.setText(mPatientPhones.get(i)); // obtains phone at index
+        addPatientViewHolder.patientID.setText(mPatients.get(i).getID()); // obtains id at index
+        addPatientViewHolder.patientEmail.setText(mPatients.get(i).getEmail()); // obtains email at index
+        addPatientViewHolder.patientPhone.setText(mPatients.get(i).getPhone()); // obtains phone at index
 
         addPatientViewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mPatientIds.get(i));
-                Toast.makeText(mContext, mPatientIds.get(i), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
+                Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mPatientIds.size();
+        return mPatients.size();
     }
 
     @Override
@@ -89,32 +104,34 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
         return addPatientFilter;
     }
 
+
     private Filter addPatientFilter = new Filter() {
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<String> filteredIds = new ArrayList<>();
+            ArrayList<Patient> filteredPatients = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
-                filteredIds.addAll(mPatientIdsCopy);
+                filteredPatients.addAll(mPatientsCopy);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (String id : mPatientIdsCopy) {
-                    if (id.contains(filterPattern)) {
-                        filteredIds.add(id);
+                for (Patient patient : mPatientsCopy) {
+                    if (patient.getID().contains(filterPattern)) {
+                        filteredPatients.add(patient);
                     }
                 }
             }
             FilterResults results = new FilterResults();
-            results.values = filteredIds;
+            results.values = filteredPatients;
 
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            mPatientIds.clear();
-            mPatientIds.addAll((ArrayList) results.values);
+            mPatients.clear();
+            mPatients.addAll((ArrayList) results.values);
             notifyDataSetChanged();
         }
     };
