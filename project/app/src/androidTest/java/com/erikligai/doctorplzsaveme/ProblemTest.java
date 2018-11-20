@@ -2,7 +2,6 @@ package com.erikligai.doctorplzsaveme;
 
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
