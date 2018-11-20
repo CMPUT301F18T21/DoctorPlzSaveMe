@@ -1,15 +1,27 @@
 package com.erikligai.doctorplzsaveme;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Comment {
-    private String theComment;
-    Comment(String givenStr){
-        theComment = givenStr;
+    private String comment;
+    private String date;
+
+    Comment(String comment){
+        this.comment = comment;
+        this.date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
     }
-    public void setComment(String changed)
-    {
-        theComment = changed;
+
+    public void editComment(String newComment) {
+        this.comment = newComment;
     }
+
     public String getComment(){
-        return theComment;
+        return this.comment;
+    }
+
+    public String getDate() {
+        return this.date;
     }
 }

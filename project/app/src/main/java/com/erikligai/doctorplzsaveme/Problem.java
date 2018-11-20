@@ -9,7 +9,6 @@ public class Problem {
     String title;
     String description;
     Date date;
-    long blank;
     ArrayList<Record> records = new ArrayList<Record>();
     @JestId
     String id;
@@ -26,6 +25,14 @@ public class Problem {
         this.date = date;
     }
 
+    public void setTitle(String newTitle) {
+        this.title = newTitle;
+    }
+
+    public void setDescription(String newDescription) {
+        this.description = newDescription;
+    }
+
     public String getTitle() {
         return this.title;
     }
@@ -38,12 +45,19 @@ public class Problem {
         return this.date;
     }
 
-    public ArrayList<Record> getRecords(){
-        return records;
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 
+    public void addRecord(Record record) {
+        this.records.add(record);
+    }
+
+    public ArrayList<Comment> getComments() {
+        return this.comments;
+
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -52,10 +66,6 @@ public class Problem {
 
 
     public void edit(String changed, String changes, String s) {
-    }
-
-    public long details() {
-        return blank;
     }
 
     public void setTitle(String title) throws TooLongProblemTitleException{
@@ -76,7 +86,11 @@ public class Problem {
         this.date = date;
     }
 
-    public void setRecords(Record record) {
-        records.add(record);
+//     public void setRecords(Record record) {
+//         records.add(record);
+//     }
+
+    public ArrayList<Record> getRecords() {
+        return this.records;
     }
 }

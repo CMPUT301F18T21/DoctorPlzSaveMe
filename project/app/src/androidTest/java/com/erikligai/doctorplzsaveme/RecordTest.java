@@ -22,6 +22,6 @@ public class RecordTest extends TestCase {
         Record record = new Record("Testing Title", "Testing comment.");
         Photo photo = new Photo();
         record.addPhoto(photo);
-        assertTrue(record.hasPhoto(photo));
+        assertTrue(record.hasPhoto());
     }
 }

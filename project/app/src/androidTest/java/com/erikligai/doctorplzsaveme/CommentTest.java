@@ -2,11 +2,20 @@ package com.erikligai.doctorplzsaveme;
 
 import junit.framework.TestCase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class CommentTest extends TestCase {
-//    public void testAddComment(){
-//        CommentList comments = new CommentList();
-//        Comment comment = Comment("test");
-//        comments.add(comment);
-//        assertTrue(comments.hasComment(comment));
-//    }
+    public void testEditComment() {
+        Comment testComment = new Comment("test comment");
+        testComment.editComment("changed text");
+        assertEquals("changed text", testComment.getComment());
+    }
+
+    public void testCorrectDate() {
+        Comment testComment = new Comment("test comment");
+        String testDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        assertEquals(testComment.getDate(), testDate);
+    }
 }
