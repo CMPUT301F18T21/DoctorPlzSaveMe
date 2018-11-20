@@ -2,7 +2,6 @@ package com.erikligai.doctorplzsaveme;
 
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -30,6 +29,7 @@ public class ProblemTest extends TestCase {
         Problem problem = new Problem(title, description, date);
         assertTrue("Problem date is incorrect", date.equals(problem.getDate()));
     }
+
 
     public void testAddComment() {
         Comment comment = new Comment("comment");

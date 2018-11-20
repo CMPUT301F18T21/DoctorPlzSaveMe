@@ -43,11 +43,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // open new activity
                 startActivity(new Intent(MainActivity.this, CareProviderActivity.class));
-
             }
         });
 
     }
 
 }
-

@@ -1,21 +1,36 @@
 package com.erikligai.doctorplzsaveme;
 
+import java.util.Date;
+
 public class Record {
     private Photo photo;
     private BodyLocation bodyLocation;
     private Geolocation geolocation;
     private String title;
+    private Date date;
+    private String comment;
 
-    public Record(String title) {
+    public Record(String title, String comment){
         this.title = title;
+        this.date = new Date();
+        this.comment = comment;
     }
 
-    public Record(String title, Photo photo, BodyLocation bodyLocation, Geolocation geolocation) {
-        this.title = title;
-        this.photo = photo;
-        this.bodyLocation = bodyLocation;
-        this.geolocation = geolocation;
+    public String getComment() {
+        return this.comment;
     }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+
+//     public Record(String title, Photo photo, BodyLocation bodyLocation, Geolocation geolocation) {
+//         this.title = title;
+//         this.photo = photo;
+//         this.bodyLocation = bodyLocation;
+//         this.geolocation = geolocation;
+//     }
 
     public String getTitle() {
         return this.title;

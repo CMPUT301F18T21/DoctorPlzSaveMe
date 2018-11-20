@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PatientActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/my_toolbar"
+        android:id="@+id/linear1"
+        android:paddingTop="100dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp">
+
+
+        <Button
+            android:id="@+id/viewProblemsButton"
+            android:layout_width="0.0dip"
+            android:layout_height="80dp"
+            android:text="@string/view_problems"
+            android:layout_weight="1.0" />
+
+
+        <Button
+            android:id="@+id/viewLocationButton"
+            android:layout_width="0.0dip"
+            android:layout_height="80dp"
+            android:text="@string/view_locations"
+            android:layout_weight="1.0" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear1"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="0.0dip"
+            android:layout_height="80dp"
+            android:layout_weight="0.5"
+            android:text="@string/view_edit_profile" />
+
+        <Button
+            android:id="@+id/uploadBodyLocationButton"
+            android:layout_width="0.0dip"
+            android:layout_height="80dp"
+            android:layout_weight="0.5"
+            android:text="@string/upload_body_location" />
+    </LinearLayout>
+</RelativeLayout>
