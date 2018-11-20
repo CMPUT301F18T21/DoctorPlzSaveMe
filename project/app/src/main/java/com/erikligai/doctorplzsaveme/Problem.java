@@ -9,7 +9,8 @@ public class Problem {
     String title;
     String description;
     Date date;
-    ArrayList<Record> records = new ArrayList<Record>();
+    ArrayList<Record> records = new ArrayList<>();
+    ArrayList<Comment> comments = new ArrayList<>();
     @JestId
     String id;
 
@@ -25,9 +26,9 @@ public class Problem {
         this.date = date;
     }
 
-    public void setTitle(String newTitle) {
-        this.title = newTitle;
-    }
+//    public void setTitle(String newTitle) {
+//        this.title = newTitle;
+//    }
 
     public void setDescription(String newDescription) {
         this.description = newDescription;
@@ -55,6 +56,7 @@ public class Problem {
 
     public ArrayList<Comment> getComments() {
         return this.comments;
+    }
 
     public String getId() {
         return this.id;

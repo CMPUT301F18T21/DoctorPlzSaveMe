@@ -2,6 +2,7 @@ package com.erikligai.doctorplzsaveme;
 
 import junit.framework.TestCase;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -43,7 +44,7 @@ public class ProblemTest extends TestCase {
     }
 
     public void testAddRecord() {
-        Record record = new Record("title");
+        Record record = new Record("title", "comment");
         String title = "problem title";
         String description = "problem description";
         Date date = Calendar.getInstance().getTime();
