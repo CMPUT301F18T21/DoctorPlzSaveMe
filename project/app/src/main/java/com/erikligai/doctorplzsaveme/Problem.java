@@ -14,9 +14,13 @@ public class Problem {
     @JestId
     String id;
 
-    public Problem(String test, String new_problem) {
-        this.title = test;
-        this.description = new_problem;
+    public Problem(String title, String description) {
+        try{
+            setTitle(title);
+        } catch (TooLongProblemTitleException e) {
+            e.printStackTrace();
+        }
+        this.description = description;
         this.date = new Date();
     }
     /**

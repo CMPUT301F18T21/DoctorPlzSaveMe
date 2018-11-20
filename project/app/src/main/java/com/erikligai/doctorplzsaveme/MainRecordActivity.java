@@ -1,5 +1,6 @@
 package com.erikligai.doctorplzsaveme;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ public class MainRecordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("fab", "add record");
                 //calls AddRecordActivity
+                Intent intent = new Intent(view.getContext(), AddRecordActivity.class);
+                startActivity(intent);
             }
         });
 

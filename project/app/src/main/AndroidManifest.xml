@@ -25,7 +25,9 @@
         <activity android:name=".MainRecordActivity" />
         <activity android:name=".MainProblemActivity" />
         <activity android:name=".EditProblemActivity" />
+        <activity android:name=".EditRecordActivity" />
         <activity android:name=".AddProblemActivity" />
+        <activity android:name=".AddRecordActivity" />
         <activity android:name=".ProblemSearchActivity" />
 
         <meta-data
