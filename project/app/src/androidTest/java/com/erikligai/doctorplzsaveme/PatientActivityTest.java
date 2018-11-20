@@ -7,13 +7,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.action.ViewActions;
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 @SmallTest
@@ -30,7 +33,23 @@ public class PatientActivityTest {
         onView(withId(R.id.editProfileButton)).check(matches(isClickable()));
         onView(withId(R.id.uploadBodyLocationButton)).check(matches(isClickable()));
     }
-    
+
+    @Test
+    public void buttonClick(){
+        onView(withId(R.id.viewLocationButton)).perform(click());
+        pressBack();
+        onView(withId(R.id.viewProblemsButton)).perform(click());
+        pressBack();
+        onView(withId(R.id.editProfileButton)).perform(click());
+        pressBack();
+        //onView(withId(R.id.uploadBodyLocationButton)).perform(click());
+        //pressBack();
+    }
+
+    public static void pressBack() {
+        onView(isRoot()).perform(ViewActions.pressBack());
+    }
+
 
 
 
