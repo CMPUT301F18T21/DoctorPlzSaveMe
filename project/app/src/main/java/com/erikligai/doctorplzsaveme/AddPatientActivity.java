@@ -17,10 +17,6 @@ public class AddPatientActivity extends AppCompatActivity {
     private static final String TAG = "AddPatientActivity";
 
     AddPatientAdapter adapter;
-
-//    private ArrayList<String> mPatientIds = new ArrayList<>();
-//    private ArrayList<String> mPatientEmails = new ArrayList<>();
-//    private ArrayList<String> mPatientPhones = new ArrayList<>();
     private ArrayList<Patient> patientList = new ArrayList<>();
 
     @Override

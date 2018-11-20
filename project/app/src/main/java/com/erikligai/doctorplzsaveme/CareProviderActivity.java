@@ -17,10 +17,6 @@ public class CareProviderActivity extends AppCompatActivity {
 
     private ArrayList<Patient> patientList = new ArrayList<>();
 
-//    private ArrayList<String> mPatientIds = new ArrayList<>();
-//    private ArrayList<String> mPatientEmails = new ArrayList<>();
-//    private ArrayList<String> mPatientPhones = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +26,6 @@ public class CareProviderActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-
-        // https://developer.android.com/guide/topics/ui/floating-action-button
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

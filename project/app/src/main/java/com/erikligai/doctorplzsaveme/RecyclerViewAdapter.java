@@ -17,16 +17,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<Patient> mPatients;
-
-//    private ArrayList<String> mPatientIds = new ArrayList<>();
-//    private ArrayList<String> mPatientEmails = new ArrayList<>();
-//    private ArrayList<String> mPatientPhones = new ArrayList<>();
     private Context mContext;
 
     public RecyclerViewAdapter(ArrayList<Patient> patients, Context mContext) {
-//        this.mPatientIds = mPatientIds;
-//        this.mPatientEmails = mPatientEmails;
-//        this.mPatientPhones = mPatientPhones;
 
         this.mPatients = patients;
         this.mContext = mContext;

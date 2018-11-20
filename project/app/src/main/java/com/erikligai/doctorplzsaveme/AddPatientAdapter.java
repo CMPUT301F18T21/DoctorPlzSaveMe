@@ -21,15 +21,7 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
     private ArrayList<Patient> mPatients;
 
     private ArrayList<Patient> mPatientsCopy;
-
-//    private ArrayList<String> mPatientIds = new ArrayList<>();
-//    private ArrayList<String> mPatientEmails = new ArrayList<>();
-//    private ArrayList<String> mPatientPhones = new ArrayList<>();
     private Context mContext;
-
-//    private ArrayList<String> mPatientIdsCopy;
-//    private ArrayList<String> mPatientEmailsCopy;
-//    private ArrayList<String> mPatientPhonesCopy;
 
     public static class AddPatientViewHolder extends RecyclerView.ViewHolder {
         TextView patientID;
@@ -45,30 +37,11 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
         }
     }
 
-//    public AddPatientAdapter(ArrayList<String> mPatientIds, ArrayList<String> mPatientEmails, ArrayList<String> mPatientPhones, Context mContext) {
-//        this.mPatientIds = mPatientIds;
-//        this.mPatientEmails = mPatientEmails;
-//        this.mPatientPhones = mPatientPhones;
-//        this.mContext = mContext;
-//
-//        mPatientIdsCopy = new ArrayList<>(mPatientIds);
-//        mPatientEmailsCopy = new ArrayList<>(mPatientEmails);
-//        mPatientPhonesCopy = new ArrayList<>(mPatientPhones);
-//    }
-
     public AddPatientAdapter(ArrayList<Patient> patients, Context mContext) {
         this.mPatients = patients;
-
-//        this.mPatientIds = mPatientIds;
-//        this.mPatientEmails = mPatientEmails;
-//        this.mPatientPhones = mPatientPhones;
         this.mContext = mContext;
 
         this.mPatientsCopy = new ArrayList<>(mPatients);
-
-//        mPatientIdsCopy = new ArrayList<>(mPatientIds);
-//        mPatientEmailsCopy = new ArrayList<>(mPatientEmails);
-//        mPatientPhonesCopy = new ArrayList<>(mPatientPhones);
     }
 
 
