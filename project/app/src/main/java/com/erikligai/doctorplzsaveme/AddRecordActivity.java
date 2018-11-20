@@ -44,7 +44,7 @@ public class AddRecordActivity extends AppCompatActivity {
             }
         });
     }
-
+    
     private void openAddBodyLocationActivity(){
         Intent intent = new Intent(this,AddBodylocationActivity.class);
         startActivity(intent);

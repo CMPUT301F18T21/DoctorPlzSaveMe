@@ -26,6 +26,7 @@ public class CareProvider implements Profile {
     /**
      * Add patient to caregiver's list
      * @param patient: Patient that is added
+     * @return Nothing
      */
     public void addPatient(Patient patient) {
         mPatientList.add(patient);
@@ -33,7 +34,7 @@ public class CareProvider implements Profile {
 
     /**
      * Gets the patient list of the care provider
-     * @return patient list of care provider
+     * @return ArrayList<Patient> patient list of care provider
      */
     public ArrayList getPatientList() {
         return mPatientList;
@@ -42,7 +43,7 @@ public class CareProvider implements Profile {
     /**
      * Returns if careprovider has given patient or not
      * @param patient: we want to check if patient exists in careprovider's list
-     * @return: boolean that returns true if patient is under careprovider, false if not
+     * @return boolean that returns true if patient is under careprovider, false if not
      */
     public boolean hasPatient(Patient patient) {
         return mPatientList.contains(patient);

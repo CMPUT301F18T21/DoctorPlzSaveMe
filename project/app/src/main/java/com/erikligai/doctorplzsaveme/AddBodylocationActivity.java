@@ -37,12 +37,12 @@ public class AddBodylocationActivity extends AppCompatActivity {
             }
         });
     }
-
+   
     private void openAddRecordActivity(){
         Intent intent = new Intent(this,AddRecordActivity.class);
         startActivity(intent);
     }
-
+    
     private void openAddGeolocationActivity(){
         Intent intent = new Intent(this,AddGeolocationActivity.class);
         startActivity(intent);
