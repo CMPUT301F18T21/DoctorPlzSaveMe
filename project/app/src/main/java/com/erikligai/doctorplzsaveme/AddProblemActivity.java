@@ -37,8 +37,6 @@ public class AddProblemActivity extends AppCompatActivity {
                 String title = titleText.getText().toString();
                 String description = descriptionText.getText().toString();
                 Problem newProblem = new Problem(title,description);
-                newProblem.setRecords(new Record("Record1","Record Comment 1"));
-                newProblem.setRecords(new Record("Record2","Record Comment 2"));
                 ElasticsearchProblemController.AddProblemsTask addTweetsTask = new ElasticsearchProblemController.AddProblemsTask();
                 addTweetsTask.execute(newProblem);
                 finish();

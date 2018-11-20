@@ -24,6 +24,6 @@ public class HelloWorldEspressoTest {
 
     @Test
     public void listGoesOverTheFold() {
-        onView(withText("Hello world!")).check(matches(isDisplayed()));
+        onView(withText("PATIENT")).check(matches(isDisplayed()));
     }
 }
