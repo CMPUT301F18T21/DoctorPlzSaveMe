@@ -13,7 +13,7 @@ public class Record {
     /**
      * Creates a time-stamped Record 
      * @param title: title of record
-     * @param description: record's comment
+     * @param comment: record's comment
      */
     public Record(String title, String comment){
         this.title = title;
@@ -89,7 +89,7 @@ public class Record {
     }
     /**
     *Sets the bodylocation of the record
-    *@param bodylocation: Bodylocation
+    *@param bodyLocation: Bodylocation
     *@return Nothing
      */
     public void addBodyLocation(BodyLocation bodyLocation) {

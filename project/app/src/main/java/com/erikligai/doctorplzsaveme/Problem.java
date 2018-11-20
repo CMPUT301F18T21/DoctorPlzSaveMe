@@ -130,7 +130,7 @@ public class Problem {
     }
      /**
     *Sets the description of the problem to desc
-    *@param description: String
+    *@param desc: String
     *@return Nothing
     *@throws TooLongProblemTitleException 
      */

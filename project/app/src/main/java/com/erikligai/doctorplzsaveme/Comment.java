@@ -19,7 +19,7 @@ public class Comment {
     }
     /**
     *Re-assigns the comment String to newComment
-    *@param comment:
+    *@param newComment:
     *@return Nothing
      */
     public void editComment(String newComment) {
