@@ -36,9 +36,7 @@ public class AddProblemActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String title = titleText.getText().toString();
                 String description = descriptionText.getText().toString();
-                Problem newProblem = new Problem(title,description);
-                ElasticsearchProblemController.AddProblemsTask addTweetsTask = new ElasticsearchProblemController.AddProblemsTask();
-                addTweetsTask.execute(newProblem);
+                addProblem(title, description);
                 finish();
             }
         });
@@ -47,5 +45,11 @@ public class AddProblemActivity extends AppCompatActivity {
     private void openMainProblemActivity(){
         Intent intent = new Intent(this,MainProblemActivity.class);
         startActivity(intent);
+    }
+
+    protected void addProblem(String title, String description){
+        Problem newProblem = new Problem(title,description);
+        ElasticsearchProblemController.AddProblemsTask addTweetsTask = new ElasticsearchProblemController.AddProblemsTask();
+        addTweetsTask.execute(newProblem);
     }
 }

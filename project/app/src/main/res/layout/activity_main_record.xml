@@ -32,8 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        app:backgroundTint="@android:color/holo_orange_dark"/>
-        //app:srcCompat="@drawable/ic_baseline_add_24px"/>
+        app:backgroundTint="@android:color/holo_orange_dark"
+        app:srcCompat="@drawable/ic_baseline_add_24px" />
 
 
 </android.support.design.widget.CoordinatorLayout>
