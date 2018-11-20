@@ -123,6 +123,9 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
             void ClickMenuOne(){
                 Log.d("rview", "view/add");
+                Intent intent = new Intent(holder.itemView.getContext(), MainRecordActivity.class);
+                intent.putExtra("Pos", holder.getAdapterPosition());
+                holder.itemView.getContext().startActivity(intent);
             }
 
             void ClickMenuTwo(){

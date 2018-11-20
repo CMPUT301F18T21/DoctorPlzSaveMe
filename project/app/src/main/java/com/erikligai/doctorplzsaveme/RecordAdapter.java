@@ -1,5 +1,6 @@
 package com.erikligai.doctorplzsaveme;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -114,13 +115,13 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
             void ClickMenuOne() {
                 Log.d("rview", "view/edit");
                 Log.d("rview", Integer.toString(holder.getAdapterPosition()));
+                Intent intent = new Intent(holder.itemView.getContext(), EditRecordActivity.class);
+                intent.putExtra("Pos", holder.getAdapterPosition());
+                Log.d("rview", "edit");
+                holder.itemView.getContext().startActivity(intent);
             }
 
             void ClickMenuTwo() {
-//                Intent intent = new Intent(holder.itemView.getContext(), EditRecordActivity.class);
-//                intent.putExtra("Pos", holder.getAdapterPosition());
-//                Log.d("rview", "edit");
-//                holder.itemView.getContext().startActivity(intent);
                 Log.d("rview", "delete");
                 Log.d("rview", Integer.toString(holder.getAdapterPosition()));
             }
