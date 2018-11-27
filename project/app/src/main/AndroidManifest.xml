@@ -29,6 +29,8 @@
         <activity android:name=".AddProblemActivity" />
         <activity android:name=".AddRecordActivity" />
         <activity android:name=".ProblemSearchActivity" />
+        <activity android:name=".AddBodylocationActivity" />
+        <activity android:name=".AddGeolocationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -63,7 +65,10 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientActivity"></activity>
+        <activity android:name=".PatientActivity" />
+        <activity
+            android:name=".AddGeolocationActivity2"
+            android:label="@string/title_activity_add_geolocation2"></activity>
     </application>
 
 </manifest>

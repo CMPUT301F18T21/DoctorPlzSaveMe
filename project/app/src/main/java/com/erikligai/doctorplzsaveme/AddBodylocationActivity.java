@@ -44,7 +44,7 @@ public class AddBodylocationActivity extends AppCompatActivity {
     }
     
     private void openAddGeolocationActivity(){
-        Intent intent = new Intent(this,AddGeolocationActivity.class);
+        Intent intent = new Intent(this,AddGeolocationActivity2.class);
         startActivity(intent);
     }
 }
