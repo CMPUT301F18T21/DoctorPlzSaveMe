@@ -43,7 +43,7 @@ public class Problem {
         this.description = desc;
         this.date = date;
     }
-
+    
 
 //    public void setTitle(String newTitle) {
 //        this.title = newTitle;

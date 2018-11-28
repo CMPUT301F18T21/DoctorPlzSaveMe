@@ -56,6 +56,7 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
         descriptionText = findViewById(R.id.editProblemDescription);
         titleText = findViewById(R.id.editProblemTitle);
         dateText = findViewById(R.id.date);
+
         // Display now date
         date = Calendar.getInstance(Locale.CANADA);
         displayDate();
@@ -81,10 +82,12 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+
     private void openMainProblemActivity(){
         Intent intent = new Intent(this,MainProblemActivity.class);
         startActivity(intent);
     }
+
 
     protected void addProblem(String title, String desc, Date date){
         try {
@@ -95,7 +98,6 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
             e.printStackTrace();
             displayException(e.getMessage());
         }
-
     }
 
     private void displayDate(){
@@ -107,7 +109,7 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
 
     private void setCustomDate(){
         final Calendar currentDate = Calendar.getInstance();
-        currentDate.setTime(problem.getDate());
+        currentDate.setTime(date.getTime());
         date = Calendar.getInstance();
         new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -119,7 +121,6 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
                         date.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         date.set(Calendar.MINUTE, minute);
                         Log.v("abc", "The chosen one " + date.getTime());
-                        problem.setDate(date.getTime());
                         displayDate();
                     }
                 }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
