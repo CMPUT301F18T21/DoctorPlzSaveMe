@@ -22,25 +22,27 @@ import java.net.InetAddress;
 
 public class Backend implements IPatientBackend {
 
+    // singleton code
     private static Backend instance = new Backend();
-
-    private static final String FILENAME = "patient_profile.sav";
-
-    private Context mContext;
-
-    private Patient patientProfile = null;
-
     public static Backend getInstance() {
         return instance;
     }
+    private Backend() {}
 
-    public Backend() {}
+    // TODO: move this filename to an xml
+    private static final String FILENAME = "patient_profile.sav";
 
+    private Context mContext = null; // context for reading to/from file
+    // current patient profile
+    private Patient patientProfile = null;
+
+    // THIS MUST BE CALLED ON APP STARTUP!
     public void setContext(Context context)
     {
         this.mContext = context;
     }
 
+    // THIS MUST BE CALLED WHENEVER A CHANGE TO PROFILE AND ITS MEMBERS IS MADE
     public void UpdatePatient() {
         // sync with DB
         new Thread(new Runnable() {
@@ -65,21 +67,25 @@ public class Backend implements IPatientBackend {
     }
 
     public void addPatientProblem(Problem problem) {
+        assert(patientProfile != null);
         patientProfile.addProblem(problem);
         UpdatePatient();
     }
 
     public void deletePatientProblem(int problemIndex) {
+        assert(patientProfile != null);
         patientProfile.deleteProblem(problemIndex);
         UpdatePatient();
     }
 
     public void addPatientRecord(int problemIndex, Record record) {
+        assert(patientProfile != null);
         patientProfile.getProblemList().get(problemIndex).addRecord(record);
         UpdatePatient();
     }
 
     public void deletePatientRecord(int problemIndex, int recordIndex) {
+        assert(patientProfile != null);
         patientProfile.getProblemList().get(problemIndex).getRecords().remove(recordIndex);
         UpdatePatient();
     }
@@ -87,7 +93,9 @@ public class Backend implements IPatientBackend {
     private void serializePatientProfile()
     {
         try {
-            FileOutputStream fos = mContext.openFileOutput(FILENAME, 0);
+            assert(mContext != null);
+            assert(patientProfile != null);
+            FileOutputStream fos = mContext.getApplicationContext().openFileOutput(FILENAME, 0);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
             BufferedWriter writer = new BufferedWriter(osw);
             Gson gson = new Gson();
@@ -104,7 +112,8 @@ public class Backend implements IPatientBackend {
     private boolean deserializePatientProfile()
     {
         try {
-            FileInputStream fis = mContext.openFileInput(FILENAME);
+            assert(mContext != null);
+            FileInputStream fis = mContext.getApplicationContext().openFileInput(FILENAME);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader reader = new BufferedReader(isr);
             Gson gson = new Gson();
@@ -120,6 +129,7 @@ public class Backend implements IPatientBackend {
     {
         try {
             isConnected();
+            assert(patientProfile != null);
             String UserID = patientProfile.getID();
             Patient es_patient = null; // TODO: fetch from DB with UserID
             if (es_patient != null)
@@ -149,6 +159,7 @@ public class Backend implements IPatientBackend {
                     syncPatientES();
                 }
             }).start();
+            assert(patientProfile != null);
             return patientProfile;
         }
     }

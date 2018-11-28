@@ -9,12 +9,8 @@ import com.erikligai.doctorplzsaveme.Models.Record;
 public interface IPatientBackend {
 
     // sync patientProfile with local storage/DB
-    // SHOULD BE CALLED WHENEVER ANYTHING CHANGES WITH THE DATA!!!
+    // SHOULD BE CALLED WHENEVER ANYTHING CHANGES WITH THE DATA!!! (dont forget)
     public void UpdatePatient();
-
-    public void setContext(Context context);
-
-    public void setPatientProfile(Patient patientProfile);
 
     public Patient getPatientProfile();
 
@@ -26,5 +22,13 @@ public interface IPatientBackend {
 
     public void deletePatientRecord(int problemIndex, int recordIndex);
 
+
+
+    // don't worry about these (Daniil's responsibility)
+
+    // MUST BE CALLED UPON APP STARTUP TO BE ABLE TO READ/WRITE TO FILE
+    public void setContext(Context context);
+
+    public void setPatientProfile(Patient patientProfile);
 
 }
