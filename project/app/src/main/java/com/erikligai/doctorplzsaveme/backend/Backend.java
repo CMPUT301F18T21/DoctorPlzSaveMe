@@ -21,6 +21,7 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 
 public class Backend implements IPatientBackend {
+
     private static Backend instance = new Backend();
 
     private static final String FILENAME = "patient_profile.sav";
@@ -83,7 +84,7 @@ public class Backend implements IPatientBackend {
         UpdatePatient();
     }
 
-    private boolean serializePatientProfile()
+    private void serializePatientProfile()
     {
         try {
             FileOutputStream fos = mContext.openFileOutput(FILENAME, 0);
@@ -95,9 +96,8 @@ public class Backend implements IPatientBackend {
             writer.close();
             fos.close();
             osw.close();
-            return true;
         } catch (IOException e) {
-            return false;
+            e.printStackTrace();
         }
     }
 
@@ -119,12 +119,13 @@ public class Backend implements IPatientBackend {
     private void syncPatientES()
     {
         String UserID = patientProfile.getID();
-        Patient es_patient = null; // fetch from DB with UserID
+        Patient es_patient = null; // TODO: fetch from DB with UserID
         if (es_patient != null)
         {
-            // for each Problem from DB, take Problem.comments and overwrite local Problem comments
-            // (in case Care Provider has made new comments), then take local patientProfile and push
-            // it to the DB
+            /* TODO:
+            for each Problem from DB, take Problem.comments and overwrite local Problem comments
+            (in case Care Provider has made new comments), then take local patientProfile and push
+            it to the DB */
         }
         // else try push local patientProfile to DB (since might be new profile)
     }
@@ -150,5 +151,11 @@ public class Backend implements IPatientBackend {
     public static boolean isConnected() throws InterruptedException, IOException {
         final String command = "ping -c 1 google.com";
         return Runtime.getRuntime().exec(command).waitFor() == 0;
+    }
+
+    public static boolean userIDExists(String UserID)
+    {
+        // TODO: CHECK IF USERID EXISTS IN DB
+        return false;
     }
 }

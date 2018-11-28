@@ -41,7 +41,6 @@ public class EditProfileActivity extends AppCompatActivity {
         CancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: RETURN TO MAIN (PATIENT) MENU
                 finish();
             }
         });
@@ -49,6 +48,7 @@ public class EditProfileActivity extends AppCompatActivity {
         SaveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO: CHECK SET EMAIL/PHONE VALUES
                 Backend.getInstance().getPatientProfile().setEmail(EmailText.getText().toString());
                 Backend.getInstance().getPatientProfile().setPhone(PhoneText.getText().toString());
                 Backend.getInstance().UpdatePatient();

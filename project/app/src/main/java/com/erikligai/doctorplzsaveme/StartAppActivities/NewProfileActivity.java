@@ -36,15 +36,22 @@ public class NewProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try
                 {
-                    Backend.isConnected();
-                    Patient new_patient = new Patient(
-                            userIDText.getText().toString(),
-                            emailInputText.getText().toString(),
-                            phoneInputText.getText().toString());
-                    Backend.getInstance().setPatientProfile(new_patient);
-                    Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
-                    startActivity(intent);
-                } catch (Exception e)
+                    Backend.isConnected(); // will throw exception if no internet
+                    // TODO: CHECK FOR VALID PATIENT PARAMS
+                    if (!Backend.userIDExists(userIDText.getText().toString()))
+                    {
+                        Patient new_patient = new Patient(
+                                userIDText.getText().toString(),
+                                emailInputText.getText().toString(),
+                                phoneInputText.getText().toString());
+                        Backend.getInstance().setPatientProfile(new_patient);
+                        Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
+                        startActivity(intent);
+                    } else
+                    {
+                        Toast.makeText(getApplicationContext(), (String) "Username exists!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) // can't make new profile if no internet connection
                 {
                     Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
                 }
