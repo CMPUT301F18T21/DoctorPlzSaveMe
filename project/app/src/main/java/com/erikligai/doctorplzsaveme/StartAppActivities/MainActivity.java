@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Backend.getInstance().setContext(getApplicationContext());
+
         patientButton = (Button) findViewById(R.id.patient_button);
         careProviderButton = (Button) findViewById(R.id.care_provider_button);
 
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // if we don't detect a local profile, go to NoProfileActivity
-                if (Backend.getInstance().getPatientProfile() == null)
+                if (Backend.getInstance().fetchPatientProfile() == null)
                 {
                     startActivity(new Intent(MainActivity.this, NoProfileActivity.class));
                 } else // otherwise go to PatientActivity
