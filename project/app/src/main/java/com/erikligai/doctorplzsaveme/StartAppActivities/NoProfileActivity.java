@@ -10,8 +10,7 @@ import com.erikligai.doctorplzsaveme.R;
 
 public class NoProfileActivity extends AppCompatActivity {
 
-    private Button scanButton;
-    private Button newProfileButton;
+    private Button scanButton, newProfileButton;
 
     // TODO: ADD BACK (STACK) NAVIGATION
 

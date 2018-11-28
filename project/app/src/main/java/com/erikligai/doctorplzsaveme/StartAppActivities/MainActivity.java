@@ -13,8 +13,7 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button patientButton;
-    private Button careProviderButton;
+    private Button patientButton, careProviderButton;
 
     // TODO: ADD BACK (STACK) NAVIGATION
 
@@ -23,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // IMPORTANT! DON'T DELETE!
         Backend.getInstance().setContext(getApplicationContext());
 
         patientButton = (Button) findViewById(R.id.patient_button);
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // if we don't detect a local profile, go to NoProfileActivity
+                // if we don't detect a profile, go to NoProfileActivity
                 if (Backend.getInstance().fetchPatientProfile() == null)
                 {
                     startActivity(new Intent(MainActivity.this, NoProfileActivity.class));
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Here it should open a new activity where the care provider's patients are listed in a recycler view
 
-                // open new activity
                 startActivity(new Intent(MainActivity.this, CareProviderActivity.class));
             }
         });
