@@ -1,10 +1,10 @@
 package com.erikligai.doctorplzsaveme.backend;
 
-import com.erikligai.doctorplzsaveme.Patient;
-import com.erikligai.doctorplzsaveme.Problem;
-import com.erikligai.doctorplzsaveme.Record;
+import com.erikligai.doctorplzsaveme.Models.Patient;
+import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.Models.Record;
 
-public class Backend implements IBackend{
+public class Backend implements IPatientBackend {
     private static Backend instance = new Backend();
 
     public static Backend getInstance() {

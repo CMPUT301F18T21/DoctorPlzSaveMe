@@ -2,6 +2,8 @@
 //RecyclerView not working yet
 package com.erikligai.doctorplzsaveme;
 
+import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 

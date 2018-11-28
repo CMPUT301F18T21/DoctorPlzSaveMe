@@ -8,6 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.erikligai.doctorplzsaveme.Activities.EditProfileActivity;
+import com.erikligai.doctorplzsaveme.Activities.MainMapsActivity;
+import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+
 public class PatientActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override

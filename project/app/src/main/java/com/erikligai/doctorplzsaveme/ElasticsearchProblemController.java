@@ -3,6 +3,7 @@ package com.erikligai.doctorplzsaveme;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;

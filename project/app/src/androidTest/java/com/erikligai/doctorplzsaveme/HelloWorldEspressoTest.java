@@ -1,6 +1,8 @@
 package com.erikligai.doctorplzsaveme;
 
 
+import com.erikligai.doctorplzsaveme.StartAppActivities.MainActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -2,14 +2,13 @@
 //RecyclerView not working yet
 package com.erikligai.doctorplzsaveme;
 
+import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 
-import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.espresso.matcher.ViewMatchers;
 
-import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 
 public class EditProblemDetailsTest {

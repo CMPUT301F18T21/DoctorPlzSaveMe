@@ -1,5 +1,7 @@
 package com.erikligai.doctorplzsaveme;
 
+import com.erikligai.doctorplzsaveme.Models.Comment;
+
 import junit.framework.TestCase;
 
 import java.text.SimpleDateFormat;

@@ -7,7 +7,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainRecordActivity">
+    tools:context=".Activities.MainRecordActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/record_toolbar"
