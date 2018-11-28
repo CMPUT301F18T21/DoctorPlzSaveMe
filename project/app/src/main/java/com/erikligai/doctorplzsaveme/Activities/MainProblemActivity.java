@@ -67,7 +67,7 @@ public class MainProblemActivity extends AppCompatActivity {
 
         emptyView = findViewById(R.id.empty_problem_view);
 
-        problems = Backend.getInstance().getPatientProblemList();
+        problems = Backend.getInstance().getPatientProblems();
 
         adapter = new ProblemAdapter(problems);
         problemRView.setAdapter(adapter);

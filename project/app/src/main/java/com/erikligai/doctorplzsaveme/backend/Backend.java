@@ -65,7 +65,8 @@ public class Backend implements IPatientBackend {
         return patientProfile;
     }
 
-    public ArrayList<Problem> getPatientProblemList() {
+    public ArrayList<Problem> getPatientProblems() {
+        assert(patientProfile != null);
         return patientProfile.getProblemList();
     }
 

@@ -75,8 +75,9 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 break;
             case R.id.saveButton:
-                addProblem();
-                finish();
+                String title = titleText.getText().toString();
+                String desc = descriptionText.getText().toString();
+                addProblem(title, desc, date.getTime());
                 break;
         }
     }
@@ -87,22 +88,16 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
         startActivity(intent);
     }
 
-    protected void addProblem(){
-        problem = new Problem();
+    protected void addProblem(String title, String desc, Date date){
         try {
-            problem.setTitle(titleText.getText().toString());
-        } catch (TooLongProblemTitleException e) {
+            problem = new Problem(title, desc, date);
+            Backend.getInstance().addPatientProblem(problem);
+            finish();
+        } catch (TooLongProblemTitleException | TooLongProblemDescException e) {
             e.printStackTrace();
             displayException(e.getMessage());
         }
-        try {
-            problem.setDesc(descriptionText.getText().toString());
-        } catch (TooLongProblemDescException e) {
-            e.printStackTrace();
-            displayException(e.getMessage());
-        }
-        problem.setDate(date.getTime());
-        Backend.getInstance().addPatientProblem(problem);
+
     }
 
     private void displayDate(){
