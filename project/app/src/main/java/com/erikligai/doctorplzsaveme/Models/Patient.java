@@ -6,7 +6,6 @@ public class Patient implements Profile {
     private String id;
     private String email;
     private String phone;
-    public boolean synced;
 
     private ArrayList<Problem> mProblemList = new ArrayList<>();
      /**
