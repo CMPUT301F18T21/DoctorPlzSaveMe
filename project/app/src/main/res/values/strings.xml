@@ -47,6 +47,7 @@
     <string name="menu_view_edit_records">View/Add Records</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
+    <string name="no_problem_available">There are no recorded Problems (Good for you!) \nAdd one using the button below :(</string>
 
     <string name="view_locations_title">Record/Problem Locations</string>
 

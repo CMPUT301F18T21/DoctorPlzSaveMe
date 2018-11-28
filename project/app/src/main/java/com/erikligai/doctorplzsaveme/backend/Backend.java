@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 public class Backend implements IPatientBackend {
 
@@ -62,6 +63,10 @@ public class Backend implements IPatientBackend {
     public Patient getPatientProfile() {
         assert(patientProfile != null);
         return patientProfile;
+    }
+
+    public ArrayList<Problem> getPatientProblemList() {
+        return patientProfile.getProblemList();
     }
 
     public void addPatientProblem(Problem problem) {
