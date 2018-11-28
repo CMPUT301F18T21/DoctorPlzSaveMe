@@ -6,6 +6,8 @@ import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 
+import java.util.ArrayList;
+
 public interface IPatientBackend {
 
     // sync patientProfile with local storage/DB
@@ -13,6 +15,10 @@ public interface IPatientBackend {
     public void UpdatePatient();
 
     public Patient getPatientProfile();
+
+    public ArrayList<Problem> getPatientProblems();
+
+    public ArrayList<Record> getPatientRecords(int problemIndex);
 
     public void addPatientProblem(Problem problem);
 

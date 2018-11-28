@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 public class Backend implements IPatientBackend {
 
@@ -66,6 +67,18 @@ public class Backend implements IPatientBackend {
         return patientProfile;
     }
 
+    public ArrayList<Problem> getPatientProblems()
+    {
+        assert(patientProfile != null);
+        return patientProfile.getProblemList();
+    }
+
+    public ArrayList<Record> getPatientRecords(int problemIndex)
+    {
+        assert(patientProfile != null);
+        return patientProfile.getProblemList().get(problemIndex).getRecords();
+    }
+
     public void addPatientProblem(Problem problem) {
         assert(patientProfile != null);
         patientProfile.addProblem(problem);
@@ -105,7 +118,7 @@ public class Backend implements IPatientBackend {
             fos.close();
             osw.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // shouldn't happen ever
         }
     }
 
@@ -120,6 +133,8 @@ public class Backend implements IPatientBackend {
             patientProfile = gson.fromJson(reader, Patient.class);
             return true;
         } catch (IOException e) {
+            // we couldn't find it in file, so just make sure its null and return false to
+            // notify that we did not find anything on local storage
             patientProfile = null;
             return false;
         }
@@ -128,7 +143,7 @@ public class Backend implements IPatientBackend {
     private void syncPatientES()
     {
         try {
-            isConnected();
+            isConnected(); // will throw exception if phone is offline
             assert(patientProfile != null);
             String UserID = patientProfile.getID();
             Patient es_patient = null; // TODO: fetch from DB with UserID
@@ -152,7 +167,7 @@ public class Backend implements IPatientBackend {
         if (!deserializePatientProfile()) { return null; }
         else
         {
-            // fetch Patient from DB, will overwrite local if it can
+            // fetch Patient from DB, will overwrite local comments if it can
             new Thread(new Runnable() {
                 @Override
                 public void run() {
