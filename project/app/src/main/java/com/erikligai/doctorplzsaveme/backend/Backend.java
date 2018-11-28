@@ -118,16 +118,23 @@ public class Backend implements IPatientBackend {
 
     private void syncPatientES()
     {
-        String UserID = patientProfile.getID();
-        Patient es_patient = null; // TODO: fetch from DB with UserID
-        if (es_patient != null)
-        {
+        try {
+            isConnected();
+            String UserID = patientProfile.getID();
+            Patient es_patient = null; // TODO: fetch from DB with UserID
+            if (es_patient != null)
+            {
             /* TODO:
             for each Problem from DB, take Problem.comments and overwrite local Problem comments
             (in case Care Provider has made new comments), then take local patientProfile and push
             it to the DB */
+            }
+            // else try push local patientProfile to DB (since might be new profile)
+        } catch (Exception e)
+        {
+            // do nothing since we are offline
         }
-        // else try push local patientProfile to DB (since might be new profile)
+
     }
 
     public Patient fetchPatientProfile() {
