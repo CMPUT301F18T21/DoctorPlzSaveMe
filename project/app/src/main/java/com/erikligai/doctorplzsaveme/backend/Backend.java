@@ -197,6 +197,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     // ICareProviderBackend CODE ------------
 
+    // CP ONLY PULLS FROM DB WHEN LOGGING IN, AND ADDING/DELETING PATIENTS!
+
+    // TODO: ASSERTIONS
+
     private ArrayList<Patient> patients = null;
 
     // patient list adapts to this
@@ -208,28 +212,29 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     public void addComment(int patientIndex, int problemIndex, String comment)
     {
         patients.get(patientIndex).getProblemList().get(problemIndex).addComment(new Comment(comment));
-        UpdatePatient(patients.get(patientIndex).getID());
+        UpdatePatient(patients.get(patientIndex));
     }
 
     // add patient to CP, PatientID would be aquired from QR code
     public void AddPatient(String PatientID)
     {
-        // TODO:
+        // TODO: update DB patientIDs, and add that patientID's Patient to patients
+        // requires error checking (like ID already exists in patients, or doesn't exist on DB)
     }
 
     // remove patient from CP (not required!) PatientID would be aquired from the Patient class
     public void RemovePatient(String PatientID)
     {
-        // TODO:
+        // TODO: update DB patientIDs, and remove that patientID's Patient from patients
     }
 
-    private void UpdatePatient(String PatientID)
+    private void UpdatePatient(Patient patient)
     {
-        // TODO:
+        // TODO: push that Patient to DB
     }
 
     public void GetPatients()
     {
-        // TODO: populate patients
+        // TODO: populate patients from DB Patients
     }
 }
