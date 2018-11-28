@@ -8,15 +8,22 @@ import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.R;
 
+import java.util.Date;
+
 public class AddBodylocationActivity extends AppCompatActivity {
 
     private Button backBtn2,nextBtn2,addPhotoBtn,addBodylocationBtn;
+    private int problem_index;
+    private Date date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bodylocation);
 
+        Intent intent = getIntent();
+        problem_index = intent.getIntExtra("Pos",-1);
+        date = intent.getLongExtra("date",-1);
         // Get buttons
         backBtn2 = findViewById(R.id.backButton2);
         nextBtn2 = findViewById(R.id.nextButton2);
