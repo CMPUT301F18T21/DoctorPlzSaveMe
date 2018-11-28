@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -23,9 +24,9 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
         // TODO: GET THESE FROM DB
-        String User_Id = "placeholderID";
-        String Email = "placeholderEmail";
-        String Phone = "(999)999-9999";
+        String User_Id = Backend.getInstance().getPatientProfile().getID();
+        String Email = Backend.getInstance().getPatientProfile().getEmail();
+        String Phone = Backend.getInstance().getPatientProfile().getPhone();
 
         UserIdText = findViewById(R.id.user_id_textview);
         UserIdText.setText(getString(R.string.user_id) + User_Id); // TODO: fix this

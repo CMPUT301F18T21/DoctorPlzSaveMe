@@ -3,7 +3,6 @@ package com.erikligai.doctorplzsaveme.Models;
 import java.util.ArrayList;
 
 public class Patient implements Profile {
-    private String name;
     private String id;
     private String email;
     private String phone;
@@ -12,30 +11,16 @@ public class Patient implements Profile {
     private ArrayList<Problem> mProblemList = new ArrayList<>();
      /**
      * Creates a Patient (extends Profile)
-     * @param name: Name of patient
      * @param id: user id of patient
      * @param email: User's email
      * @param phone: User's phone number
      */
-    public Patient(String name, String id, String email, String phone) {
-        this.name = name;
+    public Patient(String id, String email, String phone) {
         this.id = id;
         this.email = email;
         this.phone = phone;
     }
-    /**
-    * Set the user's name to newName
-    * @param newName: String
-    * @return Nothing 
-    */
-    public void setName(String newName) {
-        this.name = newName;
-    }
-    /**
-    * Set the user's email to newEmail
-    * @param newEmail: String
-    * @return Nothing 
-    */
+
     public void setEmail(String newEmail) {
         this.email = newEmail;
     }
@@ -51,13 +36,7 @@ public class Patient implements Profile {
     *Returns the name String of the user
     *@return name String
      */
-    public String getName() {
-        return this.name;
-    }
-     /**
-    *Returns the ID String of the user
-    *@return id String
-     */
+
     public String getID() {
         return this.id;
     }

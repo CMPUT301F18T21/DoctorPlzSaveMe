@@ -47,12 +47,14 @@ public class CareProviderActivity extends AppCompatActivity {
     private void addPatients() {
         Log.d(TAG, "addPatients: preparing patients");
 
+        /*
         patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
         patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
         patientList.add(new Patient("Daniil", "3", "bam@ualberta.ca", "746746"));
         patientList.add(new Patient("Weng", "4", "asdfadf@ualberta.ca", "0918234"));
         patientList.add(new Patient("Iyun", "5", "asdfasdf@ualberta.ca", "1234869023"));
         patientList.add(new Patient("Bruce", "6", "owerti@ualberta.ca", "6458349"));
+        */
 
         initRecyclerView();
     }

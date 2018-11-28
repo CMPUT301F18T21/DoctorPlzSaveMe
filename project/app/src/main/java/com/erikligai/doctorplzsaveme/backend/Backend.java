@@ -1,6 +1,8 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
@@ -16,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.InetAddress;
 
 public class Backend implements IPatientBackend {
     private static Backend instance = new Backend();
@@ -56,6 +59,7 @@ public class Backend implements IPatientBackend {
     // ex. usage
     // if (Backend.getInstance().getPatientProfile() == null) {...}
     public Patient getPatientProfile() {
+        assert(patientProfile != null);
         return patientProfile;
     }
 
@@ -139,5 +143,12 @@ public class Backend implements IPatientBackend {
             }).start();
             return patientProfile;
         }
+    }
+
+    // https://stackoverflow.com/questions/9570237/android-check-internet-connection
+    // razzak
+    public static boolean isConnected() throws InterruptedException, IOException {
+        final String command = "ping -c 1 google.com";
+        return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 }
