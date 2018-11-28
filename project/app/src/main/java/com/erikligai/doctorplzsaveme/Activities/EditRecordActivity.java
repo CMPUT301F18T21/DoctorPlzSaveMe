@@ -37,6 +37,9 @@ public class EditRecordActivity extends AppCompatActivity {
             }
         });
 
+        //TODO: 1. get record
+        //TODO: 2. update using backend.
+
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

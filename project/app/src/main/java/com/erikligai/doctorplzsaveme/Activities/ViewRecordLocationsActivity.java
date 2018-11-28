@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainMapsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
+public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -31,6 +31,7 @@ public class MainMapsActivity extends FragmentActivity implements GoogleMap.OnMa
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -40,17 +41,29 @@ public class MainMapsActivity extends FragmentActivity implements GoogleMap.OnMa
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    //TODO: 1. Talk to backend. Get all records for patient.
+    //TODO: 2. for each record, try getting the geolocation.
+    //TODO: 3. if record has a geolocation info, create a marker from it.
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        /** will be tested with multiple problem locations*/
         mPerth = mMap.addMarker(new MarkerOptions().position(PERTH).title("Record name").snippet("record info"));
-        mPerth.setTag(0);//pass data into marker here.
+        mPerth.setTag(0);        //pass data into marker here
         mMap.moveCamera(CameraUpdateFactory.newLatLng(PERTH));
-
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                int num = (int) marker.getTag();                                // get data from marker(probably recordID)
+
+                Intent I = new Intent(ViewRecordLocationsActivity.this, EditRecordActivity.class);
+                startActivity(I);
+            }
+        });
 
         //for record in recordList
         // LatLng location = record.getGeolocation();
@@ -60,15 +73,10 @@ public class MainMapsActivity extends FragmentActivity implements GoogleMap.OnMa
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-        int num = (int)marker.getTag();                         // get data from marker(probably recordID)
 
+        int num = (int) marker.getTag();                         // get data from marker(probably recordID)
         Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this,EditRecordActivity.class);
-        startActivity(intent);
         return false;
     }
-
-
-
 
 }

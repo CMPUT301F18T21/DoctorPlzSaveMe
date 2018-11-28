@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.Activities.EditProfileActivity;
-import com.erikligai.doctorplzsaveme.Activities.MainMapsActivity;
+import com.erikligai.doctorplzsaveme.Activities.ViewRecordLocationsActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
 
 public class PatientActivity extends AppCompatActivity implements View.OnClickListener{
@@ -73,7 +73,7 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public void viewLocation(View view) {
-        Intent intent = new Intent(this, MainMapsActivity.class);
+        Intent intent = new Intent(this, ViewRecordLocationsActivity.class);
         startActivity(intent);
     }
 
