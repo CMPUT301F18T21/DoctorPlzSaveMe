@@ -38,6 +38,9 @@ public class Problem {
         this.date = date;
     }
 
+    public Problem(){
+    }
+
 //    public void setTitle(String newTitle) {
 //        this.title = newTitle;
 //    }

@@ -45,7 +45,7 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
         cusDateBtn = findViewById(R.id.customDateButton);
         backBtn = findViewById(R.id.backButton);
         saveBtn = findViewById(R.id.saveButton);
-        
+
         // Buttons setOnClickListener
         nowDateBtn.setOnClickListener(this);
         cusDateBtn.setOnClickListener(this);
@@ -56,28 +56,31 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
         descriptionText = findViewById(R.id.editProblemDescription);
         titleText = findViewById(R.id.editProblemTitle);
         dateText = findViewById(R.id.date);
+
         // Display now date
         date = Calendar.getInstance(Locale.CANADA);
-        displayDate(date);
+        displayDate();
+    }
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.nowDateButton:
+                date = Calendar.getInstance(Locale.CANADA);
+                displayDate();
+                break;
+            case R.id.customDateButton:
+                setCustomDate();
+                break;
+            case R.id.backButton:
                 finish();
-            }
-        });
-
-        saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title = titleText.getText().toString();
-                String description = descriptionText.getText().toString();
-
+                break;
+            case R.id.saveButton:
                 addProblem();
                 finish();
-            }
-        });
+                break;
+        }
     }
+
 
     private void openMainProblemActivity(){
         Intent intent = new Intent(this,MainProblemActivity.class);
@@ -85,6 +88,7 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
     }
 
     protected void addProblem(){
+        problem = new Problem();
         try {
             problem.setTitle(titleText.getText().toString());
         } catch (TooLongProblemTitleException e) {
@@ -97,20 +101,20 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
             e.printStackTrace();
             displayException(e.getMessage());
         }
+        problem.setDate(date.getTime());
         Backend.getInstance().addPatientProblem(problem);
     }
 
-    private void displayDate(Calendar calendar){
+    private void displayDate(){
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
-        Date uf_date = calendar.getTime();
+        Date uf_date = date.getTime();
         String f_date = df.format(uf_date);
         dateText.setText(f_date);
-        problem.setDate(uf_date);
     }
 
     private void setCustomDate(){
         final Calendar currentDate = Calendar.getInstance();
-        currentDate.setTime(problem.getDate());
+        currentDate.setTime(date.getTime());
         date = Calendar.getInstance();
         new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -122,8 +126,7 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
                         date.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         date.set(Calendar.MINUTE, minute);
                         Log.v("abc", "The chosen one " + date.getTime());
-                        problem.setDate(date.getTime());
-                        displayDate(date);
+                        displayDate();
                     }
                 }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
             }
