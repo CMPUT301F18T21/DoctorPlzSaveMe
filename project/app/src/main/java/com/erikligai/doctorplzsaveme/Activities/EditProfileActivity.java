@@ -42,13 +42,17 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: RETURN TO MAIN (PATIENT) MENU
+                finish();
             }
         });
 
         SaveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: UPDATE DB
+                Backend.getInstance().getPatientProfile().setEmail(EmailText.getText().toString());
+                Backend.getInstance().getPatientProfile().setPhone(PhoneText.getText().toString());
+                Backend.getInstance().UpdatePatient();
+                finish();
             }
         });
 
