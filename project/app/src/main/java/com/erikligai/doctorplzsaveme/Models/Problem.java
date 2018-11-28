@@ -150,7 +150,7 @@ public class Problem {
     *@throws TooLongProblemTitleException 
      */
     public void setDesc(String desc) throws TooLongProblemDescException {
-        if (title.length()>300){
+        if (desc.length()>300){
             throw new TooLongProblemDescException("This description is too long! Please enter a comment with less than 300 character!");
         }
         this.description = desc;

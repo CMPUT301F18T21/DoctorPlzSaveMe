@@ -87,8 +87,7 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
         Intent intent = new Intent(this,MainProblemActivity.class);
         startActivity(intent);
     }
-
-
+    
     protected void addProblem(String title, String desc, Date date){
         try {
             problem = new Problem(title, desc, date);
