@@ -29,14 +29,21 @@ public class Problem {
     /**
      * Creates a Problem
      * @param title: title of problem
-     * @param description: problem's description
+     * @param desc: problem's description
      * @param date: problem's start date
      */
-    public Problem(String title, String description, Date date) {
+    public Problem(String title, String desc, Date date) throws TooLongProblemTitleException, TooLongProblemDescException{
+        if (title.length()>30){
+            throw new TooLongProblemTitleException("This title is too long! Please enter a comment with less than 30 character!");
+        }
         this.title = title;
-        this.description = description;
+        if (desc.length()>300){
+            throw new TooLongProblemDescException("This description is too long! Please enter a comment with less than 300 character!");
+        }
+        this.description = desc;
         this.date = date;
     }
+
 
 //    public void setTitle(String newTitle) {
 //        this.title = newTitle;
