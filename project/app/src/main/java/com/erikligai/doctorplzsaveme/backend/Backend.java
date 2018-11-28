@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
@@ -21,14 +22,16 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
-public class Backend implements IPatientBackend {
+public class Backend implements IPatientBackend, ICareProviderBackend {
 
-    // singleton code
+    // SINGLETON CODE -----------------------
     private static Backend instance = new Backend();
     public static Backend getInstance() {
         return instance;
     }
     private Backend() {}
+
+    // IPatientBackend CODE -----------------
 
     // TODO: move this filename to an xml
     private static final String FILENAME = "patient_profile.sav";
@@ -190,5 +193,43 @@ public class Backend implements IPatientBackend {
     {
         // TODO: CHECK IF USERID EXISTS IN DB
         return false;
+    }
+
+    // ICareProviderBackend CODE ------------
+
+    private ArrayList<Patient> patients = null;
+
+    // patient list adapts to this
+    public ArrayList<Patient> getPatients() {
+        return patients;
+    }
+
+    // adds comment to the patient's problem and updates that patient profile to DB
+    public void addComment(int patientIndex, int problemIndex, String comment)
+    {
+        patients.get(patientIndex).getProblemList().get(problemIndex).addComment(new Comment(comment));
+        UpdatePatient(patients.get(patientIndex).getID());
+    }
+
+    // add patient to CP, PatientID would be aquired from QR code
+    public void AddPatient(String PatientID)
+    {
+        // TODO:
+    }
+
+    // remove patient from CP (not required!) PatientID would be aquired from the Patient class
+    public void RemovePatient(String PatientID)
+    {
+        // TODO:
+    }
+
+    private void UpdatePatient(String PatientID)
+    {
+        // TODO:
+    }
+
+    public void GetPatients()
+    {
+        // TODO: populate patients
     }
 }
