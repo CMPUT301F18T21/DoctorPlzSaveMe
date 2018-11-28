@@ -27,7 +27,7 @@ public class NoProfileActivity extends AppCompatActivity {
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // TODO: Scan in profile
             }
         });
 

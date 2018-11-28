@@ -18,7 +18,7 @@ public interface IPatientBackend {
 
     public void deletePatientProblem(int problemIndex);
 
-    public void addPatientRecord(Record record);
+    public void addPatientRecord(int problemIndex, Record record);
 
     public void deletePatientRecord(int problemIndex, int recordIndex);
 

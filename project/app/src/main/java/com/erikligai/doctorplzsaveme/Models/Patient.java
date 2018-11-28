@@ -7,6 +7,7 @@ public class Patient implements Profile {
     private String id;
     private String email;
     private String phone;
+    public boolean synced;
 
     private ArrayList<Problem> mProblemList = new ArrayList<>();
      /**
@@ -102,7 +103,10 @@ public class Patient implements Profile {
      * Gets the patient's problem list 
      * @return ArrayList<ProblemList> patient's problem list
      */
-    public ArrayList getProblemList() {
+     public void deleteProblem(int index) {
+         mProblemList.remove(index);
+     }
+     public ArrayList<Problem> getProblemList() {
         return this.mProblemList;
     }
 

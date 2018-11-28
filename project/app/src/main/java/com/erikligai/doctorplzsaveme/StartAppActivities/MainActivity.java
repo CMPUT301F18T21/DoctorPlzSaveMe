@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private Button patientButton;
     private Button careProviderButton;
 
-
     // TODO: ADD BACK (STACK) NAVIGATION
 
     @Override
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, NoProfileActivity.class));
                 } else // otherwise go to PatientActivity
                 {
-                    // TODO: setPatientProfile() in Backend
                     startActivity(new Intent(MainActivity.this, PatientActivity.class));
                 }
 
