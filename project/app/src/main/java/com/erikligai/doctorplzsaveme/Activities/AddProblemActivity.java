@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.erikligai.doctorplzsaveme.ElasticsearchProblemController;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class AddProblemActivity extends AppCompatActivity {
 
@@ -54,7 +55,6 @@ public class AddProblemActivity extends AppCompatActivity {
 
     protected void addProblem(String title, String description){
         Problem newProblem = new Problem(title,description);
-        ElasticsearchProblemController.AddProblemsTask addTweetsTask = new ElasticsearchProblemController.AddProblemsTask();
-        addTweetsTask.execute(newProblem);
+        Backend.getInstance().addPatientProblem(newProblem);
     }
 }

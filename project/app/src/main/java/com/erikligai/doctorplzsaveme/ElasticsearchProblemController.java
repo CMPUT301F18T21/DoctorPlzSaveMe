@@ -1,8 +1,10 @@
 package com.erikligai.doctorplzsaveme;
 
+import android.app.DownloadManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
@@ -22,75 +24,78 @@ import io.searchbox.core.SearchResult;
 public class ElasticsearchProblemController {
     private static JestDroidClient client;
 
-    // TODO we need a function which adds problems to elastic search
-    public static class AddProblemsTask extends AsyncTask<Problem, Void, Void> {
-
+    public static class SetPatientTask extends AsyncTask<Patient, Void, Void> {
         @Override
-        protected Void doInBackground(Problem... problems) {
+        protected Void doInBackground(Patient... patient) {
             verifySettings();
+            Index index = new Index.Builder(patient[0])
+                    .index("cmput301f18t21test")
+                    .type("Patient")
+                    .id(patient[0].getID())
+                    .build();
+            try {
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
 
-            for (Problem problem : problems) {
-                Index index = new Index.Builder(problem).index("cmput301f18t21test").type("problem").build();
-
-                try {
-                    // where is the client?
-                    DocumentResult result = client.execute(index);
-                    if (result.isSucceeded()) {
-                        problem.setId(result.getId());
-                        Log.d("es",result.getId());
-                    }
-                    else {
-                        Log.i("Error", "Elasticsearch was not able to add the problem");
-                    }
+                } else {
+                    Log.i("Error", "SetPatientTask: The search query failed to find any problems that matched");
                 }
-                catch (Exception e) {
-                    Log.i("Error", "The application failed to build and send the problems");
-                }
-
+            } catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return null;
         }
     }
 
-    // TODO we need a function which gets problems from elastic search
-    public static class GetProblemsTask extends AsyncTask<String, Void, ArrayList<Problem>> {
+    public static class GetPatientTask extends AsyncTask<String, Void, Patient> {
         @Override
-        protected ArrayList<Problem> doInBackground(String... search_parameters) {
+        protected Patient doInBackground(String... userid) {
             verifySettings();
-
-            ArrayList<Problem> problems = new ArrayList<Problem>();
-
-            // TODO Build the query
-
-            //String query = "{ \"size\": 3, \"query\" : { \"term\" : { \"message\" : \""+ search_parameters[0] + "\"}}}";
-            String query = "";
-
+            Patient patient = null;
+            String query = "{\n  \"query\": {\n    \"terms\": {\n      \"_id\": \""+userid[0]+ "\" \n    }\n  }\n}";
             Search search = new Search.Builder(query)
                     .addIndex("cmput301f18t21test")
-                    .addType("problem")
+                    .addType("Patient")
                     .build();
 
             try {
-                // TODO get the results of the query
                 SearchResult result = client.execute(search);
-                if (result.isSucceeded()){
-                    List<Problem> foundProblems = result.getSourceAsObjectList(Problem.class);
-                    problems.addAll(foundProblems);
+                if (result.isSucceeded()) {
+                    patient = result.getSourceAsObject(Patient.class); // TODO: FIX
+                } else {
+                    Log.i("Error", "GetPatientTask: The search query failed to find a patient that matched");
                 }
-                else {
-                    Log.i("Error", "The search query failed to find any problems that matched");
-                }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
-
-            return problems;
+            return patient;
         }
     }
 
+    public static class CheckIfPatientIDExistsTask extends AsyncTask<String, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(String... userid) {
+            verifySettings();
+            Patient patient = null;
+            String query = "{\n  \"query\": {\n    \"terms\": {\n      \"_id\": \""+userid[0]+ "\" \n    }\n  }\n}";
+            Search search = new Search.Builder(query)
+                    .addIndex("cmput301f18t21test")
+                    .addType("Patient")
+                    .build();
 
-
+            try {
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()) {
+                    return true;
+                } else {
+                    Log.i("Error", "CheckIfPatientIDExistsTask: The search query failed to find a patient that matched");
+                }
+            } catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return false;
+        }
+    }
 
     public static void verifySettings() {
         if (client == null) {

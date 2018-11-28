@@ -3,7 +3,9 @@ package com.erikligai.doctorplzsaveme.backend;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
+import com.erikligai.doctorplzsaveme.ElasticsearchProblemController;
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
@@ -149,18 +151,24 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
             isConnected(); // will throw exception if phone is offline
             assert(patientProfile != null);
             String UserID = patientProfile.getID();
-            Patient es_patient = null; // TODO: fetch from DB with UserID
+            ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
+            Patient es_patient = getPatientTask.execute(UserID).get();
             if (es_patient != null)
             {
             /* TODO:
             for each Problem from DB, take Problem.comments and overwrite local Problem comments
             (in case Care Provider has made new comments), then take local patientProfile and push
             it to the DB */
+                patientProfile = es_patient;
+
             }
+            ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
+            setPatientTask.execute(patientProfile);
             // else try push local patientProfile to DB (since might be new profile)
         } catch (Exception e)
         {
             // do nothing since we are offline
+            Log.i("COULD NOT SYNC WITH ES!", "Failure");
         }
 
     }
@@ -191,8 +199,17 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     public static boolean userIDExists(String UserID)
     {
-        // TODO: CHECK IF USERID EXISTS IN DB
         return false;
+        /*
+        ElasticsearchProblemController.CheckIfPatientIDExistsTask checkTask =
+                new ElasticsearchProblemController.CheckIfPatientIDExistsTask();
+        try {
+            return (checkTask.execute(UserID).get());
+        } catch (Exception e)
+        {
+            return false;
+        }
+        */
     }
 
     // ICareProviderBackend CODE ------------
