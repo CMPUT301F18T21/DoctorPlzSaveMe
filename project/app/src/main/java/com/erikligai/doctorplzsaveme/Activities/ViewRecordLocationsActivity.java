@@ -21,7 +21,6 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
     private Marker mPerth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
      */
 
     //TODO: 1. Talk to backend. Get all records for patient.
-    //TODO: 2. for each record, try getting the geolocation.
+    //TODO: 2. For each record, try getting the geolocation.
     //TODO: 3. if record has a geolocation info, create a marker from it.
 
     @Override
@@ -59,7 +58,6 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
             @Override
             public void onInfoWindowClick(Marker marker) {
                 int num = (int) marker.getTag();                                // get data from marker(probably recordID)
-
                 Intent I = new Intent(ViewRecordLocationsActivity.this, EditRecordActivity.class);
                 startActivity(I);
             }

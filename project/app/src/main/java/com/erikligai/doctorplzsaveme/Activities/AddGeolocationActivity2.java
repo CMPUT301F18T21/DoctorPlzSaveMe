@@ -1,7 +1,9 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -9,9 +11,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class AddGeolocationActivity2 extends FragmentActivity implements OnMapReadyCallback {
+public class AddGeolocationActivity2 extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -37,7 +40,7 @@ public class AddGeolocationActivity2 extends FragmentActivity implements OnMapRe
      */
 
     //TODO: Don set marker
-    //TODO: move camera to last record the patient recorded.
+    //TODO: move camera to last record the patient record
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -46,6 +49,19 @@ public class AddGeolocationActivity2 extends FragmentActivity implements OnMapRe
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+
+        mMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) AddGeolocationActivity2.this);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                int num = (int) marker.getTag();                                // get data from marker(probably recordID)
+
+                Intent I = new Intent(AddGeolocationActivity2.this, MainRecordActivity.class);
+                startActivity(I);
+            }
+        });
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
@@ -74,7 +90,11 @@ public class AddGeolocationActivity2 extends FragmentActivity implements OnMapRe
         });
     }
 
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
 
-
+        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
+        return false;
+    }
 
 }

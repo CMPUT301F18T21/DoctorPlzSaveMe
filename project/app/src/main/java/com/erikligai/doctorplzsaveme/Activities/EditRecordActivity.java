@@ -52,6 +52,6 @@ public class EditRecordActivity extends AppCompatActivity {
 
     private void openEditBodyLocationActivity(){
         Intent intent = new Intent(this,AddBodylocationActivity.class);
-        startActivity(intent);
+        //startActivity(intent);
     }
 }
