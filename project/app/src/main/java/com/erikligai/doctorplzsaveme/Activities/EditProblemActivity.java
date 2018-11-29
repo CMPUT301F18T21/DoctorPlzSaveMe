@@ -39,7 +39,11 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        problem = new Problem("Problem 1","Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd");
+        try{
+            problem = new Problem("Problem 1","Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd", new Date());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_problem);
 

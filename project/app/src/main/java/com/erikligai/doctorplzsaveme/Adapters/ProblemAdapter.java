@@ -16,6 +16,7 @@ import com.erikligai.doctorplzsaveme.Activities.EditProblemActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -82,10 +83,12 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
         Date date = problem.getDate();
         String f_date = df.format(date);
+        String r_count = String.valueOf(problem.countRecords()) + " Records";
 
         holder.title.setText(problem.getTitle());
         holder.date.setText(f_date);
         holder.desc.setText(problem.getDescription());
+        holder.record_count.setText(r_count);
         holder.option.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,8 +143,9 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
             void ClickMenuThree(){
                 Log.d("rview", "delete");
+                Backend.getInstance().deletePatientProblem(holder.getAdapterPosition());
+                notifyDataSetChanged();
             }
-
         });
     }
 
