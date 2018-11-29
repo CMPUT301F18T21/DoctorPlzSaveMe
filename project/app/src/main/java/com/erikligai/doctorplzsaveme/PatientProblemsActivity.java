@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.erikligai.doctorplzsaveme.Models.Problem;
+
 import java.util.ArrayList;
 
 public class PatientProblemsActivity extends AppCompatActivity {

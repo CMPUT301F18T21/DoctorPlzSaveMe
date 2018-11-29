@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.erikligai.doctorplzsaveme"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -51,3 +51,4 @@ dependencies {
 }
 //    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 //    androidTestImplementation "com.google.truth:truth::0.40"
+

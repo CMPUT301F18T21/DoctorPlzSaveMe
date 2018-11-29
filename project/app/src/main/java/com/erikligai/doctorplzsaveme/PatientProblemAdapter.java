@@ -13,6 +13,8 @@ import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.erikligai.doctorplzsaveme.Models.Problem;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 

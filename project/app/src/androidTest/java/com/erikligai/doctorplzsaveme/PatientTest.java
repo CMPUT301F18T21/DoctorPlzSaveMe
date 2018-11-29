@@ -1,5 +1,8 @@
 package com.erikligai.doctorplzsaveme;
 
+import com.erikligai.doctorplzsaveme.Models.Patient;
+import com.erikligai.doctorplzsaveme.Models.Problem;
+
 import junit.framework.TestCase;
 
 import java.util.Date;

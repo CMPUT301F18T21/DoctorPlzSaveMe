@@ -1,18 +1,19 @@
 package com.erikligai.doctorplzsaveme;
 
+import com.erikligai.doctorplzsaveme.Activities.CareProviderActivity;
+import com.erikligai.doctorplzsaveme.StartAppActivities.MainActivity;
+import com.erikligai.doctorplzsaveme.StartAppActivities.NewProfileActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.rule.ActivityTestRule;
 
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 

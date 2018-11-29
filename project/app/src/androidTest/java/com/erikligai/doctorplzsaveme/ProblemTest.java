@@ -1,5 +1,9 @@
 package com.erikligai.doctorplzsaveme;
 
+import com.erikligai.doctorplzsaveme.Models.Comment;
+import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.Models.Record;
+
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
