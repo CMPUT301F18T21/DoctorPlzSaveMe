@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -195,6 +196,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         {
             // do nothing, couldn't login
         }
+    }
+
+    public void clearLocalData()
+    {
+        mContext.getApplicationContext().deleteFile(FILENAME);
     }
 
     // https://stackoverflow.com/questions/9570237/android-check-internet-connection
