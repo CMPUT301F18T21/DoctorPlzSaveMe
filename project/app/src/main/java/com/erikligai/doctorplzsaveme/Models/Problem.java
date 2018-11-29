@@ -45,6 +45,9 @@ public class Problem {
     }
     
 
+    public Problem(){
+    }
+
 //    public void setTitle(String newTitle) {
 //        this.title = newTitle;
 //    }

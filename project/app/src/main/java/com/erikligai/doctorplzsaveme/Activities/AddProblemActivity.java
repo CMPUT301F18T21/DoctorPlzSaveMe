@@ -82,7 +82,6 @@ public class AddProblemActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-
     private void openMainProblemActivity(){
         Intent intent = new Intent(this,MainProblemActivity.class);
         startActivity(intent);

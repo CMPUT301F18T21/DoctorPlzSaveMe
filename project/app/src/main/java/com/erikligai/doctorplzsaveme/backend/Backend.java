@@ -82,7 +82,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return patientProfile.getProblemList().get(problemIndex).getRecords();
     }
 
-    //Added emptyView for MainProblemActivity
     public void addPatientProblem(Problem problem) {
         assert(patientProfile != null);
         patientProfile.addProblem(problem);
