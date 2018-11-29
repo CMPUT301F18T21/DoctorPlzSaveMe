@@ -79,7 +79,7 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         // - replace the contents of the view with that element
         Problem problem = mDataset.get(position);
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
         Date date = problem.getDate();
         String f_date = df.format(date);
 
