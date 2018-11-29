@@ -310,4 +310,60 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     {
         m_patients = new ArrayList<>();
     }
+
+    public ArrayList<Problem> GetCPPatientProblems(String PatientID)
+    {
+        assert(m_patients != null);
+        for (Patient patient : m_patients )
+        {
+            if (patient.getID() == PatientID) { return patient.getProblemList(); }
+        }
+        assert(false); // i.e. shouldn't happen!
+        return null;
+    }
+
+    public ArrayList<Record> GetCPPatientRecords(String PatientID, int ProblemIndex)
+    {
+        assert(m_patients != null);
+        for (Patient patient : m_patients )
+        {
+            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex).getRecords(); }
+        }
+        assert(false); // i.e. shouldn't happen!
+        return null;
+
+    }
+
+    public Record GetCPPatientRecord(String PatientID, int ProblemIndex, int RecordIndex)
+    {
+        assert(m_patients != null);
+        for (Patient patient : m_patients )
+        {
+            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex).getRecords().get(RecordIndex); }
+        }
+        assert(false); // i.e. shouldn't happen!
+        return null;
+    }
+
+    public Problem GetCPPatientProblem(String PatientID, int ProblemIndex)
+    {
+        assert(m_patients != null);
+        for (Patient patient : m_patients )
+        {
+            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex); }
+        }
+        assert(false); // i.e. shouldn't happen!
+        return null;
+    }
+
+    public Patient GetCPPatient(String PatientID)
+    {
+        assert(m_patients != null);
+        for (Patient patient : m_patients )
+        {
+            if (patient.getID() == PatientID) { return patient; }
+        }
+        assert(false); // i.e. shouldn't happen!
+        return null;
+    }
 }
