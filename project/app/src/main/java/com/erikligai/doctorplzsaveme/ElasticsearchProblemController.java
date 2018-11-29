@@ -13,7 +13,9 @@ import com.searchly.jestdroid.JestDroidClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.searchbox.client.JestResult;
 import io.searchbox.core.DocumentResult;
+import io.searchbox.core.Get;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
@@ -23,6 +25,8 @@ import io.searchbox.core.SearchResult;
  */
 public class ElasticsearchProblemController {
     private static JestDroidClient client;
+
+    private static String server = "http://cmput301.softwareprocess.es:8080";
 
     public static class SetPatientTask extends AsyncTask<Patient, Void, Void> {
         @Override
@@ -52,14 +56,10 @@ public class ElasticsearchProblemController {
         protected Patient doInBackground(String... userid) {
             verifySettings();
             Patient patient = null;
-            String query = "{\n  \"query\": {\n    \"terms\": {\n      \"_id\": \""+userid[0]+ "\" \n    }\n  }\n}";
-            Search search = new Search.Builder(query)
-                    .addIndex("cmput301f18t21test")
-                    .addType("Patient")
-                    .build();
+            Get get = new Get.Builder("cmput301f18t21test", userid[0]).type("Patient").build();
 
             try {
-                SearchResult result = client.execute(search);
+                JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
                     patient = result.getSourceAsObject(Patient.class); // TODO: FIX
                 } else {
@@ -77,14 +77,10 @@ public class ElasticsearchProblemController {
         protected Boolean doInBackground(String... userid) {
             verifySettings();
             Patient patient = null;
-            String query = "{\n  \"query\": {\n    \"terms\": {\n      \"_id\": \""+userid[0]+ "\" \n    }\n  }\n}";
-            Search search = new Search.Builder(query)
-                    .addIndex("cmput301f18t21test")
-                    .addType("Patient")
-                    .build();
+            Get get = new Get.Builder("cmput301f18t21test", userid[0]).type("Patient").build();
 
             try {
-                SearchResult result = client.execute(search);
+                JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
                     return true;
                 } else {
@@ -99,7 +95,7 @@ public class ElasticsearchProblemController {
 
     public static void verifySettings() {
         if (client == null) {
-            DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080");
+            DroidClientConfig.Builder builder = new DroidClientConfig.Builder(server);
             DroidClientConfig config = builder.build();
 
             JestClientFactory factory = new JestClientFactory();

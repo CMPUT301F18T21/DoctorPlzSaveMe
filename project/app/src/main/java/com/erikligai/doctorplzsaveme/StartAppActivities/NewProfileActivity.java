@@ -46,6 +46,7 @@ public class NewProfileActivity extends AppCompatActivity {
                                 phoneInputText.getText().toString());
                         Backend.getInstance().setPatientProfile(new_patient);
                         Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
+                        finish();
                         startActivity(intent);
                     } else
                     {

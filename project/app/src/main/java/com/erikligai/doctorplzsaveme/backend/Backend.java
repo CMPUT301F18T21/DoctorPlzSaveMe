@@ -147,30 +147,23 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     private void syncPatientES()
     {
+       if (!isConnected()) { return; }
+        assert(patientProfile != null);
+        String UserID = patientProfile.getID();
+        ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
+        Patient es_patient = null;
         try {
-            isConnected(); // will throw exception if phone is offline
-            assert(patientProfile != null);
-            String UserID = patientProfile.getID();
-            ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
-            Patient es_patient = getPatientTask.execute(UserID).get();
-            if (es_patient != null)
-            {
-            /* TODO:
-            for each Problem from DB, take Problem.comments and overwrite local Problem comments
-            (in case Care Provider has made new comments), then take local patientProfile and push
-            it to the DB */
-                patientProfile = es_patient;
-
-            }
-            ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
-            setPatientTask.execute(patientProfile);
-            // else try push local patientProfile to DB (since might be new profile)
-        } catch (Exception e)
+            es_patient = getPatientTask.execute(UserID).get();
+        } catch (Exception e) { }
+        if (es_patient != null)
         {
-            // do nothing since we are offline
-            Log.i("COULD NOT SYNC WITH ES!", "Failure");
+            for (int i = 0; i < patientProfile.getProblemList().size(); ++i)
+            {
+                patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
+            }
         }
-
+        ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
+        setPatientTask.execute(patientProfile);
     }
 
     public Patient fetchPatientProfile() {
@@ -190,17 +183,33 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
+    public void setPatientFromES(String UserID)
+    {
+        patientProfile = null;
+        try {
+            ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
+            patientProfile = getPatientTask.execute(UserID).get();
+        } catch (Exception e)
+        {
+            // do nothing, couldn't login
+        }
+    }
+
     // https://stackoverflow.com/questions/9570237/android-check-internet-connection
     // razzak
-    public static boolean isConnected() throws InterruptedException, IOException {
+    public static boolean isConnected(){
         final String command = "ping -c 1 google.com";
-        return Runtime.getRuntime().exec(command).waitFor() == 0;
+        try {
+            return Runtime.getRuntime().exec(command).waitFor() == 0;
+        } catch (Exception e)
+        {
+            return false;
+        }
+
     }
 
     public static boolean userIDExists(String UserID)
     {
-        return false;
-        /*
         ElasticsearchProblemController.CheckIfPatientIDExistsTask checkTask =
                 new ElasticsearchProblemController.CheckIfPatientIDExistsTask();
         try {
@@ -209,7 +218,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         {
             return false;
         }
-        */
     }
 
     // ICareProviderBackend CODE ------------

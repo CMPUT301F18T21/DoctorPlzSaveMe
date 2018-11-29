@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
@@ -44,10 +45,14 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: CHECK SET EMAIL/PHONE VALUES SO THEY ARE VALID
-                Backend.getInstance().getPatientProfile().setEmail(EmailText.getText().toString());
-                Backend.getInstance().getPatientProfile().setPhone(PhoneText.getText().toString());
-                Backend.getInstance().UpdatePatient();
-                finish();
+                if (Backend.isConnected()) {
+                    Backend.getInstance().getPatientProfile().setEmail(EmailText.getText().toString());
+                    Backend.getInstance().getPatientProfile().setPhone(PhoneText.getText().toString());
+                    Backend.getInstance().UpdatePatient();
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
