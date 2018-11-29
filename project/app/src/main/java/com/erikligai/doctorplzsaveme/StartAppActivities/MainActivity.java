@@ -36,11 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 // if we don't detect a profile, go to NoProfileActivity
                 if (Backend.getInstance().fetchPatientProfile() == null)
                 {
-                    finish();
                     startActivity(new Intent(MainActivity.this, NoProfileActivity.class));
                 } else // otherwise go to PatientActivity
                 {
-                    finish();
                     startActivity(new Intent(MainActivity.this, PatientActivity.class));
                 }
 

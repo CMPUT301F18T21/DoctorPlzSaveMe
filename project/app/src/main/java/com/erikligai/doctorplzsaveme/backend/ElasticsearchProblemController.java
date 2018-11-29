@@ -97,17 +97,22 @@ public class ElasticsearchProblemController {
         @Override
         protected Void doInBackground(String... params) {
             verifySettings();
-            Index index = new Index.Builder(params[1])
-                    .index("cmput301f18t21test")
-                    .type("String")
-                    .id(params[0])
-                    .build();
             try {
+
+                ElasticsearchProblemController.GetCPPatientsTask getCPPatientsTask = new ElasticsearchProblemController.GetCPPatientsTask();
+                PatientsWrapper p = getCPPatientsTask.execute(params[0]).get();
+                p.getPatients().add(params[1]);
+
+                Index index = new Index.Builder(p)
+                        .index("cmput301f18t21test")
+                        .type("PatientsWrapper")
+                        .id(params[0])
+                        .build();
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
 
                 } else {
-                    Log.i("Error", "SetPatientTask: The search query failed to find any problems that matched");
+                    Log.i("Error", "AssignPatientToCPTask: fail");
                 }
             } catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
@@ -116,17 +121,16 @@ public class ElasticsearchProblemController {
         }
     }
 
-    public static class GetCPPatientsTask extends AsyncTask<String, Void, ArrayList<String>> {
+    public static class GetCPPatientsTask extends AsyncTask<String, Void, PatientsWrapper> {
         @Override
-        protected ArrayList<String> doInBackground(String... cp_id) {
+        protected PatientsWrapper doInBackground(String... cp_id) {
             verifySettings();
-            ArrayList<String> patients = new ArrayList<String>();
-            Get get = new Get.Builder("cmput301f18t21test", cp_id[0]).type("String").build();
+            PatientsWrapper p = null;
+            Get get = new Get.Builder("cmput301f18t21test", cp_id[0]).type("PatientsWrapper").build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()){
-                    List<String> foundPatients = result.getSourceAsObjectList(String.class);
-                    patients.addAll(foundPatients);
+                    p = result.getSourceAsObject(PatientsWrapper.class);
                 }
                 else {
                     Log.i("Error", "The search query failed to find any patients that matched");
@@ -135,30 +139,52 @@ public class ElasticsearchProblemController {
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
-            return patients;
+            return p;
         }
     }
-
 
 
     public static class CheckIfCPExistsTask extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... cp_id) {
             verifySettings();
-            Get get = new Get.Builder("cmput301f18t21test", cp_id[0]).type("String").build();
+            Get get = new Get.Builder("cmput301f18t21test", cp_id[0]).type("PatientsWrapper").build();
             try {
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()){
                     return true;
                 }
                 else {
-                    Log.i("Error", "The search query failed to find any patients that matched");
+                    Log.i("Error", "CheckIfCPExistsTask: fail");
                 }
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return false;
+        }
+    }
+
+    public static class AddCPTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... params) {
+            verifySettings();
+            try {
+                PatientsWrapper p = new PatientsWrapper(new ArrayList<>());
+                Index index = new Index.Builder(p)
+                        .index("cmput301f18t21test")
+                        .type("PatientsWrapper")
+                        .id(params[0])
+                        .build();
+                DocumentResult result = client.execute(index);
+                if (result.isSucceeded()) {
+                } else {
+                    Log.i("Error", "AssignPatientToCPTask: fail");
+                }
+            } catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return null;
         }
     }
 
@@ -173,4 +199,8 @@ public class ElasticsearchProblemController {
             client = (JestDroidClient) factory.getObject();
         }
     }
+
+
+    // WIP -----------------------------------
+
 }

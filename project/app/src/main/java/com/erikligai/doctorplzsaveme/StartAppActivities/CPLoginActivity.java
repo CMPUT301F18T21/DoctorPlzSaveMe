@@ -50,6 +50,8 @@ public class CPLoginActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     switch (which){
                                         case DialogInterface.BUTTON_POSITIVE:
+                                            ElasticsearchProblemController.AddCPTask addCPTask = new ElasticsearchProblemController.AddCPTask();
+                                            addCPTask.execute(usernameText.getText().toString());
                                             Backend.getInstance().setCP_ID(usernameText.getText().toString());
                                             dialog.dismiss();
                                             finish();
@@ -64,12 +66,13 @@ public class CPLoginActivity extends AppCompatActivity {
                                 }
                             };
 
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CPLoginActivity.this);
                             builder.setMessage("This username does not exist. Would you like to create a new profile with this username and log in?")
                                     .setPositiveButton("Yes", dialogClickListener)
                                     .setNegativeButton("No", dialogClickListener).show();
                         }
-                    } catch (Exception e) {}
+                    } catch (Exception e) {
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
                 }

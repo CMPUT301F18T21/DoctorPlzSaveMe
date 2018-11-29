@@ -288,7 +288,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         ArrayList<String> PatientIDs = null;
         ElasticsearchProblemController.GetCPPatientsTask getPatientsTask = new ElasticsearchProblemController.GetCPPatientsTask();
         try {
-            PatientIDs = getPatientsTask.execute(CP_ID).get();
+            PatientIDs = getPatientsTask.execute(CP_ID).get().getPatients();
             for (String patient : PatientIDs)
             {
                 ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
