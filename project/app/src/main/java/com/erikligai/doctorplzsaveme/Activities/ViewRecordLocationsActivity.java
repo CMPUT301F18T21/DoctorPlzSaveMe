@@ -5,7 +5,11 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.erikligai.doctorplzsaveme.Models.Patient;
+import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,8 +22,19 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
 
     private GoogleMap mMap;
 
-    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
-    private Marker mPerth;
+    /** BACKEND TESTING
+    Patient p = new Patient("Joe Hepp","id-100", "heppelle@", "123456");
+    Problem problem = new Problem("Title", "Leg hurt");
+    Record record = new Record("Leg 1", "Leg hurt");
+    problem.addRecord(record);
+    p.addProblem(problem);
+    for Record rec in problem.getRecords(){
+        LatLng latlng = rec.getGeolocation();
+    }
+    /** BACKEND TESTING */
+
+    private static final LatLng VAN = new LatLng(49.246292, -123.116226);
+    private Marker Van;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +64,15 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        mPerth = mMap.addMarker(new MarkerOptions().position(PERTH).title("Record name").snippet("record info"));
-        mPerth.setTag(0);        //pass data into marker here
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(PERTH));
+        Problem problem = new Problem("Title", "Leg hurt");
+        Record record = new Record("Leg 1", "Leg hurt");
+        record.addGeolocation(VAN);
+
+        Van = mMap.addMarker(new MarkerOptions().position(record.getGeolocation()).title(problem.getTitle()).snippet(record.getTitle()));
+        Van.setTag(record);        //pass data into marker here
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(VAN));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+
         mMap.setOnMarkerClickListener(this);
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
@@ -72,8 +92,8 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     @Override
     public boolean onMarkerClick(final Marker marker) {
 
-        int num = (int) marker.getTag();                         // get data from marker(probably recordID)
-        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
+        //int num = (int) marker.getTag();                         // get data from marker(probably recordID)
+        Toast.makeText(this, marker.getTitle(), Toast.LENGTH_SHORT).show();
         return false;
     }
 
