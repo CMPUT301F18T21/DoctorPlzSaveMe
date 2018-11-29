@@ -33,32 +33,36 @@ import java.util.Locale;
 public class EditProblemActivity extends AppCompatActivity implements View.OnClickListener{
     private Problem problem;
     private TextView titleText,descText,dateText;
-    private EditText editTitle,editDesc,editDate;
-    private Calendar date;
-    private ViewSwitcher switcher;
-    private String title, description;
+    private EditText editTitle,editDesc;
+    private ViewSwitcher title_switcher, desc_switcher;
+    private String title, desc;
     private Date uf_date;
-    private int position, flag=0;
+    private Calendar date;
+    private int position, t_flag, d_flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_problem);
 
-        switcher = findViewById(R.id.title_switcher);
-        titleText = switcher.findViewById(R.id.problem_title);
-        editTitle = switcher.findViewById(R.id.edit_problem_title);
-        descText = findViewById(R.id.problem_desc);
-        dateText = findViewById(R.id.problem_date);
+        title_switcher = findViewById(R.id.title_switcher);
+        titleText = title_switcher.findViewById(R.id.problem_title);
+        editTitle = title_switcher.findViewById(R.id.edit_problem_title);
 
+        desc_switcher = findViewById(R.id.desc_switcher);
+        descText = desc_switcher.findViewById(R.id.problem_desc);
+        editDesc = desc_switcher.findViewById(R.id.edit_problem_desc);
+        dateText = findViewById(R.id.problem_date);
 
         Button editDate = findViewById(R.id.editDateButton);
         Button editProblem = findViewById(R.id.editProblemButton);
         Button editDesc = findViewById(R.id.editDescButton);
+        Button saveBtn = findViewById(R.id.saveButton);
 
         editDate.setOnClickListener(this);
         editProblem.setOnClickListener(this);
         editDesc.setOnClickListener(this);
+        saveBtn.setOnClickListener(this);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -69,9 +73,12 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         position = getIntent().getIntExtra("Pos", 0);
         problem = Backend.getInstance().getPatientProblems().get(position);
         title = problem.getTitle();
-        description = problem.getDescription();
+        desc = problem.getDescription();
         uf_date = problem.getDate();
         displayProblem();
+
+        t_flag = 0;
+        d_flag = 0;
     }
 
     @Override
@@ -97,12 +104,63 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
 
             case R.id.editProblemButton:
                 //call editProblemActivity
-                editProblem2();
+                editProblem();
                 break;
 
             case R.id.editDescButton:
                 editDesc();
                 break;
+
+            case R.id.saveButton:
+                saveProblem();
+                break;
+        }
+    }
+
+
+    /** Called when the user taps the Edit Problem button */
+    private void editProblem(){
+        if (t_flag == 0) {
+            editTitle.setText(title);
+            titleText.setText(title);
+            title_switcher.showNext();
+            t_flag += 1;
+        } else {
+            title = editTitle.getText().toString();
+            titleText.setText(title);
+            editTitle.setText(title);
+            title_switcher.showNext();
+            t_flag -= 1;
+        }
+    }
+
+    /** Called when the user taps the Edit Description button */
+    private void editDesc(){
+        if (d_flag == 0) {
+            editDesc.setText(desc);
+            descText.setText(desc);
+            desc_switcher.showNext();
+            d_flag += 1;
+        } else {
+            desc = editDesc.getText().toString();
+            descText.setText(desc);
+            editDesc.setText(desc);
+            desc_switcher.showNext();
+            d_flag -= 1;
+        }
+    }
+
+    /** Called when the user taps the Save button */
+    private void saveProblem(){
+        try {
+            problem.setTitle(title);
+            problem.setDesc(desc);
+            problem.setDate(uf_date);
+            Backend.getInstance().UpdatePatient();
+            finish();
+        } catch (TooLongProblemTitleException | TooLongProblemDescException e) {
+            e.printStackTrace();
+            displayToaster(e.getMessage());
         }
     }
 
@@ -121,7 +179,7 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
                         date.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         date.set(Calendar.MINUTE, minute);
                         Log.v("abc", "The chosen one " + date.getTime());
-                        problem.setDate(date.getTime());
+                        uf_date = date.getTime();
                         displayProblem();
                         displayToaster(getString(R.string.toaster_date));
                     }
@@ -130,105 +188,23 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
     }
 
-//    /** Called when the user taps the Edit Problems button */
-//    public void editProblem() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        //LayoutInflater inflater = this.getLayoutInflater();
-//        final View dialogView = View.inflate(this, R.layout.dialog_edit_problem, null);
-//        builder.setView(dialogView);
-//
-//        final EditText edit = dialogView.findViewById(R.id.edit_title_text);
-//
-//        builder.setTitle(R.string.edit_problem)
-//                .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        //do something
-//                        String text = edit.getText().toString();
-//                        try {
-//                            problem.setTitle(text);
-//                            displayProblem();
-//                            displayToaster(getString(R.string.toaster_title));
-//                        } catch (TooLongProblemTitleException e) {
-//                            e.printStackTrace();
-//                            displayToaster(e.getMessage());
-//                        }
-//                    }
-//                })
-//                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // do nothing
-//                    }
-//                });
-//        AlertDialog alert = builder.create();
-//        alert.show();
-//    }
-
-    /** Called when the user taps the Edit Description button */
-    public void editDesc() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogView = View.inflate(this, R.layout.dialog_edit_desc, null);
-        builder.setView(dialogView);
-
-        final EditText edit = dialogView.findViewById(R.id.edit_desc_text);
-
-        builder.setTitle(R.string.edit_desc)
-                .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        //do something
-                        String text = edit.getText().toString();
-                        try {
-                            problem.setDesc(text);
-                            displayProblem();
-                            displayToaster(getString(R.string.toaster_desc));
-                        } catch (TooLongProblemDescException e) {
-                            e.printStackTrace();
-                            displayToaster(e.getMessage());
-                        }
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // do nothing
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
 
     public void displayProblem(){
         titleText.setText(title);
 
-        if (description.equals("")){
+        if (desc.equals("")){
             descText.setText(R.string.no_desc);
         } else{
-            descText.setText(description);
+            descText.setText(desc);
         }
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
-        String f_date = df.format(uf_date);
+        String f_date = getString(R.string.date_started) + df.format(uf_date);
         dateText.setText(f_date);
     }
 
     private void displayToaster(String text){
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
-    }
-
-    private void editProblem2(){
-        if (flag == 0) {
-            editTitle.setText(title);
-            titleText.setText(title);
-            switcher.showNext();
-            flag += 1;
-        } else {
-            title = editTitle.getText().toString();
-            titleText.setText(title);
-            editTitle.setText(title);
-            switcher.showNext();
-            flag -= 1;
-        }
     }
 }
