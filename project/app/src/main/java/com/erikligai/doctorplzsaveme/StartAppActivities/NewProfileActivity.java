@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.PatientActivity;
+import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 

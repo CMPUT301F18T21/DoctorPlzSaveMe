@@ -1,4 +1,4 @@
-package com.erikligai.doctorplzsaveme;
+package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.provider.MediaStore;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.erikligai.doctorplzsaveme.Activities.EditProfileActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainMapsActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+import com.erikligai.doctorplzsaveme.R;
 
 public class PatientActivity extends AppCompatActivity implements View.OnClickListener{
 

@@ -71,7 +71,8 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientActivity"></activity>
+        <activity android:name=".Activities.PatientActivity" />
+        <activity android:name=".StartAppActivities.CPLoginActivity"></activity>
     </application>
 
 </manifest>

@@ -231,6 +231,14 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     private ArrayList<Patient> m_patients = null;
 
+    public String getCP_ID() {
+        return CP_ID;
+    }
+
+    public void setCP_ID(String CP_ID) {
+        this.CP_ID = CP_ID;
+    }
+
     private String CP_ID = null;
 
     // patient list adapts to this

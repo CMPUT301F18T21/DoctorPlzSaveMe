@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.Activities.CareProviderActivity;
-import com.erikligai.doctorplzsaveme.PatientActivity;
+import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
@@ -51,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
         careProviderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Here it should open a new activity where the care provider's patients are listed in a recycler view
-
-                startActivity(new Intent(MainActivity.this, CareProviderActivity.class));
+                startActivity(new Intent(MainActivity.this, CPLoginActivity.class));
             }
         });
 

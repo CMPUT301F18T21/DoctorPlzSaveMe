@@ -17,4 +17,6 @@ public interface ICareProviderBackend {
 
     // remove patient from CP (not required!) PatientID would be aquired from the Patient class
     public void RemovePatient(String PatientID);
+
+    public void GetPatients();
 }
