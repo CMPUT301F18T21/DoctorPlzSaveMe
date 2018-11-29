@@ -21,8 +21,9 @@
     <string name="edit_desc_hint">Enter Description here</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="toaster_title">Problem Edited!</string>
+    <string name="toaster_title">Problem Updated!</string>
     <string name="toaster_desc">Description Updated!</string>
+    <string name="toaster_date">Date Updated!</string>
     <string name="view_records">view records</string>
     <string name="view_add_comment">view/add comment</string>
     <string name="title_activity_main_maps">Record/Problem Locations</string>

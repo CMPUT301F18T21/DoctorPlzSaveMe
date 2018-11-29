@@ -21,6 +21,7 @@ import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.TooLongProblemDescException;
 import com.erikligai.doctorplzsaveme.TooLongProblemTitleException;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,16 +35,10 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
     private TextView descText;
     private TextView dateText;
     private Calendar date;
-
-
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try{
-            problem = new Problem("Problem 1","Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd", new Date());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_problem);
 
@@ -64,6 +59,8 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.view_edit_problem);
 
+        position = getIntent().getIntExtra("Pos", 0);
+        problem = Backend.getInstance().getPatientProblems().get(position);
         displayProblem();
     }
 
@@ -114,6 +111,9 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
                         date.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         date.set(Calendar.MINUTE, minute);
                         Log.v("abc", "The chosen one " + date.getTime());
+                        problem.setDate(date.getTime());
+                        displayProblem();
+                        displayToaster(getString(R.string.toaster_date));
                     }
                 }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
             }
@@ -190,7 +190,7 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
 
     public void displayProblem(){
         titleText.setText(problem.getTitle());
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
         Date uf_date = problem.getDate();
         String f_date = df.format(uf_date);
 
