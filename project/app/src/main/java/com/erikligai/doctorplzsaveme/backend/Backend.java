@@ -258,7 +258,8 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assignTask.execute(params);
         ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
         try {
-            m_patients.add(getPatientTask.execute(PatientID).get());
+            Patient new_patient = getPatientTask.execute(PatientID).get();
+            if (new_patient != null) { m_patients.add(new_patient); }
         } catch (Exception e) {}
     }
 
