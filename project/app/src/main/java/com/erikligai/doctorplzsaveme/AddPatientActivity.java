@@ -45,6 +45,9 @@ public class AddPatientActivity extends AppCompatActivity {
                 // if does not exist, add
 
                 // go back to patient list
+                Intent intent = new Intent(AddPatientActivity.this, CareProvider.class);
+                Toast.makeText(AddPatientActivity.this, "userid was added", Toast.LENGTH_LONG).show();
+                startActivity(intent);
             }
         });
 
