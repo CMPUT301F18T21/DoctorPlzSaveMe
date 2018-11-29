@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public interface ICareProviderBackend {
 
     // patient list adapts to this
-    public ArrayList<Patient> getPatients();
+    public ArrayList<Patient> getM_patients();
 
     // adds comment to the patient's problem and updates that patient profile to DB
     public void addComment(int patientIndex, int problemIndex, String comment);

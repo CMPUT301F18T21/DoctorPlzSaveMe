@@ -1,28 +1,20 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.util.Log;
 
-import com.erikligai.doctorplzsaveme.ElasticsearchProblemController;
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
-import com.erikligai.doctorplzsaveme.StartAppActivities.MainActivity;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class Backend implements IPatientBackend, ICareProviderBackend {
@@ -237,40 +229,63 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     // TODO: ASSERTIONS
 
-    private ArrayList<Patient> patients = null;
+    private ArrayList<Patient> m_patients = null;
+
+    private String CP_ID = null;
 
     // patient list adapts to this
-    public ArrayList<Patient> getPatients() {
-        return patients;
+    public ArrayList<Patient> getM_patients() {
+        return m_patients;
     }
 
     // adds comment to the patient's problem and updates that patient profile to DB
     public void addComment(int patientIndex, int problemIndex, String comment)
     {
-        patients.get(patientIndex).getProblemList().get(problemIndex).addComment(new Comment(comment));
-        UpdatePatient(patients.get(patientIndex));
+        m_patients.get(patientIndex).getProblemList().get(problemIndex).addComment(new Comment(comment));
+        UpdatePatient(m_patients.get(patientIndex));
     }
 
     // add patient to CP, PatientID would be aquired from QR code
     public void AddPatient(String PatientID)
     {
-        // TODO: update DB patientIDs, and add that patientID's Patient to patients
-        // requires error checking (like ID already exists in patients, or doesn't exist on DB)
+        // TODO: update DB patientIDs, and add that patientID's Patient to m_patients
+        // requires error checking (like ID already exists in m_patients, or doesn't exist on DB)
+        for (Patient p : m_patients) {
+            if (p.getID() == PatientID) { return; }
+        }
+        ElasticsearchProblemController.AssignPatientToCPTask assignTask = new ElasticsearchProblemController.AssignPatientToCPTask();
+        String[] params = new String[]{CP_ID, PatientID};
+        assignTask.execute(params);
+        ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
+        try {
+            m_patients.add(getPatientTask.execute(PatientID).get());
+        } catch (Exception e) {}
     }
 
     // remove patient from CP (not required!) PatientID would be aquired from the Patient class
     public void RemovePatient(String PatientID)
     {
-        // TODO: update DB patientIDs, and remove that patientID's Patient from patients
+        // TODO: update DB patientIDs, and remove that patientID's Patient from m_patients
     }
 
     private void UpdatePatient(Patient patient)
     {
-        // TODO: push that Patient to DB
+        ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
+        setPatientTask.execute(patient);
     }
 
     public void GetPatients()
     {
-        // TODO: populate patients from DB Patients
+        ArrayList<String> PatientIDs = null;
+        ElasticsearchProblemController.GetCPPatientsTask getPatientsTask = new ElasticsearchProblemController.GetCPPatientsTask();
+        try {
+            PatientIDs = getPatientsTask.execute(CP_ID).get();
+            for (String patient : PatientIDs)
+            {
+                ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
+                m_patients.add(getPatientTask.execute(patient).get());
+            }
+        }
+        catch (Exception e) {}
     }
 }
