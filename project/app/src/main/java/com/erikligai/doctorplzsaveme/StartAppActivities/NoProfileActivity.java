@@ -47,6 +47,7 @@ public class NoProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Backend.isConnected()) {
                     Backend.getInstance().setPatientFromES(usernameText.getText().toString());
+                    try { wait(1000); } catch (Exception e) {} // might work
                     if (Backend.getInstance().getPatientProfile() != null)
                     {
                         finish();
