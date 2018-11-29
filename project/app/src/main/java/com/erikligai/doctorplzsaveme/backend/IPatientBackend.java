@@ -29,7 +29,6 @@ public interface IPatientBackend {
     public void deletePatientRecord(int problemIndex, int recordIndex);
 
 
-
     // don't worry about these (Daniil's responsibility)
 
     // MUST BE CALLED UPON APP STARTUP TO BE ABLE TO READ/WRITE TO FILE

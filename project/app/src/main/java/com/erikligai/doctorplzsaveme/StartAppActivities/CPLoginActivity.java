@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CareProviderActivity;
-import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.erikligai.doctorplzsaveme.backend.ElasticsearchProblemController;
@@ -39,7 +38,7 @@ public class CPLoginActivity extends AppCompatActivity {
                         if(checkIfCPExistsTask.execute(usernameText.getText().toString()).get())
                         {
                             Backend.getInstance().setCP_ID(usernameText.getText().toString());
-                            Backend.getInstance().GetPatients();
+                            Backend.getInstance().PopulatePatients();
                             finish();
                             startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
                         } else

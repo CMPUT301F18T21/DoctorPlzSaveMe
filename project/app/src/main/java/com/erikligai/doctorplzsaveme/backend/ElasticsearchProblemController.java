@@ -139,6 +139,7 @@ public class ElasticsearchProblemController {
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
+            Log.d("p is null: ",Boolean.toString(p == null));
             return p;
         }
     }
@@ -170,7 +171,9 @@ public class ElasticsearchProblemController {
         protected Void doInBackground(String... params) {
             verifySettings();
             try {
-                PatientsWrapper p = new PatientsWrapper(new ArrayList<>());
+                ArrayList<String> temp = new ArrayList<String>();
+                // temp.add("tiganov"); // DEBUG
+                PatientsWrapper p = new PatientsWrapper(temp);
                 Index index = new Index.Builder(p)
                         .index("cmput301f18t21test")
                         .type("PatientsWrapper")

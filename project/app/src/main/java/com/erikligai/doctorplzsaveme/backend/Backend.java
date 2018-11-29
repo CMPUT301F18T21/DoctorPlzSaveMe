@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Patient;
@@ -229,7 +230,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     // TODO: ASSERTIONS
 
-    private ArrayList<Patient> m_patients = null;
+    private ArrayList<Patient> m_patients = new ArrayList<>();
 
     public String getCP_ID() {
         return CP_ID;
@@ -283,18 +284,25 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         setPatientTask.execute(patient);
     }
 
-    public void GetPatients()
+    public void PopulatePatients()
     {
         ArrayList<String> PatientIDs = null;
         ElasticsearchProblemController.GetCPPatientsTask getPatientsTask = new ElasticsearchProblemController.GetCPPatientsTask();
         try {
             PatientIDs = getPatientsTask.execute(CP_ID).get().getPatients();
+            Log.d("size: ", Integer.toString(PatientIDs.size()));
             for (String patient : PatientIDs)
             {
+                Log.d("test: ", patient);
                 ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
                 m_patients.add(getPatientTask.execute(patient).get());
             }
         }
         catch (Exception e) {}
+    }
+
+    public ArrayList<Patient> GetPatients()
+    {
+        return m_patients;
     }
 }
