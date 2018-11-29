@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, PatientProblemsActivity.class)); // go to problem list of patient
                 Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
                 Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
             }

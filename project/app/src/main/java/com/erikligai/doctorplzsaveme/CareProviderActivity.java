@@ -43,6 +43,8 @@ public class CareProviderActivity extends AppCompatActivity {
     private void addPatients() {
         Log.d(TAG, "addPatients: preparing patients");
 
+        // Here I will pull from database and push to patientList the patients that belong to care provider
+
         patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
         patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
         patientList.add(new Patient("Daniil", "3", "bam@ualberta.ca", "746746"));
