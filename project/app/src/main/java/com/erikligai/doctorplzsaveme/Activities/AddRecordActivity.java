@@ -57,7 +57,7 @@ public class AddRecordActivity extends AppCompatActivity {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 AddBodyLocationFragment fragment = new AddBodyLocationFragment();
-                fragmentTransaction.replace(R.id.AddRecordFragment1, fragment);
+                fragmentTransaction.replace(R.id.FragmentContainer, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
