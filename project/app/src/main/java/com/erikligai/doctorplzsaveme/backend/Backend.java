@@ -159,10 +159,13 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         if (es_patient != null)
         {
             // overwrite comments of local, in case they have changed
-            for (int i = 0; i < patientProfile.getProblemList().size(); ++i)
-            {
-                patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
-            }
+            try {
+                for (int i = 0; i < patientProfile.getProblemList().size(); ++i)
+                {
+                    patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
+                }
+            } catch (Exception e ) {}
+
         }
         ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
         setPatientTask.execute(patientProfile);
