@@ -157,6 +157,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         } catch (Exception e) { }
         if (es_patient != null)
         {
+            // overwrite comments of local, in case they have changed
             for (int i = 0; i < patientProfile.getProblemList().size(); ++i)
             {
                 patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
@@ -189,6 +190,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         try {
             ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
             patientProfile = getPatientTask.execute(UserID).get();
+            serializePatientProfile();
         } catch (Exception e)
         {
             // do nothing, couldn't login
