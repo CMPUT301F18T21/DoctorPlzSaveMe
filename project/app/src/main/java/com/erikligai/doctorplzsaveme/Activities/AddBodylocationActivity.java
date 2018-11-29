@@ -19,11 +19,11 @@ public class AddBodylocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_bodylocation);
+        setContentView(R.layout.fragment_add_bodylocation);
 
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos",-1);
-        date = intent.getLongExtra("date",-1);
+        //date = intent.getLongExtra("date",-1);
         // Get buttons
         backBtn2 = findViewById(R.id.backButton2);
         nextBtn2 = findViewById(R.id.nextButton2);

@@ -16,18 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".StartAppActivities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.MainRecordActivity" />
         <activity android:name=".Activities.MainProblemActivity" />
         <activity android:name=".Activities.EditProblemActivity" />
         <activity android:name=".Activities.EditRecordActivity" />
         <activity android:name=".Activities.AddProblemActivity" />
-        <activity android:name=".Activities.AddRecordActivity" />
+        <activity android:name=".Activities.AddRecordActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".Activities.ProblemSearchActivity" />
 
         <meta-data
@@ -50,25 +52,19 @@
         <activity
             android:name=".StartAppActivities.NewProfileActivity"
             android:label="@string/new_patient_title">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".StartAppActivities.NoProfileActivity"
             android:label="No Profile">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".Activities.CareProviderActivity" />
         <activity android:name=".Activities.AddPatientActivity" />
         <activity
             android:name=".Activities.EditProfileActivity"
             android:label="@string/view_edit_profile_title">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".PatientActivity"></activity>
     </application>

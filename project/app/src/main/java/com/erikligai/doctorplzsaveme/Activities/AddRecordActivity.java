@@ -2,12 +2,20 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.erikligai.doctorplzsaveme.Models.BodyLocation;
+import com.erikligai.doctorplzsaveme.Models.Geolocation;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.SearchTabFragments.AddBodyLocationFragment;
 
 import java.util.Date;
 
@@ -19,6 +27,8 @@ public class AddRecordActivity extends AppCompatActivity {
     private String title;
     private String comment;
     private Date date;
+    private BodyLocation bodyLocation;
+    private Geolocation geolocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +38,13 @@ public class AddRecordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos",0);
         // Get buttons
-        backBtn1 = findViewById(R.id.backButton1);
+
         nextBtn1 = findViewById(R.id.editNextButton3);
         // Set title & comment editText
         commentText = findViewById(R.id.editRecordComment);
         titleText = findViewById(R.id.editRecordTitle);
 
-        backBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openRecordListActivity();
 
-            }
-        });
 
         nextBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +52,15 @@ public class AddRecordActivity extends AppCompatActivity {
                 title = titleText.getText().toString();
                 comment = commentText.getText().toString();
                 date = new Date();
-                openAddBodyLocationActivity();
+                Log.d("fab", "add problems!");
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                AddBodyLocationFragment fragment = new AddBodyLocationFragment();
+                fragmentTransaction.replace(R.id.AddRecordFragment1, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
             }
         });
     }
@@ -67,4 +79,15 @@ public class AddRecordActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

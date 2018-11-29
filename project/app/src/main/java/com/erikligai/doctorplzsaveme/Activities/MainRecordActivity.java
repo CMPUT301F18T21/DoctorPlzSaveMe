@@ -25,9 +25,9 @@ public class MainRecordActivity extends AppCompatActivity {
     private int problem_index;
 
     //sample record list
-    Record r1 = new Record("Record1","recordDescription");
-    Record r2 = new Record("Record1","recordDescription");
-    Record r3 = new Record("Record1","recordDescription");
+//    Record r1 = new Record("Record1","recordDescription");
+//    Record r2 = new Record("Record1","recordDescription");
+//    Record r3 = new Record("Record1","recordDescription");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +35,7 @@ public class MainRecordActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos",0);
-        Problem problem = Backend.getInstance().getProblemList();
-        records = problem.getRecords();
+        //records = Backend.getInstance().getPatientRecords(problem_index);
 
 //        records.add(r1);
 //        records.add(r2);
