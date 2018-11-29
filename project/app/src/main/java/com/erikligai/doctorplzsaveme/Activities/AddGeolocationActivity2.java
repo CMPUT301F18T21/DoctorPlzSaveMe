@@ -39,8 +39,8 @@ public class AddGeolocationActivity2 extends FragmentActivity implements GoogleM
      * installed Google Play services and returned to the app.
      */
 
-    //TODO: Don set marker
-    //TODO: move camera to last record the patient record
+    //TODO: Get onClick LatLng.
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

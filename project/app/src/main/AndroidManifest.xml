@@ -3,8 +3,7 @@
     package="com.erikligai.doctorplzsaveme">
 
     <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -77,6 +76,8 @@
         <activity
             android:name=".Activities.AddGeolocationActivity2"
             android:label="@string/title_activity_add_geolocation2"></activity>
+
+
     </application>
 
 </manifest>

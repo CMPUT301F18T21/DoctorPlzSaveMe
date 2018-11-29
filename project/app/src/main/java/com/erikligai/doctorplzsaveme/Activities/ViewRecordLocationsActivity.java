@@ -77,7 +77,7 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-                int num = (int) marker.getTag();                                // get data from marker(probably recordID)
+                //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
                 Intent I = new Intent(ViewRecordLocationsActivity.this, EditRecordActivity.class);
                 startActivity(I);
             }
