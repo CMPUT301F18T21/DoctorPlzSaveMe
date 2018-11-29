@@ -64,8 +64,8 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
         addPatientViewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
-                Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getID());
+                Toast.makeText(mContext, mPatients.get(i).getID(), Toast.LENGTH_SHORT).show();
             }
         });
     }

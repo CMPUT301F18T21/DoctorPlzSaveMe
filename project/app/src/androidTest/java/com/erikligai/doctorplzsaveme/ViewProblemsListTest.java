@@ -3,6 +3,7 @@
 package com.erikligai.doctorplzsaveme;
 
 import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

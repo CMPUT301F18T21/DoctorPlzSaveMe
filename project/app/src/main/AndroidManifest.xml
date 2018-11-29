@@ -7,6 +7,7 @@
         android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -70,7 +71,8 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientActivity"></activity>
+        <activity android:name=".Activities.PatientActivity" />
+        <activity android:name=".StartAppActivities.CPLoginActivity"></activity>
     </application>
 
 </manifest>
