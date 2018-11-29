@@ -16,19 +16,20 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:padding="6dp">
+        android:layout_marginStart="2dp"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/problem_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_toStartOf="@+id/problem_item_record_count"
-            android:text="Problem"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textAppearance="?android:textAppearanceLarge" />
+            android:text="Problem"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/black" />
 
 
         <TextView
@@ -36,28 +37,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/problem_item_title"
+            android:fontFamily="sans-serif"
             android:text="Date"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceSmall" />
 
         <TextView
             android:id="@+id/problem_item_desc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/problem_item_date"
+            android:layout_alignTop="@+id/problem_item_date"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="12dp"
             android:ellipsize="end"
             android:maxLines="2"
+            android:minLines="2"
+            android:lines="2"
             android:text="Problem Desc"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceSmall" />
 
         <TextView
             android:id="@+id/problem_item_record_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toStartOf="@+id/problem_item_options"
             android:text="X Records"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceSmall" />
 
         <ImageButton
             android:id="@+id/problem_item_options"
@@ -65,10 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="6dp"
-            android:layout_marginRight="6dp"
+            android:layout_marginEnd="0dp"
             android:background="#FFFF"
             card_view:srcCompat="@drawable/ic_baseline_more_vert_24px" />
 
