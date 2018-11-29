@@ -38,6 +38,7 @@ public class CPLoginActivity extends AppCompatActivity {
                         if(checkIfCPExistsTask.execute(usernameText.getText().toString()).get())
                         {
                             Backend.getInstance().setCP_ID(usernameText.getText().toString());
+                            Backend.getInstance().ClearPatients();
                             Backend.getInstance().PopulatePatients();
                             finish();
                             startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));

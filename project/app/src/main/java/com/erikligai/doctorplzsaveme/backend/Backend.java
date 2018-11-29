@@ -305,4 +305,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     {
         return m_patients;
     }
+
+    public void ClearPatients()
+    {
+        m_patients = new ArrayList<>();
+    }
 }

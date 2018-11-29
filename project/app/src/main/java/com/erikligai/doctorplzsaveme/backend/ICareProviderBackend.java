@@ -9,6 +9,9 @@ public interface ICareProviderBackend {
     // get patients of current logged in care provider
     public ArrayList<Patient> GetPatients();
 
+    // clears patients (mainactivity)
+    public void ClearPatients();
+
     // adds comment to the patient's problem and updates that patient profile to DB
     public void addComment(int patientIndex, int problemIndex, String comment);
 
