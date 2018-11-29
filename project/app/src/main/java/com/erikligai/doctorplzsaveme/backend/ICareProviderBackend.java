@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public interface ICareProviderBackend {
 
-    // patient list adapts to this
-    public ArrayList<Patient> getM_patients();
+    // get patients of current logged in care provider
+    public ArrayList<Patient> GetPatients();
 
     // adds comment to the patient's problem and updates that patient profile to DB
     public void addComment(int patientIndex, int problemIndex, String comment);
@@ -18,7 +18,6 @@ public interface ICareProviderBackend {
     // remove patient from CP (not required!) PatientID would be aquired from the Patient class
     public void RemovePatient(String PatientID);
 
+    // don't worry about this
     public void PopulatePatients();
-
-    public ArrayList<Patient> GetPatients();
 }
