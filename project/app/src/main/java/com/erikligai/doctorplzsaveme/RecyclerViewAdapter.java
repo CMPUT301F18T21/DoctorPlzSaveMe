@@ -43,7 +43,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(mContext, PatientProblemsActivity.class)); // go to problem list of patient
+                Intent intent = new Intent(mContext, PatientProblemsActivity.class);
+                intent.putExtra("patientID", mPatients.get(i).getID()); // attach patient id to intent
+                mContext.startActivity(intent); // go to problem list of patient
                 Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
                 Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
             }

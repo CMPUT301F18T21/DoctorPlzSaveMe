@@ -15,6 +15,10 @@ import java.util.ArrayList;
 public class CareProviderActivity extends AppCompatActivity {
     private static final String TAG = "CareProviderActivity";
 
+    // pull list of patients from backend
+//    Backend backend = Backend.getInstance();
+//    private ArrayList<Patient> patientList = new ArrayList<>(backend.getCareProviderPatients(careProviderID));
+
     private ArrayList<Patient> patientList = new ArrayList<>();
 
     @Override
@@ -31,6 +35,8 @@ public class CareProviderActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Here we start new activity where we can add a patient
+                // We don't need to pass care provider id since it's globally available
                 startActivity(new Intent(CareProviderActivity.this, AddPatientActivity.class));
 //                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
@@ -43,7 +49,13 @@ public class CareProviderActivity extends AppCompatActivity {
     private void addPatients() {
         Log.d(TAG, "addPatients: preparing patients");
 
-        // Here I will pull from database and push to patientList the patients that belong to care provider
+        // Do I need this anymore? I pulled patient list from database in onCreate
+
+
+
+
+
+
 
         patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
         patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));

@@ -39,6 +39,9 @@ public class AddPatientActivity extends AppCompatActivity {
         // this should add all patients that are not currently under the given care provider
         Log.d(TAG, "addPatients: preparing patients");
 
+        // Patients in this list are patients who are not in the care provider's patient list
+        // All patients - care provider patients
+
         patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
         patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
         patientList.add(new Patient("Daniil", "3", "asdf@ualberta.ca", "746746"));

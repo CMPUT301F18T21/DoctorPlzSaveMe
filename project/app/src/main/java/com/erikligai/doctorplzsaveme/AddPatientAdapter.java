@@ -1,7 +1,6 @@
 package com.erikligai.doctorplzsaveme;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -63,7 +62,16 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
             @Override
             public void onClick(View v) {
                 // Here the name in the patient list is clicked
-                // this should start a new activity with the patient's problems in a list
+                // this should add the patient to the care provider's patient list and return to patient list activity
+
+                // use global static variable of userid to retrieve care provider's patient list from backend
+                // check if clicked on patient already exists in list
+                // if not, add to list
+                // update backend
+                // return to CareProviderActivity
+                // Display toast message to notify care provider that patient was added
+
+
 
 
 

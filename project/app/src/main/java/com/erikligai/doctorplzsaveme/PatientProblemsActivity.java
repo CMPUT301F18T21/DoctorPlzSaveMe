@@ -4,13 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.support.v7.widget.SearchView;
-
 
 import java.util.ArrayList;
 
@@ -22,10 +21,20 @@ public class PatientProblemsActivity extends AppCompatActivity {
 //    private ArrayList<Patient> problemList = new ArrayList<>();
     private ArrayList<Problem> problemList = new ArrayList<>();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_problem_list);
+
+//        Backend backend = Backend.getInstance();
+//
+//        // pull patient's problems from back end using passed in patient id
+//        Intent intent = getIntent(); // receive intent
+//        String patientID = intent.getExtras().getString("patientID");
+//
+//        private ArrayList<Problem> problemList = new ArrayList<>(backend.getCareProviderPatients(patientID));
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
