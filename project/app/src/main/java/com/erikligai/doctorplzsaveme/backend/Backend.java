@@ -90,7 +90,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     public void addPatientRecord(int problemIndex, Record record) {
         assert(patientProfile != null);
+//        Log.e("addPatientRecord", "RECORD ADDED");
         patientProfile.getProblemList().get(problemIndex).addRecord(record);
+        Log.e("addPatientRecord", "RECORD ADDED");
         UpdatePatient();
     }
 

@@ -28,6 +28,6 @@ tools:context=".PatientProblemsActivity">
     android:layout_height="match_parent"
     android:gravity="center"
     android:visibility="gone"
-    android:text="You have no problems!" />
+    android:text="This patient has no problems!" />
 
 </android.support.design.widget.CoordinatorLayout>

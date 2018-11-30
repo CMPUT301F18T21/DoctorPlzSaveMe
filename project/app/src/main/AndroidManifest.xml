@@ -58,7 +58,6 @@
         <activity android:name=".Activities.CareProviderActivity" />
         <activity android:name=".Activities.AddPatientActivity" />
         <activity android:name=".PatientProblemsActivity" />
-
         <activity
             android:name=".StartAppActivities.NoProfileActivity"
             android:label="No Profile">
@@ -74,7 +73,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.PatientActivity" />
-        <activity android:name=".StartAppActivities.CPLoginActivity"></activity>
+        <activity android:name=".StartAppActivities.CPLoginActivity" />
+        <activity android:name=".Activities.CPRecordActivity"></activity>
     </application>
 
 </manifest>
