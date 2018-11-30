@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DoctorPlzSaveMe</string>
-    <string name="records">My records</string>
+    <string name="record">Records</string>
     <string name="view_edit_record">View/Edit Record</string>
     <string name="view_problems">View Problems</string>
     <string name="action_search">Search</string>
@@ -75,6 +75,7 @@
     <string name="back">BACK</string>
     <string name="next">NEXT</string>
     <string name="save_record">SAVE RECORD</string>
+    <string name="no_record_available">There are no Records for this Problem \nAdd one using the button below to start tracking!</string>
 
     <string name="search_problem">Search for problems by keyword</string>
     <string name="related_problems">RELATED PROBLEMS</string>

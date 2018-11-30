@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Activities.AddRecordActivity;
 import com.erikligai.doctorplzsaveme.Adapters.RecordAdapter;
@@ -25,6 +26,8 @@ public class MainRecordActivity extends AppCompatActivity {
     private RecordAdapter adapter;
     private ArrayList<Record> records;
     private int problem_index;
+    private RecyclerView recordRecycler;
+    private TextView emptyView;
 
     //sample record list
 //    Record r1 = new Record("Record1","recordDescription");
@@ -37,7 +40,7 @@ public class MainRecordActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos",0);
-        //records = Backend.getInstance().getPatientRecords(problem_index);
+        records = Backend.getInstance().getPatientRecords(problem_index);
 
 //        records.add(r1);
 //        records.add(r2);
@@ -47,7 +50,8 @@ public class MainRecordActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(R.string.records);
+        String title = Backend.getInstance().getPatientProblems().get(problem_index).getTitle() + " " + getString(R.string.record);
+        getSupportActionBar().setTitle(title);
 
         FloatingActionButton fab = findViewById(R.id.record_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +65,12 @@ public class MainRecordActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView recordRecycler = findViewById(R.id.record_recyclerview);
+        recordRecycler = findViewById(R.id.record_recyclerview);
         recordRecycler.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recordRecycler.setLayoutManager(layoutManager);
 
+        emptyView = findViewById(R.id.empty_record_view);
 
         adapter = new RecordAdapter(records);
         recordRecycler.setAdapter(adapter);
@@ -78,6 +83,14 @@ public class MainRecordActivity extends AppCompatActivity {
                 Log.d("rview", Integer.toString(position));
             }
         });
+    }
+
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        Log.d("abc","onresume");
+        adapter.notifyDataSetChanged();
+        checkEmpty();
     }
 
     @Override
@@ -107,6 +120,17 @@ public class MainRecordActivity extends AppCompatActivity {
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
 
+        }
+    }
+
+    public void checkEmpty(){
+        if (records.isEmpty()) {
+            recordRecycler.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        }
+        else {
+            recordRecycler.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
         }
     }
 }
