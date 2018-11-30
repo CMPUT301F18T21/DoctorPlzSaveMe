@@ -7,12 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
+import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewAdapter;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewAdapter;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class CareProviderActivity extends AppCompatActivity {
         Backend backend = Backend.getInstance();
         patientList = backend.GetPatients();
 
-        Log.d(TAG, "onCreate: started");
+//        Log.d(TAG, "onCreate: started");
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -55,7 +54,7 @@ public class CareProviderActivity extends AppCompatActivity {
     }
 
     private void addPatients() {
-        Log.d(TAG, "addPatients: preparing patients");
+//        Log.d(TAG, "addPatients: preparing patients");
 
         // Do I need this anymore? I pulled patient list from database in onCreate
 
@@ -79,7 +78,7 @@ public class CareProviderActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        Log.d(TAG, "initRecyclerView: init");
+//        Log.d(TAG, "initRecyclerView: init");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(patientList, this);
         recyclerView.setAdapter(adapter);

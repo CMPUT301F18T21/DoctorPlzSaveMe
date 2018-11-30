@@ -1,7 +1,6 @@
 package com.erikligai.doctorplzsaveme.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -14,14 +13,11 @@ import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Activities.CPRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdapter.PatientRecordViewHolder> implements Filterable {
     private Context mContext;
@@ -85,13 +81,13 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
                 Log.e("problemIndex", problemID);
                 Log.e("recordIndex", i+"");
 
-                Intent intent = new Intent(mContext, CPViewRecordActivity.class);
-                intent.putExtra("patientID", patientID); // attach patient id to intent
-                intent.putExtra("problemIndex", problemID); // attach problem index to intent
-                intent.putExtra("recordIndex", i+""); // attack record index to intent
-                mContext.startActivity(intent); // go to record list of patient
+//                Intent intent = new Intent(mContext, CPViewRecordActivity.class);
+//                intent.putExtra("patientID", patientID); // attach patient id to intent
+//                intent.putExtra("problemIndex", problemID); // attach problem index to intent
+//                intent.putExtra("recordIndex", i+""); // attack record index to intent
+//                mContext.startActivity(intent); // go to record list of patient
 
-                Log.d(TAG, "onClick: clicked on: " + mRecords.get(i).getTitle());
+//                Log.d(TAG, "onClick: clicked on: " + mRecords.get(i).getTitle());
                 Toast.makeText(mContext, mRecords.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -115,18 +111,18 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
 //            ArrayList<Patient> filteredPatients = new ArrayList<>();
             ArrayList<Record> filteredRecords = new ArrayList<>();
 
-            Log.d(TAG, "search: " + constraint);
+//            Log.d(TAG, "search: " + constraint);
 
             if (constraint == null || constraint.length() == 0) {
                 filteredRecords.addAll(mRecordsCopy);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                Log.d(TAG, "filterPattern:  " + filterPattern);
+//                Log.d(TAG, "filterPattern:  " + filterPattern);
 
 
                 for (Record problem : mRecordsCopy) {
-                    Log.d(TAG, "problemTitle: " + problem.getTitle().toLowerCase());
+//                    Log.d(TAG, "problemTitle: " + problem.getTitle().toLowerCase());
                     if (problem.getTitle().toLowerCase().contains(filterPattern)) {
                         filteredRecords.add(problem);
                     }

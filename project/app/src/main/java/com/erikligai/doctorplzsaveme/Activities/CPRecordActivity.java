@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,8 +40,8 @@ public class CPRecordActivity extends AppCompatActivity {
         Intent intent = getIntent(); // receive intent
         problemID = intent.getExtras().getString("problemID");
         patientID = intent.getExtras().getString("patientID");
-        Log.e("patientIDH", patientID);
-        Log.e("problemIDH", problemID);
+//        Log.e("patientIDH", patientID);
+//        Log.e("problemIDH", problemID);
 
 //        Date date = new Date();
 //        // format date into string
@@ -69,7 +68,7 @@ public class CPRecordActivity extends AppCompatActivity {
     // There should also be a search bar at the top to look for patient ID
 
     private void initRecyclerView() {
-        Log.d(TAG, "initRecyclerView: init");
+//        Log.d(TAG, "initRecyclerView: init");
 
         RecyclerView recyclerView = findViewById(R.id.patient_records_recycler_view);
         TextView emptyView = findViewById(R.id.empty_view);

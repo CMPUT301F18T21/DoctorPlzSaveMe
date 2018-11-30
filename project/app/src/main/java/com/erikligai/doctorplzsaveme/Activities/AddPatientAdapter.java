@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.R;
 
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.AddPatientViewHolder> implements Filterable {
     private ArrayList<Patient> mPatients;
@@ -80,7 +77,7 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
 //
 //                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
 //                Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getID());
+//                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getID());
                 Toast.makeText(mContext, mPatients.get(i).getID(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,9 +60,9 @@ public class AddPatientActivity extends AppCompatActivity {
 
                 if (backend.userIDExists(userid) && !exists) {
 
-                    Log.e("username", "CHECK");
-                    Log.e("username", userid);
-                    Log.e("username", "CHECK");
+//                    Log.e("username", "CHECK");
+//                    Log.e("username", userid);
+//                    Log.e("username", "CHECK");
 
                     backend.AddPatient(userid);
 
@@ -102,9 +101,9 @@ public class AddPatientActivity extends AppCompatActivity {
 //                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                 if (backend.userIDExists(result.getContents())) {
 
-                    Log.e("username", "CHECK");
-                    Log.e("username", result.getContents());
-                    Log.e("username", "CHECK");
+//                    Log.e("username", "CHECK");
+//                    Log.e("username", result.getContents());
+//                    Log.e("username", "CHECK");
 
                     backend.AddPatient(result.getContents());
 
