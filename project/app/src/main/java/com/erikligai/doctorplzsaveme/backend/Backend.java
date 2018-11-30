@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -258,7 +257,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         // TODO: update DB patientIDs, and add that patientID's Patient to m_patients
         // requires error checking (like ID already exists in m_patients, or doesn't exist on DB)
         for (Patient p : m_patients) {
-            if (p.getID() == PatientID) { return; }
+            if (p.getID().equals(PatientID)) {
+//                Log.e("Error", "already exists in care provider's list");
+                return;
+            }
         }
         ElasticsearchProblemController.AssignPatientToCPTask assignTask = new ElasticsearchProblemController.AssignPatientToCPTask();
         String[] params = new String[]{CP_ID, PatientID};
@@ -315,9 +317,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList(); }
+            Log.e("patient ID", patient.getID());
+            Log.e("patient ID", PatientID);
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList(); }
         }
-//        assert(false); // i.e. shouldn't happen!
+        assert(false); // i.e. shouldn't happen!
         return null;
     }
 
@@ -326,7 +330,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex).getRecords(); }
+            Log.e("patient ID", patient.getID());
+            Log.e("patient ID", PatientID);
+
+
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex).getRecords(); }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
@@ -338,7 +346,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex).getRecords().get(RecordIndex); }
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex).getRecords().get(RecordIndex); }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
@@ -349,7 +357,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex); }
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex); }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
@@ -360,7 +368,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient; }
+            if (patient.getID().equals(PatientID)) { return patient; }
         }
         assert(false); // i.e. shouldn't happen!
         return null;

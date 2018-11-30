@@ -49,7 +49,16 @@ public class AddPatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String userid = editText.getText().toString();
 
-                if (backend.userIDExists(userid)) {
+                boolean exists = false;
+
+                // have to iterate through CP's patient ids and check it doesn't already exist inside
+                for (Patient patient : backend.getM_patients()) {
+                    if (patient.getID().equals(userid)) {
+                        exists = true;
+                    }
+                }
+
+                if (backend.userIDExists(userid) && !exists) {
 
                     Log.e("username", "CHECK");
                     Log.e("username", userid);

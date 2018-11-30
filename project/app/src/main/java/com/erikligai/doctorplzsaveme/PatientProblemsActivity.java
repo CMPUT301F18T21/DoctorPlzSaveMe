@@ -40,6 +40,8 @@ public class PatientProblemsActivity extends AppCompatActivity {
 
         problemList = backend.GetCPPatientProblems(patientID);
 
+//        Log.e("BOOLEAN: ", problemList.get(0).toString());
+
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
