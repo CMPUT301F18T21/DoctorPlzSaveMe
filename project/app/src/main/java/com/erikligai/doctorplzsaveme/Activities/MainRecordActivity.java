@@ -14,27 +14,34 @@ import android.view.View;
 
 import com.erikligai.doctorplzsaveme.Activities.AddRecordActivity;
 import com.erikligai.doctorplzsaveme.Adapters.RecordAdapter;
+import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
 public class MainRecordActivity extends AppCompatActivity {
     private RecordAdapter adapter;
-    private ArrayList<Record> records = new ArrayList<>();
+    private ArrayList<Record> records;
+    private int problem_index;
 
     //sample record list
-    Record r1 = new Record("Record1","recordDescription");
-    Record r2 = new Record("Record1","recordDescription");
-    Record r3 = new Record("Record1","recordDescription");
+//    Record r1 = new Record("Record1","recordDescription");
+//    Record r2 = new Record("Record1","recordDescription");
+//    Record r3 = new Record("Record1","recordDescription");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_record);
 
-        records.add(r1);
-        records.add(r2);
-        records.add(r3);
+        Intent intent = getIntent();
+        problem_index = intent.getIntExtra("Pos",0);
+        //records = Backend.getInstance().getPatientRecords(problem_index);
+
+//        records.add(r1);
+//        records.add(r2);
+//        records.add(r3);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.record_toolbar);
         setSupportActionBar(myToolbar);
@@ -49,6 +56,7 @@ public class MainRecordActivity extends AppCompatActivity {
                 Log.d("fab", "add record");
                 //calls AddRecordActivity
                 Intent intent = new Intent(view.getContext(), AddRecordActivity.class);
+                intent.putExtra("Pos", problem_index);
                 startActivity(intent);
             }
         });
@@ -64,7 +72,7 @@ public class MainRecordActivity extends AppCompatActivity {
         adapter.setOnEntryClickListener(new RecordAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(int position) {
-//                Intent intent = new Intent(getApplicationContext(), EditProblemActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), EditRecordActivity.class);
 //                intent.putExtra("Pos", position);
 //                startActivity(intent);
                 Log.d("rview", Integer.toString(position));
