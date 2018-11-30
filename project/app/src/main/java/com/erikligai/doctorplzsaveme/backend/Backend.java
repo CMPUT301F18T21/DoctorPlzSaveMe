@@ -246,10 +246,18 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     }
 
     // adds comment to the patient's problem and updates that patient profile to DB
-    public void addComment(int patientIndex, int problemIndex, String comment)
+    public void addComment(String PatientID, int problemIndex, String comment)
     {
-        m_patients.get(patientIndex).getProblemList().get(problemIndex).addComment(new Comment(comment));
-        UpdatePatient(m_patients.get(patientIndex));
+        assert(m_patients != null);
+        for (Patient patient : m_patients )
+        {
+            if (patient.getID() == PatientID) {
+                patient.getProblemList().get(problemIndex).addComment(new Comment(comment));
+                UpdatePatient(patient);
+                return;
+            }
+        }
+        assert(false);
     }
 
     // add patient to CP, PatientID would be aquired from QR code
