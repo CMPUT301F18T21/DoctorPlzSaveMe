@@ -39,7 +39,7 @@ public class PatientProblemsActivity extends AppCompatActivity {
         Log.e("patientIDH", patientID);
 
         problemList = backend.GetCPPatientProblems(patientID);
-        
+
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
