@@ -20,14 +20,20 @@ import java.util.ArrayList;
 public class CareProviderActivity extends AppCompatActivity {
     private static final String TAG = "CareProviderActivity";
 
+
     private ArrayList<Patient> patientList;
+//    private ArrayList<Patient> patientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care_provider);
-        patientList = Backend.getInstance().GetPatients();
-        // patientList = new ArrayList<>();
+
+
+        // pull list of patients from backend
+        Backend backend = Backend.getInstance();
+        patientList = backend.GetPatients();
+
         Log.d(TAG, "onCreate: started");
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -37,6 +43,8 @@ public class CareProviderActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Here we start new activity where we can add a patient
+                // We don't need to pass care provider id since it's globally available
                 startActivity(new Intent(CareProviderActivity.this, AddPatientActivity.class));
 //                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
@@ -49,6 +57,16 @@ public class CareProviderActivity extends AppCompatActivity {
     private void addPatients() {
         Log.d(TAG, "addPatients: preparing patients");
 
+        // Do I need this anymore? I pulled patient list from database in onCreate
+
+
+
+
+
+
+
+//        patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
+//        patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
         //patientList.add(new Patient("1", "ligai@ualberta.ca", "12312341"));
         /*patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
         patientList.add(new Patient("Daniil", "3", "bam@ualberta.ca", "746746"));

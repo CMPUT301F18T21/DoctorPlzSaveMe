@@ -1,24 +1,19 @@
 package com.erikligai.doctorplzsaveme.backend;
 
-import android.app.DownloadManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.searchbox.client.JestResult;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Get;
 import io.searchbox.core.Index;
-import io.searchbox.core.Search;
-import io.searchbox.core.SearchResult;
 
 /**
  * Created by romansky on 10/20/16.
@@ -98,6 +93,7 @@ public class ElasticsearchProblemController {
         protected Void doInBackground(String... params) {
             verifySettings();
             try {
+
                 PatientsWrapper p = null;
                 Get get = new Get.Builder("cmput301f18t21test", params[0]).type("PatientsWrapper").build();
                 try {
@@ -114,6 +110,7 @@ public class ElasticsearchProblemController {
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
                if (p == null) {Log.d("p is null: ",Boolean.toString(p == null)); return null;}
+
 
                 Index index = new Index.Builder(p)
                         .index("cmput301f18t21test")
