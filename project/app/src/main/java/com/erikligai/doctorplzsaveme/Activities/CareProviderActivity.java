@@ -13,20 +13,22 @@ import android.view.View;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewAdapter;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
 public class CareProviderActivity extends AppCompatActivity {
     private static final String TAG = "CareProviderActivity";
 
-    private ArrayList<Patient> patientList = new ArrayList<>();
+    private ArrayList<Patient> patientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care_provider);
+        patientList = Backend.getInstance().GetPatients();
+        // patientList = new ArrayList<>();
         Log.d(TAG, "onCreate: started");
-
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
@@ -47,12 +49,13 @@ public class CareProviderActivity extends AppCompatActivity {
     private void addPatients() {
         Log.d(TAG, "addPatients: preparing patients");
 
-        patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
-        patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
+        //patientList.add(new Patient("1", "ligai@ualberta.ca", "12312341"));
+        /*patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
         patientList.add(new Patient("Daniil", "3", "bam@ualberta.ca", "746746"));
         patientList.add(new Patient("Weng", "4", "asdfadf@ualberta.ca", "0918234"));
         patientList.add(new Patient("Iyun", "5", "asdfasdf@ualberta.ca", "1234869023"));
         patientList.add(new Patient("Bruce", "6", "owerti@ualberta.ca", "6458349"));
+        */
 
         initRecyclerView();
     }

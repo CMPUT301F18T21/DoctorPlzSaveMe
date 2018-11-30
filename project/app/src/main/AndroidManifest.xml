@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -70,7 +71,6 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".PatientActivity" />
         <activity
             android:name=".Activities.AddGeolocationActivity2"
             android:label="@string/title_activity_add_geolocation2" />
@@ -84,6 +84,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
+        <activity android:name=".Activities.PatientActivity" />
+        <activity android:name=".StartAppActivities.CPLoginActivity"></activity>
 
     </application>
 

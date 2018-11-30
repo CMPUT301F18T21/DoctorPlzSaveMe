@@ -15,6 +15,7 @@ import android.view.View;
 import com.erikligai.doctorplzsaveme.Adapters.ProblemAdapter;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,8 @@ public class MainProblemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Backend.getProblems(this);
+
+        problems = Backend.getInstance().getPatientProblems();
 
         setContentView(R.layout.activity_main_problem);
 

@@ -2,14 +2,13 @@ package com.erikligai.doctorplzsaveme;
 
 
 
+import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
+
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.filters.SmallTest;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;

@@ -87,6 +87,11 @@ public class Problem {
     public void addRecord(Record record) {
         this.records.add(record);
     }
+
+    public void setComments(ArrayList<Comment> new_comments)
+    {
+        this.comments = new_comments;
+    }
      /**
      * Gets the patient's comment list 
      * @return ArrayList<Comment> patient's comment list 

@@ -13,7 +13,7 @@ public class Comment {
     private String comment;
     private String date;
 
-    Comment(String comment){
+    public Comment(String comment){
         this.comment = comment;
         this.date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
     }

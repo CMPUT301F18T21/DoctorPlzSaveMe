@@ -1,4 +1,4 @@
-package com.erikligai.doctorplzsaveme;
+package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.erikligai.doctorplzsaveme.Activities.EditProfileActivity;
 import com.erikligai.doctorplzsaveme.Activities.ViewRecordLocationsActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+import com.erikligai.doctorplzsaveme.R;
 
 import java.io.File;
 import java.io.IOException;
