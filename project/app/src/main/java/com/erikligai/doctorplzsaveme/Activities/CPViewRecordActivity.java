@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class CPViewRecordActivity extends AppCompatActivity {
 
@@ -19,16 +20,19 @@ public class CPViewRecordActivity extends AppCompatActivity {
     private Record record;
     private int ProblemPosition;
     private int RecordPosition;
+    private String patientID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cp_view_record);
 
-        record = new Record("rec 1","rec 1 comment");
-
         Intent intent = getIntent();
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);
         RecordPosition = intent.getIntExtra("RecordPos",-1);
+        patientID = intent.getStringExtra("patientId");
+
+        Backend backend = Backend.getInstance();
+        record = backend.GetCPPatientRecord(patientID,ProblemPosition,RecordPosition);
 
         nextBtn = findViewById(R.id.cpRecordNext1);
         backBtn = findViewById(R.id.cpRecordBack1);
@@ -56,6 +60,7 @@ public class CPViewRecordActivity extends AppCompatActivity {
         Intent intent = new Intent(this,CPViewBodyLocationActivity.class);
         intent.putExtra("ProblemPos", ProblemPosition);
         intent.putExtra("RecordPos", RecordPosition);
+        intent.putExtra("patientId",patientID);
         startActivity(intent);
     }
 }

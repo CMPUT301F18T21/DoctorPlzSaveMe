@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class CPViewBodyLocationActivity  extends AppCompatActivity {
     private Button nextBtn;
@@ -15,6 +16,7 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
     private Record record;
     private int ProblemPosition;
     private int RecordPosition;
+    private String patientID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,10 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         Intent intent = getIntent();
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);
         RecordPosition = intent.getIntExtra("RecordPos",-1);
+        patientID = intent.getStringExtra("patientId");
+
+        Backend backend = Backend.getInstance();
+        record = backend.GetCPPatientRecord(patientID,ProblemPosition,RecordPosition);
 
         nextBtn = findViewById(R.id.cpRecordNext2);
         backBtn = findViewById(R.id.cpRecordBack2);
@@ -51,6 +57,7 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         Intent intent = new Intent(this,CPViewGeolocationActivity.class);
         intent.putExtra("ProblemPos", ProblemPosition);
         intent.putExtra("RecordPos", RecordPosition);
+        intent.putExtra("patientId",patientID);
         startActivity(intent);
     }
 }

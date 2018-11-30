@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
@@ -29,20 +30,13 @@ public class CPViewProblemActivity extends AppCompatActivity {
 
     private Problem problem;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
-    private int selectedPos;
+    private int problemPos;
+    private String patientID;
 
-    // Sample comment list
-    Comment c1 = new Comment("get well soon");
-    Comment c2 = new Comment("get well");
-    Comment c3 = new Comment("get");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cp_view_problem);
-        problem = new Problem("Problem 1", "Problem Description 1");
-        comments.add(c1);
-        comments.add(c2);
-        comments.add(c3);
 
         commentList = findViewById(R.id.cpComments);
         problemTitle = findViewById(R.id.cpProblemTitle);
@@ -51,7 +45,13 @@ public class CPViewProblemActivity extends AppCompatActivity {
         fab = findViewById(R.id.comment_fab);
 
         Intent intent = getIntent();
-        selectedPos = intent.getIntExtra("Pos",-1);
+        problemPos = intent.getIntExtra("Pos",-1);
+        patientID = intent.getStringExtra("patientID");
+
+        Backend backend = Backend.getInstance();
+        problem = backend.GetCPPatientProblem(patientID,problemPos);
+
+        comments = problem.getComments();
 
         problemTitle.setText(problem.getTitle());
         problemDescription.setText(problem.getDescription());
@@ -65,6 +65,8 @@ public class CPViewProblemActivity extends AppCompatActivity {
                 Log.d("fab", "add comment");
                 //calls AddRecordActivity
                 Intent intent = new Intent(view.getContext(), CPAddCommentActivity.class);
+                intent.putExtra("ProblemPos", problemPos);
+                intent.putExtra("patientId",patientID);
                 startActivity(intent);
             }
         });
