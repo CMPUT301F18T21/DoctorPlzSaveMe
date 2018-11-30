@@ -29,6 +29,9 @@ public class CPRecordActivity extends AppCompatActivity {
     private ArrayList<Record> recordList;
     Backend backend = Backend.getInstance();
 
+    private String patientID;
+    private String problemID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +39,8 @@ public class CPRecordActivity extends AppCompatActivity {
 
         // pull patient's records from back end using passed in problem id
         Intent intent = getIntent(); // receive intent
-        String problemID = intent.getExtras().getString("problemID");
-        String patientID = intent.getExtras().getString("patientID");
+        problemID = intent.getExtras().getString("problemID");
+        patientID = intent.getExtras().getString("patientID");
         Log.e("patientIDH", patientID);
         Log.e("problemIDH", problemID);
 
@@ -79,7 +82,7 @@ public class CPRecordActivity extends AppCompatActivity {
         } else {
             // display recyclerview
             recyclerView.setVisibility(View.VISIBLE);
-            adapter = new PatientRecordAdapter(recordList, this);
+            adapter = new PatientRecordAdapter(recordList, this, patientID, problemID);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             // hide textview

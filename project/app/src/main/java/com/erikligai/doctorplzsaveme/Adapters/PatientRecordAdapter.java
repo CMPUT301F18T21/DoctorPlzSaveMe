@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.erikligai.doctorplzsaveme.Activities.CPRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 
@@ -26,6 +28,9 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
 
     private ArrayList<Record> mRecords;
     private ArrayList<Record> mRecordsCopy;
+
+    private String patientID;
+    private String problemID;
 
     public static class PatientRecordViewHolder extends RecyclerView.ViewHolder {
         TextView title;
@@ -42,10 +47,12 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
         }
     }
 
-    public PatientRecordAdapter(ArrayList<Record> records, Context mContext) {
+    public PatientRecordAdapter(ArrayList<Record> records, Context mContext, String patientID, String problemID) {
         this.mRecords = records;
         this.mContext = mContext;
         this.mRecordsCopy = new ArrayList<>(mRecords);
+        this.patientID = patientID;
+        this.problemID = problemID;
     }
 
 
@@ -72,6 +79,17 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
             public void onClick(View v) {
                 // Here the record in the record list is clicked
                 // this should start a new activity with the record view
+
+                // print patientID and problem index
+                Log.e("patientID", patientID);
+                Log.e("problemIndex", problemID);
+                Log.e("recordIndex", i+"");
+
+                Intent intent = new Intent(mContext, CPViewRecordActivity.class);
+                intent.putExtra("patientID", patientID); // attach patient id to intent
+                intent.putExtra("problemIndex", problemID); // attach problem index to intent
+                intent.putExtra("recordIndex", i+""); // attack record index to intent
+                mContext.startActivity(intent); // go to record list of patient
 
                 Log.d(TAG, "onClick: clicked on: " + mRecords.get(i).getTitle());
                 Toast.makeText(mContext, mRecords.get(i).getTitle(), Toast.LENGTH_SHORT).show();
