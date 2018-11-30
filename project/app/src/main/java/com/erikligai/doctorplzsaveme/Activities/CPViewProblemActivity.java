@@ -2,7 +2,9 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +25,7 @@ public class CPViewProblemActivity extends AppCompatActivity {
     private TextView problemTitle;
     private TextView problemDescription;
     private Button viewRecordsBtn;
+    private FloatingActionButton fab;
 
     private Problem problem;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -45,6 +48,7 @@ public class CPViewProblemActivity extends AppCompatActivity {
         problemTitle = findViewById(R.id.cpProblemTitle);
         problemDescription = findViewById(R.id.cpProblemDescription);
         viewRecordsBtn = findViewById(R.id.cpProblemRecords);
+        fab = findViewById(R.id.comment_fab);
 
         Intent intent = getIntent();
         selectedPos = intent.getIntExtra("Pos",-1);
@@ -54,6 +58,16 @@ public class CPViewProblemActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<Comment>(CPViewProblemActivity.this, android.R.layout.simple_list_item_1, comments);
         commentList.setAdapter(adapter);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("fab", "add comment");
+                //calls AddRecordActivity
+                Intent intent = new Intent(view.getContext(), CPAddCommentActivity.class);
+                startActivity(intent);
+            }
+        });
 
         viewRecordsBtn.setOnClickListener(new View.OnClickListener(){
             @Override
