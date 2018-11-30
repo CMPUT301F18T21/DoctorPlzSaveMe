@@ -44,7 +44,7 @@ public class CPViewGeolocationActivity extends AppCompatActivity implements OnMa
         doneBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //return to cp recordlist view
+                openCPViewProblemActivity();
             }
         });
         backBtn.setOnClickListener(new View.OnClickListener(){
@@ -62,6 +62,11 @@ public class CPViewGeolocationActivity extends AppCompatActivity implements OnMa
 
     public void openCPViewBodylocationActivity(){
         Intent intent = new Intent(this,CPViewBodyLocationActivity.class);
+        startActivity(intent);
+    }
+
+    public void openCPViewProblemActivity(){
+        Intent intent = new Intent(this,CPViewProblemActivity.class);
         startActivity(intent);
     }
 
