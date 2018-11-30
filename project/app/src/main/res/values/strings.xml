@@ -7,7 +7,7 @@
     <string name="problems">Problems</string>
     <string name="view_edit_problem">View/Edit Problem</string>
     <string name="edit_date">Edit Start Date</string>
-    <string name="edit_problem">Edit Problem</string>
+    <string name="edit_problem">Edit \nProblem</string>
     <string name="edit_desc">Edit Description</string>
     <string name="view_add_records">View/Add Records</string>
     <string name="edit">Edit</string>
@@ -21,8 +21,9 @@
     <string name="edit_desc_hint">Enter Description here</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="toaster_title">Problem Edited!</string>
+    <string name="toaster_title">Problem Updated!</string>
     <string name="toaster_desc">Description Updated!</string>
+    <string name="toaster_date">Date Updated!</string>
     <string name="view_records">view records</string>
     <string name="view_add_comment">view/add comment</string>
     <string name="title_activity_main_maps">Record/Problem Locations</string>
@@ -47,6 +48,10 @@
     <string name="menu_view_edit_records">View/Add Records</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
+    <string name="no_problem_available">There are no recorded Problems (Good for you!) \nAdd one using the button below :(</string>
+    <string name="date_started">Date started:</string>
+    <string name="custom_date">Custom Date</string>
+    <string name="now_date">Now Date</string>
 
     <string name="view_locations_title">Record/Problem Locations</string>
 
@@ -82,6 +87,6 @@
     <string name="related_records">RELATED RECORDS</string>
     <string name="enter_location">Enter a location...</string>
 
-
+    <string name="welcome">Welcome</string>
 </resources>
 

@@ -20,16 +20,10 @@ public class CPProblemListActivity extends AppCompatActivity {
     private ArrayList<Problem> problems = new ArrayList<>();
 
     //sample problem list
-    Problem p1 = new Problem("Problem 1", "Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd");
-    Problem p2 = new Problem("Problem 2", "Problem Description 2");
-    Problem p3 = new Problem("Problem 3", "Problem Description 3");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cpproblem_list);
-        problems.add(p1);
-        problems.add(p2);
-        problems.add(p3);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

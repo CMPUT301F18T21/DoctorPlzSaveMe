@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Adapters.ProblemAdapter;
 import com.erikligai.doctorplzsaveme.Models.Problem;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 public class MainProblemActivity extends AppCompatActivity {
     public ProblemAdapter adapter;
     private ArrayList<Problem> problems = null;
+    private RecyclerView problemRView;
+    private TextView emptyView;
 
 //    //sample problem list
 //    Problem p1 = new Problem("Problem 1", "Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd");
@@ -45,7 +48,7 @@ public class MainProblemActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setTitle(R.string.problems);
+        getSupportActionBar().setTitle(R.string.problems);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +61,15 @@ public class MainProblemActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView problemRView = findViewById(R.id.problems_recyclerview);
+        problemRView = findViewById(R.id.problems_recyclerview);
         problemRView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         problemRView.setLayoutManager(layoutManager);
         problemRView.setNestedScrollingEnabled(false);
+
+        emptyView = findViewById(R.id.empty_problem_view);
+
+        problems = Backend.getInstance().getPatientProblems();
 
         adapter = new ProblemAdapter(problems);
         problemRView.setAdapter(adapter);
@@ -112,6 +119,7 @@ public class MainProblemActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onStart();
         adapter.notifyDataSetChanged();
+        checkEmpty();
     }
 
     protected void onResume() {
@@ -124,5 +132,16 @@ public class MainProblemActivity extends AppCompatActivity {
     public void setProblems(ArrayList<Problem> _problems)
     {
         problems = _problems;
+    }
+
+    public void checkEmpty(){
+        if (problems.isEmpty()) {
+            problemRView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        }
+        else {
+            problemRView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
     }
 }

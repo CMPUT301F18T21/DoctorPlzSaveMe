@@ -98,10 +98,22 @@ public class ElasticsearchProblemController {
         protected Void doInBackground(String... params) {
             verifySettings();
             try {
-
-                ElasticsearchProblemController.GetCPPatientsTask getCPPatientsTask = new ElasticsearchProblemController.GetCPPatientsTask();
-                PatientsWrapper p = getCPPatientsTask.execute(params[0]).get();
-                p.getPatients().add(params[1]);
+                PatientsWrapper p = null;
+                Get get = new Get.Builder("cmput301f18t21test", params[0]).type("PatientsWrapper").build();
+                try {
+                    JestResult result = client.execute(get);
+                    if (result.isSucceeded()){
+                        p = result.getSourceAsObject(PatientsWrapper.class);
+                        p.getPatients().add(params[1]);
+                    }
+                    else {
+                        Log.i("Error", "The search query failed to find any patients that matched");
+                    }
+                }
+                catch (Exception e) {
+                    Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                }
+               if (p == null) {Log.d("p is null: ",Boolean.toString(p == null)); return null;}
 
                 Index index = new Index.Builder(p)
                         .index("cmput301f18t21test")
