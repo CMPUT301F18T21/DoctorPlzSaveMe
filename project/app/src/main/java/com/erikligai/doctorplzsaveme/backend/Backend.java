@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -66,14 +67,12 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return patientProfile;
     }
 
-    public ArrayList<Problem> getPatientProblems()
-    {
+    public ArrayList<Problem> getPatientProblems() {
         assert(patientProfile != null);
         return patientProfile.getProblemList();
     }
-
-    public ArrayList<Record> getPatientRecords(int problemIndex)
-    {
+ 
+    public ArrayList<Record> getPatientRecords(int problemIndex) {
         assert(patientProfile != null);
         return patientProfile.getProblemList().get(problemIndex).getRecords();
     }
@@ -158,7 +157,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
                     patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
                 }
             } catch (Exception e ) {}
-
         }
         ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
         setPatientTask.execute(patientProfile);

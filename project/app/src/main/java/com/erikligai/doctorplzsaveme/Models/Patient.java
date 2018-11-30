@@ -6,8 +6,7 @@ public class Patient implements Profile {
     private String id;
     private String email;
     private String phone;
-
-    private ArrayList<Problem> mProblemList = new ArrayList<>();
+    private ArrayList<Problem> mProblemList;
      /**
      * Creates a Patient (extends Profile)
      * @param id: user id of patient
@@ -18,6 +17,7 @@ public class Patient implements Profile {
         this.id = id;
         this.email = email;
         this.phone = phone;
+        this.mProblemList = new ArrayList<Problem>();
     }
 
     public void setEmail(String newEmail) {
