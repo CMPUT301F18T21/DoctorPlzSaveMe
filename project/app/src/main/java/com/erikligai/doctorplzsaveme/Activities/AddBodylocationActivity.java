@@ -19,7 +19,7 @@ public class AddBodylocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_add_bodylocation);
+        setContentView(R.layout.fragment_add_record_two);
 
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos",-1);

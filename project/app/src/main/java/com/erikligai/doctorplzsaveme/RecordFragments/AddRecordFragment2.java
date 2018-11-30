@@ -1,4 +1,4 @@
-package com.erikligai.doctorplzsaveme.SearchTabFragments;
+package com.erikligai.doctorplzsaveme.RecordFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 
 import com.erikligai.doctorplzsaveme.R;
 
-public class AddBodyLocationFragment extends Fragment{
+public class AddRecordFragment2 extends Fragment{
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_add_bodylocation, container, false);
+        return inflater.inflate(R.layout.fragment_add_record_two, container, false);
     }
 }

@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.SearchTabFragments.AddBodyLocationFragment;
+import com.erikligai.doctorplzsaveme.RecordFragments.AddRecordFragment2;
 
 import java.util.Date;
 
@@ -39,7 +39,7 @@ public class EditRecordActivity extends AppCompatActivity {
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                AddBodyLocationFragment fragment = new AddBodyLocationFragment();
+                AddRecordFragment2 fragment = new AddRecordFragment2();
                 fragmentTransaction.replace(R.id.editRecordActivity, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

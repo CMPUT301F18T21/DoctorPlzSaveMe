@@ -66,8 +66,8 @@
     <string name="view_record_photos">VIEW PHOTOS</string>
 
     <string name="record_info_title">Record Info</string>
-    <string name="record_title_hint">record title</string>
-    <string name="comment_hint">comment</string>
+    <string name="record_title_hint">Record Title (optional)</string>
+    <string name="record_comment_hint">Record Comment (optional)</string>
     <string name="tap_add_photo">Tap to add a photo!</string>
     <string name="indicate_where">Please indicate where it is on your body</string>
     <string name="geolocation_title">Geolocation</string>
@@ -89,5 +89,8 @@
     <string name="enter_location">Enter a location...</string>
 
     <string name="welcome">Welcome</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
 

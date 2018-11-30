@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/AddRecordFragment1"
-        android:name="com.erikligai.doctorplzsaveme.SearchTabFragments.AddRecordFragment1"
+        android:name="com.erikligai.doctorplzsaveme.RecordFragments.AddRecordFragment1"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
