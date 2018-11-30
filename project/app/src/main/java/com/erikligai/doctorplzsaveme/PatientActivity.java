@@ -85,7 +85,8 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
         startActivity(intent);
     }
 
-    /** Functions for taking a photo */
+
+    /** Functions for taking a photo
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
@@ -94,8 +95,7 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);           //REQUEST_IMAGE_CAPTURE
         }
     }
-
-    /** taking photo with IO functions
+*/
     String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
@@ -104,9 +104,9 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  // prefix
-                ".jpg",         /* suffix
-                storageDir      /* directory
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
         );
 
         // Save a file: path for use with ACTION_VIEW intents
@@ -125,9 +125,7 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                System.out.print(ex.toString());
                 // Error occurred while creating the File
-
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -139,6 +137,6 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
             }
         }
     }
-    **/
+
 
 }

@@ -82,6 +82,7 @@
     <string name="related_records">RELATED RECORDS</string>
     <string name="enter_location">Enter a location...</string>
     <string name="title_activity_add_geolocation2">Map</string>
+    <string name="title_activity_camera">CameraActivity</string>
 
 
 </resources>
