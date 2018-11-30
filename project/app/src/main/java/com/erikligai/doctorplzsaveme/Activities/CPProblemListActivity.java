@@ -50,7 +50,7 @@ public class CPProblemListActivity extends AppCompatActivity {
         adapter.setOnEntryClickListener(new CPProblemAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(int position) {
-                Intent intent = new Intent(getApplicationContext(), EditProblemActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CPViewProblemActivity.class);
                 intent.putExtra("Pos", position);
                 Log.d("rview", Integer.toString(position));
                 startActivity(intent);
