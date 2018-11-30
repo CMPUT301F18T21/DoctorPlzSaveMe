@@ -10,9 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Models.CareProvider;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -22,7 +22,8 @@ public class AddPatientActivity extends AppCompatActivity {
     private static final String TAG = "AddPatientActivity";
 
     AddPatientAdapter adapter;
-    private ArrayList<Patient> patientList = new ArrayList<>();
+    private ArrayList<Patient> patientList;
+    Backend backend = Backend.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,10 @@ public class AddPatientActivity extends AppCompatActivity {
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        // pull list of patients from backend
+
+        patientList = backend.GetPatients();
 
 //        addPatients();
 
@@ -41,27 +46,33 @@ public class AddPatientActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // search for userid in database
-                // if does not exist, break
+                String userid = editText.getText().toString();
 
+                boolean exists = false;
 
-                // search for userid in care provider's list
-                // if does not exist, add
+                // have to iterate through CP's patient ids and check it doesn't already exist inside
+                // exists is false if it doesn't already exist and we are free to add
+                for (Patient patient : backend.getM_patients()) {
+                    if (patient.getID().equals(userid)) {
+                        exists = true;
+                    }
+                }
 
-        /*
-        patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
-        patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
-        patientList.add(new Patient("Daniil", "3", "asdf@ualberta.ca", "746746"));
-        patientList.add(new Patient("Weng", "4", "crack@ualberta.ca", "0918234"));
-        patientList.add(new Patient("Iyun", "5", "lksdfg@ualberta.ca", "1234869023"));
-        patientList.add(new Patient("Bruce", "6", "owerti@ualberta.ca", "6458349"));
-        */
+                if (backend.userIDExists(userid) && !exists) {
 
+//                    Log.e("username", "CHECK");
+//                    Log.e("username", userid);
+//                    Log.e("username", "CHECK");
 
-                // go back to patient list
-                Intent intent = new Intent(AddPatientActivity.this, CareProvider.class);
-                Toast.makeText(AddPatientActivity.this, "userid was added", Toast.LENGTH_LONG).show();
-                startActivity(intent);
+                    backend.AddPatient(userid);
+
+                    // go back to patient list
+                    Intent intent = new Intent(AddPatientActivity.this, CareProviderActivity.class);
+                    Toast.makeText(AddPatientActivity.this, userid + " was added.", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(AddPatientActivity.this, "username does not exist or already in your list", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -87,7 +98,22 @@ public class AddPatientActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                if (backend.userIDExists(result.getContents())) {
+
+//                    Log.e("username", "CHECK");
+//                    Log.e("username", result.getContents());
+//                    Log.e("username", "CHECK");
+
+                    backend.AddPatient(result.getContents());
+
+                    // go back to patient list
+                    Intent intent = new Intent(AddPatientActivity.this, CareProviderActivity.class);
+                    Toast.makeText(AddPatientActivity.this, result.getContents() + " was added.", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(AddPatientActivity.this, "username does not exist or already in your list", Toast.LENGTH_LONG).show();
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

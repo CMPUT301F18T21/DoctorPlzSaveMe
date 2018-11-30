@@ -1,4 +1,4 @@
-package com.erikligai.doctorplzsaveme;
+package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,38 +13,53 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.Adapters.PatientRecordAdapter;
+import com.erikligai.doctorplzsaveme.Models.Record;
+import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
-public class PatientProblemsActivity extends AppCompatActivity {
+public class CPRecordActivity extends AppCompatActivity {
+    private static final String TAG = "PatientRecordActivity";
 
-    private static final String TAG = "PatientProblemActivity";
-
-    PatientProblemAdapter adapter;
-//    private ArrayList<Problem> problemList = new ArrayList<>();
-    private ArrayList<Problem> problemList;
+    PatientRecordAdapter adapter;
+    //    private ArrayList<Record> recordList = new ArrayList<>();
+    private ArrayList<Record> recordList;
     Backend backend = Backend.getInstance();
+
+    private String patientID;
+    private String problemID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_problem_list);
+        setContentView(R.layout.activity_cprecord);
 
-        // pull patient's problems from back end using passed in patient id
+        // pull patient's records from back end using passed in problem id
         Intent intent = getIntent(); // receive intent
-        String patientID = intent.getExtras().getString("patientID");
+        problemID = intent.getExtras().getString("problemID");
+        patientID = intent.getExtras().getString("patientID");
 //        Log.e("patientIDH", patientID);
+//        Log.e("problemIDH", problemID);
 
-        problemList = backend.GetCPPatientProblems(patientID);
+//        Date date = new Date();
+//        // format date into string
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");//formating according to my need
+//        String formattedDate = formatter.format(date);
 
-//        Log.e("BOOLEAN: ", problemList.get(0).toString());
+//        Record testRecord = new Record("testRecord", "comment");
+////
+//        backend.addPatientRecord(Integer.valueOf(problemID), testRecord);
+//        Log.e("marker", "REACHES");
+        recordList = backend.GetCPPatientRecords(patientID, Integer.valueOf(problemID));
+
+//        Log.e("BOOLEAN: ", recordList.get(0).toString());
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        initRecyclerView(patientID);
+        initRecyclerView();
     }
 
     // This activity should receive the care provider that was passed
@@ -52,13 +67,13 @@ public class PatientProblemsActivity extends AppCompatActivity {
     // And display that filtered list for the care provider to choose from
     // There should also be a search bar at the top to look for patient ID
 
-    private void initRecyclerView(String patientID) {
+    private void initRecyclerView() {
 //        Log.d(TAG, "initRecyclerView: init");
 
-        RecyclerView recyclerView = findViewById(R.id.patient_problems_recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.patient_records_recycler_view);
         TextView emptyView = findViewById(R.id.empty_view);
 
-        if (problemList.isEmpty()) {
+        if (recordList.isEmpty()) {
             // hide recyclerview
             recyclerView.setVisibility(View.GONE);
             // display textview
@@ -66,7 +81,7 @@ public class PatientProblemsActivity extends AppCompatActivity {
         } else {
             // display recyclerview
             recyclerView.setVisibility(View.VISIBLE);
-            adapter = new PatientProblemAdapter(problemList, this, patientID);
+            adapter = new PatientRecordAdapter(recordList, this, patientID, problemID);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             // hide textview
