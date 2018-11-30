@@ -1,24 +1,19 @@
 package com.erikligai.doctorplzsaveme.backend;
 
-import android.app.DownloadManager;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import io.searchbox.client.JestResult;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Get;
 import io.searchbox.core.Index;
-import io.searchbox.core.Search;
-import io.searchbox.core.SearchResult;
 
 /**
  * Created by romansky on 10/20/16.
@@ -98,10 +93,21 @@ public class ElasticsearchProblemController {
         protected Void doInBackground(String... params) {
             verifySettings();
             try {
-
+                Log.e("[0]: ", params[0]);
+                Log.e("[1]: ", params[1]);
                 ElasticsearchProblemController.GetCPPatientsTask getCPPatientsTask = new ElasticsearchProblemController.GetCPPatientsTask();
-                PatientsWrapper p = getCPPatientsTask.execute(params[0]).get();
-                p.getPatients().add(params[1]);
+                PatientsWrapper p = new PatientsWrapper(new ArrayList<>());
+                ArrayList<String> temp = getCPPatientsTask.execute(params[0]).get().getPatients();
+                temp.add(params[1]);
+                p.setPatients(temp);
+
+                ElasticsearchProblemController.GetCPPatientsTask getPatientsTask = new ElasticsearchProblemController.GetCPPatientsTask();
+                ArrayList<String> PatientIDs = getPatientsTask.execute(Backend.getInstance().getCP_ID()).get().getPatients();
+
+                for (String patientID : PatientIDs)
+                {
+                    Log.e("id: ", patientID);
+                }
 
                 Index index = new Index.Builder(p)
                         .index("cmput301f18t21test")

@@ -20,19 +20,20 @@ import java.util.ArrayList;
 public class CareProviderActivity extends AppCompatActivity {
     private static final String TAG = "CareProviderActivity";
 
-    // pull list of patients from backend
-//    Backend backend = Backend.getInstance();
-//    private ArrayList<Patient> patientList = new ArrayList<>(backend.getCareProviderPatients(careProviderID));
 
-    private ArrayList<Patient> patientList = new ArrayList<>();
+    private ArrayList<Patient> patientList;
 //    private ArrayList<Patient> patientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care_provider);
-        patientList = Backend.getInstance().GetPatients();
-        // patientList = new ArrayList<>();
+
+
+        // pull list of patients from backend
+        Backend backend = Backend.getInstance();
+        patientList = backend.GetPatients();
+
         Log.d(TAG, "onCreate: started");
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
