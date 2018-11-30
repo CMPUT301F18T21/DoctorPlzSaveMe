@@ -266,11 +266,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         String[] params = new String[]{CP_ID, PatientID};
         assignTask.execute(params);
 
-//        ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
-//        try {
-//            Patient new_patient = getPatientTask.execute(PatientID).get();
-//            if (new_patient != null) { m_patients.add(new_patient); }
-//        } catch (Exception e) {}
+        ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
+        try {
+            Patient new_patient = getPatientTask.execute(PatientID).get();
+            if (new_patient != null) { m_patients.add(new_patient); }
+        } catch (Exception e) {}
     }
 
     // remove patient from CP (not required!) PatientID would be aquired from the Patient class
@@ -319,7 +319,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         {
             if (patient.getID() == PatientID) { return patient.getProblemList(); }
         }
-        assert(false); // i.e. shouldn't happen!
+//        assert(false); // i.e. shouldn't happen!
         return null;
     }
 
