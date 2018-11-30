@@ -199,7 +199,7 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         }
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
-        String f_date = getString(R.string.date_started) + df.format(uf_date);
+        String f_date = getString(R.string.date_started) + " " + df.format(uf_date);
         dateText.setText(f_date);
     }
 
