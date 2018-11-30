@@ -19,7 +19,7 @@ public class CPAddCommentActivity  extends AppCompatActivity {
     private TextView patientProblem;
     private EditText commentText;
     private int ProblemPosition;
-    private int patientIdx;
+    private String patientID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class CPAddCommentActivity  extends AppCompatActivity {
 
         Intent intent = getIntent();
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);
-        patientIdx = intent.getIntExtra("patientIdx",-1);
+        patientID = intent.getStringExtra("patientIdx");
 
         backBtn4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +48,7 @@ public class CPAddCommentActivity  extends AppCompatActivity {
             public void onClick(View v) {
                 String comment = commentText.getText().toString();
                 Backend backend = Backend.getInstance();
-                backend.addComment(patientIdx,ProblemPosition,comment);
+                backend.addComment(patientID,ProblemPosition,comment);
             }
         });
     }
