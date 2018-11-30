@@ -31,7 +31,6 @@ public class CPAddCommentActivity  extends AppCompatActivity {
         saveBtn1 = findViewById(R.id.saveButton1);
         // Set comment editText
         commentText = findViewById(R.id.editComment);
-        patientProblem = findViewById(R.id.CurrentProblemView);
 
         Intent intent = getIntent();
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);

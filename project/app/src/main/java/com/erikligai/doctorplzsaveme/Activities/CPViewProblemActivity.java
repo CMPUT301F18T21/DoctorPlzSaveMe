@@ -74,13 +74,13 @@ public class CPViewProblemActivity extends AppCompatActivity {
         viewRecordsBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                openCPViewRecordsActivity();
+                openCPRecordActivity();
             }
         });
     }
 
-    public void openCPViewRecordsActivity(){
-        Intent intent = new Intent(this,CPViewRecordsActivity.class);
+    public void openCPRecordActivity(){
+        Intent intent = new Intent(this,CPRecordActivity.class);
         startActivity(intent);
     }
 }

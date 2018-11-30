@@ -3,8 +3,11 @@ package com.erikligai.doctorplzsaveme.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
@@ -14,6 +17,8 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
     private Button nextBtn;
     private Button backBtn;
     private Record record;
+    private TextView textView;
+    private ImageView imageView;
     private int ProblemPosition;
     private int RecordPosition;
     private String patientID;
@@ -32,6 +37,19 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
 
         nextBtn = findViewById(R.id.cpRecordNext2);
         backBtn = findViewById(R.id.cpRecordBack2);
+        imageView = findViewById(R.id.imageView2);
+        textView = findViewById(R.id.textView2);
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    textView.setText("Touch coordinates : " +
+                            String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
+                }
+                return true;
+            }
+        });
 
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
