@@ -96,7 +96,7 @@
         <activity android:name=".StartAppActivities.CPLoginActivity" />
 
         <activity android:name=".Activities.CPRecordActivity" />
-        <activity android:name=".Activities.PatientViewComment"></activity>
+        <activity android:name=".Activities.PatientViewCommentActivity"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

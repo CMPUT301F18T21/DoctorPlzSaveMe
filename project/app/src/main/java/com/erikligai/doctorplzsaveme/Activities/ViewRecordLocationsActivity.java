@@ -9,6 +9,8 @@ import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.TooLongProblemDescException;
+import com.erikligai.doctorplzsaveme.TooLongProblemTitleException;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +19,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Date;
 
 public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
 
@@ -64,7 +68,14 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        Problem problem = new Problem("Title", "Leg hurt");
+        Problem problem = null;
+        try {
+            problem = new Problem("Title", "Leg hurt",new Date());
+        } catch (TooLongProblemTitleException e) {
+            e.printStackTrace();
+        } catch (TooLongProblemDescException e) {
+            e.printStackTrace();
+        }
         Record record = new Record("Leg 1", "Leg hurt");
         record.addGeolocation(VAN);
 
