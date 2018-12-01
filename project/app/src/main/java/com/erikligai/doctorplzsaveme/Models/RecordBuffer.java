@@ -28,7 +28,7 @@ public class RecordBuffer {
         flag = false;
     }
 
-    public void addRecordBuffer(int problem_index){
+    public void addRecord(int problem_index){
         Backend.getInstance().addPatientRecord(problem_index, m_record);
         ClearBuffer();
     }
@@ -42,6 +42,7 @@ public class RecordBuffer {
         m_record.setComment(r.getComment());
         m_record.setTitle(r.getTitle());
         m_record.setDate(r.getDate());
+        m_record.setGeolocation(r.getGeolocation());
         Log.d("abc", m_record.getTitle());
         // ...
     }
@@ -50,6 +51,7 @@ public class RecordBuffer {
         Record r = Backend.getInstance().getPatientRecords(problemIndex).get(recordIndex);
         r.setTitle(m_record.getTitle());
         r.setComment(m_record.getComment());
+        r.setGeolocation(m_record.getGeolocation());
         Backend.getInstance().UpdatePatient();
         ClearBuffer();
     }

@@ -40,14 +40,21 @@ public class EditRecordTwoActivity extends AppCompatActivity implements View.OnC
                 break;
 
             case R.id.nextButton2:
-                RecordBuffer.getInstance().editRecord(problem_index, record_index);
-                finish();
+                openEditRecordThreeActivity();
                 break;
         }
     }
 
     private void openEditRecordActivity() {
         Intent intent = new Intent(this, EditRecordActivity.class);
+        intent.putExtra("R_Pos", record_index);
+        intent.putExtra("P_Pos", problem_index);
+        finish();
+        startActivity(intent);
+    }
+
+    private void openEditRecordThreeActivity() {
+        Intent intent = new Intent(this, EditRecordThreeActivity.class);
         intent.putExtra("R_Pos", record_index);
         intent.putExtra("P_Pos", problem_index);
         finish();

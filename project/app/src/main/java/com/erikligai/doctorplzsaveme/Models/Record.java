@@ -1,11 +1,13 @@
 package com.erikligai.doctorplzsaveme.Models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Date;
 
 public class Record {
     private Photo photo;
     private BodyLocation bodyLocation;
-    private Geolocation geolocation;
+    private LatLng geolocation;
     private String title;
     private Date date;
     private String comment;
@@ -14,6 +16,7 @@ public class Record {
         this.date = new Date();
         this.title = "";
         this.comment = "";
+
     }
 
     /**
@@ -63,7 +66,7 @@ public class Record {
     *Returns the geolocation of the record
     *@return geolocation Geolocation
      */
-    public Geolocation getGeolocation() {
+    public LatLng getGeolocation() {
         return this.geolocation;
     }
      /**
@@ -98,6 +101,10 @@ public class Record {
         this.date = date;
     }
 
+    public void setGeolocation(LatLng geolocation) {
+        this.geolocation = geolocation;
+    }
+
     public void addPhoto(Photo photo) {
         this.photo = photo;
     }
@@ -123,14 +130,7 @@ public class Record {
     public boolean hasBodyLocation(BodyLocation bodyLocation) {
         return bodyLocation != null;
     }
-    /**
-    *Sets the geolocation of the record
-    *@param geolocation: Geolocation
-    *@return Nothing
-     */
-    public void addGeolocation(Geolocation geolocation) {
-        this.geolocation = geolocation;
-    }
+
      /**
     *Checks if the record has a geolocation
     *@return boolean

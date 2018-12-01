@@ -80,4 +80,10 @@ public class AddRecordActivity extends AppCompatActivity implements View.OnClick
         finish();
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        RecordBuffer.getInstance().ClearBuffer();
+        finish();
+    }
 }

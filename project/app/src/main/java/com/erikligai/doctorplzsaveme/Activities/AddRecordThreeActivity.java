@@ -9,10 +9,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
+import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,9 +26,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-public class AddRecordThreeActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
+public class AddRecordThreeActivity extends FragmentActivity implements OnMapReadyCallback,View.OnClickListener {
 
     private GoogleMap mMap;
+    private Button backBtn3,saveBtn;
+    private int problem_index;
+    private LatLng geolocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +41,28 @@ public class AddRecordThreeActivity extends FragmentActivity implements GoogleMa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        Intent intent = getIntent();
+        problem_index = intent.getIntExtra("Pos",-1);
+        backBtn3 = findViewById(R.id.backButton3);
+        saveBtn = findViewById(R.id.saveButton);
+        backBtn3.setOnClickListener(this);
+        saveBtn.setOnClickListener(this);
+        geolocation = RecordBuffer.getInstance().getRecord().getGeolocation();
     }
 
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backButton3:
+                openAddRecordTwoActivity();
+                break;
+
+            case R.id.saveButton:
+                RecordBuffer.getInstance().addRecord(problem_index);
+                finish();
+                break;
+        }
+    }
 
     /**
      * Manipulates the map once available.
@@ -56,11 +82,17 @@ public class AddRecordThreeActivity extends FragmentActivity implements GoogleMa
 
         // Add a marker in Sydney and move the camera
         LatLng edmonton = new LatLng(53.5444, -113.4909);
-        mMap.addMarker(new MarkerOptions().position(edmonton).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(edmonton));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+        if (geolocation != null) {
+            mMap.addMarker(new MarkerOptions().position(geolocation).title("Marker in Edmonton"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(geolocation,15));
+            //mMap.animateCamera(CameraUpdateFactory.zoomIn());
 
-        mMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) AddRecordThreeActivity.this);
+            //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+        } else {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(edmonton,15));
+            //mMap.animateCamera(CameraUpdateFactory.zoomIn());
+            //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+        }
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
@@ -95,15 +127,28 @@ public class AddRecordThreeActivity extends FragmentActivity implements GoogleMa
 
                 // Placing a marker on the touched position
                 mMap.addMarker(markerOptions);
+
+                RecordBuffer.getInstance().getRecord().setGeolocation(markerOptions.getPosition());
             }
         });
     }
 
-    @Override
-    public boolean onMarkerClick(final Marker marker) {
+//    @Override
+//    public boolean onMarkerClick(final Marker marker) {
+//
+//        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
+//        return false;
+//    }
 
-        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
-        return false;
+    private void openAddRecordTwoActivity(){
+        Intent intent = new Intent(this, AddRecordTwoActivity.class);
+        intent.putExtra("Pos", problem_index);
+        finish();
+        startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        openAddRecordTwoActivity();
+    }
 }

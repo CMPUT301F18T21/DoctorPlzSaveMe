@@ -44,8 +44,7 @@ public class AddRecordTwoActivity extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.nextButton2:
-                RecordBuffer.getInstance().addRecordBuffer(problem_index);
-                finish();
+                openAddRecordThreeActivity();
                 break;
         }
     }
@@ -55,5 +54,17 @@ public class AddRecordTwoActivity extends AppCompatActivity implements View.OnCl
         intent.putExtra("Pos", problem_index);
         finish();
         startActivity(intent);
+    }
+
+    private void openAddRecordThreeActivity() {
+        Intent intent = new Intent(this, AddRecordThreeActivity.class);
+        intent.putExtra("Pos", problem_index);
+        finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        openAddRecordActivity();
     }
 }
