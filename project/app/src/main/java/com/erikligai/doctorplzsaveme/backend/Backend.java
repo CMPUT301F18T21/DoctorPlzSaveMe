@@ -30,7 +30,8 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     // IPatientBackend CODE -----------------
 
     // TODO: move this filename to an xml
-    private static final String FILENAME = "patient_profile.sav";
+    private static final String P_FILENAME = "patient_profile.sav";
+    private static final String CP_FILENAME = "cp_profile.sav";
 
     private Context mContext = null; // context for reading to/from file
     // current patient profile
@@ -66,14 +67,12 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return patientProfile;
     }
 
-    public ArrayList<Problem> getPatientProblems()
-    {
+    public ArrayList<Problem> getPatientProblems() {
         assert(patientProfile != null);
         return patientProfile.getProblemList();
     }
-
-    public ArrayList<Record> getPatientRecords(int problemIndex)
-    {
+ 
+    public ArrayList<Record> getPatientRecords(int problemIndex) {
         assert(patientProfile != null);
         return patientProfile.getProblemList().get(problemIndex).getRecords();
     }
@@ -92,7 +91,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     public void addPatientRecord(int problemIndex, Record record) {
         assert(patientProfile != null);
+//        Log.e("addPatientRecord", "RECORD ADDED");
         patientProfile.getProblemList().get(problemIndex).addRecord(record);
+        Log.e("addPatientRecord", "RECORD ADDED");
         UpdatePatient();
     }
 
@@ -107,7 +108,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         try {
             assert(mContext != null);
             assert(patientProfile != null);
-            FileOutputStream fos = mContext.getApplicationContext().openFileOutput(FILENAME, 0);
+            FileOutputStream fos = mContext.getApplicationContext().openFileOutput(P_FILENAME, 0);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
             BufferedWriter writer = new BufferedWriter(osw);
             Gson gson = new Gson();
@@ -125,7 +126,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     {
         try {
             assert(mContext != null);
-            FileInputStream fis = mContext.getApplicationContext().openFileInput(FILENAME);
+            FileInputStream fis = mContext.getApplicationContext().openFileInput(P_FILENAME);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader reader = new BufferedReader(isr);
             Gson gson = new Gson();
@@ -158,7 +159,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
                     patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
                 }
             } catch (Exception e ) {}
-
         }
         ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
         setPatientTask.execute(patientProfile);
@@ -194,9 +194,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    public void clearLocalData()
+    public void clearPatientData()
     {
-        mContext.getApplicationContext().deleteFile(FILENAME);
+        mContext.getApplicationContext().deleteFile(P_FILENAME);
     }
 
     // https://stackoverflow.com/questions/9570237/android-check-internet-connection
@@ -248,10 +248,18 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     }
 
     // adds comment to the patient's problem and updates that patient profile to DB
-    public void addComment(int patientIndex, int problemIndex, String comment)
+    public void addComment(String PatientID, int problemIndex, String comment)
     {
-        m_patients.get(patientIndex).getProblemList().get(problemIndex).addComment(new Comment(comment));
-        UpdatePatient(m_patients.get(patientIndex));
+        assert(m_patients != null);
+        for (Patient patient : m_patients )
+        {
+            if (patient.getID().equals(PatientID)) {
+                patient.getProblemList().get(problemIndex).addComment(new Comment(comment));
+                UpdatePatient(patient);
+                return;
+            }
+        }
+        assert(false);
     }
 
     // add patient to CP, PatientID would be aquired from QR code
@@ -260,11 +268,15 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         // TODO: update DB patientIDs, and add that patientID's Patient to m_patients
         // requires error checking (like ID already exists in m_patients, or doesn't exist on DB)
         for (Patient p : m_patients) {
-            if (p.getID() == PatientID) { return; }
+            if (p.getID().equals(PatientID)) {
+//                Log.e("Error", "already exists in care provider's list");
+                return;
+            }
         }
         ElasticsearchProblemController.AssignPatientToCPTask assignTask = new ElasticsearchProblemController.AssignPatientToCPTask();
         String[] params = new String[]{CP_ID, PatientID};
         assignTask.execute(params);
+
         ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
         try {
             Patient new_patient = getPatientTask.execute(PatientID).get();
@@ -316,7 +328,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList(); }
+            Log.e("patient ID", patient.getID());
+            Log.e("patient ID", PatientID);
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList(); }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
@@ -327,7 +341,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex).getRecords(); }
+            Log.e("patient ID", patient.getID());
+            Log.e("patient ID", PatientID);
+
+
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex).getRecords(); }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
@@ -339,7 +357,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex).getRecords().get(RecordIndex); }
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex).getRecords().get(RecordIndex); }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
@@ -350,7 +368,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient.getProblemList().get(ProblemIndex); }
+            if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex); }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
@@ -361,9 +379,63 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) { return patient; }
+            if (patient.getID().equals(PatientID)) { return patient; }
         }
         assert(false); // i.e. shouldn't happen!
         return null;
     }
+
+
+    // SAVE CP STUFF -----------
+
+    public void SaveCPProfile()
+    {
+        if (CP_ID == null) { return; }
+        serializeCPProfile();
+    }
+
+    public void clearCPData()
+    {
+        mContext.getApplicationContext().deleteFile(CP_FILENAME);
+    }
+
+    private void serializeCPProfile()
+    {
+        try {
+            assert(mContext != null);
+            FileOutputStream fos = mContext.getApplicationContext().openFileOutput(CP_FILENAME, 0);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            BufferedWriter writer = new BufferedWriter(osw);
+            Gson gson = new Gson();
+            gson.toJson(CP_ID, writer);
+            writer.flush();
+            writer.close();
+            fos.close();
+            osw.close();
+        } catch (IOException e) {
+            e.printStackTrace(); // shouldn't happen ever
+        }
+    }
+
+    public boolean deserializeCPProfile()
+    {
+        try {
+            assert(mContext != null);
+            FileInputStream fis = mContext.getApplicationContext().openFileInput(CP_FILENAME);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader reader = new BufferedReader(isr);
+            Gson gson = new Gson();
+            CP_ID = gson.fromJson(reader, String.class);
+            return true;
+        } catch (IOException e) {
+            // we couldn't find it in file, so just make sure its null and return false to
+            // notify that we did not find anything on local storage
+            Log.e("failure:","!!!!!!!!!!!!!!!!!!!!!!!");
+            CP_ID = null;
+            return false;
+        }
+    }
+
+
+
 }

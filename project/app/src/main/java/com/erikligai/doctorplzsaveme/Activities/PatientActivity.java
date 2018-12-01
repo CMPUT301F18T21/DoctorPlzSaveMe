@@ -29,6 +29,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import android.widget.TextView;
+import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class PatientActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -51,6 +54,10 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
 
         Button uploadBodyLocationBtn = findViewById(R.id.uploadBodyLocationButton);
         uploadBodyLocationBtn.setOnClickListener(this);
+
+        TextView welcome_text = findViewById(R.id.welcomeText);
+        String w_text = "Welcome, " + Backend.getInstance().getPatientProfile().getID();
+        welcome_text.setText(w_text);
     }
 
     @Override

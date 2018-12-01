@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
+import com.erikligai.doctorplzsaveme.PatientProblemsActivity;
 import com.erikligai.doctorplzsaveme.R;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        Log.d(TAG, "onBindViewHolder called");
+//        Log.d(TAG, "onBindViewHolder called");
         viewHolder.patientID.setText(mPatients.get(i).getID()); // obtains id at index
         viewHolder.patientEmail.setText(mPatients.get(i).getEmail()); // obtains email at index
         viewHolder.patientPhone.setText(mPatients.get(i).getPhone()); // obtains phone at index
@@ -45,7 +47,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getID());
+                Intent intent = new Intent(mContext, PatientProblemsActivity.class);
+                intent.putExtra("patientID", mPatients.get(i).getID()); // attach patient id to intent
+                mContext.startActivity(intent); // go to problem list of patient
+//                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
+//                Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
+//                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getID());
                 Toast.makeText(mContext, mPatients.get(i).getID(), Toast.LENGTH_SHORT).show();
             }
         });
