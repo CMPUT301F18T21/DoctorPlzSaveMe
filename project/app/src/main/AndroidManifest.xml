@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.erikligai.doctorplzsaveme">
+    xmlns:tools="http://schemas.android.com/tools"
 
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -29,12 +29,22 @@
         <activity android:name=".Activities.EditRecordActivity" />
         <activity android:name=".Activities.AddProblemActivity" />
         <activity android:name=".Activities.AddRecordActivity" />
+        <activity android:name=".Activities.AddRecordTwoActivity" />
+        <activity android:name=".Activities.AddRecordThreeActivity" />
         <activity android:name=".Activities.ProblemSearchActivity" />
+
         <activity android:name=".Activities.CPViewProblemActivity" />
         <activity android:name=".Activities.CPViewRecordActivity" />
         <activity android:name=".Activities.CPAddCommentActivity" />
         <activity android:name=".Activities.CPViewBodyLocationActivity" />
         <activity android:name=".Activities.CPViewGeolocationActivity" />
+
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            tools:replace="android:screenOrientation" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -51,7 +61,7 @@
         <activity android:name=".Activities.CPProblemSearchActivity" />
         <activity android:name=".Activities.RecordSearchActivity" />
         <activity
-            android:name=".Activities.MainMapsActivity"
+            android:name=".Activities.ViewRecordLocationsActivity"
             android:label="@string/title_activity_main_maps" />
         <activity
             android:name=".StartAppActivities.NewProfileActivity"
@@ -70,6 +80,8 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
+            android:label="@string/new_patient_title" />
+
         <activity
             android:name=".Activities.EditProfileActivity"
             android:label="@string/view_edit_profile_title">
@@ -77,10 +89,33 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Activities.AddGeolocationActivity2"
+            android:label="@string/title_activity_add_geolocation2" />
         <activity android:name=".Activities.PatientActivity" />
         <activity android:name=".StartAppActivities.CPLoginActivity" />
+
         <activity android:name=".Activities.CPRecordActivity" />
         <activity android:name=".Activities.PatientViewComment"></activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.erikligai.doctorplzsaveme.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".Activities.EditPhotosActivity" />
+        <activity android:name=".Activities.UploadBodyLocationActivity"></activity>
+            android:label="@string/view_edit_profile_title" />
+
+        <activity android:name=".Activities.EditRecordTwoActivity" />
+        <activity android:name=".Activities.EditRecordThreeActivity" />
+
+
     </application>
 
 </manifest>
