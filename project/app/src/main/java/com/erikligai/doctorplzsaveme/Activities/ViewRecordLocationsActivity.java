@@ -18,6 +18,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -33,7 +35,7 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     }
     /** BACKEND TESTING */
 
-    private static final LatLng VAN = new LatLng(49.246292, -123.116226);
+    //private static final LatLng VAN = new LatLng(49.246292, -123.116226);
     private Marker Van;
 
     @Override
@@ -64,25 +66,27 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        Problem problem = new Problem("Title", "Leg hurt");
-        Record record = new Record("Leg 1", "Leg hurt");
-        record.addGeolocation(VAN);
+        ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
+        for (int i = 0; i < problems.size(); i++) {
+            ArrayList<Record> records = problems.get(i).getRecords();
+            for( int j = 0; j < records.size(); j++) {
+                if (records.get(j).getGeolocation() != null) {
+                    Van = mMap.addMarker(new MarkerOptions().position(records.get(j).getGeolocation()).title(problems.get(i).getTitle()).snippet(records.get(j).getTitle()));
+                    Van.setTag(records.get(j));        //pass data into marker here
 
-        Van = mMap.addMarker(new MarkerOptions().position(record.getGeolocation()).title(problem.getTitle()).snippet(record.getTitle()));
-        Van.setTag(record);        //pass data into marker here
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(VAN));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
-
-        mMap.setOnMarkerClickListener(this);
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
-                Intent I = new Intent(ViewRecordLocationsActivity.this, EditRecordActivity.class);
-                startActivity(I);
+                    mMap.setOnMarkerClickListener(this);
+                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                        @Override
+                        public void onInfoWindowClick(Marker marker) {
+                            //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
+                            Intent I = new Intent(ViewRecordLocationsActivity.this, EditRecordActivity.class);
+                            startActivity(I);
+                        }
+                    });
+                }
             }
-        });
-
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(),10));
         //for record in recordList
         // LatLng location = record.getGeolocation();
         // mMap.addMarker(new MarkerOptions().position(location).title(record.getProblem));
