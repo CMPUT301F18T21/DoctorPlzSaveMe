@@ -253,7 +253,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            if (patient.getID() == PatientID) {
+            if (patient.getID().equals(PatientID)) {
                 patient.getProblemList().get(problemIndex).addComment(new Comment(comment));
                 UpdatePatient(patient);
                 return;
