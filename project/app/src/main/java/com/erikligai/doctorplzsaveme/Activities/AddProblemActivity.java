@@ -16,8 +16,8 @@ import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.TooLongProblemDescException;
-import com.erikligai.doctorplzsaveme.TooLongProblemTitleException;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemDescException;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemTitleException;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.text.DateFormat;

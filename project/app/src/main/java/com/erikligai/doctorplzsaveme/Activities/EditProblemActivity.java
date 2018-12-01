@@ -1,9 +1,7 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,8 +18,8 @@ import android.widget.ViewSwitcher;
 
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.TooLongProblemDescException;
-import com.erikligai.doctorplzsaveme.TooLongProblemTitleException;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemDescException;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemTitleException;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.text.DateFormat;

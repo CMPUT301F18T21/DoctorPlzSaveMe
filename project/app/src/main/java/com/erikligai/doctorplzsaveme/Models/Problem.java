@@ -1,7 +1,7 @@
 package com.erikligai.doctorplzsaveme.Models;
 
-import com.erikligai.doctorplzsaveme.TooLongProblemDescException;
-import com.erikligai.doctorplzsaveme.TooLongProblemTitleException;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemDescException;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemTitleException;
 
 import java.util.ArrayList;
 import java.util.Date;

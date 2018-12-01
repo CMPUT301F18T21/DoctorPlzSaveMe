@@ -5,6 +5,7 @@ package com.erikligai.doctorplzsaveme;
 
 import com.erikligai.doctorplzsaveme.Activities.AddProblemActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemTitleException;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 
 import org.junit.Rule;

@@ -1,4 +1,4 @@
-package com.erikligai.doctorplzsaveme;
+package com.erikligai.doctorplzsaveme.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +14,9 @@ import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Activities.CPRecordActivity;
 import com.erikligai.doctorplzsaveme.Activities.CPViewProblemActivity;
-import com.erikligai.doctorplzsaveme.Activities.CPViewRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
