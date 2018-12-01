@@ -27,9 +27,9 @@ public class CPViewRecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cp_view_record);
 
         Intent intent = getIntent();
-        ProblemPosition = intent.getIntExtra("ProblemPos",-1);
-        RecordPosition = intent.getIntExtra("RecordPos",-1);
-        patientID = intent.getStringExtra("patientId");
+        ProblemPosition = Integer.valueOf(intent.getStringExtra("problemIndex"));
+        RecordPosition = Integer.valueOf(intent.getStringExtra("recordIndex"));
+        patientID = intent.getStringExtra("patientID");
 
         Backend backend = Backend.getInstance();
         record = backend.GetCPPatientRecord(patientID,ProblemPosition,RecordPosition);
@@ -51,7 +51,7 @@ public class CPViewRecordActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-               // return to cp view recordlist
+               openCPRecordActivity();
             }
         });
     }
@@ -61,6 +61,13 @@ public class CPViewRecordActivity extends AppCompatActivity {
         intent.putExtra("ProblemPos", ProblemPosition);
         intent.putExtra("RecordPos", RecordPosition);
         intent.putExtra("patientId",patientID);
+        startActivity(intent);
+    }
+
+    public void openCPRecordActivity(){
+        Intent intent = new Intent(this,CPRecordActivity.class);
+        intent.putExtra("problemID", Integer.toString(ProblemPosition));
+        intent.putExtra("patientID",patientID);
         startActivity(intent);
     }
 }

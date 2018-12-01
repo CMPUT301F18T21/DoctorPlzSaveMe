@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,8 +13,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewAdapter;
+import com.erikligai.doctorplzsaveme.Adapters.commentAdapter;
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.PatientProblemAdapter;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
@@ -20,9 +25,9 @@ import java.util.ArrayList;
 
 public class CPViewProblemActivity extends AppCompatActivity {
 
-    private ArrayAdapter<Comment> adapter;
+    private commentAdapter adapter;
     // Define Views
-    private ListView commentList;
+    private RecyclerView commentList;
     private TextView problemTitle;
     private TextView problemDescription;
     private Button viewRecordsBtn;
@@ -31,6 +36,7 @@ public class CPViewProblemActivity extends AppCompatActivity {
     private Problem problem;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private int problemPos;
+    private String Pos;
     private String patientID;
 
     @Override
@@ -38,15 +44,16 @@ public class CPViewProblemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cp_view_problem);
 
-        commentList = findViewById(R.id.cpComments);
         problemTitle = findViewById(R.id.cpProblemTitle);
         problemDescription = findViewById(R.id.cpProblemDescription);
         viewRecordsBtn = findViewById(R.id.cpProblemRecords);
         fab = findViewById(R.id.comment_fab);
 
         Intent intent = getIntent();
-        problemPos = intent.getIntExtra("Pos",-1);
+        Pos = intent.getStringExtra("problemID");
         patientID = intent.getStringExtra("patientID");
+
+        problemPos = Integer.parseInt(Pos);
 
         Backend backend = Backend.getInstance();
         problem = backend.GetCPPatientProblem(patientID,problemPos);
@@ -55,9 +62,6 @@ public class CPViewProblemActivity extends AppCompatActivity {
 
         problemTitle.setText(problem.getTitle());
         problemDescription.setText(problem.getDescription());
-
-        adapter = new ArrayAdapter<Comment>(CPViewProblemActivity.this, android.R.layout.simple_list_item_1, comments);
-        commentList.setAdapter(adapter);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,10 +81,31 @@ public class CPViewProblemActivity extends AppCompatActivity {
                 openCPRecordActivity();
             }
         });
+
+        initRecyclerView(patientID);
+    }
+
+    private void initRecyclerView(String patientID) {
+//        Log.d(TAG, "initRecyclerView: init");
+
+        commentList = findViewById(R.id.commentRecyclerView);
+        // display recyclerview
+        commentList.setVisibility(View.VISIBLE);
+        adapter = new commentAdapter(comments, this);
+        commentList.setAdapter(adapter);
+        commentList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void openCPRecordActivity(){
         Intent intent = new Intent(this,CPRecordActivity.class);
+        intent.putExtra("patientID", patientID); // attach patient id to intent
+        intent.putExtra("problemID", Pos);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 }

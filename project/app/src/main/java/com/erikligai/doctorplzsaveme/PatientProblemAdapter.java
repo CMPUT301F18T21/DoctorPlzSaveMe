@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CPRecordActivity;
 import com.erikligai.doctorplzsaveme.Activities.CPViewProblemActivity;
+import com.erikligai.doctorplzsaveme.Activities.CPViewRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 
 import java.text.SimpleDateFormat;

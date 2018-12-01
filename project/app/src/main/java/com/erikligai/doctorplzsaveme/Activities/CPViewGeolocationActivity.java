@@ -10,21 +10,14 @@ import com.erikligai.doctorplzsaveme.Models.Geolocation;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-public class CPViewGeolocationActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class CPViewGeolocationActivity extends AppCompatActivity  {
     private Button doneBtn;
     private Button backBtn;
     private Record record;
     private int ProblemPosition;
     private int RecordPosition;
     private String patientID;
-    private GoogleMap mMap;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +37,7 @@ public class CPViewGeolocationActivity extends AppCompatActivity implements OnMa
         doneBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                openCPViewProblemActivity();
+                openCPRecordActivity();
             }
         });
         backBtn.setOnClickListener(new View.OnClickListener(){
@@ -54,29 +47,20 @@ public class CPViewGeolocationActivity extends AppCompatActivity implements OnMa
             }
         });
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
     }
 
     public void openCPViewBodylocationActivity(){
         Intent intent = new Intent(this,CPViewBodyLocationActivity.class);
+        intent.putExtra("ProblemPos", ProblemPosition);
+        intent.putExtra("RecordPos", RecordPosition);
+        intent.putExtra("patientId",patientID);
         startActivity(intent);
     }
 
-    public void openCPViewProblemActivity(){
-        Intent intent = new Intent(this,CPViewProblemActivity.class);
+    public void openCPRecordActivity(){
+        Intent intent = new Intent(this,CPRecordActivity.class);
+        intent.putExtra("problemID", Integer.toString(ProblemPosition));
+        intent.putExtra("patientID",patientID);
         startActivity(intent);
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        LatLng location = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(location).title("Record location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-
     }
 }

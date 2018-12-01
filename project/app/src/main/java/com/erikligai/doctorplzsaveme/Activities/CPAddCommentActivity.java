@@ -34,11 +34,12 @@ public class CPAddCommentActivity  extends AppCompatActivity {
 
         Intent intent = getIntent();
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);
-        patientID = intent.getStringExtra("patientIdx");
+        patientID = intent.getStringExtra("patientId");
 
         backBtn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
             }
         });
 
@@ -48,7 +49,9 @@ public class CPAddCommentActivity  extends AppCompatActivity {
                 String comment = commentText.getText().toString();
                 Backend backend = Backend.getInstance();
                 backend.addComment(patientID,ProblemPosition,comment);
+                finish();
             }
         });
     }
+
 }
