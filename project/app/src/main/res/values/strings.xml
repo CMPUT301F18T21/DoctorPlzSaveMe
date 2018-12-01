@@ -87,6 +87,8 @@
     <string name="search_records_keyword">Search for records by keyword</string>
     <string name="related_records">RELATED RECORDS</string>
     <string name="enter_location">Enter a location...</string>
+    <string name="title_activity_add_geolocation2">Map</string>
+    <string name="title_activity_camera">CameraActivity</string>
 
     <string name="welcome">Welcome</string>
     <string name="no_title">no title"</string>

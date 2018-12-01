@@ -130,6 +130,14 @@ public class Record {
     public boolean hasBodyLocation(BodyLocation bodyLocation) {
         return bodyLocation != null;
     }
+    /**
+    *Sets the geolocation of the record
+    *@param geolocation: Geolocation
+    *@return Nothing
+     */
+    public void addGeolocation(LatLng geolocation) {
+        this.geolocation = geolocation;
+    }
 
      /**
     *Checks if the record has a geolocation

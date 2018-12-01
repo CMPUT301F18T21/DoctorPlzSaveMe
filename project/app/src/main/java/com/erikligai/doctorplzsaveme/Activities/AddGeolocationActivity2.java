@@ -2,12 +2,9 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,43 +14,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class EditRecordThreeActivity extends FragmentActivity implements OnMapReadyCallback,View.OnClickListener  {
+public class AddGeolocationActivity2 extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
+
     private GoogleMap mMap;
-    private Button backBtn3,saveBtn;
-    private int problem_index,record_index;
-    private LatLng geolocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_record_three);
+        setContentView(R.layout.activity_add_geolocation2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-        Intent intent = getIntent();
-        problem_index = intent.getIntExtra("P_Pos",-1);
-        record_index = intent.getIntExtra("R_Pos",-1);
-        backBtn3 = findViewById(R.id.backButton3);
-        saveBtn = findViewById(R.id.saveButton);
-        backBtn3.setOnClickListener(this);
-        saveBtn.setOnClickListener(this);
-        geolocation = RecordBuffer.getInstance().getRecord().getGeolocation();
     }
 
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.backButton3:
-                openEditRecordTwoActivity();
-                break;
-
-            case R.id.saveButton:
-                RecordBuffer.getInstance().editRecord(problem_index, record_index);
-                finish();
-                break;
-        }
-    }
 
     /**
      * Manipulates the map once available.
@@ -72,25 +46,19 @@ public class EditRecordThreeActivity extends FragmentActivity implements OnMapRe
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng edmonton = new LatLng(53.5444, -113.4909);
-        if (geolocation != null) {
-            mMap.addMarker(new MarkerOptions().position(geolocation).title("Marker in Edmonton"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(geolocation,15));
-            //mMap.animateCamera(CameraUpdateFactory.zoomIn());
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
 
-            //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
-        } else {
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(edmonton,15));
-            //mMap.animateCamera(CameraUpdateFactory.zoomIn());
-            //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
-        }
+        mMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) AddGeolocationActivity2.this);
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 int num = (int) marker.getTag();                                // get data from marker(probably recordID)
 
-                Intent I = new Intent(EditRecordThreeActivity.this, MainRecordActivity.class);
+                Intent I = new Intent(AddGeolocationActivity2.this, MainRecordActivity.class);
                 startActivity(I);
             }
         });
@@ -118,29 +86,15 @@ public class EditRecordThreeActivity extends FragmentActivity implements OnMapRe
 
                 // Placing a marker on the touched position
                 mMap.addMarker(markerOptions);
-
-                RecordBuffer.getInstance().getRecord().setGeolocation(markerOptions.getPosition());
             }
         });
     }
 
-//    @Override
-//    public boolean onMarkerClick(final Marker marker) {
-//
-//        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
-//        return false;
-//    }
-
-    private void openEditRecordTwoActivity(){
-        Intent intent = new Intent(this, EditRecordTwoActivity.class);
-        intent.putExtra("R_Pos", record_index);
-        intent.putExtra("P_Pos", problem_index);
-        finish();
-        startActivity(intent);
-    }
-
     @Override
-    public void onBackPressed() {
-        openEditRecordTwoActivity();
+    public boolean onMarkerClick(final Marker marker) {
+
+        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
+        return false;
     }
+
 }
