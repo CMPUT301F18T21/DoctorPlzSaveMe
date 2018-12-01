@@ -22,6 +22,11 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
     private int ProblemPosition;
     private int RecordPosition;
     private String patientID;
+    private ImageView imageView2;
+    private float imX;
+    private float imY;
+    private float BLX;
+    private float BLY;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,9 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         nextBtn = findViewById(R.id.cpRecordNext2);
         backBtn = findViewById(R.id.cpRecordBack2);
         imageView = findViewById(R.id.imageView2);
+        // imageView.getLocationOnScreen(loc);
+        imageView2 = findViewById(R.id.imageView);
+        imageView2.setVisibility(View.GONE);
         textView = findViewById(R.id.textView2);
 
         imageView.setOnTouchListener(new View.OnTouchListener() {
@@ -46,6 +54,12 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
                     textView.setText("Touch coordinates : " +
                             String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
+                    imageView2.setY(event.getY() + imY - (imageView2.getHeight()/2));
+                    imageView2.setX(event.getX() + imX - (imageView2.getWidth()/2));
+                    imageView2.setVisibility(View.VISIBLE);
+
+                    BLX = event.getX();
+                    BLY = event.getY();
                 }
                 return true;
             }
@@ -80,5 +94,13 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         intent.putExtra("RecordPos", RecordPosition);
         intent.putExtra("patientId",patientID);
         startActivity(intent);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus)
+    {
+        super.onWindowFocusChanged(hasFocus);
+        imX = imageView.getX();
+        imY = imageView.getY();
     }
 }
