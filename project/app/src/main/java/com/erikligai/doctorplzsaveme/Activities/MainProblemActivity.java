@@ -26,11 +26,6 @@ public class MainProblemActivity extends AppCompatActivity {
     private RecyclerView problemRView;
     private TextView emptyView;
 
-//    //sample problem list
-//    Problem p1 = new Problem("Problem 1", "Problem Description 1fsfdfsdsfgsgdsggdgsdgdgdxvxvfdsfffd");
-//    Problem p2 = new Problem("Problem 2", "Problem Description 2");
-//    Problem p3 = new Problem("Problem 3", "Problem Description 3");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
