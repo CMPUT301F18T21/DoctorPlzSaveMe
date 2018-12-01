@@ -1,5 +1,6 @@
 package com.erikligai.doctorplzsaveme.Adapters;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
@@ -13,8 +14,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Activities.EditRecordActivity;
+import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,6 +27,10 @@ import java.util.Locale;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHolder> {
     private final ArrayList<Record> mDataset;
+
+    MainRecordActivity parent_activity;
+
+    public void setParentActivity(MainRecordActivity a) { parent_activity = a; }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -129,14 +136,16 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
                 Log.d("rview", "view/edit");
                 Log.d("rview", Integer.toString(holder.getAdapterPosition()));
                 Intent intent = new Intent(holder.itemView.getContext(), EditRecordActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
+                intent.putExtra("R_Pos", holder.getAdapterPosition());
+                intent.putExtra("P_Pos", parent_activity.getProblem_index() );
                 Log.d("rview", "edit");
                 holder.itemView.getContext().startActivity(intent);
             }
 
             void ClickMenuTwo() {
                 Log.d("rview", "delete");
-                Log.d("rview", Integer.toString(holder.getAdapterPosition()));
+                Backend.getInstance().deletePatientRecord(parent_activity.getProblem_index(), holder.getAdapterPosition());
+                notifyDataSetChanged();
             }
         });
     }
