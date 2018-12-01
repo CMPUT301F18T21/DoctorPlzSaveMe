@@ -3,6 +3,8 @@ package com.erikligai.doctorplzsaveme.Activities;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
@@ -19,8 +21,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
+public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -37,6 +41,21 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
 
     //private static final LatLng VAN = new LatLng(49.246292, -123.116226);
     private Marker Van;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,23 +85,21 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        int i,j;
         ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
-        for (int i = 0; i < problems.size(); i++) {
+        for (i = 0; i < problems.size(); i++) {
             ArrayList<Record> records = problems.get(i).getRecords();
-            for( int j = 0; j < records.size(); j++) {
+            for( j = 0; j < records.size(); j++) {
                 if (records.get(j).getGeolocation() != null) {
                     Van = mMap.addMarker(new MarkerOptions().position(records.get(j).getGeolocation()).title(problems.get(i).getTitle()).snippet(records.get(j).getTitle()));
-                    Van.setTag(records.get(j));        //pass data into marker here
+
+                    List<Integer> index = new ArrayList<Integer>();
+                    index.add(i);
+                    index.add(j);
+                    Van.setTag(index);
 
                     mMap.setOnMarkerClickListener(this);
-                    mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-                        @Override
-                        public void onInfoWindowClick(Marker marker) {
-                            //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
-                            Intent I = new Intent(ViewRecordLocationsActivity.this, EditRecordActivity.class);
-                            startActivity(I);
-                        }
-                    });
+                    mMap.setOnInfoWindowClickListener(this);
                 }
             }
         }
@@ -99,6 +116,18 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
         //int num = (int) marker.getTag();                         // get data from marker(probably recordID)
         Toast.makeText(this, marker.getTitle(), Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
+        Intent intent = new Intent(ViewRecordLocationsActivity.this, ViewRecordActivity.class);
+        List<Integer> index = (List<Integer>) marker.getTag();
+        intent.putExtra("P_Pos", index.get(0));
+        intent.putExtra("R_Pos", index.get(1));
+        Log.i("P",Integer.toString(index.get(0)));
+        Log.i("R",Integer.toString(index.get(1)));
+        startActivity(intent);
     }
 
 }
