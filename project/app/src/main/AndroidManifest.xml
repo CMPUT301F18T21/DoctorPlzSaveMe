@@ -31,10 +31,10 @@
         <activity android:name=".Activities.AddRecordActivity" />
         <activity android:name=".Activities.ProblemSearchActivity" />
         <activity android:name=".Activities.CPViewProblemActivity" />
-        <activity android:name=".Activities.CPViewRecordActivity"/>
-        <activity android:name=".Activities.CPAddCommentActivity"/>
-        <activity android:name=".Activities.CPViewBodyLocationActivity"/>
-        <activity android:name=".Activities.CPViewGeolocationActivity"/>
+        <activity android:name=".Activities.CPViewRecordActivity" />
+        <activity android:name=".Activities.CPAddCommentActivity" />
+        <activity android:name=".Activities.CPViewBodyLocationActivity" />
+        <activity android:name=".Activities.CPViewGeolocationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -79,7 +79,8 @@
         </activity>
         <activity android:name=".Activities.PatientActivity" />
         <activity android:name=".StartAppActivities.CPLoginActivity" />
-        <activity android:name=".Activities.CPRecordActivity"></activity>
+        <activity android:name=".Activities.CPRecordActivity" />
+        <activity android:name=".Activities.PatientViewComment"></activity>
     </application>
 
 </manifest>
