@@ -49,7 +49,15 @@ public class MainActivity extends AppCompatActivity {
         careProviderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CPLoginActivity.class));
+                if (Backend.getInstance().deserializeCPProfile())
+                {
+                    Backend.getInstance().ClearPatients();
+                    Backend.getInstance().PopulatePatients();
+                    startActivity(new Intent(MainActivity.this, CareProviderActivity.class));
+                } else
+                {
+                    startActivity(new Intent(MainActivity.this, CPLoginActivity.class));
+                }
             }
         });
 

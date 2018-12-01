@@ -30,7 +30,8 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     // IPatientBackend CODE -----------------
 
     // TODO: move this filename to an xml
-    private static final String FILENAME = "patient_profile.sav";
+    private static final String P_FILENAME = "patient_profile.sav";
+    private static final String CP_FILENAME = "cp_profile.sav";
 
     private Context mContext = null; // context for reading to/from file
     // current patient profile
@@ -107,7 +108,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         try {
             assert(mContext != null);
             assert(patientProfile != null);
-            FileOutputStream fos = mContext.getApplicationContext().openFileOutput(FILENAME, 0);
+            FileOutputStream fos = mContext.getApplicationContext().openFileOutput(P_FILENAME, 0);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
             BufferedWriter writer = new BufferedWriter(osw);
             Gson gson = new Gson();
@@ -125,7 +126,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     {
         try {
             assert(mContext != null);
-            FileInputStream fis = mContext.getApplicationContext().openFileInput(FILENAME);
+            FileInputStream fis = mContext.getApplicationContext().openFileInput(P_FILENAME);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader reader = new BufferedReader(isr);
             Gson gson = new Gson();
@@ -193,9 +194,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    public void clearLocalData()
+    public void clearPatientData()
     {
-        mContext.getApplicationContext().deleteFile(FILENAME);
+        mContext.getApplicationContext().deleteFile(P_FILENAME);
     }
 
     // https://stackoverflow.com/questions/9570237/android-check-internet-connection
@@ -383,4 +384,58 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(false); // i.e. shouldn't happen!
         return null;
     }
+
+
+    // SAVE CP STUFF -----------
+
+    public void SaveCPProfile()
+    {
+        if (CP_ID == null) { return; }
+        serializeCPProfile();
+    }
+
+    public void clearCPData()
+    {
+        mContext.getApplicationContext().deleteFile(CP_FILENAME);
+    }
+
+    private void serializeCPProfile()
+    {
+        try {
+            assert(mContext != null);
+            FileOutputStream fos = mContext.getApplicationContext().openFileOutput(CP_FILENAME, 0);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            BufferedWriter writer = new BufferedWriter(osw);
+            Gson gson = new Gson();
+            gson.toJson(CP_ID, writer);
+            writer.flush();
+            writer.close();
+            fos.close();
+            osw.close();
+        } catch (IOException e) {
+            e.printStackTrace(); // shouldn't happen ever
+        }
+    }
+
+    public boolean deserializeCPProfile()
+    {
+        try {
+            assert(mContext != null);
+            FileInputStream fis = mContext.getApplicationContext().openFileInput(CP_FILENAME);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader reader = new BufferedReader(isr);
+            Gson gson = new Gson();
+            CP_ID = gson.fromJson(reader, String.class);
+            return true;
+        } catch (IOException e) {
+            // we couldn't find it in file, so just make sure its null and return false to
+            // notify that we did not find anything on local storage
+            Log.e("failure:","!!!!!!!!!!!!!!!!!!!!!!!");
+            CP_ID = null;
+            return false;
+        }
+    }
+
+
+
 }

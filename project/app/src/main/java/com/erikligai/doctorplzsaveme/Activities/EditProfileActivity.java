@@ -1,7 +1,6 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
-import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -48,7 +47,7 @@ public class EditProfileActivity extends AppCompatActivity {
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Backend.getInstance().clearLocalData();
+                Backend.getInstance().clearPatientData();
                 // https://stackoverflow.com/questions/6330260/finish-all-previous-activities
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
