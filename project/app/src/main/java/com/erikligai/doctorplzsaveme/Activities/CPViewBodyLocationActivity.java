@@ -46,7 +46,7 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         // imageView.getLocationOnScreen(loc);
         imageView2 = findViewById(R.id.imageView);
         imageView2.setVisibility(View.GONE);
-        textView = findViewById(R.id.textView2);
+        textView = findViewById(R.id.title);
 
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override

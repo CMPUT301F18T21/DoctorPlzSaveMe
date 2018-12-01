@@ -31,7 +31,6 @@ public class EditRecordActivity extends AppCompatActivity {
         record_index = intent.getIntExtra("R_Pos", 0);
 
 
-
         // Get buttons
         nextBtn = findViewById(R.id.nextButton1);
         backBtn = findViewById(R.id.backButton1);
