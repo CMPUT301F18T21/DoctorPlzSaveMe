@@ -75,7 +75,7 @@
     <string name="back">BACK</string>
     <string name="next">NEXT</string>
     <string name="save_record">SAVE RECORD</string>
-    <string name="no_record_available">There are no Records for this Problem \nAdd one using the button below to start tracking!</string>
+    <string name="no_record_available">There are no Records for this Problem! \nAdd one using the button below to start tracking!</string>
 
     <string name="search_problem">Search for problems by keyword</string>
     <string name="related_problems">RELATED PROBLEMS</string>
@@ -101,5 +101,6 @@
     <string name="title_photo">Record Photos</string>
     <string name="title_map">Record Map</string>
     <string name="timestamp">Timestamp</string>
+    <string name="no_location">No location are saved for this Record!\nYou can add one in the Records menu!</string>
 </resources>
 
