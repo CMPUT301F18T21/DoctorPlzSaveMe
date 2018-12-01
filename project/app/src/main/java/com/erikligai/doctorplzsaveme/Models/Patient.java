@@ -24,8 +24,11 @@ public class Patient implements Profile {
         this.id = id;
         this.email = email;
         this.phone = phone;
+        this.photoIds = new ArrayList<String>();
+        this.photos = new ArrayList<Bitmap>();
         this.mProblemList = new ArrayList<Problem>();
     }
+
     public void addPhoto(String id, Bitmap photo){
         this.photoIds.add(id);
         this.photos.add(photo);
@@ -38,7 +41,6 @@ public class Patient implements Profile {
     public ArrayList<Bitmap> getPhotos(){
         return this.photos;
     }
-
 
     public void setEmail(String newEmail) {
         this.email = newEmail;

@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Comment;
@@ -75,6 +76,12 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     public ArrayList<Record> getPatientRecords(int problemIndex) {
         assert(patientProfile != null);
         return patientProfile.getProblemList().get(problemIndex).getRecords();
+    }
+
+    public void addPatientPhoto(String id, Bitmap photo) {
+        assert(patientProfile != null);
+        patientProfile.addPhoto(id,photo);
+        UpdatePatient();
     }
 
     public void addPatientProblem(Problem problem) {
