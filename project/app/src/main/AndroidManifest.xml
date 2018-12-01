@@ -22,17 +22,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".Activities.MainRecordActivity" />
         <activity android:name=".Activities.MainProblemActivity" />
         <activity android:name=".Activities.EditProblemActivity" />
-        <activity android:name=".Activities.EditRecordActivity">
-        </activity>
+        <activity android:name=".Activities.EditRecordActivity"></activity>
         <activity android:name=".Activities.AddProblemActivity" />
-        <activity android:name=".Activities.AddRecordActivity"/>
-        <activity android:name=".Activities.AddRecordTwoActivity">
-        </activity>
+        <activity android:name=".Activities.AddRecordActivity" />
+        <activity android:name=".Activities.AddRecordTwoActivity"></activity>
         <activity android:name=".Activities.ProblemSearchActivity" />
 
         <meta-data
@@ -54,23 +51,18 @@
             android:label="@string/title_activity_main_maps" />
         <activity
             android:name=".StartAppActivities.NewProfileActivity"
-            android:label="@string/new_patient_title">
-
-        </activity>
+            android:label="@string/new_patient_title"></activity>
         <activity
             android:name=".StartAppActivities.NoProfileActivity"
-            android:label="No Profile">
-
-        </activity>
+            android:label="No Profile"></activity>
         <activity android:name=".Activities.CareProviderActivity" />
         <activity android:name=".Activities.AddPatientActivity" />
         <activity
             android:name=".Activities.EditProfileActivity"
-            android:label="@string/view_edit_profile_title">
-
-        </activity>
+            android:label="@string/view_edit_profile_title"></activity>
         <activity android:name=".Activities.PatientActivity" />
-        <activity android:name=".StartAppActivities.CPLoginActivity"></activity>
+        <activity android:name=".StartAppActivities.CPLoginActivity" />
+        <activity android:name=".Activities.EditRecordTwoActivity"></activity>
     </application>
 
 </manifest>

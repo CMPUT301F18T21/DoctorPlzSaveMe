@@ -77,9 +77,10 @@ public class MainRecordActivity extends AppCompatActivity {
         adapter.setOnEntryClickListener(new RecordAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(int position) {
-//                Intent intent = new Intent(getApplicationContext(), EditRecordActivity.class);
-//                intent.putExtra("Pos", position);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), EditRecordActivity.class);
+                intent.putExtra("R_Pos", position);
+                intent.putExtra("P_Pos", problem_index);
+                startActivity(intent);
                 Log.d("rview", Integer.toString(position));
             }
         });

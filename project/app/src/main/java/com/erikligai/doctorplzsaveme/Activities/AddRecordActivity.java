@@ -39,17 +39,18 @@ public class AddRecordActivity extends AppCompatActivity implements View.OnClick
         nextBtn1.setOnClickListener(this);
 
         // Set title & comment editText
-        String title = RecordBuffer.getInstance().getRecord().getTitle();
-        String comment = RecordBuffer.getInstance().getRecord().getComment();
+
         titleText = findViewById(R.id.editRecordTitle);
         commentText = findViewById(R.id.editRecordComment);
+        String title = RecordBuffer.getInstance().getRecord().getTitle();
+        String comment = RecordBuffer.getInstance().getRecord().getComment();
         // Set buttons OnClickListener
-        if (title == "<no title>") {
+        if (title == "") {
             titleText.setHint(getString(R.string.record_title_hint));
         } else {
             titleText.setText(title);
         }
-        if (comment == "<no comment>"){
+        if (comment == ""){
             commentText.setHint(getString(R.string.record_comment_hint));
         } else {
             commentText.setText(comment);
