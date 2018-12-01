@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Activities.EditRecordThreeActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
@@ -26,9 +27,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private int problem_index, record_index;
     private GoogleMap mMap;
+    private SupportMapFragment mapFragment;
     private LatLng geolocation;
     private Problem problem;
     private Record record;
+    private TextView emptyView;
 
     public MapFragment(){}
 
@@ -49,7 +52,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_record_three, container, false);
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
+        mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
@@ -59,6 +62,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         record = problem.getRecords().get(record_index);
         geolocation = record.getGeolocation();
 
+        emptyView = view.findViewById(R.id.empty_location_view);
+
+        checkEmpty();
         return view;
     }
 
@@ -92,6 +98,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
         }
 
+    }
+
+    public void checkEmpty(){
+        if (geolocation == null) {
+            mapFragment.getView().setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        }
+        else {
+            mapFragment.getView().setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
     }
 
 }
