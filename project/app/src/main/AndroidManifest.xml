@@ -32,11 +32,20 @@
         <activity android:name=".Activities.AddRecordTwoActivity" />
         <activity android:name=".Activities.AddRecordThreeActivity" />
         <activity android:name=".Activities.ProblemSearchActivity" />
+
+        <activity android:name=".Activities.CPViewProblemActivity" />
+        <activity android:name=".Activities.CPViewRecordActivity" />
+        <activity android:name=".Activities.CPAddCommentActivity" />
+        <activity android:name=".Activities.CPViewBodyLocationActivity" />
+        <activity android:name=".Activities.CPViewGeolocationActivity" />
+
+
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             tools:replace="android:screenOrientation" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDVlgnS4qmnaTGp5HVS0awSCWoCePieuJI" />
@@ -86,6 +95,9 @@
         <activity android:name=".Activities.PatientActivity" />
         <activity android:name=".StartAppActivities.CPLoginActivity" />
 
+        <activity android:name=".Activities.CPRecordActivity" />
+        <activity android:name=".Activities.PatientViewComment"></activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.erikligai.doctorplzsaveme.fileprovider"
@@ -99,10 +111,10 @@
         <activity android:name=".Activities.EditPhotosActivity" />
         <activity android:name=".Activities.UploadBodyLocationActivity"></activity>
             android:label="@string/view_edit_profile_title" />
-        <activity android:name=".Activities.CPRecordActivity"></activity>
 
         <activity android:name=".Activities.EditRecordTwoActivity" />
         <activity android:name=".Activities.EditRecordThreeActivity" />
+
 
     </application>
 

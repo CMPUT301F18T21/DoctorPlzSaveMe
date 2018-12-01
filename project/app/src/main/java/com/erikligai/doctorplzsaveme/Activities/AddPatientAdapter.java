@@ -30,8 +30,8 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
         ConstraintLayout parentLayout;
         public AddPatientViewHolder(@NonNull View itemView) {
             super(itemView);
-            patientID = itemView.findViewById(R.id.patient_id);
-            patientEmail = itemView.findViewById(R.id.patient_email);
+            patientID = itemView.findViewById(R.id.comment_text);
+            patientEmail = itemView.findViewById(R.id.comment_date);
             patientPhone = itemView.findViewById(R.id.patient_phone);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }

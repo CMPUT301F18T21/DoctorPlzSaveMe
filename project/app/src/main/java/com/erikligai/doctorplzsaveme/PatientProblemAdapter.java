@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CPRecordActivity;
+import com.erikligai.doctorplzsaveme.Activities.CPViewProblemActivity;
+import com.erikligai.doctorplzsaveme.Activities.CPViewRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 
 import java.text.SimpleDateFormat;
@@ -86,7 +88,7 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
 //                Log.e("patientID", patientID);
 //                Log.e("problemIndex", i +"");
 
-                Intent intent = new Intent(mContext, CPRecordActivity.class);
+                Intent intent = new Intent(mContext, CPViewProblemActivity.class);
                 intent.putExtra("patientID", patientID); // attach patient id to intent
                 intent.putExtra("problemID", i+"");
                 mContext.startActivity(intent); // go to record list of patient
