@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
         photoRecycler.setHasFixedSize(true);
         RecyclerViewPhotoAdapter adapter = new RecyclerViewPhotoAdapter(this);
         photoRecycler.setAdapter(adapter);
+        photoRecycler.setLayoutManager(new LinearLayoutManager(this));
         Button uploadNewPhoto = findViewById(R.id.addPhotoButton);
         uploadNewPhoto.setOnClickListener(this);
     }
