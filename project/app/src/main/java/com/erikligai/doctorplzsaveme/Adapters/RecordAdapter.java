@@ -76,13 +76,22 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
         // - replace the contents of the view with that element
         Record record = mDataset.get(position);
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
         Date date = record.getDate();
         String f_date = df.format(date);
-
-        holder.title.setText(record.getTitle());
+        String title_data = record.getTitle();
+        String comment_data = record.getComment();
+        if (title_data.equals("")){
+            holder.title.setText("<no title>");
+        } else {
+            holder.title.setText(title_data);
+        }
+        if (comment_data.equals("")){
+            holder.comment.setText("<no comment>");
+        } else {
+            holder.comment.setText(comment_data);
+        }
         holder.date.setText(f_date);
-        holder.comment.setText(record.getComment());
         holder.option.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

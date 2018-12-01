@@ -10,10 +10,18 @@ public class Record {
     private Date date;
     private String comment;
 
+    public Record() {
+        this.date = new Date();
+        this.title = "";
+        this.comment = "";
+    }
+
     /**
      * Creates a time-stamped Record 
      * @param title: title of record
      * @param comment: record's comment
+     *
+     *
      */
     public Record(String title, String comment){
         this.title = title;
@@ -77,6 +85,19 @@ public class Record {
     *@param photo: Photo
     *@return Nothing
      */
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public void setComment(String comment){
+        this.comment = comment;
+    }
+
+    public void setDate(Date date){
+        this.date = date;
+    }
+
     public void addPhoto(Photo photo) {
         this.photo = photo;
     }

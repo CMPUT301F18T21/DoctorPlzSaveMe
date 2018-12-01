@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.RecordFragments.AddRecordFragment2;
 
 import java.util.Date;
 
@@ -36,13 +35,6 @@ public class EditRecordActivity extends AppCompatActivity {
                 String title = EditTitleText.getText().toString();
                 String comment = EditCommentText.getText().toString();
                 Date date = new Date();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                AddRecordFragment2 fragment = new AddRecordFragment2();
-                fragmentTransaction.replace(R.id.editRecordActivity, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
             }
         });
 
@@ -57,7 +49,7 @@ public class EditRecordActivity extends AppCompatActivity {
     }
 
     private void openEditBodyLocationActivity(){
-        Intent intent = new Intent(this,AddBodylocationActivity.class);
+        Intent intent = new Intent(this,AddRecordTwoActivity.class);
         startActivity(intent);
     }
 }

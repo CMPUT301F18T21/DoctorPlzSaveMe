@@ -2,88 +2,81 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.erikligai.doctorplzsaveme.Models.BodyLocation;
 import com.erikligai.doctorplzsaveme.Models.Geolocation;
+import com.erikligai.doctorplzsaveme.Models.Record;
+import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.RecordFragments.AddRecordFragment2;
 
 import java.util.Date;
 
-public class AddRecordActivity extends AppCompatActivity {
+public class AddRecordActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button backBtn1,nextBtn1,backBtn2,nextBtn2,backBtn3,saveBtn;
+    private Button backBtn1,nextBtn1;
     private EditText titleText,commentText;
     private int problem_index;
-    private String title;
-    private String comment;
-    private Date date;
-    private BodyLocation bodyLocation;
-    private Geolocation geolocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_record);
+        setContentView(R.layout.activity_add_record_one);
 
         Intent intent = getIntent();
-        problem_index = intent.getIntExtra("Pos",0);
+        problem_index = intent.getIntExtra("Pos", 0);
         // Get buttons
-
+        backBtn1 = findViewById(R.id.backButton1);
         nextBtn1 = findViewById(R.id.nextButton1);
+        backBtn1.setOnClickListener(this);
+        nextBtn1.setOnClickListener(this);
+
         // Set title & comment editText
-        commentText = findViewById(R.id.editRecordComment);
+        String title = RecordBuffer.getInstance().getRecord().getTitle();
+        String comment = RecordBuffer.getInstance().getRecord().getComment();
         titleText = findViewById(R.id.editRecordTitle);
+        commentText = findViewById(R.id.editRecordComment);
+        // Set buttons OnClickListener
+        if (title == "<no title>") {
+            titleText.setHint(getString(R.string.record_title_hint));
+        } else {
+            titleText.setText(title);
+        }
+        if (comment == "<no comment>"){
+            commentText.setHint(getString(R.string.record_comment_hint));
+        } else {
+            commentText.setText(comment);
+        }
 
 
-
-        nextBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                title = titleText.getText().toString();
-                comment = commentText.getText().toString();
-                date = new Date();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                AddRecordFragment2 fragment = new AddRecordFragment2();
-                fragmentTransaction.replace(R.id.FragmentContainer, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
-            }
-        });
     }
-    
-    private void openAddBodyLocationActivity(){
-        Intent intent = new Intent(this,AddBodylocationActivity.class);
-        intent.putExtra("date",date);
-        intent.putExtra("title",title);
-        intent.putExtra("comment",comment);
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.backButton1:
+                RecordBuffer.getInstance().ClearBuffer();
+                finish();
+                break;
+
+            case R.id.nextButton1:
+                openAddRecordTwoActivity();
+                break;
+        }
+    }
+
+    private void openAddRecordTwoActivity(){
+        RecordBuffer.getInstance().getRecord().setTitle(titleText.getText().toString());
+        RecordBuffer.getInstance().getRecord().setComment(commentText.getText().toString());
+        Intent intent = new Intent(this, AddRecordTwoActivity.class);
         intent.putExtra("Pos", problem_index);
+        finish();
         startActivity(intent);
-    }
-
-    private void openRecordListActivity(){
-        Intent intent = new Intent(this,MainRecordActivity.class);
-        startActivity(intent);
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 }
