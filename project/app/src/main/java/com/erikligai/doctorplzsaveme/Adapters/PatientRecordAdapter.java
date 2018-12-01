@@ -19,8 +19,6 @@ import com.erikligai.doctorplzsaveme.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import static android.support.constraint.Constraints.TAG;
-
 public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdapter.PatientRecordViewHolder> implements Filterable {
     private Context mContext;
 
@@ -89,7 +87,7 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
 //                intent.putExtra("recordIndex", i+""); // attack record index to intent
 //                mContext.startActivity(intent); // go to record list of patient
 
-                Log.d(TAG, "onClick: clicked on: " + mRecords.get(i).getTitle());
+//                Log.d(TAG, "onClick: clicked on: " + mRecords.get(i).getTitle());
                 Toast.makeText(mContext, mRecords.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -113,18 +111,18 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
 //            ArrayList<Patient> filteredPatients = new ArrayList<>();
             ArrayList<Record> filteredRecords = new ArrayList<>();
 
-            Log.d(TAG, "search: " + constraint);
+//            Log.d(TAG, "search: " + constraint);
 
             if (constraint == null || constraint.length() == 0) {
                 filteredRecords.addAll(mRecordsCopy);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                Log.d(TAG, "filterPattern:  " + filterPattern);
+//                Log.d(TAG, "filterPattern:  " + filterPattern);
 
 
                 for (Record problem : mRecordsCopy) {
-                    Log.d(TAG, "problemTitle: " + problem.getTitle().toLowerCase());
+//                    Log.d(TAG, "problemTitle: " + problem.getTitle().toLowerCase());
                     if (problem.getTitle().toLowerCase().contains(filterPattern)) {
                         filteredRecords.add(problem);
                     }

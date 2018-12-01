@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,7 +35,7 @@ public class PatientProblemsActivity extends AppCompatActivity {
         // pull patient's problems from back end using passed in patient id
         Intent intent = getIntent(); // receive intent
         String patientID = intent.getExtras().getString("patientID");
-        Log.e("patientIDH", patientID);
+//        Log.e("patientIDH", patientID);
 
         problemList = backend.GetCPPatientProblems(patientID);
 
@@ -54,7 +53,7 @@ public class PatientProblemsActivity extends AppCompatActivity {
     // There should also be a search bar at the top to look for patient ID
 
     private void initRecyclerView(String patientID) {
-        Log.d(TAG, "initRecyclerView: init");
+//        Log.d(TAG, "initRecyclerView: init");
 
         RecyclerView recyclerView = findViewById(R.id.patient_problems_recycler_view);
         TextView emptyView = findViewById(R.id.empty_view);

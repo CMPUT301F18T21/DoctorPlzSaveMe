@@ -83,15 +83,15 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
                 // this should start a new activity with the patient's records in a list
 
                 // print patientID and problem index
-                Log.e("patientID", patientID);
-                Log.e("problemIndex", i +"");
+//                Log.e("patientID", patientID);
+//                Log.e("problemIndex", i +"");
 
                 Intent intent = new Intent(mContext, CPRecordActivity.class);
                 intent.putExtra("patientID", patientID); // attach patient id to intent
                 intent.putExtra("problemID", i+"");
                 mContext.startActivity(intent); // go to record list of patient
 
-                Log.d(TAG, "onClick: clicked on: " + mProblems.get(i).getTitle());
+//                Log.d(TAG, "onClick: clicked on: " + mProblems.get(i).getTitle());
                 Toast.makeText(mContext, mProblems.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -41,6 +41,7 @@ public class CPLoginActivity extends AppCompatActivity {
                             Backend.getInstance().ClearPatients();
                             Backend.getInstance().PopulatePatients();
                             finish();
+                            Backend.getInstance().SaveCPProfile();
                             startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
                         } else
                         {
@@ -55,6 +56,7 @@ public class CPLoginActivity extends AppCompatActivity {
                                             Backend.getInstance().setCP_ID(usernameText.getText().toString());
                                             dialog.dismiss();
                                             finish();
+                                            Backend.getInstance().SaveCPProfile();
                                             startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
                                             break;
 
