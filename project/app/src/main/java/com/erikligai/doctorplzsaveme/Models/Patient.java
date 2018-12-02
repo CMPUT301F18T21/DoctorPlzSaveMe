@@ -41,8 +41,6 @@ public class Patient {
         this.photoLabels.add(i,photoLabel);
     }
 
-
-
     public ArrayList<String> getPhotoIds(){
         return this.photoIds;
     }

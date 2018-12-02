@@ -138,7 +138,6 @@ public class Problem {
         this.comments = new_comments;
     }
 
-
        /**
     *Returns the id of the problem
     *@return id String

@@ -70,7 +70,7 @@ public class CPViewGeolocationActivity extends AppCompatActivity implements OnMa
         // Add a marker in Sydney and move the camera
         LatLng edmonton = new LatLng(53.5444, -113.4909);
         if (geolocation != null) {
-            mMap.addMarker(new MarkerOptions().position(geolocation).title("Marker in Edmonton"));
+            mMap.addMarker(new MarkerOptions().position(geolocation).title("Marker"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(geolocation,15));
             //mMap.animateCamera(CameraUpdateFactory.zoomIn());
 
