@@ -17,13 +17,14 @@ import io.searchbox.core.Get;
 import io.searchbox.core.Index;
 
 /**
- * Created by romansky on 10/20/16.
+ * This class is responsible for tasks that communicate with the DB using ES
  */
 public class ElasticsearchProblemController {
     private static JestDroidClient client;
 
     private static String server = "http://cmput301.softwareprocess.es:8080";
 
+    // upload patient to DB
     public static class SetPatientTask extends AsyncTask<Patient, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Patient... patient) {
@@ -48,6 +49,7 @@ public class ElasticsearchProblemController {
         }
     }
 
+    // get patient from db with a given patient ID
     public static class GetPatientTask extends AsyncTask<String, Void, Patient> {
         @Override
         protected Patient doInBackground(String... userid) {
@@ -69,6 +71,7 @@ public class ElasticsearchProblemController {
         }
     }
 
+    // check if patient id exists on the DB
     public static class CheckIfPatientIDExistsTask extends AsyncTask<String, Void, Integer> {
         @Override
         protected Integer doInBackground(String... userid) {
@@ -91,6 +94,7 @@ public class ElasticsearchProblemController {
         }
     }
 
+    // add patient id to list of assigned patients to a given cp id
     public static class AssignPatientToCPTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
@@ -132,6 +136,7 @@ public class ElasticsearchProblemController {
         }
     }
 
+    // get all ids of patients assigned to given cp id
     public static class GetCPPatientsTask extends AsyncTask<String, Void, PatientsWrapper> {
         @Override
         protected PatientsWrapper doInBackground(String... cp_id) {
@@ -155,7 +160,7 @@ public class ElasticsearchProblemController {
         }
     }
 
-
+    // check if a cp id exists on the db
     public static class CheckIfCPExistsTask extends AsyncTask<String, Void, Integer> {
         @Override
         protected Integer doInBackground(String... cp_id) {
@@ -176,6 +181,7 @@ public class ElasticsearchProblemController {
         }
     }
 
+    // add a cp to the DB
     public static class AddCPTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
@@ -201,7 +207,7 @@ public class ElasticsearchProblemController {
         }
     }
 
-
+    // makes sure we have stuff we need to use ES
     public static void verifySettings() throws NetworkErrorException{
         if (client == null) {
             DroidClientConfig.Builder builder = new DroidClientConfig.Builder(server);
@@ -213,8 +219,4 @@ public class ElasticsearchProblemController {
             if (client == null) { throw new NetworkErrorException(); }
         }
     }
-
-
-    // WIP -----------------------------------
-
 }

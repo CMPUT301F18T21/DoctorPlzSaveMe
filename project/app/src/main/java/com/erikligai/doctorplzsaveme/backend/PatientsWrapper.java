@@ -2,8 +2,7 @@ package com.erikligai.doctorplzsaveme.backend;
 
 import java.util.ArrayList;
 
-// for ES
-
+/** wrapper for storing list of assigned patients for a CP (makes ES easier) */
 public class PatientsWrapper {
     public ArrayList<String> getPatients() {
         return patients;

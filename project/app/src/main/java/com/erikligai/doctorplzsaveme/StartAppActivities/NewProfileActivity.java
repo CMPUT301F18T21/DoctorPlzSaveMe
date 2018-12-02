@@ -14,8 +14,11 @@ import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
-import com.erikligai.doctorplzsaveme.backend.Toaster;
 
+/**
+ * Activity for creating a new patient profile, can only do when connected to DB
+ * saves profile locally then syncs with DB
+ */
 public class NewProfileActivity extends AppCompatActivity {
 
     private Button createProfile;
@@ -25,6 +28,7 @@ public class NewProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_profile);
 
@@ -36,10 +40,20 @@ public class NewProfileActivity extends AppCompatActivity {
         createProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: CHECK FOR VALID PATIENT PARAMS
+                // check if a field is blank
+                if (userIDText.getText().toString().equals("") ||
+                        emailInputText.getText().toString().equals("") ||
+                        phoneInputText.getText().toString().equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), (String) "A field is blank", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // check if that user id exists in db
                 int result = Backend.userIDExists(userIDText.getText().toString());
+                // handle results
                 if (result == 1) // no patient with that ID
                 {
+                    // create a new patient profile with that id and add to db, then go to patient activity
                     Patient new_patient = new Patient(
                             userIDText.getText().toString(),
                             emailInputText.getText().toString(),
@@ -53,13 +67,12 @@ public class NewProfileActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), (String) "Username exists!", Toast.LENGTH_SHORT).show();
                 } else if (result == -1)
                 {
-                    Toast.makeText(getApplicationContext(), (String) "No connection to DB!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e("createProfile.onClick: ", "something went wrong!");
                 }
             }
         });
-
     }
 }
 
