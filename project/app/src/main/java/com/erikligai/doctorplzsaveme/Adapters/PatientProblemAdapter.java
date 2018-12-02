@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import static android.support.constraint.Constraints.TAG;
 
 public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAdapter.PatientProblemViewHolder> implements Filterable {
-//    private ArrayList<Patient> mPatients;
-//    private ArrayList<Patient> mPatientsCopy;
     private Context mContext;
 
     private ArrayList<Problem> mProblems;
@@ -37,11 +35,8 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
         TextView description;
         TextView date;
 
-
-//        TextView patientID;
-//        TextView patientEmail;
-//        TextView patientPhone;
         ConstraintLayout parentLayout;
+
         public PatientProblemViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.problem_title);
@@ -80,19 +75,10 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
         patientProblemViewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Here the name in the patient list is clicked
-                // this should start a new activity with the patient's records in a list
-
-                // print patientID and problem index
-//                Log.e("patientID", patientID);
-//                Log.e("problemIndex", i +"");
-
                 Intent intent = new Intent(mContext, CPViewProblemActivity.class);
                 intent.putExtra("patientID", patientID); // attach patient id to intent
                 intent.putExtra("problemID", i+"");
                 mContext.startActivity(intent); // go to record list of patient
-
-//                Log.d(TAG, "onClick: clicked on: " + mProblems.get(i).getTitle());
                 Toast.makeText(mContext, mProblems.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -108,12 +94,10 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
         return patientProblemFilter;
     }
 
-
     private Filter patientProblemFilter = new Filter() {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-//            ArrayList<Patient> filteredPatients = new ArrayList<>();
             ArrayList<Problem> filteredProblems = new ArrayList<>();
 
             Log.d(TAG, "search: " + constraint);

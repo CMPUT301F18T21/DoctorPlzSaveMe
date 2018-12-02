@@ -15,9 +15,15 @@ public class CommentTest extends TestCase {
         assertEquals("changed text", testComment.getComment());
     }
 
-    public void testCorrectDate() {
+    public void testGetDate() {
         Comment testComment = new Comment("test comment");
         String testDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        assertEquals(testComment.getDate(), testDate);
+        assertEquals( testDate,testComment.getDate());
+    }
+
+    public void testGetComment(){
+        Comment testComment = new Comment("test comment");
+        String testDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        assertEquals("test comment" ,testComment.getComment());
     }
 }

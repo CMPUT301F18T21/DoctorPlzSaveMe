@@ -5,88 +5,93 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1586C7"
     tools:context=".Activities.PatientActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-    <Button
-        android:id="@+id/viewProblemsButton"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="32dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="16dp"
-        android:layout_weight="1.0"
-        android:text="@string/view_problems"
-        app:layout_constraintEnd_toStartOf="@+id/viewLocationButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        android:layout_marginBottom="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/welcome"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"/>
+
+        <Button
+            android:id="@+id/viewProblemsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textColorHint="#B9B9C9"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/view_problems" />
 
 
-    <Button
-        android:id="@+id/viewLocationButton"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_weight="1.0"
-        android:text="@string/view_locations"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/viewProblemsButton"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        <Button
+            android:id="@+id/viewLocationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9B9C9"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/view_locations" />
 
-    <Button
-        android:id="@+id/editProfileButton"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="0.5"
-        android:text="@string/view_edit_profile"
-        app:layout_constraintEnd_toStartOf="@+id/uploadBodyLocationButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewProblemsButton" />
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9B9C9"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/view_edit_profile"/>
 
-    <Button
-        android:id="@+id/uploadBodyLocationButton"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_weight="0.5"
-        android:text="@string/upload_body_location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editProfileButton"
-        app:layout_constraintTop_toBottomOf="@+id/viewProblemsButton" />
+        <Button
+            android:id="@+id/uploadBodyLocationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9B9C9"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/upload_body_location" />
 
-    <TextView
-        android:id="@+id/welcomeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/welcome"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+
+
+    </LinearLayout>
+
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline2"

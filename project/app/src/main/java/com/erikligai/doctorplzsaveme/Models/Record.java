@@ -2,35 +2,44 @@ package com.erikligai.doctorplzsaveme.Models;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Record class containing all data belonging to a record of a problem of a patient
+ */
 public class Record {
-    private Photo photo;
-    private BodyLocation bodyLocation;
     private LatLng geolocation;
     private String title;
     private Date date;
     private String comment;
+    private String photoid;
+    private float xpos;
+    private float ypos;
+    private ArrayList<String> photos;
 
+    /**
+     * Empty constructor for the Record, sets default values (utility constructor)
+     */
     public Record() {
         this.date = new Date();
         this.title = "";
         this.comment = "";
-
+        this.photos = new ArrayList<String>();
     }
 
     /**
      * Creates a time-stamped Record 
      * @param title: title of record
      * @param comment: record's comment
-     *
-     *
+
      */
     public Record(String title, String comment){
         this.title = title;
         this.date = new Date();
         this.comment = comment;
     }
+
      /**
     *Returns the comment of the record
     *@return comment String
@@ -38,6 +47,7 @@ public class Record {
     public String getComment() {
         return this.comment;
     }
+
       /**
     *Returns the date of the record
     *@return date Date
@@ -45,14 +55,6 @@ public class Record {
     public Date getDate() {
         return this.date;
     }
-
-
-//     public Record(String title, Photo photo, BodyLocation bodyLocation, Geolocation geolocation) {
-//         this.title = title;
-//         this.photo = photo;
-//         this.bodyLocation = bodyLocation;
-//         this.geolocation = geolocation;
-//     }
 
     /**
     *Returns the title of the record
@@ -69,81 +71,101 @@ public class Record {
     public LatLng getGeolocation() {
         return this.geolocation;
     }
-     /**
-    *Returns the bodylocation of the record
-    *@return bodylocation Bodylocation
-     */
-    public BodyLocation getBodyLocation() {
-        return this.bodyLocation;
-    }
-     /**
-    *Returns the photo of the record
-    *@return photo Photo
-     */
-    public Photo getPhoto() {
-        return this.photo;
-    }
-    /**
-    *Sets the photo of the record
-    *@param photo: Photo
-    *@return Nothing
-     */
 
+    /**
+     * Return the photoid (which body location its using)
+     * @return String
+     */
+    public String getPhotoid() {
+        return photoid;
+    }
+
+    /**
+     * Return the x position of the body location photo
+     * @return float
+     */
+    public float getXpos() {
+        return xpos;
+    }
+
+    /**
+     * Return the y position of the body location photo
+     * @return float
+     */
+    public float getYpos() {
+        return ypos;
+    }
+
+    /**
+     * Get the photos of the Record in String form
+     * @return ArrayList<String>
+     */
+    public ArrayList<String> getPhotos() {
+        return photos;
+    }
+
+    /**
+     * Set the title of the record
+     * @param title : String
+     */
     public void setTitle(String title){
         this.title = title;
     }
 
+    /**
+     * Set the comment of the record
+     * @param comment : String
+     */
     public void setComment(String comment){
         this.comment = comment;
     }
 
+    /**
+     * Set the date of the record
+     * @param date : Date
+     */
     public void setDate(Date date){
         this.date = date;
     }
 
+    /**
+     * Set the geolocation of the record
+     * @param geolocation : LatLng
+     */
     public void setGeolocation(LatLng geolocation) {
         this.geolocation = geolocation;
     }
 
-    public void addPhoto(Photo photo) {
-        this.photo = photo;
-    }
     /**
-    *Checks if the record has a photo
-    *@return boolean
+     * Set the photo id (which BLP, used to try to index patient's BLPs)
+     * @param photoid : String
      */
-    public boolean hasPhoto() {
-        return this.photo != null;
-    }
-    /**
-    *Sets the bodylocation of the record
-    *@param bodyLocation: Bodylocation
-    *@return Nothing
-     */
-    public void addBodyLocation(BodyLocation bodyLocation) {
-        this.bodyLocation = bodyLocation;
-    }
-     /**
-    *Checks if the record has a bodylocation
-    *@return boolean
-     */
-    public boolean hasBodyLocation(BodyLocation bodyLocation) {
-        return bodyLocation != null;
-    }
-    /**
-    *Sets the geolocation of the record
-    *@param geolocation: Geolocation
-    *@return Nothing
-     */
-    public void addGeolocation(LatLng geolocation) {
-        this.geolocation = geolocation;
+    public void setPhotoid(String photoid) {
+        this.photoid = photoid;
     }
 
-     /**
-    *Checks if the record has a geolocation
-    *@return boolean
+    /**
+     * set the photo xpos (which BLP, used to try to index patient's BLPs)
+     * @param xpos : float
      */
-    public boolean hasGeolocation(Geolocation geolocation) {
-        return this.geolocation != null;
+    public void setXpos(float xpos) {
+        this.xpos = xpos;
+    }
+
+    /**
+     * set the photo ypos (which BLP, used to try to index patient's BLPs)
+     * @param ypos : float
+     */
+    public void setYpos(float ypos) {
+        this.ypos = ypos;
+    }
+
+    /**
+     * Set the photos of the record
+     * @param photos : ArrayList<String>
+     */
+    public void setPhotos(ArrayList<String> photos) {
+        this.photos = photos;
     }
 }
+

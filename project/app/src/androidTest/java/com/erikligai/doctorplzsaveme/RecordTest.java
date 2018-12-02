@@ -1,32 +1,58 @@
 package com.erikligai.doctorplzsaveme;
 
-import com.erikligai.doctorplzsaveme.Models.BodyLocation;
-import com.erikligai.doctorplzsaveme.Models.Geolocation;
-import com.erikligai.doctorplzsaveme.Models.Photo;
 import com.erikligai.doctorplzsaveme.Models.Record;
+import com.google.android.gms.maps.model.LatLng;
 
 import junit.framework.TestCase;
 
 public class RecordTest extends TestCase {
-    public void testAddGeolocationToRecord(){
-        Record record = new Record("Testing Title", "Testing comment.");
-        Geolocation geolocation = new Geolocation();
+
+    public void testGetTitle(){
+        Record record = new Record("title","comment");
+        assertEquals("title",record.getTitle());
+    }
+
+    public void testGetComment(){
+        Record record = new Record("title","comment");
+        assertEquals("comment",record.getComment());
+    }
+
+    public void testSetTitle(){
+        Record record = new Record();
+        record.setTitle("title");
+        Record record1 = new Record("title","comment");
+        record1.setTitle("newTitle");
+        assertEquals("title",record.getTitle());
+        assertEquals("newTitle",record1.getTitle());
+    }
+
+    public void testSetComment(){
+        Record record = new Record();
+        record.setComment("comment");
+        Record record1 = new Record("title","comment");
+        record1.setComment("newComment");
+        assertEquals("comment",record.getComment());
+        assertEquals("newComment",record1.getComment());
+    }
+
+    public void testGeolocation(){
+        Record record = new Record();
+        LatLng geolocation = new LatLng(53.5444, -113.4909);
         record.addGeolocation(geolocation);
-        assertTrue(record.hasGeolocation(geolocation));
+        assertEquals(geolocation,record.getGeolocation());
     }
 
-    public void testAddBodyLocationToRecord(){
-        Record record = new Record("Testing Title", "Testing comment.");
-        BodyLocation bodyLocation = new BodyLocation();
-        record.addBodyLocation(bodyLocation);
-        assertTrue(record.hasBodyLocation(bodyLocation));
+    public void testPhotoID(){
+        Record record = new Record();
+        record.setPhotoid("photoID");
+        assertEquals("photoID",record.getPhotoid());
     }
 
-    // test if photo gets added
-    public void testAddPhotoToRecord(){
-        Record record = new Record("Testing Title", "Testing comment.");
-        Photo photo = new Photo();
-        record.addPhoto(photo);
-        assertTrue(record.hasPhoto());
+    public void testPos(){
+        Record record = new Record();
+        record.setXpos((float)2);
+        record.setYpos((float)4);
+        assertEquals((float)2,record.getXpos());
+        assertEquals((float)4,record.getYpos());
     }
 }

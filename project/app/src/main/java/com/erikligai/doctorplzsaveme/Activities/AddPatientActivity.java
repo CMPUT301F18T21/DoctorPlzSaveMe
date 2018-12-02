@@ -50,7 +50,7 @@ public class AddPatientActivity extends AppCompatActivity {
 
                 // have to iterate through CP's patient ids and check it doesn't already exist inside
                 // exists is false if it doesn't already exist and we are free to add
-                for (Patient patient : backend.getM_patients()) {
+                for (Patient patient : backend.getCPPatients()) {
                     if (patient.getID().equals(userid)) {
                         exists = true;
                     }

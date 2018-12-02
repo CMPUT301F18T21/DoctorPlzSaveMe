@@ -13,7 +13,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="view_locations">View Locations</string>
-    <string name="upload_body_location">Upload Body Location Photo</string>
+    <string name="upload_body_location">Body Location Photos</string>
     <string name="view_edit_profile">View/Edit Profile</string>
     <string name="search_for_records">Search for Records</string>
     <string name="no_desc">No description added!</string>
@@ -102,5 +102,6 @@
     <string name="title_map">Record Map</string>
     <string name="timestamp">Timestamp</string>
     <string name="no_location">No location are saved for this Record!\nYou can add one in the Records menu!</string>
+    <string name="change_body_photo">Change Body \nLocation Photo</string>
 </resources>
 

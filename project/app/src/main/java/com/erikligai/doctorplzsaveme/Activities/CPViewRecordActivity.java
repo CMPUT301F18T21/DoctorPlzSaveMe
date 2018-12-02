@@ -57,7 +57,7 @@ public class CPViewRecordActivity extends AppCompatActivity {
     }
 
     public void openCPViewBodyLocationActivity(){
-        Intent intent = new Intent(this,CPViewBodyLocationActivity.class);
+        Intent intent = new Intent(this,AddRecordTwoActivity.class);
         intent.putExtra("ProblemPos", ProblemPosition);
         intent.putExtra("RecordPos", RecordPosition);
         intent.putExtra("patientId",patientID);
