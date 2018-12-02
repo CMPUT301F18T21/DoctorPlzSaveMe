@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
 
 public class EditRecordTwoActivity extends AppCompatActivity implements View.OnClickListener{
@@ -20,8 +19,8 @@ public class EditRecordTwoActivity extends AppCompatActivity implements View.OnC
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("P_Pos",-1);
         record_index = intent.getIntExtra("R_Pos",-1);
-        backBtn2 = findViewById(R.id.backButton2);
-        nextBtn2 = findViewById(R.id.nextButton2);
+        backBtn2 = findViewById(R.id.backButton3);
+        nextBtn2 = findViewById(R.id.nextButton3);
         backBtn2.setOnClickListener(this);
         nextBtn2.setOnClickListener(this);
         //date = intent.getLongExtra("date",-1);
@@ -35,11 +34,11 @@ public class EditRecordTwoActivity extends AppCompatActivity implements View.OnC
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.backButton2:
+            case R.id.backButton3:
                 openEditRecordActivity();
                 break;
 
-            case R.id.nextButton2:
+            case R.id.nextButton3:
                 openEditRecordThreeActivity();
                 break;
         }

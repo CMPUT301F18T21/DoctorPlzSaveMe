@@ -16,10 +16,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class EditRecordThreeActivity extends FragmentActivity implements OnMapReadyCallback,View.OnClickListener  {
+public class AddRecordFourActivity extends FragmentActivity implements OnMapReadyCallback,View.OnClickListener {
+
     private GoogleMap mMap;
     private Button backBtn3,saveBtn;
-    private int problem_index,record_index;
+    private int problem_index;
     private LatLng geolocation;
 
     @Override
@@ -32,8 +33,7 @@ public class EditRecordThreeActivity extends FragmentActivity implements OnMapRe
         mapFragment.getMapAsync(this);
 
         Intent intent = getIntent();
-        problem_index = intent.getIntExtra("P_Pos",-1);
-        record_index = intent.getIntExtra("R_Pos",-1);
+        problem_index = intent.getIntExtra("Pos",-1);
         backBtn3 = findViewById(R.id.backButton3);
         saveBtn = findViewById(R.id.saveButton);
         backBtn3.setOnClickListener(this);
@@ -44,11 +44,11 @@ public class EditRecordThreeActivity extends FragmentActivity implements OnMapRe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backButton3:
-                openEditRecordTwoActivity();
+                openAddRecordThreeActivity();
                 break;
 
             case R.id.saveButton:
-                RecordBuffer.getInstance().editRecord(problem_index, record_index);
+                RecordBuffer.getInstance().addRecord(problem_index);
                 finish();
                 break;
         }
@@ -89,7 +89,7 @@ public class EditRecordThreeActivity extends FragmentActivity implements OnMapRe
             public void onInfoWindowClick(Marker marker) {
                 int num = (int) marker.getTag();                                // get data from marker(probably recordID)
 
-                Intent I = new Intent(EditRecordThreeActivity.this, MainRecordActivity.class);
+                Intent I = new Intent(AddRecordFourActivity.this, MainRecordActivity.class);
                 startActivity(I);
             }
         });
@@ -130,16 +130,15 @@ public class EditRecordThreeActivity extends FragmentActivity implements OnMapRe
 //        return false;
 //    }
 
-    private void openEditRecordTwoActivity(){
-        Intent intent = new Intent(this, EditRecordTwoActivity.class);
-        intent.putExtra("R_Pos", record_index);
-        intent.putExtra("P_Pos", problem_index);
+    private void openAddRecordThreeActivity(){
+        Intent intent = new Intent(this, AddRecordThreeActivity.class);
+        intent.putExtra("Pos", problem_index);
         finish();
         startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {
-        openEditRecordTwoActivity();
+        openAddRecordThreeActivity();
     }
 }

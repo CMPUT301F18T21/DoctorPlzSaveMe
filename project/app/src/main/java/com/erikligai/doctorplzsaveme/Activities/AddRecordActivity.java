@@ -2,22 +2,13 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.erikligai.doctorplzsaveme.Models.BodyLocation;
-import com.erikligai.doctorplzsaveme.Models.Geolocation;
-import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
-
-import java.util.Date;
 
 public class AddRecordActivity extends AppCompatActivity implements View.OnClickListener{
 
