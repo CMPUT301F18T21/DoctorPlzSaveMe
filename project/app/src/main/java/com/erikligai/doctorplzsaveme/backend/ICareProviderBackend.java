@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * This interface outlines the main CP backend features
+ * Javadoc is done in Backend
  */
 public interface ICareProviderBackend {
 

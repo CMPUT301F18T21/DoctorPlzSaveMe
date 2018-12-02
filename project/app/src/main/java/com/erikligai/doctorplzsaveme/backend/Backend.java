@@ -20,7 +20,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-
 /**
  * This class is a Singleton class which holds, writes, fetches data
  * for the rest of the app. This includes the patient profile(s), data for CP, etc.
@@ -32,12 +31,16 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     // instance of the singleton
     private static Backend instance = new Backend();
 
-    // fetch the singleton instance
+    /** fetch the singleton instance
+     * @return instance: Backend
+     */
     public static Backend getInstance() {
         return instance;
     }
 
-    // empty constructor for the Backend
+    /**
+     * // empty constructor for the Backend
+     */
     private Backend() {}
 
     // IPatientBackend CODE -----------------
@@ -52,8 +55,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     // current patient profile
     private Patient patientProfile = null;
 
-    // THIS MUST BE CALLED ON APP STARTUP!
-    // sets context for reading to/from file
+    /**
+     * THIS MUST BE CALLED ON APP STARTUP!
+     * sets context for reading to/from file
+     * @param context : Context
+     */
     public void setContext(Context context)
     {
         if (context != null)
@@ -66,9 +72,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // THIS MUST BE CALLED WHENEVER A CHANGE TO PROFILE AND ITS MEMBERS IS MADE
-    // syncs the current patient with DB (if it can) by fetching DB comments (if CP has made
-    // a change to comments, overriding the local comments, and pushing the local profile to DB)
+    /**
+     * THIS MUST BE CALLED WHENEVER A CHANGE TO PROFILE AND ITS MEMBERS IS MADE
+     * syncs the current patient with DB (if it can) by fetching DB comments (if CP has made
+     * a change to comments, overriding the local comments, and pushing the local profile to DB)
+     */
     public void UpdatePatient() {
         new Thread(new Runnable() {
             @Override
@@ -84,8 +92,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }).start();
     }
 
-    // given a patientProfile class, set the patientProfile (done if user creates new profile)
-    // then updates to DB (if it can)
+    /**
+     * given a patientProfile class, set the patientProfile (done if user creates new profile)
+     * then updates to DB (if it can)
+     * @param patientProfile : Patient
+     */
     public void setPatientProfile(Patient patientProfile) {
         if (patientProfile == null)
         {
@@ -97,12 +108,18 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // return the current patient profile
+    /**
+     * return the current patient profile
+     * @return this.patientProfile : Patient
+     */
     public Patient getPatientProfile() {
         return patientProfile;
     }
 
-    // get the current patient profile's problems
+    /**
+     * get the current patient profile's problems
+     * @return ArrayList<Problem> of patient's problems
+     */
     public ArrayList<Problem> getPatientProblems() {
         try
         {
@@ -115,7 +132,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // get the current patient profiles' records given a problem index
+    /**
+     * get the current patient profiles' records given a problem index
+     * @param problemIndex : int
+     * @return ArrayList<Record> of patient's records of a particular problem
+     */
     public ArrayList<Record> getPatientRecords(int problemIndex) {
         try
         {
@@ -128,14 +149,22 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return null;
     }
 
-    // add a body location photo to the patient
+    /**
+     * add a body location photo to the patient
+     * @param id : String
+     * @param photo : String
+     * @param photoLabel : String
+     */
     public void addPatientPhoto(String id, String photo, String photoLabel) {
         assert(patientProfile != null);
         patientProfile.addPhoto(id,photo, photoLabel);
         UpdatePatient();
     }
 
-    // add a problem to the current patient
+    /**
+     * add a problem to the current patient
+     * @param problem : Problem
+     */
     public void addPatientProblem(Problem problem) {
         try
         {
@@ -148,7 +177,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // delete a patient's problem given an index (from a recyclerview most likely)
+    /**
+     * delete a patient's problem given an index (from a recyclerview most likely)
+     * @param problemIndex : int
+     */
     public void deletePatientProblem(int problemIndex) {
         try {
             patientProfile.deleteProblem(problemIndex);
@@ -159,7 +191,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // add a patient record given the problem index and Record object
+    /**
+     * add a patient record given the problem index and Record object
+     * @param problemIndex : int
+     * @param record : Record
+     */
     public void addPatientRecord(int problemIndex, Record record) {
         try
         {
@@ -172,7 +208,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // delete a patient record given a problem index and record index (obtained from recyclerviews)
+    /**
+     * delete a patient record given a problem index and record index (obtained from recyclerviews)
+     * @param problemIndex : int
+     * @param recordIndex : int
+     */
     public void deletePatientRecord(int problemIndex, int recordIndex) {
         try {
             patientProfile.getProblemList().get(problemIndex).getRecords().remove(recordIndex);
@@ -184,7 +224,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // save the current patient profile to file (to locally cache)
+    /**
+     * save the current patient profile to file (to locally cache)
+     */
     private void serializePatientProfile()
     {
         try {
@@ -204,7 +246,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // fetch the local patient profile (if it exists)
+    /**
+     * fetch the local patient profile (if it exists)
+     * @return boolean (whether or not it succeeded)
+     */
     private boolean deserializePatientProfile()
     {
         try {
@@ -223,7 +268,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // sync the patient with the DB
+    /**
+     * sync the patient with the DB
+     * @throws InterruptedException if failed to sync
+     */
     private void syncPatientES() throws InterruptedException
     {
         try {
@@ -250,7 +298,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     }
 
-    // fetch patient profile from local storage and sync with DB
+    /**
+     * fetch patient profile from local storage and sync with DB
+     * @return Patient (from DB)
+     */
     public Patient fetchPatientProfile()
     {
         // if local storage doesn't have a profile, return null
@@ -271,7 +322,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return patientProfile;
     }
 
-    // will set the patient profile from DB and save it (when no local exists)
+    /**
+     * will set the patient profile from DB and save it (when no local exists)
+     * @param UserID : String (id to fetch with)
+     */
     public void setPatientFromES(String UserID)
     {
         patientProfile = null;
@@ -285,7 +339,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // clear the local storage of the patient (when they log out)
+    /**
+     * clear the local storage of the patient (when they log out)
+     */
     public void clearPatientData()
     {
         try
@@ -298,8 +354,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // sees if it can connect to the DB by seeing if the patient profile's id query works
-    // SHOULD NOT BE CALLED BY CP code!
+    /**
+     * sees if it can connect to the DB by seeing if the patient profile's id query works
+     * SHOULD NOT BE CALLED BY CP code!
+     * @return boolean (if we have connection with DB)
+     */
     public boolean isConnected(){
         try {
             if (userIDExists(patientProfile.getID()) == 0)
@@ -315,8 +374,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // check if a patient with the given UserID exists
-    // returns 0 if found, 1 if connected to DB but no match, -1 if can't connect to DB or exception
+    /**
+     * check if a patient with the given UserID exists
+     * @param UserID : String
+     * @return int (0 = Id exists, 1 Id does not exist, -1 fail to connect to DB)
+     */
     public static int userIDExists(String UserID)
     {
         ElasticsearchProblemController.CheckIfPatientIDExistsTask checkTask =
@@ -339,22 +401,37 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     // the id (login username) of the logged in CP
     private String CP_ID = null;
 
-    // return the CP username
+    /**
+     * return the CP username
+     * @return String
+     */
     public String getCP_ID() {
         return CP_ID;
     }
 
-    // set the CP username
+    /**
+     * set the CP username
+     * @param CP_ID : String
+     */
     public void setCP_ID(String CP_ID) {
         this.CP_ID = CP_ID;
     }
 
-    // patient list adapts to this (returns assigned patients)
+    /**
+     * patient list adapts to this (returns assigned patients)
+     * @return ArrayList<Patient> : CP's assigned patients
+     */
     public ArrayList<Patient> getCPPatients() {
         return m_patients;
     }
 
-
+    /**
+     * add comment to assigned cp
+     * @param PatientID : String
+     * @param problemIndex : int
+     * @param comment : String
+     * @return boolean (if successful in adding comment)
+     */
     public boolean addComment(String PatientID, int problemIndex, String comment)
     {
         for (Patient patient : m_patients )
@@ -367,7 +444,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return false;
     }
 
-    // add patient to CP, PatientID would be aquired from QR code or search by username
+    /**
+     * add patient to CP, PatientID would be aquired from QR code or search by username
+     * @param PatientID : String
+     */
     public void AddPatient(String PatientID)
     {
         for (Patient p : m_patients) {
@@ -386,7 +466,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         } catch (Exception e) {}
     }
 
-    // syncs that patient with DB (to update comments), returns false if couldn't, true otherwise
+    /**
+     * syncs that patient with DB (to update comments), returns false if couldn't, true otherwise
+     * @param patient : Patient
+     * @return boolean (if successful in updating patient)
+     */
     private boolean UpdatePatient(Patient patient)
     {
         ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
@@ -395,7 +479,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         } catch (Exception e) { return false; }
     }
 
-    // populate the assigned patients from db
+    /**
+     * populate the assigned patients from db
+     */
     public void PopulatePatients()
     {
         ArrayList<String> PatientIDs = null;
@@ -413,19 +499,28 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         catch (Exception e) {}
     }
 
-    // return cp's assigned patients
+    /**
+     * return cp's assigned patients
+     * @return ArrayList<Patient> : Patients assigned to the cp
+     */
     public ArrayList<Patient> GetPatients()
     {
         return m_patients;
     }
 
-    // clears the patients (when CP logs out)
+    /**
+     * clears the patients (when CP logs out)
+     */
     public void ClearPatients()
     {
         m_patients = new ArrayList<>();
     }
 
-    // returns the problems of the patient with the ID patientID
+    /**
+     * returns the problems of the patient with the ID patientID
+     * @param PatientID : String
+     * @return ArrayList<Problem> : problems of patient with PatientID
+     */
     public ArrayList<Problem> GetCPPatientProblems(String PatientID)
     {
         for (Patient patient : m_patients )
@@ -435,7 +530,12 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return null;
     }
 
-    // returns the records of the patient with the ID patientID and a given problemIndex
+    /**
+     * returns the records of the patient with the ID patientID and a given problemIndex
+     * @param PatientID : String
+     * @param ProblemIndex : int
+     * @return ArrayList<Record> : records of patient with PatientID and a given problemIndex
+     */
     public ArrayList<Record> GetCPPatientRecords(String PatientID, int ProblemIndex)
     {
         for (Patient patient : m_patients )
@@ -446,7 +546,13 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     }
 
-    // returns the record of the patient with the ID patientID and a given problemIndex and recordIndex
+    /**
+     * returns the record of the patient with the ID patientID and a given problemIndex and recordIndex
+     * @param PatientID : String
+     * @param ProblemIndex : int
+     * @param RecordIndex : int
+     * @return Record
+     */
     public Record GetCPPatientRecord(String PatientID, int ProblemIndex, int RecordIndex)
     {
         for (Patient patient : m_patients )
@@ -456,7 +562,12 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return null;
     }
 
-    // returns the problem of the patient with the ID patientID and a given problemIndex
+    /**
+     * returns the problem of the patient with the ID patientID and a given problemIndex
+     * @param PatientID : String
+     * @param ProblemIndex : int
+     * @return Problem
+     */
     public Problem GetCPPatientProblem(String PatientID, int ProblemIndex)
     {
         for (Patient patient : m_patients )
@@ -466,7 +577,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return null;
     }
 
-    // returns the patient class of a patient with a given patientID
+    /**
+     * returns the patient class of a patient with a given patientID
+     * @param PatientID : String
+     * @return Patient
+     */
     public Patient GetCPPatient(String PatientID)
     {
         for (Patient patient : m_patients )
@@ -476,8 +591,11 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return null;
     }
 
-    // check if a cpIDExists by checking it against the DB
-    // returns 0 if found, 1 if connected to DB but not found, -1 if exception or not connected to DB
+    /**
+     * check if a cpIDExists by checking it against the DB
+     * @param UserID
+     * @return int : 0 if found, 1 if connected to DB but not found, -1 if exception or not connected to DB
+     */
     public static int cpIDExists(String UserID)
     {
         ElasticsearchProblemController.CheckIfCPExistsTask checkTask =
@@ -492,20 +610,26 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     // SAVE CP STUFF -----------
 
-    // (calls) save CP profile id to serialize
+    /**
+     * (calls) save CP profile id to serialize
+     */
     public void SaveCPProfile()
     {
         if (CP_ID == null) { return; }
         serializeCPProfile();
     }
 
-    // clear local CP id
+    /**
+     * clear local CP id
+     */
     public void clearCPData()
     {
         mContext.getApplicationContext().deleteFile(CP_FILENAME);
     }
 
-    // save cp id to file
+    /**
+     * save cp id to file
+     */
     private void serializeCPProfile()
     {
         try {
@@ -524,7 +648,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    // read the CP id from file (if exists)
+    /**
+     * read the CP id from file (if exists)
+     * @return boolean (if successful in reading file)
+     */
     public boolean deserializeCPProfile()
     {
         try {

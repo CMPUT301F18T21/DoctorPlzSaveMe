@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * This interface outlines the main patient backend features
+ * Javadoc is done in Backend
  */
 public interface IPatientBackend {
 
