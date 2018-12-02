@@ -108,7 +108,9 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
 
             }
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(),10));
+        if (Van != null) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(), 10));
+        }
         //for record in recordList
         // LatLng location = record.getGeolocation();
         // mMap.addMarker(new MarkerOptions().position(location).title(record.getProblem));
