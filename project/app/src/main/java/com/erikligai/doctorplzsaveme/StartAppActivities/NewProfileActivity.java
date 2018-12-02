@@ -27,6 +27,9 @@ public class NewProfileActivity extends AppCompatActivity {
     private TextView userIDText;
 
     @Override
+    /**
+     * Set the listeners for buttons and textviews and set the view
+     */
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -39,6 +42,9 @@ public class NewProfileActivity extends AppCompatActivity {
 
         createProfile.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * set createProfile button listener
+             */
             public void onClick(View v) {
                 // check if a field is blank
                 if (userIDText.getText().toString().equals("") ||

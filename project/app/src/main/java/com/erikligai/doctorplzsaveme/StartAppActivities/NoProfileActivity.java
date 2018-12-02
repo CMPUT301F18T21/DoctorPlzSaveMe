@@ -28,6 +28,9 @@ public class NoProfileActivity extends AppCompatActivity {
     Backend backend = Backend.getInstance();
 
     @Override
+    /**
+     * set buttons, views, and listeners
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_profile);
@@ -40,6 +43,9 @@ public class NoProfileActivity extends AppCompatActivity {
         // button listener for scanButton
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * set button listener for scanButton
+             */
             public void onClick(View v) {
                 // scan in qr code
                 IntentIntegrator integrator = new IntentIntegrator(NoProfileActivity.this);
@@ -55,6 +61,9 @@ public class NoProfileActivity extends AppCompatActivity {
         // button listener for logInButton
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * set logInButton listener
+             */
             public void onClick(View v) {
                 // see if we can get it from DB
                 Backend.getInstance().setPatientFromES(usernameText.getText().toString());
@@ -82,6 +91,9 @@ public class NoProfileActivity extends AppCompatActivity {
         // button listener for newProfileButton
         newProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * set newProfileButton listener
+             */
             public void onClick(View v) {
                 // go to new profile activity (no checking required)
                 finish();
@@ -91,6 +103,9 @@ public class NoProfileActivity extends AppCompatActivity {
     }
 
     @Override
+    /**
+     * QR code handler (activity result)
+     */
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         // handle QR code, similar functionality to above...

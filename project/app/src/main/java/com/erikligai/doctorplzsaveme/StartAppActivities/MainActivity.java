@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private Button patientButton, careProviderButton;
 
     @Override
+    /**
+     * Set the listeners for butons and set the view
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         // button listener for patientButton
         patientButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * Set the listener for patientButton
+             */
             public void onClick(View v) {
 
                 // if we don't detect a local profile, go to NoProfileActivity
@@ -52,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
         // button listener for careProviderButton
         careProviderButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * Set the listener for careProviderButton
+             */
             public void onClick(View v) {
                 boolean fetched_from_local = Backend.getInstance().deserializeCPProfile();
                 // if we didn't fetch a cp id from file, go to login page

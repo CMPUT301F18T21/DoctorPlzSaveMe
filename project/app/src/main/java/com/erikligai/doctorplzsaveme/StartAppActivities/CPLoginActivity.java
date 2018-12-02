@@ -26,6 +26,9 @@ public class CPLoginActivity extends AppCompatActivity {
     private TextView usernameText;
 
     @Override
+    /**
+     * Set the listeners for butons and set the view
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cplogin);
