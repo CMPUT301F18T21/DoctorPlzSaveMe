@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
@@ -44,6 +46,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         backBtn3.setOnClickListener(this);
         nextBtn3.setOnClickListener(this);
         addBtn.setOnClickListener(this);
+        zoomImg.setOnClickListener(this);
 
         photos = RecordBuffer.getInstance().getRecord().getPhotos();
         if (photos.size() != 0) {
@@ -74,6 +77,10 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
 
             case R.id.imageView12:
                 dispatchTakePictureIntent();
+                break;
+
+            case R.id.imageView13:
+                zoomImg.setVisibility(View.GONE);
                 break;
         }
     }
@@ -152,8 +159,8 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         for (int i = 0; i < photos.size(); i++) {
             ImageView imageView = setImageView(i);
             Bitmap bitmap = StringToBitMap(photos.get(i));
-            imageView.setImageBitmap(bitmap);
-            imageView.setRotation(90);
+            Bitmap r_bitmap = RotateBitmap(bitmap, 90);
+            imageView.setImageBitmap(r_bitmap);
         }
 
     }
@@ -164,7 +171,6 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         switch (index) {
             case 0:
                 imageView = findViewById(R.id.imageView1);
-                imageView.setOnClickListener(this);
                 break;
             case 1:
                 imageView = findViewById(R.id.imageView2);
@@ -200,6 +206,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 imageView = null;
                 break;
         }
+        imageView.setOnClickListener(this);
         return imageView;
     }
 
@@ -207,9 +214,17 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         if(photos.get(index)!=null){
             Log.d("click", "click");
             Bitmap bitmap = StringToBitMap(photos.get(index));
-            zoomImg.setImageBitmap(bitmap);
+            Bitmap r_bitmap = RotateBitmap(bitmap, 90);
+            zoomImg.setImageBitmap(r_bitmap);
             zoomImg.setVisibility(View.VISIBLE);
         }
+    }
+
+    public static Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }
 
