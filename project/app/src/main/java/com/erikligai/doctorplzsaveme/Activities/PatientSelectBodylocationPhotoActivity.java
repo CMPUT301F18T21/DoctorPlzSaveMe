@@ -17,14 +17,11 @@ import java.util.ArrayList;
 
 public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
 
-    private RecyclerViewPhotoAdapter adapter;
     private Button doneBtn;
     private int ProblemPosition;
     private int RecordPosition;
     private String patientID;
     private int chosen = -1;
-    private ArrayList<Integer> imgs;
-
     private ImageView front;
     private ImageView back;
 
@@ -40,10 +37,6 @@ public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
         doneBtn = findViewById(R.id.doneButton2);
         front = findViewById(R.id.frontDefault);
         back = findViewById(R.id.backDefault);
-
-        imgs.add(R.drawable.front);
-        imgs.add(R.drawable.back);
-        imgs.add(R.drawable.stoned);
 
         front.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -82,10 +75,5 @@ public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
-    private void initRecyclerView(String patientID) {
-//        Log.d(TAG, "initRecyclerView: init");
 
-        // display recyclerview
-        adapter = new RecyclerViewPhotoAdapter(this);
-    }
 }
