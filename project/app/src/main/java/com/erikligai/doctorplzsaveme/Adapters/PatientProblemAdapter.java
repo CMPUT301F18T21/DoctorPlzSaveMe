@@ -23,9 +23,6 @@ import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
 
-/**
- * adapter for viewing patient problems (via recyclerview)
- */
 public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAdapter.PatientProblemViewHolder> implements Filterable {
     private Context mContext;
 
@@ -33,9 +30,6 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
     private ArrayList<Problem> mProblemsCopy;
     private String patientID;
 
-    /**
-     * View holder class for adapter
-     */
     public static class PatientProblemViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView description;
@@ -43,10 +37,6 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
 
         ConstraintLayout parentLayout;
 
-        /**
-         * constructor for view holder, sets views
-         * @param itemView : View
-         */
         public PatientProblemViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.problem_title);
@@ -56,12 +46,6 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
         }
     }
 
-    /**
-     * adapter constructor, sets problems, context, patientid, copy of problems
-     * @param problems : ArrayList<Problem>
-     * @param mContext : Context
-     * @param patientID : String
-     */
     public PatientProblemAdapter(ArrayList<Problem> problems, Context mContext, String patientID) {
         this.mProblems = problems;
         this.mContext = mContext;
@@ -72,18 +56,12 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
 
     @NonNull
     @Override
-    /**
-     * returns view holder when view holder is created
-     */
     public PatientProblemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.patient_problem_item, viewGroup, false);
         return new PatientProblemViewHolder(view);
     }
 
     @Override
-    /**
-     * sets layout of recyclerview on bind
-     */
     public void onBindViewHolder(@NonNull PatientProblemViewHolder patientProblemViewHolder, final int i) {
         patientProblemViewHolder.title.setText(mProblems.get(i).getTitle()); // obtains id at index
         patientProblemViewHolder.description.setText(mProblems.get(i).getDescription()); // obtains email at index
@@ -107,17 +85,11 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
     }
 
     @Override
-    /**
-     * return number of problems in recycler view
-     */
     public int getItemCount() {
         return mProblems.size();
     }
 
     @Override
-    /**
-     * return the patientProblemFilter
-     */
     public Filter getFilter() {
         return patientProblemFilter;
     }
@@ -125,9 +97,6 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
     private Filter patientProblemFilter = new Filter() {
 
         @Override
-        /**
-         * filter results
-         */
         protected FilterResults performFiltering(CharSequence constraint) {
             ArrayList<Problem> filteredProblems = new ArrayList<>();
 
@@ -155,9 +124,6 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
         }
 
         @Override
-        /**
-         * add the filtered results and notify it has changed
-         */
         protected void publishResults(CharSequence constraint, FilterResults results) {
             mProblems.clear();
             mProblems.addAll((ArrayList) results.values);
