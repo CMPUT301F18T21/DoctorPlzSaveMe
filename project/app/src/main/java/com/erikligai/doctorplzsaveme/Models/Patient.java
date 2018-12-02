@@ -12,7 +12,7 @@ public class Patient implements Profile {
     private String email;
     private String phone;
     private ArrayList<String> photoIds;
-    private ArrayList<Bitmap> photos;
+    private ArrayList<String> photos;
     private ArrayList<Problem> mProblemList;
      /**
      * Creates a Patient (extends Profile)
@@ -25,13 +25,11 @@ public class Patient implements Profile {
         this.email = email;
         this.phone = phone;
         this.photoIds = new ArrayList<String>();
-        this.photos = new ArrayList<Bitmap>();
+        this.photos = new ArrayList<String>();
         this.mProblemList = new ArrayList<Problem>();
-        this.photoIds = new ArrayList<String>();
-        this.photos = new ArrayList<Bitmap>();
     }
 
-    public void addPhoto(String id, Bitmap photo){
+    public void addPhoto(String id, String photo){
         this.photoIds.add(id);
         this.photos.add(photo);
     }
@@ -40,7 +38,7 @@ public class Patient implements Profile {
         return this.photoIds;
     }
 
-    public ArrayList<Bitmap> getPhotos(){
+    public ArrayList<String> getPhotos(){
         return this.photos;
     }
 

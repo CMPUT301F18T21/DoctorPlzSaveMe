@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_body_location);
-        /**
+
         RecyclerView photoRecycler = findViewById(R.id.PhotoRecyclerView);
         photoRecycler.setHasFixedSize(true);
         RecyclerViewPhotoAdapter adapter = new RecyclerViewPhotoAdapter(this);
@@ -40,7 +41,7 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
         photoRecycler.setLayoutManager(new LinearLayoutManager(this));
         Button uploadNewPhoto = findViewById(R.id.addPhotoButton);
         uploadNewPhoto.setOnClickListener(this);
-         */
+
     }
 
     @Override
@@ -61,7 +62,7 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
         // finish current display before calling camera.
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(takePictureIntent, ACTION_IMAGE_CAPTURE);
-        Log.i("message", "String")
+        Log.i("message", "String");
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -75,11 +76,12 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
             photoId = System.currentTimeMillis() +"_.jpg";                                          // current time in milliseconds.
             Log.i("photo", photoStr);
             Log.i("photoId", photoId);
-            //Backend.getInstance().addPatientPhoto(photoId, photo);                                // store photo in backend.
-            Toast.makeText(getApplicationContext(), "Photo added!", Toast.LENGTH_SHORT).show();
+            Backend.getInstance().addPatientPhoto(photoId, photoStr);                                // store photo in backend.
+            Toast.makeText(getApplicationContext(), "Photo added!" + photoId, Toast.LENGTH_SHORT).show();
         }
         //Backend.getInstance().UpdatePatient();
         //intent.putExtra("photoList", photoList);
+        finish();
         startActivity(intent);
     }
 
