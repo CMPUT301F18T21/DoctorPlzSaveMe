@@ -1,12 +1,14 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
+import com.google.common.util.concurrent.Service;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -40,7 +42,14 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     // THIS MUST BE CALLED ON APP STARTUP!
     public void setContext(Context context)
     {
-        this.mContext = context;
+        if (context != null)
+        {
+            this.mContext = context;
+        } else
+        {
+            Log.e("setContext: ","context is null!");
+            System.exit(1); // shouldn't happen!
+        }
     }
 
     // THIS MUST BE CALLED WHENEVER A CHANGE TO PROFILE AND ITS MEMBERS IS MADE
@@ -50,57 +59,104 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
             @Override
             public void run() {
                 serializePatientProfile();
-                syncPatientES();
+                try {
+                    syncPatientES();
+                } catch (Exception e)
+                {
+                    Log.d("UpdatePatient: ", "Could not sync patient!");
+                }
             }
         }).start();
     }
 
     public void setPatientProfile(Patient patientProfile) {
-        this.patientProfile = patientProfile;
-        UpdatePatient();
+        if (patientProfile == null)
+        {
+            Log.e("setPatientProfile: ", "patientProfile is null or empty!");
+        } else
+        {
+            this.patientProfile = patientProfile;
+            UpdatePatient();
+        }
     }
 
-    // ex. usage
-    // if (Backend.getInstance().getPatientProfile() == null) {...}
     public Patient getPatientProfile() {
-        assert(patientProfile != null);
         return patientProfile;
     }
 
     public ArrayList<Problem> getPatientProblems() {
-        assert(patientProfile != null);
-        return patientProfile.getProblemList();
+        try
+        {
+            return patientProfile.getProblemList();
+        } catch (Exception e)
+        {
+            Log.e("getPatientProblem: ", "could not get problems list!");
+            e.printStackTrace();
+            return null;
+        }
     }
  
     public ArrayList<Record> getPatientRecords(int problemIndex) {
+        try
+        {
+            return patientProfile.getProblemList().get(problemIndex).getRecords();
+        } catch (Exception e)
+        {
+            Log.e("getPatientRecord: ", "could not get record!");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void addPatientPhoto(String id, String photo, String photoLabel) {
         assert(patientProfile != null);
-        return patientProfile.getProblemList().get(problemIndex).getRecords();
+        patientProfile.addPhoto(id,photo, photoLabel);
+        UpdatePatient();
     }
 
     public void addPatientProblem(Problem problem) {
-        assert(patientProfile != null);
-        patientProfile.addProblem(problem);
-        UpdatePatient();
+        try
+        {
+            patientProfile.addProblem(problem);
+            UpdatePatient();
+        } catch (Exception e)
+        {
+            Log.e("addPatientProblem: ", "could not add problem!");
+            e.printStackTrace();
+        }
     }
 
     public void deletePatientProblem(int problemIndex) {
-        assert(patientProfile != null);
-        patientProfile.deleteProblem(problemIndex);
-        UpdatePatient();
+        try {
+            patientProfile.deleteProblem(problemIndex);
+            UpdatePatient();
+        } catch (Exception e) {
+            Log.e("deletePatientProblem: ", "could not delete problem!");
+            e.printStackTrace();
+        }
     }
 
     public void addPatientRecord(int problemIndex, Record record) {
-        assert(patientProfile != null);
-//        Log.e("addPatientRecord", "RECORD ADDED");
-        patientProfile.getProblemList().get(problemIndex).addRecord(record);
-        Log.e("addPatientRecord", "RECORD ADDED");
-        UpdatePatient();
+        try
+        {
+            patientProfile.getProblemList().get(problemIndex).addRecord(record);
+            UpdatePatient();
+        } catch (Exception e)
+        {
+            Log.e("addPatientRecord: ", "could not add record!");
+            e.printStackTrace();
+        }
     }
 
     public void deletePatientRecord(int problemIndex, int recordIndex) {
-        assert(patientProfile != null);
-        patientProfile.getProblemList().get(problemIndex).getRecords().remove(recordIndex);
-        UpdatePatient();
+        try {
+            patientProfile.getProblemList().get(problemIndex).getRecords().remove(recordIndex);
+            UpdatePatient();
+        } catch (Exception e)
+        {
+            Log.e("deletePatientRecord: ", "could not delete record!");
+            e.printStackTrace();
+        }
     }
 
     private void serializePatientProfile()
@@ -140,45 +196,48 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
     }
 
-    private void syncPatientES()
+    private void syncPatientES() throws InterruptedException
     {
-       if (!isConnected()) { return; }
-        assert(patientProfile != null);
-        String UserID = patientProfile.getID();
-        ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
-        Patient es_patient = null;
         try {
+
+            String UserID = patientProfile.getID();
+            ElasticsearchProblemController.GetPatientTask getPatientTask = new ElasticsearchProblemController.GetPatientTask();
+            Patient es_patient = null;
             es_patient = getPatientTask.execute(UserID).get();
-        } catch (Exception e) { }
-        if (es_patient != null)
-        {
-            // overwrite comments of local, in case they have changed
-            try {
+            if (es_patient != null)
+            {
                 for (int i = 0; i < patientProfile.getProblemList().size(); ++i)
                 {
                     patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
                 }
-            } catch (Exception e ) {}
+            } else { throw new Exception(); } // es_patient should not be null if connected to DB
+            ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
+            // throw exception if we couldn't upload to DB
+            if (!setPatientTask.execute(patientProfile).get()) { throw new Exception(); }
+        } catch (Exception e) {
+            throw new InterruptedException("syncPatientES error");
         }
-        ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
-        setPatientTask.execute(patientProfile);
+
     }
 
-    public Patient fetchPatientProfile() {
+    public Patient fetchPatientProfile()
+    {
         // if local storage doesn't have a profile, return null
         if (!deserializePatientProfile()) { return null; }
-        else
-        {
-            // fetch Patient from DB, will overwrite local comments if it can
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
+        // fetch Patient from DB, will overwrite local comments if it can, and override patient profile
+        // if it finds a profile
+        new Thread(new Runnable()  {
+            @Override
+            public void run()  {
+                try {
                     syncPatientES();
+                } catch (Exception e)
+                {
+                    Log.d("fetchPatientProfile: ", "could not sync!");
                 }
-            }).start();
-            assert(patientProfile != null);
-            return patientProfile;
-        }
+            }
+        }).start();
+        return patientProfile;
     }
 
     public void setPatientFromES(String UserID)
@@ -192,27 +251,32 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         {
             // do nothing, couldn't login
         }
+        // returns null if couldn't get from ES
     }
 
     public void clearPatientData()
     {
-        mContext.getApplicationContext().deleteFile(P_FILENAME);
+        try
+        {
+            mContext.getApplicationContext().deleteFile(P_FILENAME);
+        } catch (Exception e)
+        {
+            Log.e("clearPatientData: ", "could not delete patient data!");
+            e.printStackTrace();
+        }
     }
 
     // https://stackoverflow.com/questions/9570237/android-check-internet-connection
     // razzak
-    public static boolean isConnected(){
-        final String command = "ping -c 1 google.com";
-        try {
-            return Runtime.getRuntime().exec(command).waitFor() == 0;
-        } catch (Exception e)
+    public boolean isConnected(){
+        if (userIDExists(patientProfile.getID()) == 0)
         {
-            return false;
+            return true;
         }
-
+        return false;
     }
 
-    public static boolean userIDExists(String UserID)
+    public static int userIDExists(String UserID)
     {
         ElasticsearchProblemController.CheckIfPatientIDExistsTask checkTask =
                 new ElasticsearchProblemController.CheckIfPatientIDExistsTask();
@@ -220,15 +284,13 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
             return (checkTask.execute(UserID).get());
         } catch (Exception e)
         {
-            return false;
+            return -1;
         }
     }
 
     // ICareProviderBackend CODE ------------
 
     // CP ONLY PULLS FROM DB WHEN LOGGING IN, AND ADDING/DELETING PATIENTS!
-
-    // TODO: ASSERTIONS
 
     private ArrayList<Patient> m_patients = new ArrayList<>();
 
@@ -248,17 +310,16 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     }
 
     // adds comment to the patient's problem and updates that patient profile to DB
-    public void addComment(String PatientID, int problemIndex, String comment)
+    public boolean addComment(String PatientID, int problemIndex, String comment)
     {
-        assert(m_patients != null);
         for (Patient patient : m_patients )
         {
             if (patient.getID().equals(PatientID)) {
                 patient.getProblemList().get(problemIndex).addComment(new Comment(comment));
-                UpdatePatient(patient);
-                return;
+                return UpdatePatient(patient);
             }
         }
+        return false;
     }
 
     // add patient to CP, PatientID would be aquired from QR code
@@ -289,10 +350,12 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         // TODO: update DB patientIDs, and remove that patientID's Patient from m_patients
     }
 
-    private void UpdatePatient(Patient patient)
+    private boolean UpdatePatient(Patient patient)
     {
         ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
-        setPatientTask.execute(patient);
+        try {
+            return setPatientTask.execute(patient).get();
+        } catch (Exception e) { return false; }
     }
 
     public void PopulatePatients()
@@ -324,11 +387,8 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     public ArrayList<Problem> GetCPPatientProblems(String PatientID)
     {
-        assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            Log.e("patient ID", patient.getID());
-            Log.e("patient ID", PatientID);
             if (patient.getID().equals(PatientID)) { return patient.getProblemList(); }
         }
         assert(false); // i.e. shouldn't happen!
@@ -340,10 +400,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            Log.e("patient ID", patient.getID());
-            Log.e("patient ID", PatientID);
-
-
             if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex).getRecords(); }
         }
         assert(false); // i.e. shouldn't happen!
@@ -382,6 +438,18 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
         assert(false); // i.e. shouldn't happen!
         return null;
+    }
+
+    public static int cpIDExists(String UserID)
+    {
+        ElasticsearchProblemController.CheckIfCPExistsTask checkTask =
+                new ElasticsearchProblemController.CheckIfCPExistsTask();
+        try {
+            return (checkTask.execute(UserID).get());
+        } catch (Exception e)
+        {
+            return -1;
+        }
     }
 
 
@@ -429,7 +497,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         } catch (IOException e) {
             // we couldn't find it in file, so just make sure its null and return false to
             // notify that we did not find anything on local storage
-            Log.e("failure:","!!!!!!!!!!!!!!!!!!!!!!!");
             CP_ID = null;
             return false;
         }

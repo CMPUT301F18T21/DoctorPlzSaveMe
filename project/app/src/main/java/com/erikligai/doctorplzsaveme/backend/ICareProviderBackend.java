@@ -15,7 +15,7 @@ public interface ICareProviderBackend {
     public void ClearPatients();
 
     // adds comment to the patient's problem and updates that patient profile to DB
-    public void addComment(String PatientID, int problemIndex, String comment);
+    public boolean addComment(String PatientID, int problemIndex, String comment);
 
     // add patient to CP, PatientID would be aquired from QR code
     public void AddPatient(String PatientID);

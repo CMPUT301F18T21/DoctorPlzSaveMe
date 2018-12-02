@@ -4,6 +4,7 @@ package com.erikligai.doctorplzsaveme.StartAppActivities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
+import com.erikligai.doctorplzsaveme.backend.Toaster;
 
 public class NewProfileActivity extends AppCompatActivity {
 
@@ -34,28 +36,26 @@ public class NewProfileActivity extends AppCompatActivity {
         createProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try
+                // TODO: CHECK FOR VALID PATIENT PARAMS
+                int result = Backend.userIDExists(userIDText.getText().toString());
+                if (result == 1) // no patient with that ID
                 {
-                    Backend.isConnected(); // will throw exception if no internet
-                    // TODO: CHECK FOR VALID PATIENT PARAMS
-                    if (!Backend.userIDExists(userIDText.getText().toString()))
-                    {
-                        if (userIDText.getText().toString().length()<8){
-                            Toast.makeText(getApplicationContext(), (String) "UserID should be at least 8 characters", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Patient new_patient = new Patient(userIDText.getText().toString(), emailInputText.getText().toString(), phoneInputText.getText().toString());
-                            Backend.getInstance().setPatientProfile(new_patient);
-                            Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
-                            finish();
-                            startActivity(intent);
-                        }
-                    } else
-                    {
-                        Toast.makeText(getApplicationContext(), (String) "Username exists!", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e) // can't make new profile if no internet connection
+                    Patient new_patient = new Patient(
+                            userIDText.getText().toString(),
+                            emailInputText.getText().toString(),
+                            phoneInputText.getText().toString());
+                    Backend.getInstance().setPatientProfile(new_patient);
+                    Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
+                    finish();
+                    startActivity(intent);
+                } else if (result == 0) // patient with that ID already exists
                 {
-                    Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), (String) "Username exists!", Toast.LENGTH_SHORT).show();
+                } else if (result == -1)
+                {
+                    Toast.makeText(getApplicationContext(), (String) "No connection to DB!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("createProfile.onClick: ", "something went wrong!");
                 }
             }
         });
