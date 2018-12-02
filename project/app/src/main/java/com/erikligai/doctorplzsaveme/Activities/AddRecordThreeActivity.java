@@ -98,10 +98,11 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 break;
 
             case R.id.imageView12:
-                if (photos.size()<12) {
+                Log.d("size", Integer.toString(photos.size()));
+                if (photos.size()<11) {
                     dispatchTakePictureIntent();
                 } else {
-                    Toast.makeText(getApplicationContext(), "You can only add a maximum of 11 photos per Record!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Only a maximum of 11 photos per Record!", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
