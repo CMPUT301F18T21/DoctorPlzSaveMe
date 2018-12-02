@@ -67,6 +67,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 openAddRecordFourActivity();
                 break;
 
+
             case R.id.imageView12:
                 Log.d("click", "click");
                 dispatchTakePictureIntent();
@@ -124,6 +125,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
     }
 
     private void openAddRecordTwoActivity() {
+        RecordBuffer.getInstance().getRecord().setPhotos(photos);
         Intent intent = new Intent(this, AddRecordTwoActivity.class);
         intent.putExtra("Pos", problem_index);
         finish();
@@ -131,6 +133,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
     }
 
     private void openAddRecordFourActivity() {
+        RecordBuffer.getInstance().getRecord().setPhotos(photos);
         Intent intent = new Intent(this, AddRecordFourActivity.class);
         intent.putExtra("Pos", problem_index);
         finish();
@@ -147,11 +150,13 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
             ImageView imageView = setImageView(i);
             Bitmap bitmap = StringToBitMap(photos.get(i));
             imageView.setImageBitmap(bitmap);
+            imageView.setRotation(90);
         }
 
     }
 
     public ImageView setImageView(int index) {
+
         ImageView imageView;
         switch (index) {
             case 0:
@@ -191,6 +196,16 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 imageView = null;
                 break;
         }
+        final ImagePopup imagePopup = new ImagePopup(this);
+
+        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Initiate Popup view **/
+                imagePopup.initiatePopup(imageView.getDrawable());
+            }
+        });
         return imageView;
     }
 }
