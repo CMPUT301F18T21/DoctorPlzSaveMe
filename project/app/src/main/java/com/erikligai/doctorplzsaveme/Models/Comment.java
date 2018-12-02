@@ -3,6 +3,7 @@ package com.erikligai.doctorplzsaveme.Models;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 /**
 *Comment
 *
@@ -13,13 +14,18 @@ public class Comment {
     private String comment;
     private String date;
 
+    /**
+     * Constructor for Comment that takes a comment (String) ands uses the current time to set
+     * the comment's date
+     * @param comment : String
+     */
     public Comment(String comment){
         this.comment = comment;
         this.date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
     }
     /**
     *Re-assigns the comment String to newComment
-    *@param newComment:
+    *@param newComment: String
     *@return Nothing
      */
     public void editComment(String newComment) {
@@ -27,14 +33,14 @@ public class Comment {
     }
     /**
     *Returns the comment String of the Comment
-    *@return comment String
+    *@return comment : String
      */
     public String getComment(){
         return this.comment;
     }
     /**
     *Returns the date of the Comment
-    *@return date Date
+    *@return date : Date
      */
     public String getDate() {
         return this.date;

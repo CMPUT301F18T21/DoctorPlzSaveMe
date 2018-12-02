@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="32dp"
+    android:background="#1586C7"
+    tools:context=".LogInFragments.NewProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/user_id_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9B9C9"
+            android:backgroundTint="#FFFFFF"
+            android:hint="username"/>
+
+        <EditText
+            android:id="@+id/emailInputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9B9C9"
+            android:backgroundTint="#FFFFFF"
+            android:hint="@string/email_hint"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/phoneInputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9B9C9"
+            android:backgroundTint="#FFFFFF"
+
+            android:hint="@string/phone_number_hint"
+            android:inputType="phone"/>
+
+        <Button
+            android:id="@+id/createProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B9B9C9"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="@string/create_profile_button"/>
+    </LinearLayout>
+
+</FrameLayout>
