@@ -52,7 +52,7 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         // imageView.getLocationOnScreen(loc);
         imageView2 = findViewById(R.id.imageView);
         imageView2.setVisibility(View.GONE);
-        textView = findViewById(R.id.title);
+        textView = findViewById(R.id.textView2);
 
         fab = findViewById(R.id.comment_fab2);
 
