@@ -55,4 +55,8 @@ public class RecordBuffer {
         Backend.getInstance().UpdatePatient();
         ClearBuffer();
     }
+    public void setImageID(String imageID){
+        m_record.setPhotoid(imageID);
+
+    }
 }

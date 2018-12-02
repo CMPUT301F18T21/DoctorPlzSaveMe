@@ -11,7 +11,7 @@ public class Record {
     private String title;
     private Date date;
     private String comment;
-
+    private String photoid;
     public Record() {
         this.date = new Date();
         this.title = "";
@@ -146,4 +146,13 @@ public class Record {
     public boolean hasGeolocation(Geolocation geolocation) {
         return this.geolocation != null;
     }
+
+    public void setPhotoid(String photoid) {
+        this.photoid = photoid;
+    }
+
+    public String getPhotoid() {
+        return photoid;
+    }
 }
+
