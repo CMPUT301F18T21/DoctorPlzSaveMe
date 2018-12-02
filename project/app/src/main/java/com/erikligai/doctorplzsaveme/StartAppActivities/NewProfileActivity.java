@@ -40,14 +40,15 @@ public class NewProfileActivity extends AppCompatActivity {
                     // TODO: CHECK FOR VALID PATIENT PARAMS
                     if (!Backend.userIDExists(userIDText.getText().toString()))
                     {
-                        Patient new_patient = new Patient(
-                                userIDText.getText().toString(),
-                                emailInputText.getText().toString(),
-                                phoneInputText.getText().toString());
-                        Backend.getInstance().setPatientProfile(new_patient);
-                        Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
-                        finish();
-                        startActivity(intent);
+                        if (userIDText.getText().toString().length()<8){
+                            Toast.makeText(getApplicationContext(), (String) "UserID should be at least 8 characters", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Patient new_patient = new Patient(userIDText.getText().toString(), emailInputText.getText().toString(), phoneInputText.getText().toString());
+                            Backend.getInstance().setPatientProfile(new_patient);
+                            Intent intent = new Intent(NewProfileActivity.this, PatientActivity.class);
+                            finish();
+                            startActivity(intent);
+                        }
                     } else
                     {
                         Toast.makeText(getApplicationContext(), (String) "Username exists!", Toast.LENGTH_SHORT).show();
