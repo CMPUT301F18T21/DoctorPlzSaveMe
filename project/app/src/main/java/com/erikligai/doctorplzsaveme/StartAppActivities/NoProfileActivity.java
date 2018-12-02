@@ -38,18 +38,14 @@ public class NoProfileActivity extends AppCompatActivity {
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Backend.isConnected()) {
-                    // TODO: Scan in profile
-                    IntentIntegrator integrator = new IntentIntegrator(NoProfileActivity.this);
-                    integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                    integrator.setPrompt("Scan");
-                    integrator.setCameraId(0);
-                    integrator.setBeepEnabled(false);
-                    integrator.setBarcodeImageEnabled(false);
-                    integrator.initiateScan();
-                } else {
-                    Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
-                }
+                // TODO: Scan in profile
+                IntentIntegrator integrator = new IntentIntegrator(NoProfileActivity.this);
+                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                integrator.setPrompt("Scan");
+                integrator.setCameraId(0);
+                integrator.setBeepEnabled(false);
+                integrator.setBarcodeImageEnabled(false);
+                integrator.initiateScan();
             }
         });
 
@@ -57,19 +53,19 @@ public class NoProfileActivity extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Backend.isConnected()) {
-                    Backend.getInstance().setPatientFromES(usernameText.getText().toString());
-                    try { wait(1000); } catch (Exception e) {} // might work
-                    if (Backend.getInstance().getPatientProfile() != null)
-                    {
-                        finish();
-                        startActivity(new Intent(NoProfileActivity.this, PatientActivity.class));
-                    } else
-                    {
-                        Toast.makeText(getApplicationContext(), (String) "Profile does not exist!", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
+                // TODO: FIX
+                Backend.getInstance().setPatientFromES(usernameText.getText().toString());
+                if (Backend.getInstance().getPatientProfile() == null)
+                {
+                    try { wait(1000); } catch (Exception e) {} // wait a bit
+                }
+                if (Backend.getInstance().getPatientProfile() != null)
+                {
+                    finish();
+                    startActivity(new Intent(NoProfileActivity.this, PatientActivity.class));
+                } else
+                {
+                    Toast.makeText(getApplicationContext(), (String) "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -78,15 +74,8 @@ public class NoProfileActivity extends AppCompatActivity {
         newProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
-
-                if (Backend.isConnected()) {
-                    finish();
-                    startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
-                } else {
-                    Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
-                }
+                finish();
+                startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
             }
         });
     }
@@ -99,36 +88,29 @@ public class NoProfileActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
             } else {
-//                Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
-                if (backend.userIDExists(result.getContents())) {
-
-                    Log.e("username", "CHECK");
-                    Log.e("username", result.getContents());
-                    Log.e("username", "CHECK");
-
-//                    backend.AddPatient(result.getContents());
-
-                    if (Backend.isConnected()) {
-                        Backend.getInstance().setPatientFromES(result.getContents()); // sets scanned user id to login
-                        try { wait(1000); } catch (Exception e) {} // might work
-                        if (Backend.getInstance().getPatientProfile() != null)
-                        {
-                            finish();
-                            startActivity(new Intent(NoProfileActivity.this, PatientActivity.class));
-                        } else
-                        {
-                            Toast.makeText(getApplicationContext(), (String) "Profile does not exist!", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
+                int r = backend.userIDExists(result.getContents());
+                if (r == 0) {
+                    Backend.getInstance().setPatientFromES(result.getContents()); // sets scanned user id to login
+                    if (Backend.getInstance().getPatientProfile() == null)
+                    {
+                        try { wait(1000); } catch (Exception e) {} // wait a bit (timeout)
                     }
-                } else {
+                    if (Backend.getInstance().getPatientProfile() != null)
+                    {
+                        finish();
+                        startActivity(new Intent(NoProfileActivity.this, PatientActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), (String) "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (r == 1) {
                     Toast.makeText(NoProfileActivity.this, "username does not exist", Toast.LENGTH_LONG).show();
+                } else if (r == -1)
+                {
+                    Toast.makeText(NoProfileActivity.this, "Could not connect", Toast.LENGTH_LONG).show();
                 }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-
     }
 }

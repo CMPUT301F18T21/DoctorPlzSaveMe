@@ -1,5 +1,6 @@
 package com.erikligai.doctorplzsaveme.backend;
 
+import android.accounts.NetworkErrorException;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -23,37 +24,38 @@ public class ElasticsearchProblemController {
 
     private static String server = "http://cmput301.softwareprocess.es:8080";
 
-    public static class SetPatientTask extends AsyncTask<Patient, Void, Void> {
+    public static class SetPatientTask extends AsyncTask<Patient, Void, Boolean> {
         @Override
-        protected Void doInBackground(Patient... patient) {
-            verifySettings();
+        protected Boolean doInBackground(Patient... patient) {
             Index index = new Index.Builder(patient[0])
                     .index("cmput301f18t21test")
                     .type("Patient")
                     .id(patient[0].getID())
                     .build();
             try {
+                verifySettings();
                 DocumentResult result = client.execute(index);
                 if (result.isSucceeded()) {
-
+                    return true;
                 } else {
                     Log.i("Error", "SetPatientTask: The search query failed to find any problems that matched");
+                    return false;
                 }
             } catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                return false;
             }
-            return null;
         }
     }
 
     public static class GetPatientTask extends AsyncTask<String, Void, Patient> {
         @Override
         protected Patient doInBackground(String... userid) {
-            verifySettings();
             Patient patient = null;
             Get get = new Get.Builder("cmput301f18t21test", userid[0]).type("Patient").build();
 
             try {
+                verifySettings();
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
                     patient = result.getSourceAsObject(Patient.class); // TODO: FIX
@@ -67,33 +69,33 @@ public class ElasticsearchProblemController {
         }
     }
 
-    public static class CheckIfPatientIDExistsTask extends AsyncTask<String, Void, Boolean> {
+    public static class CheckIfPatientIDExistsTask extends AsyncTask<String, Void, Integer> {
         @Override
-        protected Boolean doInBackground(String... userid) {
-            verifySettings();
+        protected Integer doInBackground(String... userid) {
             Patient patient = null;
             Get get = new Get.Builder("cmput301f18t21test", userid[0]).type("Patient").build();
 
             try {
+                verifySettings();
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()) {
-                    return true;
+                    return 0;
                 } else {
                     Log.i("Error", "CheckIfPatientIDExistsTask: The search query failed to find a patient that matched");
+                    return 1;
                 }
             } catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                return -1;
             }
-            return false;
         }
     }
 
     public static class AssignPatientToCPTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
-            verifySettings();
             try {
-
+                verifySettings();
                 PatientsWrapper p = null;
                 Get get = new Get.Builder("cmput301f18t21test", params[0]).type("PatientsWrapper").build();
                 try {
@@ -133,10 +135,10 @@ public class ElasticsearchProblemController {
     public static class GetCPPatientsTask extends AsyncTask<String, Void, PatientsWrapper> {
         @Override
         protected PatientsWrapper doInBackground(String... cp_id) {
-            verifySettings();
             PatientsWrapper p = null;
             Get get = new Get.Builder("cmput301f18t21test", cp_id[0]).type("PatientsWrapper").build();
             try {
+                verifySettings();
                 JestResult result = client.execute(get);
                 if (result.isSucceeded()){
                     p = result.getSourceAsObject(PatientsWrapper.class);
@@ -154,32 +156,31 @@ public class ElasticsearchProblemController {
     }
 
 
-    public static class CheckIfCPExistsTask extends AsyncTask<String, Void, Boolean> {
+    public static class CheckIfCPExistsTask extends AsyncTask<String, Void, Integer> {
         @Override
-        protected Boolean doInBackground(String... cp_id) {
-            verifySettings();
+        protected Integer doInBackground(String... cp_id) {
             Get get = new Get.Builder("cmput301f18t21test", cp_id[0]).type("PatientsWrapper").build();
             try {
+                verifySettings();
                 JestResult result = client.execute(get);
-                if (result.isSucceeded()){
-                    return true;
+                if (result.isSucceeded()) {
+                    return 0;
+                } else {
+                    Log.i("Error", "CheckIfCPIDExistsTask: The search query failed to find a patient that matched");
+                    return 1;
                 }
-                else {
-                    Log.i("Error", "CheckIfCPExistsTask: fail");
-                }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                return -1;
             }
-            return false;
         }
     }
 
     public static class AddCPTask extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... params) {
-            verifySettings();
             try {
+                verifySettings();
                 ArrayList<String> temp = new ArrayList<String>();
                 // temp.add("tiganov"); // DEBUG
                 PatientsWrapper p = new PatientsWrapper(temp);
@@ -189,7 +190,7 @@ public class ElasticsearchProblemController {
                         .id(params[0])
                         .build();
                 DocumentResult result = client.execute(index);
-                if (result.isSucceeded()) {
+                    if (result.isSucceeded()) {
                 } else {
                     Log.i("Error", "AssignPatientToCPTask: fail");
                 }
@@ -201,7 +202,7 @@ public class ElasticsearchProblemController {
     }
 
 
-    public static void verifySettings() {
+    public static void verifySettings() throws NetworkErrorException{
         if (client == null) {
             DroidClientConfig.Builder builder = new DroidClientConfig.Builder(server);
             DroidClientConfig config = builder.build();
@@ -209,6 +210,7 @@ public class ElasticsearchProblemController {
             JestClientFactory factory = new JestClientFactory();
             factory.setDroidClientConfig(config);
             client = (JestDroidClient) factory.getObject();
+            if (client == null) { throw new NetworkErrorException(); }
         }
     }
 

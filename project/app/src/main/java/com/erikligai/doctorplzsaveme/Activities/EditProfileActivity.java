@@ -52,7 +52,7 @@ public class EditProfileActivity extends AppCompatActivity {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             qrCode.setImageBitmap(bitmap);
-        } catch (WriterException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -78,7 +78,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO: CHECK SET EMAIL/PHONE VALUES SO THEY ARE VALID
-                if (Backend.isConnected()) {
+                if (Backend.getInstance().isConnected()) {
                     Backend.getInstance().getPatientProfile().setEmail(EmailText.getText().toString());
                     Backend.getInstance().getPatientProfile().setPhone(PhoneText.getText().toString());
                     Backend.getInstance().UpdatePatient();
