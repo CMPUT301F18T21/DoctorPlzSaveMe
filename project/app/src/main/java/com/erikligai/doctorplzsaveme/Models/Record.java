@@ -2,21 +2,23 @@ package com.erikligai.doctorplzsaveme.Models;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Record {
-    private Photo photo;
-    private BodyLocation bodyLocation;
     private LatLng geolocation;
     private String title;
     private Date date;
     private String comment;
+    private String photoid;
+    private float xpos;
+    private float ypos;
 
     public Record() {
         this.date = new Date();
         this.title = "";
         this.comment = "";
-
     }
 
     /**
@@ -46,14 +48,6 @@ public class Record {
         return this.date;
     }
 
-
-//     public Record(String title, Photo photo, BodyLocation bodyLocation, Geolocation geolocation) {
-//         this.title = title;
-//         this.photo = photo;
-//         this.bodyLocation = bodyLocation;
-//         this.geolocation = geolocation;
-//     }
-
     /**
     *Returns the title of the record
     *@return title String
@@ -69,25 +63,20 @@ public class Record {
     public LatLng getGeolocation() {
         return this.geolocation;
     }
-     /**
-    *Returns the bodylocation of the record
-    *@return bodylocation Bodylocation
-     */
-    public BodyLocation getBodyLocation() {
-        return this.bodyLocation;
+
+    public String getPhotoid() {
+        return photoid;
     }
-     /**
-    *Returns the photo of the record
-    *@return photo Photo
-     */
-    public Photo getPhoto() {
-        return this.photo;
+
+    public float getXpos() {
+        return xpos;
     }
-    /**
-    *Sets the photo of the record
-    *@param photo: Photo
-    *@return Nothing
-     */
+
+    public float getYpos() {
+        return ypos;
+    }
+
+
 
     public void setTitle(String title){
         this.title = title;
@@ -105,31 +94,18 @@ public class Record {
         this.geolocation = geolocation;
     }
 
-    public void addPhoto(Photo photo) {
-        this.photo = photo;
+    public void setPhotoid(String photoid) {
+        this.photoid = photoid;
     }
-    /**
-    *Checks if the record has a photo
-    *@return boolean
-     */
-    public boolean hasPhoto() {
-        return this.photo != null;
+
+    public void setXpos(float xpos) {
+        this.xpos = xpos;
     }
-    /**
-    *Sets the bodylocation of the record
-    *@param bodyLocation: Bodylocation
-    *@return Nothing
-     */
-    public void addBodyLocation(BodyLocation bodyLocation) {
-        this.bodyLocation = bodyLocation;
+
+    public void setYpos(float ypos) {
+        this.ypos = ypos;
     }
-     /**
-    *Checks if the record has a bodylocation
-    *@return boolean
-     */
-    public boolean hasBodyLocation(BodyLocation bodyLocation) {
-        return bodyLocation != null;
-    }
+
     /**
     *Sets the geolocation of the record
     *@param geolocation: Geolocation
@@ -139,11 +115,4 @@ public class Record {
         this.geolocation = geolocation;
     }
 
-     /**
-    *Checks if the record has a geolocation
-    *@return boolean
-     */
-    public boolean hasGeolocation(Geolocation geolocation) {
-        return this.geolocation != null;
-    }
 }

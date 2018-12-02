@@ -1,6 +1,5 @@
 package com.erikligai.doctorplzsaveme.RecordFragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,11 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.erikligai.doctorplzsaveme.Activities.EditRecordThreeActivity;
-import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
-import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,7 +16,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {

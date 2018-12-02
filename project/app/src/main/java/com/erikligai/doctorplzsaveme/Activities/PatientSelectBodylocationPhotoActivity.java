@@ -3,17 +3,12 @@ package com.erikligai.doctorplzsaveme.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewPhotoAdapter;
 import com.erikligai.doctorplzsaveme.R;
-
-import java.util.ArrayList;
 
 public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
 
@@ -71,7 +66,7 @@ public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
     }
 
     public void openCPViewBodyLocationActivity(){
-        Intent intent = new Intent(this,CPViewBodyLocationActivity.class);
+        Intent intent = new Intent(this,AddRecordTwoActivity.class);
         intent.putExtra("ProblemPos", ProblemPosition);
         intent.putExtra("RecordPos", RecordPosition);
         intent.putExtra("patientId",patientID);

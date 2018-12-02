@@ -1,6 +1,5 @@
 package com.erikligai.doctorplzsaveme;
 
-import com.erikligai.doctorplzsaveme.Models.CareProvider;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 
 import junit.framework.TestCase;

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Models.Geolocation;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
@@ -84,7 +83,7 @@ public class CPViewGeolocationActivity extends AppCompatActivity implements OnMa
     }
 
     public void openCPViewBodylocationActivity(){
-        Intent intent = new Intent(this,CPViewBodyLocationActivity.class);
+        Intent intent = new Intent(this,AddRecordTwoActivity.class);
         intent.putExtra("ProblemPos", ProblemPosition);
         intent.putExtra("RecordPos", RecordPosition);
         intent.putExtra("patientId",patientID);
