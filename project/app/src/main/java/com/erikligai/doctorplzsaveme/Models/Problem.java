@@ -2,12 +2,14 @@ package com.erikligai.doctorplzsaveme.Models;
 
 import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemDescException;
 import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemTitleException;
-
 import java.util.ArrayList;
 import java.util.Date;
-
 import io.searchbox.annotations.JestId;
 
+/**
+ * Problem class that stores info about a patient's specific problem
+ * Contains CP comments, Records belonging to the problem, etc
+ */
 public class Problem {
     String title;
     String description;
@@ -35,8 +37,6 @@ public class Problem {
         this.date = date;
     }
 
-
-
     /**
     *Returns the title of the problem
     *@return title String
@@ -62,7 +62,6 @@ public class Problem {
         return this.date;
     }
 
-
     /**
      * Gets the patient's record list
      * @return ArrayList<Record> patient's record list
@@ -78,8 +77,6 @@ public class Problem {
     public ArrayList<Comment> getComments() {
         return this.comments;
     }
-
-
 
     /**
      *Sets the title of the problem to title
@@ -133,30 +130,37 @@ public class Problem {
         this.records.add(record);
     }
 
+    /**
+     * Set the comments of the record (used usually when we override the comments with the pulled
+     * CP comments)
+     * @param new_comments : ArrayList<Comment>
+     */
     public void setComments(ArrayList<Comment> new_comments)
     {
         this.comments = new_comments;
     }
-
-       /**
-    *Returns the id of the problem
-    *@return id String
+    /**
+     * Returns the id of the problem
+     * @return id String
      */
     public String getId() {
         return this.id;
     }
 
-       /**
-    *Sets the id of the problem to id
-    *@param id: String
-    *@return Nothing
+    /**
+     * Sets the id of the problem to id
+     * @param id: String
+     * @return Nothing
      */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Return the number of records belonging to this problem
+     * @return int
+     */
     public int countRecords() {
         return records.size();
     }
-
 }

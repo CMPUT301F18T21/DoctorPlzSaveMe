@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,20 +20,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Activities.EditPhotosActivity;
+import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Activities.UploadBodyLocationActivity;
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.SortedSet;
 
-public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewPhotoAdapter.ViewHolder> {
+public class RecyclerSelectBodyLocationAdapter extends RecyclerView.Adapter<RecyclerSelectBodyLocationAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewPhotoAdapter";
 
     private Patient patient;
@@ -43,7 +38,7 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
     private ArrayList<String> photoLables;
     private Context mContext;
 
-    public RecyclerViewPhotoAdapter(Context mContext) {
+    public RecyclerSelectBodyLocationAdapter(Context mContext) {
         this.patient = Backend.getInstance().getPatientProfile();
         this.photos = patient.getPhotos();
         this.photoIds = patient.getPhotoIds();
@@ -61,6 +56,8 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder called");
+            // do something with key and/or tab
+        //SortedMap<String, Bitmap> photo = photos.entrySet().toArray();
         viewHolder.imgViewIcon.setScaleType((ImageView.ScaleType.CENTER_CROP));
         viewHolder.imgViewIcon.setImageBitmap(getBitmapFromString(photos.get(i)));
         viewHolder.label.setText(photoLables.get(i));
@@ -70,40 +67,21 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
                 Log.d(TAG, "photo menu displayed! ");
                 Toast.makeText(mContext, "photo menu displayed for: "+ photoLables.get(i), Toast.LENGTH_SHORT).show();
                 AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
-                final EditText input = new EditText(v.getContext());
-                alertDialog.setView(input);
+
                 alertDialog.setTitle(photoLables.get(i));
                 alertDialog.setMessage("Would you like to delete the photo you clicked?");
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Add Label",
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Select",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 //photoLables.add(i,input.getText().toString());
-                                Log.d("PhotoLabel",input.getText().toString());
-                                Backend.getInstance().getPatientProfile().addPhotoLabel(i,input.getText().toString());
-                                Backend.getInstance().UpdatePatient();
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "DELETE",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (i <= 1){
-                                    Toast.makeText(mContext, "Default photo cannot be deleted!", Toast.LENGTH_SHORT).show();
-                                    dialog.dismiss();
-                                }
-                                else{
-                                    Toast.makeText(mContext, "photo: "+ photoIds.get(i)+" removed!", Toast.LENGTH_SHORT).show();
-                                    photos.remove(i);
-                                    photoIds.remove(i);
-                                    Intent intent = new Intent(v.getContext(), UploadBodyLocationActivity.class);
-                                    v.getContext().startActivity(intent);
-                                    ((Activity)v.getContext()).finish();
-                                    dialog.dismiss();
-                                }
 
+                                RecordBuffer.getInstance().setImageID(photoIds.get(i));
+                                dialog.dismiss();
+                                ((Activity)v.getContext()).finish();
                             }
                         });
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 

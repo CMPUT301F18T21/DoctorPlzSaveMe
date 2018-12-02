@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1586C7"
+    tools:context=".LogInFragments.CPLoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/cpUsernameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="username"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFFFFF"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="8dp"
+            android:textColorHint="#B9B9C9"/>
+
+        <Button
+            android:id="@+id/cpLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_border"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginBottom="8dp"
+            android:text="LOG IN"/>
+    </LinearLayout>
+
+</FrameLayout>

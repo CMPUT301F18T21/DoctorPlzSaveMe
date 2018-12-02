@@ -13,7 +13,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="view_locations">View Locations</string>
-    <string name="upload_body_location">Upload Body Location Photo</string>
+    <string name="upload_body_location">Body Location Photos</string>
     <string name="view_edit_profile">View/Edit Profile</string>
     <string name="search_for_records">Search for Records</string>
     <string name="no_desc">No description added!</string>
