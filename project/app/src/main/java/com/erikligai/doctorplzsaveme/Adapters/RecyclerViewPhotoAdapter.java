@@ -61,8 +61,6 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder called");
-            // do something with key and/or tab
-        //SortedMap<String, Bitmap> photo = photos.entrySet().toArray();
         viewHolder.imgViewIcon.setScaleType((ImageView.ScaleType.CENTER_CROP));
         viewHolder.imgViewIcon.setImageBitmap(getBitmapFromString(photos.get(i)));
         viewHolder.label.setText(photoLables.get(i));
@@ -73,8 +71,6 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
                 Toast.makeText(mContext, "photo menu displayed for: "+ photoLables.get(i), Toast.LENGTH_SHORT).show();
                 AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
                 final EditText input = new EditText(v.getContext());
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                //input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 alertDialog.setView(input);
                 alertDialog.setTitle(photoLables.get(i));
                 alertDialog.setMessage("Would you like to delete the photo you clicked?");

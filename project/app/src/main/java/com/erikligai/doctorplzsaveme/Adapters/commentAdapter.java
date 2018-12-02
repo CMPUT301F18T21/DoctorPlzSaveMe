@@ -36,7 +36,6 @@ public class commentAdapter extends RecyclerView.Adapter<commentAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull commentAdapter.ViewHolder viewHolder, final int i) {
-//        Log.d(TAG, "onBindViewHolder called");
         viewHolder.commentText.setText(mComments.get(i).getComment()); // obtains id at index
         viewHolder.commentDate.setText(mComments.get(i).getDate()); // obtains email at index
 
@@ -52,6 +51,7 @@ public class commentAdapter extends RecyclerView.Adapter<commentAdapter.ViewHold
         TextView commentText;
         TextView commentDate;
         ConstraintLayout parentLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             commentText = itemView.findViewById(R.id.comment_text);

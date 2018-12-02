@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.StartAppActivities.NewProfileActivity;
 
 public class CPProblemSearchActivity extends AppCompatActivity {
 
@@ -35,7 +34,7 @@ public class CPProblemSearchActivity extends AppCompatActivity {
                 // NewProfileActivity or the DisplayProblems activity
 
                 // for now, just do NewProfileActivity, for testing
-                startActivity(new Intent(CPProblemSearchActivity.this, NewProfileActivity.class));
+                //startActivity(new Intent(CPProblemSearchActivity.this, NewProfileActivity.class));
             }
         });
 
