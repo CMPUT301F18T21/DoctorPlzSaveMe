@@ -3,10 +3,7 @@ package com.erikligai.doctorplzsaveme;
 //import junit.framework.TestCase;
 //import com.google.common.truth.Truth.assertThat;
 
-import com.erikligai.doctorplzsaveme.Models.CareProvider;
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.Models.Profile;
-import com.erikligai.doctorplzsaveme.Models.ProfilesList;
 
 import junit.framework.TestCase;
 

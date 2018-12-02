@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 
-public class Patient implements Profile {
+public class Patient {
     private String id;
     private String email;
     private String phone;
