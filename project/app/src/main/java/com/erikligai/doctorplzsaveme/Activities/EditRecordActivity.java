@@ -2,18 +2,13 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
-
-import java.util.Date;
 
 public class EditRecordActivity extends AppCompatActivity {
 
@@ -29,7 +24,6 @@ public class EditRecordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("P_Pos", 0);
         record_index = intent.getIntExtra("R_Pos", 0);
-
 
         // Get buttons
         nextBtn = findViewById(R.id.nextButton1);
@@ -73,8 +67,8 @@ public class EditRecordActivity extends AppCompatActivity {
         RecordBuffer.getInstance().getRecord().setTitle(titleText.getText().toString());
         RecordBuffer.getInstance().getRecord().setComment(commentText.getText().toString());
         Intent intent = new Intent(this, EditRecordTwoActivity.class);
-        intent.putExtra("R_Pos", record_index);
         intent.putExtra("P_Pos", problem_index);
+        intent.putExtra("R_Pos", record_index);
         finish();
         startActivity(intent);
     }

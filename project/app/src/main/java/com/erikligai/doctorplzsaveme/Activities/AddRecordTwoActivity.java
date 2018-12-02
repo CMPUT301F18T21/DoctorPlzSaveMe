@@ -22,20 +22,10 @@ public class AddRecordTwoActivity extends AppCompatActivity {
     private Button nextBtn;
     private Button backBtn;
     private Button changeBtn;
-    private FloatingActionButton fab;
-
     private Record record;
-    private TextView textView;
     private ImageView imageView;
-    private int ProblemPosition;
-    private int RecordPosition;
     private int chosen;
-    private String patientID;
     private ImageView imageView2;
-    private float imX;
-    private float imY;
-    private float BLX;
-    private float BLY;
     private int problem_index;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,14 +66,12 @@ public class AddRecordTwoActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
 //                    textView.setText("Touch coordinates : " +
 //                            String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                    imageView.setY(event.getY() + imY - (imageView.getHeight()/2));
-                    imageView.setX(event.getX() + imX - (imageView.getWidth()/2));
+                    imageView.setX(event.getX());
+                    imageView.setY(event.getY());
                     imageView.setVisibility(View.VISIBLE);
-                    BLX = event.getX();
-                    BLY = event.getY();
                     record.setPhotoid("front");
-                    record.setXpos(BLX);
-                    record.setYpos(BLY);
+                    record.setXpos(event.getX());
+                    record.setYpos(event.getY());
                 }
                 return true;
             }
@@ -108,9 +96,7 @@ public class AddRecordTwoActivity extends AppCompatActivity {
                 Log.d("fab", "add bodylocation photo");
                 //calls AddRecordActivity
                 Intent intent = new Intent(view.getContext(), PatientSelectBodylocationPhotoActivity.class);
-                intent.putExtra("ProblemPos", ProblemPosition);
-                intent.putExtra("RecordPos", RecordPosition);
-                intent.putExtra("patientId",patientID);
+                intent.putExtra("ProblemPos", problem_index);
                 startActivity(intent);
             }
         });
@@ -129,14 +115,6 @@ public class AddRecordTwoActivity extends AppCompatActivity {
         intent.putExtra("Pos", problem_index);
         finish();
         startActivity(intent);
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus)
-    {
-        super.onWindowFocusChanged(hasFocus);
-        imX = imageView2.getX();
-        imY = imageView2.getY();
     }
 
     @Override

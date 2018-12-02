@@ -54,6 +54,9 @@ public class RecordBuffer {
         r.setTitle(m_record.getTitle());
         r.setComment(m_record.getComment());
         r.setGeolocation(m_record.getGeolocation());
+        r.setPhotoid(m_record.getPhotoid());
+        r.setXpos(m_record.getXpos());
+        r.setYpos(m_record.getYpos());
         Backend.getInstance().UpdatePatient();
         ClearBuffer();
     }
