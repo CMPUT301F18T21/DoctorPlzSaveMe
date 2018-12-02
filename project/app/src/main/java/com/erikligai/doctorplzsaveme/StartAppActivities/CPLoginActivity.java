@@ -33,7 +33,7 @@ public class CPLoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     ElasticsearchProblemController.CheckIfCPExistsTask checkIfCPExistsTask = new ElasticsearchProblemController.CheckIfCPExistsTask();
-                    int r = Backend.userIDExists(usernameText.getText().toString());
+                    int r = Backend.cpIDExists(usernameText.getText().toString());
                     if(r == 0)
                     {
                         Backend.getInstance().setCP_ID(usernameText.getText().toString());
@@ -59,7 +59,7 @@ public class CPLoginActivity extends AppCompatActivity {
                                         addCPTask.execute(usernameText.getText().toString());
                                         ElasticsearchProblemController.CheckIfCPExistsTask checkIfCPExistsTask = new ElasticsearchProblemController.CheckIfCPExistsTask();
                                         try {
-                                            if (!checkIfCPExistsTask.execute(usernameText.getText().toString()).get())
+                                            if (checkIfCPExistsTask.execute(usernameText.getText().toString()).get()!=0)
                                             {
                                                 Toast.makeText(getApplicationContext(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
                                                 return;

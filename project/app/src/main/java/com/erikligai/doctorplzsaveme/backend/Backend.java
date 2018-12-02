@@ -304,17 +304,16 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     }
 
     // adds comment to the patient's problem and updates that patient profile to DB
-    public void addComment(String PatientID, int problemIndex, String comment)
+    public boolean addComment(String PatientID, int problemIndex, String comment)
     {
-        assert(m_patients != null);
         for (Patient patient : m_patients )
         {
             if (patient.getID().equals(PatientID)) {
                 patient.getProblemList().get(problemIndex).addComment(new Comment(comment));
-                UpdatePatient(patient);
-                return;
+                return UpdatePatient(patient);
             }
         }
+        return false;
     }
 
     // add patient to CP, PatientID would be aquired from QR code
@@ -382,11 +381,8 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
 
     public ArrayList<Problem> GetCPPatientProblems(String PatientID)
     {
-        assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            Log.e("patient ID", patient.getID());
-            Log.e("patient ID", PatientID);
             if (patient.getID().equals(PatientID)) { return patient.getProblemList(); }
         }
         assert(false); // i.e. shouldn't happen!
@@ -398,10 +394,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         assert(m_patients != null);
         for (Patient patient : m_patients )
         {
-            Log.e("patient ID", patient.getID());
-            Log.e("patient ID", PatientID);
-
-
             if (patient.getID().equals(PatientID)) { return patient.getProblemList().get(ProblemIndex).getRecords(); }
         }
         assert(false); // i.e. shouldn't happen!
@@ -440,6 +432,18 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         }
         assert(false); // i.e. shouldn't happen!
         return null;
+    }
+
+    public static int cpIDExists(String UserID)
+    {
+        ElasticsearchProblemController.CheckIfCPExistsTask checkTask =
+                new ElasticsearchProblemController.CheckIfCPExistsTask();
+        try {
+            return (checkTask.execute(UserID).get());
+        } catch (Exception e)
+        {
+            return -1;
+        }
     }
 
 
@@ -487,7 +491,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         } catch (IOException e) {
             // we couldn't find it in file, so just make sure its null and return false to
             // notify that we did not find anything on local storage
-            Log.e("failure:","!!!!!!!!!!!!!!!!!!!!!!!");
             CP_ID = null;
             return false;
         }

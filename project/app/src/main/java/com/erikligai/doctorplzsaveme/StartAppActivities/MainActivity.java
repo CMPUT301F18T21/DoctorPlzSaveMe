@@ -3,8 +3,10 @@ package com.erikligai.doctorplzsaveme.StartAppActivities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CareProviderActivity;
 import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
@@ -49,14 +51,23 @@ public class MainActivity extends AppCompatActivity {
         careProviderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Backend.getInstance().deserializeCPProfile())
-                {
+                boolean fetched_from_local = Backend.getInstance().deserializeCPProfile();
+                if (!fetched_from_local) {
+                    startActivity(new Intent(MainActivity.this, CPLoginActivity.class));
+                    return;
+                }
+                int r = Backend.cpIDExists(Backend.getInstance().getCP_ID());
+                if (r == 0) {
                     Backend.getInstance().ClearPatients();
                     Backend.getInstance().PopulatePatients();
                     startActivity(new Intent(MainActivity.this, CareProviderActivity.class));
-                } else
+                } else if (r == 1)
                 {
+                    Log.e("CP: ","did not find cp id on file in DB!");
                     startActivity(new Intent(MainActivity.this, CPLoginActivity.class));
+                } else if (r == -1)
+                {
+                    Toast.makeText(getApplicationContext(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

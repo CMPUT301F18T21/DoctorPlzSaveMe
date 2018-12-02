@@ -156,24 +156,23 @@ public class ElasticsearchProblemController {
     }
 
 
-    public static class CheckIfCPExistsTask extends AsyncTask<String, Void, Boolean> {
+    public static class CheckIfCPExistsTask extends AsyncTask<String, Void, Integer> {
         @Override
-        protected Boolean doInBackground(String... cp_id) {
+        protected Integer doInBackground(String... cp_id) {
             Get get = new Get.Builder("cmput301f18t21test", cp_id[0]).type("PatientsWrapper").build();
             try {
                 verifySettings();
                 JestResult result = client.execute(get);
-                if (result.isSucceeded()){
-                    return true;
+                if (result.isSucceeded()) {
+                    return 0;
+                } else {
+                    Log.i("Error", "CheckIfCPIDExistsTask: The search query failed to find a patient that matched");
+                    return 1;
                 }
-                else {
-                    Log.i("Error", "CheckIfCPExistsTask: fail");
-                }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                return -1;
             }
-            return false;
         }
     }
 
