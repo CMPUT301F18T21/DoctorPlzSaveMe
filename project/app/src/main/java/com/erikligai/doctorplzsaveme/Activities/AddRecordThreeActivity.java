@@ -49,9 +49,6 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         zoomImg.setOnClickListener(this);
 
         photos = RecordBuffer.getInstance().getRecord().getPhotos();
-        if (photos.size() != 0) {
-            displayPhotos();
-        }
 
         //date = intent.getLongExtra("date",-1);
         // Get buttons
@@ -66,17 +63,41 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
             case R.id.backButton3:
                 openAddRecordTwoActivity();
                 break;
-
             case R.id.nextButton3:
                 openAddRecordFourActivity();
                 break;
-
             case R.id.imageView1:
                 zoomImage(0);
                 break;
-
             case R.id.imageView2:
                 zoomImage(1);
+                break;
+            case R.id.imageView3:
+                zoomImage(2);
+                break;
+            case R.id.imageView4:
+                zoomImage(3);
+                break;
+            case R.id.imageView5:
+                zoomImage(4);
+                break;
+            case R.id.imageView6:
+                zoomImage(5);
+                break;
+            case R.id.imageView7:
+                zoomImage(6);
+                break;
+            case R.id.imageView8:
+                zoomImage(7);
+                break;
+            case R.id.imageView9:
+                zoomImage(8);
+                break;
+            case R.id.imageView10:
+                zoomImage(9);
+                break;
+            case R.id.imageView11:
+                zoomImage(10);
                 break;
 
             case R.id.imageView12:
