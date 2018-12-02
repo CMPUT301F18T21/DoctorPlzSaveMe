@@ -3,14 +3,15 @@ package com.erikligai.doctorplzsaveme.Activities;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.TooLongProblemDescException;
-import com.erikligai.doctorplzsaveme.TooLongProblemTitleException;
+
 import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,9 +21,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.Date;
 
-public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,OnMapReadyCallback {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,
+        GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
+
 
     private GoogleMap mMap;
 
@@ -37,8 +42,23 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     }
     /** BACKEND TESTING */
 
-    private static final LatLng VAN = new LatLng(49.246292, -123.116226);
+    //private static final LatLng VAN = new LatLng(49.246292, -123.116226);
     private Marker Van;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,32 +88,27 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        Problem problem = null;
-        try {
-            problem = new Problem("Title", "Leg hurt",new Date());
-        } catch (TooLongProblemTitleException e) {
-            e.printStackTrace();
-        } catch (TooLongProblemDescException e) {
-            e.printStackTrace();
-        }
-        Record record = new Record("Leg 1", "Leg hurt");
-        record.addGeolocation(VAN);
 
-        Van = mMap.addMarker(new MarkerOptions().position(record.getGeolocation()).title(problem.getTitle()).snippet(record.getTitle()));
-        Van.setTag(record);        //pass data into marker here
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(VAN));
-        mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
+        int i,j;
+        ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
+        for (i = 0; i < problems.size(); i++) {
+            ArrayList<Record> records = problems.get(i).getRecords();
+            for( j = 0; j < records.size(); j++) {
+                if (records.get(j).getGeolocation() != null) {
+                    Van = mMap.addMarker(new MarkerOptions().position(records.get(j).getGeolocation()).title(problems.get(i).getTitle()).snippet(records.get(j).getTitle()));
 
-        mMap.setOnMarkerClickListener(this);
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
-                Intent I = new Intent(ViewRecordLocationsActivity.this, EditRecordActivity.class);
-                startActivity(I);
+                    List<Integer> index = new ArrayList<Integer>();
+                    index.add(i);
+                    index.add(j);
+                    Van.setTag(index);
+
+                    mMap.setOnMarkerClickListener(this);
+                    mMap.setOnInfoWindowClickListener(this);
+                }
+
             }
-        });
-
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(),10));
         //for record in recordList
         // LatLng location = record.getGeolocation();
         // mMap.addMarker(new MarkerOptions().position(location).title(record.getProblem));
@@ -106,6 +121,18 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
         //int num = (int) marker.getTag();                         // get data from marker(probably recordID)
         Toast.makeText(this, marker.getTitle(), Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
+        Intent intent = new Intent(ViewRecordLocationsActivity.this, ViewRecordActivity.class);
+        List<Integer> index = (List<Integer>) marker.getTag();
+        intent.putExtra("P_Pos", index.get(0));
+        intent.putExtra("R_Pos", index.get(1));
+        Log.i("P",Integer.toString(index.get(0)));
+        Log.i("R",Integer.toString(index.get(1)));
+        startActivity(intent);
     }
 
 }

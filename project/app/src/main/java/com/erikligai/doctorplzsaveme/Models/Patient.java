@@ -25,6 +25,8 @@ public class Patient implements Profile {
         this.email = email;
         this.phone = phone;
         this.mProblemList = new ArrayList<Problem>();
+        this.photoIds = new ArrayList<String>();
+        this.photos = new ArrayList<Bitmap>();
     }
     public void addPhoto(String id, Bitmap photo){
         this.photoIds.add(id);

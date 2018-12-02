@@ -8,16 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewAdapter;
 import com.erikligai.doctorplzsaveme.Adapters.commentAdapter;
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Problem;
-import com.erikligai.doctorplzsaveme.PatientProblemAdapter;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 

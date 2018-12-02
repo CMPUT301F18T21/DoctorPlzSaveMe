@@ -79,15 +79,14 @@ public class NoProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(NoProfileActivity.this, PatientActivity.class));
-                /**
+                startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
+
                 if (Backend.isConnected()) {
                     finish();
                     startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
                 } else {
                     Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
                 }
-                 */
             }
         });
     }
