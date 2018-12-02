@@ -77,7 +77,8 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
         ConstraintLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgViewIcon = itemView.findViewById(R.id.photo_item);
+            imgViewIcon = itemView.findViewById(R.id.photo);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
 }

@@ -56,8 +56,8 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
         uploadBodyLocationBtn.setOnClickListener(this);
 
         TextView welcome_text = findViewById(R.id.welcomeText);
-        String w_text = "Welcome, " + Backend.getInstance().getPatientProfile().getID();
-        welcome_text.setText(w_text);
+        //String w_text = "Welcome, " + Backend.getInstance().getPatientProfile().getID();
+        //welcome_text.setText(w_text);
     }
 
     @Override
