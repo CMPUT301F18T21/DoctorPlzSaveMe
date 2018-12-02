@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.erikligai.doctorplzsaveme.Models.Geolocation;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
@@ -50,7 +49,7 @@ public class CPViewGeolocationActivity extends AppCompatActivity  {
     }
 
     public void openCPViewBodylocationActivity(){
-        Intent intent = new Intent(this,CPViewBodyLocationActivity.class);
+        Intent intent = new Intent(this,AddRecordTwoActivity.class);
         intent.putExtra("ProblemPos", ProblemPosition);
         intent.putExtra("RecordPos", RecordPosition);
         intent.putExtra("patientId",patientID);
