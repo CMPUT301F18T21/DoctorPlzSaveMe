@@ -25,7 +25,7 @@ import java.util.Date;
 public class AddRecordThreeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button backBtn3, nextBtn3;
-    private ImageView addBtn;
+    private ImageView addBtn,zoomImg;
     private int problem_index;
     private Date date;
     private ArrayList<String> photos;
@@ -40,6 +40,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         backBtn3 = findViewById(R.id.backButton3);
         nextBtn3 = findViewById(R.id.nextButton3);
         addBtn = findViewById(R.id.imageView12);
+        zoomImg = findViewById(R.id.imageView13);
         backBtn3.setOnClickListener(this);
         nextBtn3.setOnClickListener(this);
         addBtn.setOnClickListener(this);
@@ -67,9 +68,11 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 openAddRecordFourActivity();
                 break;
 
+            case R.id.imageView1:
+                zoomImage(0);
+                break;
 
             case R.id.imageView12:
-                Log.d("click", "click");
                 dispatchTakePictureIntent();
                 break;
         }
@@ -161,6 +164,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         switch (index) {
             case 0:
                 imageView = findViewById(R.id.imageView1);
+                imageView.setOnClickListener(this);
                 break;
             case 1:
                 imageView = findViewById(R.id.imageView2);
@@ -196,17 +200,16 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 imageView = null;
                 break;
         }
-        final ImagePopup imagePopup = new ImagePopup(this);
-
-        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /** Initiate Popup view **/
-                imagePopup.initiatePopup(imageView.getDrawable());
-            }
-        });
         return imageView;
+    }
+
+    public void zoomImage(int index){
+        if(photos.get(index)!=null){
+            Log.d("click", "click");
+            Bitmap bitmap = StringToBitMap(photos.get(index));
+            zoomImg.setImageBitmap(bitmap);
+            zoomImg.setVisibility(View.VISIBLE);
+        }
     }
 }
 
