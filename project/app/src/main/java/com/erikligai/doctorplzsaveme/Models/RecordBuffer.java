@@ -46,6 +46,7 @@ public class RecordBuffer {
         m_record.setPhotoid(r.getPhotoid());
         m_record.setXpos(r.getXpos());
         m_record.setYpos(r.getYpos());
+        m_record.setPhotos(r.getPhotos());
         // ...
     }
 
@@ -57,6 +58,7 @@ public class RecordBuffer {
         r.setPhotoid(m_record.getPhotoid());
         r.setXpos(m_record.getXpos());
         r.setYpos(m_record.getYpos());
+        r.setPhotos(m_record.getPhotos());
         Backend.getInstance().UpdatePatient();
         ClearBuffer();
     }

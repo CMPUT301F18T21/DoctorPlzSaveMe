@@ -13,12 +13,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -29,7 +27,6 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
     private Button backBtn3, nextBtn3;
     private ImageView addBtn,zoomImg;
     private int problem_index;
-    private Date date;
     private ArrayList<String> photos;
 
     @Override
@@ -237,13 +234,10 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
     }
 
     public void zoomImage(int index){
-        if(photos.get(index)!=null){
-            Log.d("click", "click");
-            Bitmap bitmap = StringToBitMap(photos.get(index));
-            Bitmap r_bitmap = RotateBitmap(bitmap, 90);
-            zoomImg.setImageBitmap(r_bitmap);
-            zoomImg.setVisibility(View.VISIBLE);
-        }
+        Bitmap bitmap = StringToBitMap(photos.get(index));
+        Bitmap r_bitmap = RotateBitmap(bitmap, 90);
+        zoomImg.setImageBitmap(r_bitmap);
+        zoomImg.setVisibility(View.VISIBLE);
     }
 
     public static Bitmap RotateBitmap(Bitmap source, float angle)
