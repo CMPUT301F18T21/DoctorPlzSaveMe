@@ -15,5 +15,8 @@
     <item
         android:id="@+id/problem_menu4"
         android:title="View Comments" />
+    <item
+        android:id="@+id/problem_menu5"
+        android:title="View Slideshow" />
 
 </menu>
