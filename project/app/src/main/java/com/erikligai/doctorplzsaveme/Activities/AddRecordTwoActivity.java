@@ -111,7 +111,7 @@ public class AddRecordTwoActivity extends AppCompatActivity {
     }
 
     private void openAddRecordThreeActivity() {
-        Intent intent = new Intent(this, AddRecordThreeActivity.class);
+        Intent intent = new Intent(this, SelectByLocationActivity.class);
         intent.putExtra("Pos", problem_index);
         finish();
         startActivity(intent);

@@ -1,6 +1,8 @@
 package com.erikligai.doctorplzsaveme.Models;
 
 import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,6 +16,7 @@ public class Record {
     private String photoid;
     private float xpos;
     private float ypos;
+    private ArrayList<String> photos;
 
     /**
      * Empty constructor for the Record, sets default values (utility constructor)
@@ -22,6 +25,7 @@ public class Record {
         this.date = new Date();
         this.title = "";
         this.comment = "";
+        this.photos = new ArrayList<String>();
     }
 
     /**
@@ -93,6 +97,14 @@ public class Record {
     }
 
     /**
+     * Get the photos of the Record in String form
+     * @return ArrayList<String>
+     */
+    public ArrayList<String> getPhotos() {
+        return photos;
+    }
+
+    /**
      * Set the title of the record
      * @param title : String
      */
@@ -149,11 +161,11 @@ public class Record {
     }
 
     /**
-    *Sets the geolocation of the record
-    *@param geolocation: Geolocation
-    *@return Nothing
+     * Set the photos of the record
+     * @param photos : ArrayList<String>
      */
-    public void addGeolocation(LatLng geolocation) {
-        this.geolocation = geolocation;
+    public void setPhotos(ArrayList<String> photos) {
+        this.photos = photos;
     }
 }
+

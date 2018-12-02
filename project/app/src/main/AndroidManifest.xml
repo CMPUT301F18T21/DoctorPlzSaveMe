@@ -4,7 +4,9 @@
     package="com.erikligai.doctorplzsaveme">
     xmlns:tools="http://schemas.android.com/tools"
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -36,6 +38,7 @@
         <activity android:name=".Activities.CPViewProblemActivity" />
         <activity android:name=".Activities.CPViewRecordActivity" />
         <activity android:name=".Activities.CPAddCommentActivity" />
+
 
         <activity android:name=".Activities.AddRecordTwoActivity" />
         <activity android:name=".Activities.CPViewGeolocationActivity" />
@@ -91,11 +94,16 @@
         <activity android:name=".Activities.UploadBodyLocationActivity" />
         android:label="@string/view_edit_profile_title" />
         <activity android:name=".Activities.EditRecordThreeActivity" />
+
         <activity android:name=".Activities.EditRecordFourActivity" />
+
         <activity android:name=".Activities.PatientSelectBodylocationPhotoActivity" />
         <activity
             android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_problem" />
+
+        <activity android:name=".Activities.SelectByLocationActivity"></activity>
+
         <activity android:name=".Activities.EditRecordTwoActivity"></activity>
     </application>
 

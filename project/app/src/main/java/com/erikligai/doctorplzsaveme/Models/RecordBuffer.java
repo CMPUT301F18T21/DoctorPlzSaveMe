@@ -72,6 +72,7 @@ public class RecordBuffer {
         m_record.setPhotoid(r.getPhotoid());
         m_record.setXpos(r.getXpos());
         m_record.setYpos(r.getYpos());
+        m_record.setPhotos(r.getPhotos());
     }
 
     /**
@@ -81,13 +82,21 @@ public class RecordBuffer {
      */
     public void editRecord(int problemIndex, int recordIndex){
         Record r = Backend.getInstance().getPatientRecords(problemIndex).get(recordIndex);
+
         r.setTitle(m_record.getTitle());
         r.setComment(m_record.getComment());
+        r.setDate(m_record.getDate());
         r.setGeolocation(m_record.getGeolocation());
         r.setPhotoid(m_record.getPhotoid());
         r.setXpos(m_record.getXpos());
         r.setYpos(m_record.getYpos());
+        r.setPhotos(m_record.getPhotos());
+
         Backend.getInstance().UpdatePatient();
         ClearBuffer();
+    }
+    public void setImageID(String imageID){
+        m_record.setPhotoid(imageID);
+
     }
 }
