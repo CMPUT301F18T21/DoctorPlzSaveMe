@@ -75,6 +75,10 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 zoomImage(0);
                 break;
 
+            case R.id.imageView2:
+                zoomImage(1);
+                break;
+
             case R.id.imageView12:
                 dispatchTakePictureIntent();
                 break;
@@ -207,6 +211,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
                 break;
         }
         imageView.setOnClickListener(this);
+        imageView.setClickable(true);
         return imageView;
     }
 
