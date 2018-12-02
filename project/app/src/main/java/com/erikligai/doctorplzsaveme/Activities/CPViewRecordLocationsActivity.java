@@ -17,6 +17,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -62,7 +63,7 @@ public class CPViewRecordLocationsActivity extends FragmentActivity implements G
         setContentView(R.layout.activity_cpview_record_locations);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map3);
         mapFragment.getMapAsync(this);
     }
 
@@ -84,6 +85,7 @@ public class CPViewRecordLocationsActivity extends FragmentActivity implements G
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
 
         Intent intent = getIntent();
         patientID = intent.getStringExtra("patientID");
@@ -107,7 +109,9 @@ public class CPViewRecordLocationsActivity extends FragmentActivity implements G
 
             }
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(),10));
+        if (Van != null) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(), 10));
+        }
         //for record in recordList
         // LatLng location = record.getGeolocation();
         // mMap.addMarker(new MarkerOptions().position(location).title(record.getProblem));

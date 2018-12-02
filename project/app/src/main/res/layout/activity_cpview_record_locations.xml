@@ -6,4 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.CPViewRecordLocationsActivity">
 
+    <fragment
+        android:id="@+id/map3"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/nextButton1"
+        tools:context=".Activities.AddRecordThreeActivity"
+
+        tools:layout_editor_absoluteX="0dp"></fragment>
+
 </android.support.constraint.ConstraintLayout>
