@@ -39,7 +39,6 @@
         <activity android:name=".Activities.CPViewRecordActivity" />
         <activity android:name=".Activities.CPAddCommentActivity" />
 
-
         <activity android:name=".Activities.AddRecordTwoActivity" />
         <activity android:name=".Activities.CPViewGeolocationActivity" />
         <activity
@@ -72,7 +71,7 @@
         ]]>
         <activity
             android:name=".Activities.EditProfileActivity"
-            android:label="@string/view_edit_profile_title"></activity>
+            android:label="@string/view_edit_profile_title" />
         <activity
             android:name=".Activities.AddGeolocationActivity2"
             android:label="@string/title_activity_add_geolocation2" />
@@ -101,10 +100,11 @@
         <activity
             android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_problem" />
+        <activity android:name=".Activities.EditRecordTwoActivity" />
+        <activity android:name=".Activities.PatientSlideshowActivity"></activity>
 
         <activity android:name=".Activities.SelectByLocationActivity"></activity>
 
-        <activity android:name=".Activities.EditRecordTwoActivity"></activity>
     </application>
 
 </manifest>
