@@ -1,7 +1,7 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.content.Context;
-import android.net.sip.SipSession;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Comment;
@@ -106,6 +106,12 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void addPatientPhoto(String id, String photo, String photoLabel) {
+        assert(patientProfile != null);
+        patientProfile.addPhoto(id,photo, photoLabel);
+        UpdatePatient();
     }
 
     public void addPatientProblem(Problem problem) {
