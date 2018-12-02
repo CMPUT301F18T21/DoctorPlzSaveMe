@@ -4,13 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.erikligai.doctorplzsaveme.Activities.CPViewRecordLocationsActivity;
+import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.PatientProblemsActivity;
 import com.erikligai.doctorplzsaveme.R;
@@ -32,7 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_listitem, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.patient_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -42,6 +49,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.patientID.setText(mPatients.get(i).getID()); // obtains id at index
         viewHolder.patientEmail.setText(mPatients.get(i).getEmail()); // obtains email at index
         viewHolder.patientPhone.setText(mPatients.get(i).getPhone()); // obtains phone at index
+        viewHolder.option.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                //creating a popup menu
+                PopupMenu popup = new PopupMenu(view.getContext(),view);
+                //inflating menu from xml resource
+                popup.inflate(R.menu.patient_item_menu);
+                //adding click listener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.patient_menu1:
+                                //handle menu1 click
+                                ClickMenuOne();
+                                return true;
+                            default:
+                                return false;
+                        }
+                    }
+                });
+                //displaying the popup
+                popup.show();
+
+            }
+
+            void ClickMenuOne(){
+                Log.d("rview", "view/add");
+                Intent intent = new Intent(viewHolder.itemView.getContext(), CPViewRecordLocationsActivity.class);
+                intent.putExtra("patientID", mPatients.get(i).getID());
+                viewHolder.itemView.getContext().startActivity(intent);
+            }
+
+        });
 
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,13 +109,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView patientID;
         TextView patientEmail;
         TextView patientPhone;
-        ConstraintLayout parentLayout;
+        ImageButton option;
+        RelativeLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            patientID = itemView.findViewById(R.id.comment_text);
-            patientEmail = itemView.findViewById(R.id.comment_date);
+            patientID = itemView.findViewById(R.id.patient_username);
+            patientEmail = itemView.findViewById(R.id.patient_email);
             patientPhone = itemView.findViewById(R.id.patient_phone);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
+            option = itemView.findViewById(R.id.patient_item_options);
+            parentLayout = itemView.findViewById(R.id.patient_record_layout);
         }
     }
+
 }
