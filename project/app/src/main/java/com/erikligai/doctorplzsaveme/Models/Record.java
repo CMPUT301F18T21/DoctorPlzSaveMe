@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Record {
-    private Photo photo;
+    private ArrayList<String> photos;
     private LatLng geolocation;
     private String title;
     private Date date;
@@ -20,6 +20,7 @@ public class Record {
         this.date = new Date();
         this.title = "";
         this.comment = "";
+        this.photos = new ArrayList<String>();
     }
 
     /**
@@ -73,13 +74,6 @@ public class Record {
         return this.geolocation;
     }
 
-     /**
-    *Returns the photo of the record
-    *@return photo Photo
-     */
-    public Photo getPhoto() {
-        return this.photo;
-    }
 
     public String getPhotoid() {
         return photoid;
@@ -93,7 +87,9 @@ public class Record {
         return ypos;
     }
 
-
+    public ArrayList<String> getPhotos() {
+        return photos;
+    }
 
     public void setTitle(String title){
         this.title = title;
@@ -119,19 +115,12 @@ public class Record {
         this.xpos = xpos;
     }
 
-    public void setYpos(float ypos) {
-        this.ypos = ypos;
+    public void setPhotos(ArrayList<String> photos) {
+        this.photos = photos;
     }
 
-    public void addPhoto(Photo photo) {
-        this.photo = photo;
-    }
-    /**
-    *Checks if the record has a photo
-    *@return boolean
-     */
-    public boolean hasPhoto() {
-        return this.photo != null;
+    public void setYpos(float ypos) {
+        this.ypos = ypos;
     }
 
      /**
