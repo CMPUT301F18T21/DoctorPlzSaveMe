@@ -21,7 +21,6 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
     private FloatingActionButton fab;
 
     private Record record;
-    private TextView textView;
     private ImageView imageView;
     private int ProblemPosition;
     private int RecordPosition;
@@ -42,6 +41,8 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         RecordPosition = intent.getIntExtra("RecordPos",-1);
         patientID = intent.getStringExtra("patientId");
         chosen = intent.getIntExtra("chosen",-1);
+        BLX = intent.getFloatExtra("xpos",-1);
+        BLY = intent.getFloatExtra("ypos",-1);
 
         Backend backend = Backend.getInstance();
         record = backend.GetCPPatientRecord(patientID,ProblemPosition,RecordPosition);
@@ -52,7 +53,6 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         // imageView.getLocationOnScreen(loc);
         imageView2 = findViewById(R.id.imageView);
         imageView2.setVisibility(View.GONE);
-        textView = findViewById(R.id.textView2);
 
         fab = findViewById(R.id.comment_fab2);
 
@@ -63,21 +63,41 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
             imageView.setImageResource(R.drawable.back);
         }
 
-        imageView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN){
-                    textView.setText("Touch coordinates : " +
-                            String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                    imageView2.setY(event.getY() + imY - (imageView2.getHeight()/2));
-                    imageView2.setX(event.getX() + imX - (imageView2.getWidth()/2));
-                    imageView2.setVisibility(View.VISIBLE);
-                    BLX = event.getX();
-                    BLY = event.getY();
+        if (BLX == -1 && BLY == -1) {
+            imageView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        imageView2.setY(event.getY() + imY - (imageView2.getHeight() / 2));
+                        imageView2.setX(event.getX() + imX - (imageView2.getWidth() / 2));
+                        imageView2.setVisibility(View.VISIBLE);
+                        BLX = event.getX() + imX - (imageView2.getWidth() / 2);
+                        BLY = event.getY() + imY - (imageView2.getHeight() / 2);
+                    }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
+        }
+        else{
+            imageView2.setY(BLY );
+            imageView2.setX(BLX );
+            imageView2.setVisibility(View.VISIBLE);
+
+            imageView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        imageView2.setY(event.getY() + imY - (imageView2.getHeight() / 2));
+                        imageView2.setX(event.getX() + imX - (imageView2.getWidth() / 2));
+                        imageView2.setVisibility(View.VISIBLE);
+                        BLX =  event.getX() + imX - (imageView2.getWidth() / 2);
+                        BLY = event.getY() + imY - (imageView2.getHeight() / 2);
+                    }
+                    return true;
+                }
+            });
+
+        }
 
         nextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -101,6 +121,8 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
                 intent.putExtra("ProblemPos", ProblemPosition);
                 intent.putExtra("RecordPos", RecordPosition);
                 intent.putExtra("patientId",patientID);
+                intent.putExtra("xpos",BLX);
+                intent.putExtra("ypos",BLY);
                 startActivity(intent);
             }
         });
