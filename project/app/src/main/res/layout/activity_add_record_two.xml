@@ -42,11 +42,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="18dp"
-        android:layout_height="24dp"
-        app:srcCompat="@drawable/redcircle"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="98dp" />
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:tint="@color/zxing_viewfinder_laser"
+        app:srcCompat="@drawable/ic_brightness_1_black_24dp"/>
 
     <Button
         android:id="@+id/RecordChange"

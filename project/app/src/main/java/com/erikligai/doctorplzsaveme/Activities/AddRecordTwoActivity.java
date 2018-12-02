@@ -37,7 +37,6 @@ public class AddRecordTwoActivity extends AppCompatActivity {
     private float BLX;
     private float BLY;
     private int problem_index;
-    private ArrayList<String> bodylocation;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +46,7 @@ public class AddRecordTwoActivity extends AppCompatActivity {
         problem_index = intent.getIntExtra("Pos",-1);
         chosen = intent.getIntExtra("chosen",-1);
 
-        Backend backend = Backend.getInstance();
-        record = backend.GetCPPatientRecord(patientID,ProblemPosition,RecordPosition);
+        record = RecordBuffer.getInstance().getRecord();
 
         nextBtn = findViewById(R.id.cpRecordNext2);
         backBtn = findViewById(R.id.cpRecordBack2);
@@ -57,11 +55,10 @@ public class AddRecordTwoActivity extends AppCompatActivity {
         // imageView.getLocationOnScreen(loc);
         imageView = findViewById(R.id.imageView);
         imageView.setVisibility(View.GONE);
-        bodylocation = RecordBuffer.getInstance().getRecord().getBodyLocation();
-        if(bodylocation!=null){
-            imageView.setX(Float.valueOf(bodylocation.get(1)));
-            imageView.setY(Float.valueOf(bodylocation.get(2)));
-            Log.i("load",bodylocation.get(1));
+
+        if(record.getPhotoid()!=null){
+            imageView.setX(record.getXpos());
+            imageView.setY(record.getYpos());
             imageView.setVisibility(View.VISIBLE);
         }
 
@@ -84,12 +81,9 @@ public class AddRecordTwoActivity extends AppCompatActivity {
                     imageView.setVisibility(View.VISIBLE);
                     BLX = event.getX();
                     BLY = event.getY();
-                    ArrayList<String> body_location = new ArrayList<String>();
-                    body_location.add("default1");
-                    body_location.add(Float.toString(BLX));
-                    body_location.add(Float.toString(BLY));
-                    Log.i("save",Float.toString(BLX));
-                    RecordBuffer.getInstance().getRecord().setBodyLocation(body_location);
+                    record.setPhotoid("front");
+                    record.setXpos(BLX);
+                    record.setYpos(BLY);
                 }
                 return true;
             }

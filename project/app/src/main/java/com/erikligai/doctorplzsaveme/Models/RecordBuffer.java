@@ -43,8 +43,9 @@ public class RecordBuffer {
         m_record.setTitle(r.getTitle());
         m_record.setDate(r.getDate());
         m_record.setGeolocation(r.getGeolocation());
-        m_record.setBodyLocation(r.getBodyLocation());
-        Log.d("abc", m_record.getTitle());
+        m_record.setPhotoid(r.getPhotoid());
+        m_record.setXpos(r.getXpos());
+        m_record.setYpos(r.getYpos());
         // ...
     }
 

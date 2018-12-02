@@ -8,17 +8,18 @@ import java.util.Date;
 
 public class Record {
     private Photo photo;
-    private ArrayList<String> bodyLocation;
     private LatLng geolocation;
     private String title;
     private Date date;
     private String comment;
+    private String photoid;
+    private float xpos;
+    private float ypos;
 
     public Record() {
         this.date = new Date();
         this.title = "";
         this.comment = "";
-
     }
 
     /**
@@ -71,13 +72,7 @@ public class Record {
     public LatLng getGeolocation() {
         return this.geolocation;
     }
-     /**
-    *Returns the bodylocation of the record
-    *@return bodylocation Bodylocation
-     */
-    public ArrayList<String> getBodyLocation() {
-        return this.bodyLocation;
-    }
+
      /**
     *Returns the photo of the record
     *@return photo Photo
@@ -85,11 +80,20 @@ public class Record {
     public Photo getPhoto() {
         return this.photo;
     }
-    /**
-    *Sets the photo of the record
-    *@param photo: Photo
-    *@return Nothing
-     */
+
+    public String getPhotoid() {
+        return photoid;
+    }
+
+    public float getXpos() {
+        return xpos;
+    }
+
+    public float getYpos() {
+        return ypos;
+    }
+
+
 
     public void setTitle(String title){
         this.title = title;
@@ -107,8 +111,16 @@ public class Record {
         this.geolocation = geolocation;
     }
 
-    public void setBodyLocation(ArrayList<String> bodyLocation) {
-        this.bodyLocation = bodyLocation;
+    public void setPhotoid(String photoid) {
+        this.photoid = photoid;
+    }
+
+    public void setXpos(float xpos) {
+        this.xpos = xpos;
+    }
+
+    public void setYpos(float ypos) {
+        this.ypos = ypos;
     }
 
     public void addPhoto(Photo photo) {
