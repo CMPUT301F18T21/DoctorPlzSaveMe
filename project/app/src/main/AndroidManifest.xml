@@ -35,6 +35,8 @@
         <activity android:name=".Activities.CPViewRecordActivity" />
         <activity android:name=".Activities.CPAddCommentActivity" />
         <activity android:name=".Activities.CPViewBodyLocationActivity" />
+
+
         <activity android:name=".Activities.CPViewGeolocationActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
@@ -90,7 +92,9 @@
         <activity android:name=".Activities.PatientActivity" />
         <activity android:name=".StartAppActivities.CPLoginActivity" />
         <activity android:name=".Activities.CPRecordActivity" />
-        <activity android:name=".Activities.PatientViewComment" />
+
+        <activity android:name=".Activities.PatientViewCommentActivity" />
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -107,9 +111,13 @@
         android:label="@string/view_edit_profile_title" />
         <activity android:name=".Activities.EditRecordTwoActivity" />
         <activity android:name=".Activities.EditRecordThreeActivity" />
+
+        <activity android:name=".Activities.PatientSelectBodylocationPhotoActivity"></activity>
+
         <activity
             android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_problem"></activity>
+
     </application>
 
 </manifest>

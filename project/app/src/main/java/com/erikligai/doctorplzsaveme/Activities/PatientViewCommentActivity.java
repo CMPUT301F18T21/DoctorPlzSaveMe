@@ -15,15 +15,15 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
-public class PatientViewComment extends AppCompatActivity {
+public class PatientViewCommentActivity extends AppCompatActivity {
 
     private commentAdapter adapter;
     private RecyclerView commentList;
     private Problem problem;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
+    private ArrayList<Problem> problems;
     private int problemPos;
-    private String Pos;
-    private String patientID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +31,17 @@ public class PatientViewComment extends AppCompatActivity {
         setContentView(R.layout.activity_patient_view_comment);
 
         Intent intent = getIntent();
-        Pos = intent.getStringExtra("problemID");
-        patientID = intent.getStringExtra("patientID");
-
-        problemPos = Integer.parseInt(Pos);
+        problemPos = intent.getIntExtra("Pos",-1);
 
         Backend backend = Backend.getInstance();
-        problem = backend.GetCPPatientProblem(patientID,problemPos);
-
+        problems = backend.getPatientProblems();
+        problem = problems.get(problemPos);
         comments = problem.getComments();
 
-        initRecyclerView(patientID);
+        initRecyclerView();
     }
 
-    private void initRecyclerView(String patientID) {
+    private void initRecyclerView() {
 //        Log.d(TAG, "initRecyclerView: init");
 
         commentList = findViewById(R.id.patientCommentRecyclerView);

@@ -11,6 +11,7 @@ import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
+
 import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,11 +21,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,
         GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
+
 
     private GoogleMap mMap;
 
@@ -85,6 +88,7 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
         int i,j;
         ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
         for (i = 0; i < problems.size(); i++) {
@@ -101,6 +105,7 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
                     mMap.setOnMarkerClickListener(this);
                     mMap.setOnInfoWindowClickListener(this);
                 }
+
             }
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(),10));

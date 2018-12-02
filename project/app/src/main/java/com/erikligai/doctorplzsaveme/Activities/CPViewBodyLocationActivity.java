@@ -2,7 +2,9 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,11 +18,14 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 public class CPViewBodyLocationActivity  extends AppCompatActivity {
     private Button nextBtn;
     private Button backBtn;
+    private FloatingActionButton fab;
+
     private Record record;
     private TextView textView;
     private ImageView imageView;
     private int ProblemPosition;
     private int RecordPosition;
+    private int chosen;
     private String patientID;
     private ImageView imageView2;
     private float imX;
@@ -36,6 +41,7 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);
         RecordPosition = intent.getIntExtra("RecordPos",-1);
         patientID = intent.getStringExtra("patientId");
+        chosen = intent.getIntExtra("chosen",-1);
 
         Backend backend = Backend.getInstance();
         record = backend.GetCPPatientRecord(patientID,ProblemPosition,RecordPosition);
@@ -48,6 +54,15 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
         imageView2.setVisibility(View.GONE);
         textView = findViewById(R.id.title);
 
+        fab = findViewById(R.id.comment_fab2);
+
+        if (chosen == 0){
+            imageView.setImageResource(R.drawable.front);
+        }
+        if (chosen == 1){
+            imageView.setImageResource(R.drawable.back);
+        }
+
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -57,7 +72,6 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
                     imageView2.setY(event.getY() + imY - (imageView2.getHeight()/2));
                     imageView2.setX(event.getX() + imX - (imageView2.getWidth()/2));
                     imageView2.setVisibility(View.VISIBLE);
-
                     BLX = event.getX();
                     BLY = event.getY();
                 }
@@ -75,6 +89,19 @@ public class CPViewBodyLocationActivity  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openCPViewRecordActivity();
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("fab", "add bodylocation photo");
+                //calls AddRecordActivity
+                Intent intent = new Intent(view.getContext(), PatientSelectBodylocationPhotoActivity.class);
+                intent.putExtra("ProblemPos", ProblemPosition);
+                intent.putExtra("RecordPos", RecordPosition);
+                intent.putExtra("patientId",patientID);
+                startActivity(intent);
             }
         });
 
