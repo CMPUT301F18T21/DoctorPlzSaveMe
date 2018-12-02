@@ -32,13 +32,15 @@
         <activity android:name=".Activities.EditRecordActivity" />
         <activity android:name=".Activities.AddProblemActivity" />
         <activity android:name=".Activities.AddRecordActivity" />
-        <activity android:name=".Activities.AddRecordTwoActivity" />
         <activity android:name=".Activities.AddRecordThreeActivity" />
+        <activity android:name=".Activities.AddRecordFourActivity" />
         <activity android:name=".Activities.ProblemSearchActivity" />
         <activity android:name=".Activities.CPViewProblemActivity" />
         <activity android:name=".Activities.CPViewRecordActivity" />
         <activity android:name=".Activities.CPAddCommentActivity" />
-        <activity android:name=".Activities.CPViewBodyLocationActivity"></activity>
+
+
+        <activity android:name=".Activities.AddRecordTwoActivity" />
         <activity android:name=".Activities.CPViewGeolocationActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
@@ -101,13 +103,18 @@
         <activity android:name=".Activities.EditPhotosActivity" />
         <activity android:name=".Activities.UploadBodyLocationActivity" />
         android:label="@string/view_edit_profile_title" />
-        <activity android:name=".Activities.EditRecordTwoActivity" />
         <activity android:name=".Activities.EditRecordThreeActivity" />
+
+        <activity android:name=".Activities.EditRecordFourActivity" />
+
         <activity android:name=".Activities.PatientSelectBodylocationPhotoActivity" />
         <activity
             android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_problem" />
+
         <activity android:name=".Activities.SelectByLocationActivity"></activity>
+
+        <activity android:name=".Activities.EditRecordTwoActivity"></activity>
     </application>
 
 </manifest>

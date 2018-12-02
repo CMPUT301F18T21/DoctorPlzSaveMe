@@ -16,15 +16,21 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+/**
+ * Activity when no patient profile is detected on file.
+ * Allows user to create a new profile, login with a username, or scan in a QR code from another device
+ * to add that profile.
+ */
 public class NoProfileActivity extends AppCompatActivity {
 
     private Button scanButton, newProfileButton, logInButton;
     private TextView usernameText;
     Backend backend = Backend.getInstance();
 
-    // TODO: ADD BACK (STACK) NAVIGATION
-
     @Override
+    /**
+     * set buttons, views, and listeners
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_profile);
@@ -37,8 +43,11 @@ public class NoProfileActivity extends AppCompatActivity {
         // button listener for scanButton
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * set button listener for scanButton
+             */
             public void onClick(View v) {
-                // TODO: Scan in profile
+                // scan in qr code
                 IntentIntegrator integrator = new IntentIntegrator(NoProfileActivity.this);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
                 integrator.setPrompt("Scan");
@@ -52,18 +61,27 @@ public class NoProfileActivity extends AppCompatActivity {
         // button listener for logInButton
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * set logInButton listener
+             */
             public void onClick(View v) {
-                // TODO: FIX
+                // see if we can get it from DB
                 Backend.getInstance().setPatientFromES(usernameText.getText().toString());
+                // check if the patient profile is null (shouldn't be if we fetched profile from DB)
                 if (Backend.getInstance().getPatientProfile() == null)
                 {
-                    try { wait(1000); } catch (Exception e) {} // wait a bit
+                    try { wait(1000); } catch (Exception e) {} // wait a bit to try again
+                }
+                if (Backend.getInstance().getPatientProfile() == null)
+                {
+                    try { wait(1000); } catch (Exception e) {} // wait a bit to try again
                 }
                 if (Backend.getInstance().getPatientProfile() != null)
                 {
+                    // we fetched profile so go to patient activity
                     finish();
                     startActivity(new Intent(NoProfileActivity.this, PatientActivity.class));
-                } else
+                } else // complain we couldn't get that profile
                 {
                     Toast.makeText(getApplicationContext(), (String) "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
                 }
@@ -73,7 +91,11 @@ public class NoProfileActivity extends AppCompatActivity {
         // button listener for newProfileButton
         newProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * set newProfileButton listener
+             */
             public void onClick(View v) {
+                // go to new profile activity (no checking required)
                 finish();
                 startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
             }
@@ -81,9 +103,12 @@ public class NoProfileActivity extends AppCompatActivity {
     }
 
     @Override
+    /**
+     * QR code handler (activity result)
+     */
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-
+        // handle QR code, similar functionality to above...
         if (result != null) {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
@@ -103,10 +128,10 @@ public class NoProfileActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), (String) "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
                     }
                 } else if (r == 1) {
-                    Toast.makeText(NoProfileActivity.this, "username does not exist", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NoProfileActivity.this, "Username does not exist!", Toast.LENGTH_LONG).show();
                 } else if (r == -1)
                 {
-                    Toast.makeText(NoProfileActivity.this, "Could not connect", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NoProfileActivity.this, "Could not connect to DB!", Toast.LENGTH_LONG).show();
                 }
             }
         } else {
