@@ -11,8 +11,9 @@ public class Patient implements Profile {
     private String id;
     private String email;
     private String phone;
+    private ArrayList<String> photoLabels;
     private ArrayList<String> photoIds;
-    private ArrayList<Bitmap> photos;
+    private ArrayList<String> photos;
     private ArrayList<Problem> mProblemList;
      /**
      * Creates a Patient (extends Profile)
@@ -24,23 +25,35 @@ public class Patient implements Profile {
         this.id = id;
         this.email = email;
         this.phone = phone;
-        this.mProblemList = new ArrayList<Problem>();
         this.photoIds = new ArrayList<String>();
-        this.photos = new ArrayList<Bitmap>();
+        this.photos = new ArrayList<String>();
+        this.mProblemList = new ArrayList<Problem>();
+        this.photoLabels = new ArrayList<String>();
     }
-    public void addPhoto(String id, Bitmap photo){
+
+    public void addPhoto(String id, String photo, String PhotoLabel){
         this.photoIds.add(id);
         this.photos.add(photo);
+        this.photoLabels.add(PhotoLabel);
     }
+
+    public void addPhotoLabel(Integer i, String photoLabel){
+        this.photoLabels.add(i,photoLabel);
+    }
+
+
 
     public ArrayList<String> getPhotoIds(){
         return this.photoIds;
     }
 
-    public ArrayList<Bitmap> getPhotos(){
+    public ArrayList<String> getPhotos(){
         return this.photos;
     }
 
+    public ArrayList<String> getPhotoLabels(){
+        return this.photoLabels;
+    }
 
     public void setEmail(String newEmail) {
         this.email = newEmail;

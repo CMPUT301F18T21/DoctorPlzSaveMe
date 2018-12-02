@@ -79,7 +79,7 @@ public class NoProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
+                //startActivity(new Intent(NoProfileActivity.this, NewProfileActivity.class));
 
                 if (Backend.isConnected()) {
                     finish();
