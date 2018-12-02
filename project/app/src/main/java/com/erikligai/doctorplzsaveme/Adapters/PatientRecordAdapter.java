@@ -1,6 +1,7 @@
 package com.erikligai.doctorplzsaveme.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.erikligai.doctorplzsaveme.Activities.CPViewRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 
@@ -81,13 +83,13 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
                 Log.e("problemIndex", problemID);
                 Log.e("recordIndex", i+"");
 
-//                Intent intent = new Intent(mContext, CPViewRecordActivity.class);
-//                intent.putExtra("patientID", patientID); // attach patient id to intent
-//                intent.putExtra("problemIndex", problemID); // attach problem index to intent
-//                intent.putExtra("recordIndex", i+""); // attack record index to intent
-//                mContext.startActivity(intent); // go to record list of patient
+                Intent intent = new Intent(mContext, CPViewRecordActivity.class);
+                intent.putExtra("patientID", patientID); // attach patient id to intent
+                intent.putExtra("problemIndex", problemID); // attach problem index to intent
+                intent.putExtra("recordIndex", i+""); // attack record index to intent
+                mContext.startActivity(intent); // go to record list of patient
 
-//                Log.d(TAG, "onClick: clicked on: " + mRecords.get(i).getTitle());
+               // Log.d(TAG, "onClick: clicked on: " + mRecords.get(i).getTitle());
                 Toast.makeText(mContext, mRecords.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });

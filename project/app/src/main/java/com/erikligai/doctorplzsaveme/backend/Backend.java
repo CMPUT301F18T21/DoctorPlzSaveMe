@@ -315,7 +315,6 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
                 return;
             }
         }
-        assert(false);
     }
 
     // add patient to CP, PatientID would be aquired from QR code

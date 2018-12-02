@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Activities.EditProblemActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
+import com.erikligai.doctorplzsaveme.Activities.PatientViewCommentActivity;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
@@ -116,6 +117,10 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
                                 //handle menu3 click
                                 ClickMenuThree();
                                 return true;
+                            case R.id.problem_menu4:
+                                //handle menu4 click
+                                ClickMenuFour();
+                                return true;
 
                             default:
                                 return false;
@@ -145,6 +150,13 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
                 Log.d("rview", "delete");
                 Backend.getInstance().deletePatientProblem(holder.getAdapterPosition());
                 notifyDataSetChanged();
+            }
+
+            void ClickMenuFour(){
+                Intent intent = new Intent(holder.itemView.getContext(), PatientViewCommentActivity.class);
+                intent.putExtra("Pos", holder.getAdapterPosition());
+                Log.d("rview", "edit");
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }

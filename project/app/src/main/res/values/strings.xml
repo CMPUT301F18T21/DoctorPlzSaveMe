@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">DoctorPlzSaveMe</string>
-    <string name="records">My records</string>
+    <string name="record">Records</string>
     <string name="view_edit_record">View/Edit Record</string>
     <string name="view_problems">View Problems</string>
     <string name="action_search">Search</string>
@@ -66,8 +66,8 @@
     <string name="view_record_photos">VIEW PHOTOS</string>
 
     <string name="record_info_title">Record Info</string>
-    <string name="record_title_hint">record title</string>
-    <string name="comment_hint">comment</string>
+    <string name="record_title_hint">Record Title (optional)</string>
+    <string name="record_comment_hint">Record Comment (optional)</string>
     <string name="tap_add_photo">Tap to add a photo!</string>
     <string name="indicate_where">Please indicate where it is on your body</string>
     <string name="geolocation_title">Geolocation</string>
@@ -75,6 +75,7 @@
     <string name="back">BACK</string>
     <string name="next">NEXT</string>
     <string name="save_record">SAVE RECORD</string>
+    <string name="no_record_available">There are no Records for this Problem! \nAdd one using the button below to start tracking!</string>
 
     <string name="search_problem">Search for problems by keyword</string>
     <string name="related_problems">RELATED PROBLEMS</string>
@@ -86,7 +87,20 @@
     <string name="search_records_keyword">Search for records by keyword</string>
     <string name="related_records">RELATED RECORDS</string>
     <string name="enter_location">Enter a location...</string>
+    <string name="title_activity_add_geolocation2">Map</string>
+    <string name="title_activity_camera">CameraActivity</string>
 
     <string name="welcome">Welcome</string>
+    <string name="no_title">no title"</string>
+    <string name="no_comment">no comment"</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_view_problem">ViewProblemActivity</string>
+    <string name="title_detail">Record Details</string>
+    <string name="title_photo">Record Photos</string>
+    <string name="title_map">Record Map</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="no_location">No location are saved for this Record!\nYou can add one in the Records menu!</string>
 </resources>
 
