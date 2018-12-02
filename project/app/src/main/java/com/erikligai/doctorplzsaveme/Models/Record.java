@@ -14,11 +14,13 @@ public class Record {
     private String photoid;
     private float xpos;
     private float ypos;
+    private ArrayList<String> photos;
 
     public Record() {
         this.date = new Date();
         this.title = "";
         this.comment = "";
+        this.photos = new ArrayList<String>();
     }
 
     /**
@@ -76,7 +78,9 @@ public class Record {
         return ypos;
     }
 
-
+    public ArrayList<String> getPhotos() {
+        return photos;
+    }
 
     public void setTitle(String title){
         this.title = title;
@@ -106,13 +110,7 @@ public class Record {
         this.ypos = ypos;
     }
 
-    /**
-    *Sets the geolocation of the record
-    *@param geolocation: Geolocation
-    *@return Nothing
-     */
-    public void addGeolocation(LatLng geolocation) {
-        this.geolocation = geolocation;
+    public void setPhotos(ArrayList<String> photos) {
+        this.photos = photos;
     }
-
 }
