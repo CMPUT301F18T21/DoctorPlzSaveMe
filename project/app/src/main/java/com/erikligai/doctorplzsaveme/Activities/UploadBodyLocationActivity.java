@@ -38,10 +38,9 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
         photoRecycler.setHasFixedSize(true);
         RecyclerViewPhotoAdapter adapter = new RecyclerViewPhotoAdapter(this);
         photoRecycler.setAdapter(adapter);
-        photoRecycler.setLayoutManager(new LinearLayoutManager(this));
+        photoRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         Button uploadNewPhoto = findViewById(R.id.addPhotoButton);
         uploadNewPhoto.setOnClickListener(this);
-
     }
 
     @Override
@@ -68,6 +67,7 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         String photoId;
         Bitmap photo;
+        String photoLabel = "";
 
         Intent intent = new Intent(this, UploadBodyLocationActivity.class);
         if (requestCode == ACTION_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
@@ -76,10 +76,11 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
             photoId = System.currentTimeMillis() +"_.jpg";                                          // current time in milliseconds.
             Log.i("photo", photoStr);
             Log.i("photoId", photoId);
-            Backend.getInstance().addPatientPhoto(photoId, photoStr);                                // store photo in backend.
-            Toast.makeText(getApplicationContext(), "Photo added!" + photoId, Toast.LENGTH_SHORT).show();
+            Backend.getInstance().getPatientProfile().addPhoto(photoId, photoStr, photoLabel);                           // store photo in backend.
+            Toast.makeText(getApplicationContext(), "Photo added!", Toast.LENGTH_SHORT).show();
         }
-        //Backend.getInstance().UpdatePatient();
+
+        Backend.getInstance().UpdatePatient();
         //intent.putExtra("photoList", photoList);
         finish();
         startActivity(intent);

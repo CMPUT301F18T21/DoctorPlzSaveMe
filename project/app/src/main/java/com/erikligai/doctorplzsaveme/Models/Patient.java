@@ -11,6 +11,7 @@ public class Patient implements Profile {
     private String id;
     private String email;
     private String phone;
+    private ArrayList<String> photoLabels;
     private ArrayList<String> photoIds;
     private ArrayList<String> photos;
     private ArrayList<Problem> mProblemList;
@@ -27,12 +28,20 @@ public class Patient implements Profile {
         this.photoIds = new ArrayList<String>();
         this.photos = new ArrayList<String>();
         this.mProblemList = new ArrayList<Problem>();
+        this.photoLabels = new ArrayList<String>();
     }
 
-    public void addPhoto(String id, String photo){
+    public void addPhoto(String id, String photo, String PhotoLabel){
         this.photoIds.add(id);
         this.photos.add(photo);
+        this.photoLabels.add(PhotoLabel);
     }
+
+    public void addPhotoLabel(Integer i, String photoLabel){
+        this.photoLabels.add(i,photoLabel);
+    }
+
+
 
     public ArrayList<String> getPhotoIds(){
         return this.photoIds;
@@ -40,6 +49,10 @@ public class Patient implements Profile {
 
     public ArrayList<String> getPhotos(){
         return this.photos;
+    }
+
+    public ArrayList<String> getPhotoLabels(){
+        return this.photoLabels;
     }
 
     public void setEmail(String newEmail) {

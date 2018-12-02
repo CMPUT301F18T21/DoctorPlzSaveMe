@@ -78,9 +78,9 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         return patientProfile.getProblemList().get(problemIndex).getRecords();
     }
 
-    public void addPatientPhoto(String id, String photo) {
+    public void addPatientPhoto(String id, String photo, String photoLabel) {
         assert(patientProfile != null);
-        patientProfile.addPhoto(id,photo);
+        patientProfile.addPhoto(id,photo, photoLabel);
         UpdatePatient();
     }
 
