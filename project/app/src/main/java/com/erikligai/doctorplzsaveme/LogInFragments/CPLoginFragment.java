@@ -1,11 +1,13 @@
-package com.erikligai.doctorplzsaveme.StartAppActivities;
+package com.erikligai.doctorplzsaveme.LogInFragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,26 +17,19 @@ import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.erikligai.doctorplzsaveme.backend.ElasticsearchProblemController;
 
-/**
- * This is the login activity for the care provider
- * It displays a text input for a username, and a log in button
- * You may not log in as a CP without connection to the DB
- */
-public class CPLoginActivity extends AppCompatActivity {
+public class CPLoginFragment extends Fragment {
 
     private Button logInButton;
     private TextView usernameText;
 
     @Override
-    /**
-     * Set the listeners for butons and set the view
-     */
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cplogin);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_cplogin, container, false);
 
-        logInButton = (Button) findViewById(R.id.cpLoginButton);
-        usernameText = (TextView) findViewById(R.id.cpUsernameText);
+        logInButton = (Button) view.findViewById(R.id.cpLoginButton);
+        usernameText = (TextView) view.findViewById(R.id.cpUsernameText);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,15 +45,15 @@ public class CPLoginActivity extends AppCompatActivity {
                         Backend.getInstance().PopulatePatients();
                         if (Backend.getInstance().getCPPatients() != null)
                         {
-                            finish();
+                            getActivity().onBackPressed();
                             Backend.getInstance().SaveCPProfile();
-                            startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
+                            startActivity(new Intent(getActivity(), CareProviderActivity.class));
                         } else // error check if DB fetch failed
                         {
-                            Toast.makeText(getApplicationContext(), (String) "Could not get patients!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), (String) "Could not get patients!", Toast.LENGTH_SHORT).show();
                         }
                     } else if (r == 1)
-                        // if we connected to DB but not found, prompt to add username and log in
+                    // if we connected to DB but not found, prompt to add username and log in
                     {
                         // https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
                         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -72,18 +67,18 @@ public class CPLoginActivity extends AppCompatActivity {
                                         try {
                                             if (checkIfCPExistsTask.execute(usernameText.getText().toString()).get()!=0)
                                             {
-                                                Toast.makeText(getApplicationContext(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getActivity(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
                                                 return;
                                             }
                                         } catch (Exception e) {
-                                            Toast.makeText(getApplicationContext(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         Backend.getInstance().setCP_ID(usernameText.getText().toString());
                                         dialog.dismiss();
-                                        finish();
+                                        getActivity().onBackPressed();
                                         Backend.getInstance().SaveCPProfile();
-                                        startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
+                                        startActivity(new Intent(getActivity(), CareProviderActivity.class));
                                         break;
 
                                     case DialogInterface.BUTTON_NEGATIVE:
@@ -95,19 +90,21 @@ public class CPLoginActivity extends AppCompatActivity {
                         };
 
                         // alert for prompt
-                        AlertDialog.Builder builder = new AlertDialog.Builder(CPLoginActivity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         builder.setMessage("This username does not exist. Would you like to create a new profile with this username and log in?")
                                 .setPositiveButton("Yes", dialogClickListener)
                                 .setNegativeButton("No", dialogClickListener).show();
                     } else if (r == -1) // couldn't connect to DB
                     {
-                        Toast.makeText(getApplicationContext(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
                     // shouldn't happen really
                 }
             }
         });
+
+        return view;
     }
 }

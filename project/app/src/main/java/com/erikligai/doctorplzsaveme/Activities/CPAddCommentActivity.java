@@ -10,10 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.StartAppActivities.NoProfileActivity;
 import com.erikligai.doctorplzsaveme.backend.Backend;
-
-import java.util.Date;
 
 public class CPAddCommentActivity  extends AppCompatActivity {
 
