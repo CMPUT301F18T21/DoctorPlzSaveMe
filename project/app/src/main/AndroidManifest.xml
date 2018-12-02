@@ -30,16 +30,14 @@
         <activity android:name=".Activities.EditRecordActivity" />
         <activity android:name=".Activities.AddProblemActivity" />
         <activity android:name=".Activities.AddRecordActivity" />
-        <activity android:name=".Activities.AddRecordTwoActivity" />
         <activity android:name=".Activities.AddRecordThreeActivity" />
+        <activity android:name=".Activities.AddRecordFourActivity" />
         <activity android:name=".Activities.ProblemSearchActivity" />
         <activity android:name=".Activities.CPViewProblemActivity" />
         <activity android:name=".Activities.CPViewRecordActivity" />
         <activity android:name=".Activities.CPAddCommentActivity" />
-        <activity android:name=".Activities.CPViewBodyLocationActivity" >
-        </activity>
 
-
+        <activity android:name=".Activities.AddRecordTwoActivity" />
         <activity android:name=".Activities.CPViewGeolocationActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
@@ -66,9 +64,7 @@
             android:label="@string/title_activity_main_maps" />
         <activity
             android:name=".StartAppActivities.NewProfileActivity"
-            android:label="@string/new_patient_title">
-
-        </activity>
+            android:label="@string/new_patient_title"></activity>
         <activity android:name=".Activities.CareProviderActivity" />
         <activity android:name=".Activities.AddPatientActivity" />
         <activity android:name=".PatientProblemsActivity" />
@@ -82,18 +78,14 @@
         android:label="@string/new_patient_title" />
         <activity
             android:name=".Activities.EditProfileActivity"
-            android:label="@string/view_edit_profile_title">
-
-        </activity>
+            android:label="@string/view_edit_profile_title"></activity>
         <activity
             android:name=".Activities.AddGeolocationActivity2"
             android:label="@string/title_activity_add_geolocation2" />
         <activity android:name=".Activities.PatientActivity" />
         <activity android:name=".StartAppActivities.CPLoginActivity" />
         <activity android:name=".Activities.CPRecordActivity" />
-
         <activity android:name=".Activities.PatientViewCommentActivity" />
-
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -108,15 +100,13 @@
         <activity android:name=".Activities.EditPhotosActivity" />
         <activity android:name=".Activities.UploadBodyLocationActivity" />
         android:label="@string/view_edit_profile_title" />
-        <activity android:name=".Activities.EditRecordTwoActivity" />
         <activity android:name=".Activities.EditRecordThreeActivity" />
-
-        <activity android:name=".Activities.PatientSelectBodylocationPhotoActivity"></activity>
-
+        <activity android:name=".Activities.EditRecordFourActivity" />
+        <activity android:name=".Activities.PatientSelectBodylocationPhotoActivity" />
         <activity
             android:name=".Activities.ViewRecordActivity"
-            android:label="@string/title_activity_view_problem"></activity>
-
+            android:label="@string/title_activity_view_problem" />
+        <activity android:name=".Activities.EditRecordTwoActivity"></activity>
     </application>
 
 </manifest>

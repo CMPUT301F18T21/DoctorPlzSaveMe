@@ -2,21 +2,24 @@ package com.erikligai.doctorplzsaveme.Models;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Record {
     private Photo photo;
-    private BodyLocation bodyLocation;
     private LatLng geolocation;
     private String title;
     private Date date;
     private String comment;
+    private String photoid;
+    private float xpos;
+    private float ypos;
 
     public Record() {
         this.date = new Date();
         this.title = "";
         this.comment = "";
-
     }
 
     /**
@@ -69,13 +72,7 @@ public class Record {
     public LatLng getGeolocation() {
         return this.geolocation;
     }
-     /**
-    *Returns the bodylocation of the record
-    *@return bodylocation Bodylocation
-     */
-    public BodyLocation getBodyLocation() {
-        return this.bodyLocation;
-    }
+
      /**
     *Returns the photo of the record
     *@return photo Photo
@@ -83,11 +80,20 @@ public class Record {
     public Photo getPhoto() {
         return this.photo;
     }
-    /**
-    *Sets the photo of the record
-    *@param photo: Photo
-    *@return Nothing
-     */
+
+    public String getPhotoid() {
+        return photoid;
+    }
+
+    public float getXpos() {
+        return xpos;
+    }
+
+    public float getYpos() {
+        return ypos;
+    }
+
+
 
     public void setTitle(String title){
         this.title = title;
@@ -105,6 +111,18 @@ public class Record {
         this.geolocation = geolocation;
     }
 
+    public void setPhotoid(String photoid) {
+        this.photoid = photoid;
+    }
+
+    public void setXpos(float xpos) {
+        this.xpos = xpos;
+    }
+
+    public void setYpos(float ypos) {
+        this.ypos = ypos;
+    }
+
     public void addPhoto(Photo photo) {
         this.photo = photo;
     }
@@ -115,14 +133,7 @@ public class Record {
     public boolean hasPhoto() {
         return this.photo != null;
     }
-    /**
-    *Sets the bodylocation of the record
-    *@param bodyLocation: Bodylocation
-    *@return Nothing
-     */
-    public void addBodyLocation(BodyLocation bodyLocation) {
-        this.bodyLocation = bodyLocation;
-    }
+
      /**
     *Checks if the record has a bodylocation
     *@return boolean

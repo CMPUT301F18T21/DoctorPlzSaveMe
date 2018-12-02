@@ -7,7 +7,7 @@
     android:background="?android:windowBackground">
 
     <Button
-        android:id="@+id/nextButton2"
+        android:id="@+id/nextButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/backButton2"
+        android:id="@+id/backButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
