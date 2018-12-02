@@ -31,52 +31,68 @@ public class CPLoginActivity extends AppCompatActivity {
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Backend.isConnected()) {
-                    // TODO:
-                    try {
-                        ElasticsearchProblemController.CheckIfCPExistsTask checkIfCPExistsTask = new ElasticsearchProblemController.CheckIfCPExistsTask();
-                        if(checkIfCPExistsTask.execute(usernameText.getText().toString()).get())
+                try {
+                    ElasticsearchProblemController.CheckIfCPExistsTask checkIfCPExistsTask = new ElasticsearchProblemController.CheckIfCPExistsTask();
+                    int r = Backend.userIDExists(usernameText.getText().toString());
+                    if(r == 0)
+                    {
+                        Backend.getInstance().setCP_ID(usernameText.getText().toString());
+                        Backend.getInstance().ClearPatients();
+                        Backend.getInstance().PopulatePatients();
+                        if (Backend.getInstance().getM_patients() != null)
                         {
-                            Backend.getInstance().setCP_ID(usernameText.getText().toString());
-                            Backend.getInstance().ClearPatients();
-                            Backend.getInstance().PopulatePatients();
                             finish();
                             Backend.getInstance().SaveCPProfile();
                             startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
                         } else
                         {
-                            // https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
-                            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    switch (which){
-                                        case DialogInterface.BUTTON_POSITIVE:
-                                            ElasticsearchProblemController.AddCPTask addCPTask = new ElasticsearchProblemController.AddCPTask();
-                                            addCPTask.execute(usernameText.getText().toString());
-                                            Backend.getInstance().setCP_ID(usernameText.getText().toString());
-                                            dialog.dismiss();
-                                            finish();
-                                            Backend.getInstance().SaveCPProfile();
-                                            startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
-                                            break;
-
-                                        case DialogInterface.BUTTON_NEGATIVE:
-                                            //No button clicked
-                                            dialog.dismiss();
-                                            break;
-                                    }
-                                }
-                            };
-
-                            AlertDialog.Builder builder = new AlertDialog.Builder(CPLoginActivity.this);
-                            builder.setMessage("This username does not exist. Would you like to create a new profile with this username and log in?")
-                                    .setPositiveButton("Yes", dialogClickListener)
-                                    .setNegativeButton("No", dialogClickListener).show();
+                            Toast.makeText(getApplicationContext(), (String) "Could not get patients!", Toast.LENGTH_SHORT).show();
                         }
-                    } catch (Exception e) {
+                    } else if (r == 1) {
+                        // https://stackoverflow.com/questions/2478517/how-to-display-a-yes-no-dialog-box-on-android
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        ElasticsearchProblemController.AddCPTask addCPTask = new ElasticsearchProblemController.AddCPTask();
+                                        addCPTask.execute(usernameText.getText().toString());
+                                        ElasticsearchProblemController.CheckIfCPExistsTask checkIfCPExistsTask = new ElasticsearchProblemController.CheckIfCPExistsTask();
+                                        try {
+                                            if (!checkIfCPExistsTask.execute(usernameText.getText().toString()).get())
+                                            {
+                                                Toast.makeText(getApplicationContext(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                                                return;
+                                            }
+                                        } catch (Exception e) {
+                                            Toast.makeText(getApplicationContext(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+                                        Backend.getInstance().setCP_ID(usernameText.getText().toString());
+                                        dialog.dismiss();
+                                        finish();
+                                        Backend.getInstance().SaveCPProfile();
+                                        startActivity(new Intent(CPLoginActivity.this, CareProviderActivity.class));
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        //No button clicked
+                                        dialog.dismiss();
+                                        break;
+                                }
+                            }
+                        };
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CPLoginActivity.this);
+                        builder.setMessage("This username does not exist. Would you like to create a new profile with this username and log in?")
+                                .setPositiveButton("Yes", dialogClickListener)
+                                .setNegativeButton("No", dialogClickListener).show();
+                    } else if (r == -1)
+                    {
+                        Toast.makeText(getApplicationContext(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+
                 }
             }
         });
