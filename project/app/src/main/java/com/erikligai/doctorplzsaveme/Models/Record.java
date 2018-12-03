@@ -26,6 +26,7 @@ public class Record {
         this.title = "";
         this.comment = "";
         this.photos = new ArrayList<String>();
+        this.photoid = "";
     }
 
     /**
