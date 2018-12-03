@@ -10,10 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -50,8 +53,14 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
 
         zoomImg = view.findViewById(R.id.imageView12);
         zoomImg.setOnClickListener(this);
+        TextView emptyView = view.findViewById(R.id.empty_photo_view);
 
-        displayPhotos(view);
+
+        if (photos.size()!=0) {
+            displayPhotos(view);
+        } else {
+            emptyView.setVisibility(View.VISIBLE);
+        }
 
         return view;
     }
