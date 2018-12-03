@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="5dp">
+
+    <RelativeLayout
+        android:id="@+id/patient_record_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:paddingStart="12dp"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/patient_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="14dp"
+            android:layout_toStartOf="@+id/problem_item_record_count"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Username"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/black" />
+
+
+        <TextView
+            android:id="@+id/patient_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="sans-serif"
+            android:text="Phone"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/patient_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/patient_phone"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="14dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="email"
+            android:textAppearance="?android:textAppearanceSmall" />
+
+        <ImageButton
+            android:id="@+id/patient_item_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="#FFFF"
+            android:padding="20dp"
+            card_view:srcCompat="@drawable/ic_baseline_more_vert_24px" />
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+

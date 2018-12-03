@@ -5,12 +5,15 @@ package com.erikligai.doctorplzsaveme;
 
 import com.erikligai.doctorplzsaveme.Activities.AddProblemActivity;
 import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
+import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemDescException;
 import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemTitleException;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.Calendar;
 
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -72,10 +75,12 @@ public class RecordProblemTest {
 //        onView(withId(R.id.editProblemDescription)).perform(typeText(desc),closeSoftKeyboard());
 //        onView(withId(R.id.saveButton)).perform(click());
         try {
-            Problem newProblem = new Problem(title, desc);
+            Problem newProblem = new Problem(title, desc, Calendar.getInstance().getTime());
             newProblem.setTitle(long_title);
         } catch (TooLongProblemTitleException e) {
 
+        } catch (TooLongProblemDescException e) {
+            e.printStackTrace();
         }
     }
 
@@ -86,10 +91,12 @@ public class RecordProblemTest {
 //        onView(withId(R.id.editProblemDescription)).perform(typeText(desc),closeSoftKeyboard());
 //        onView(withId(R.id.saveButton)).perform(click());
         try {
-            Problem newProblem = new Problem(title, desc);
+            Problem newProblem = new Problem(title, desc, Calendar.getInstance().getTime());
             newProblem.setTitle(long_desc);
         } catch (TooLongProblemTitleException e) {
 
+        } catch (TooLongProblemDescException e) {
+            e.printStackTrace();
         }
     }
 

@@ -2,6 +2,7 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,7 +12,6 @@ import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
-
 import com.erikligai.doctorplzsaveme.backend.Backend;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,26 +21,23 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,
+public class CPViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,
         GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
-
-
     private GoogleMap mMap;
 
     /** BACKEND TESTING
-    Patient p = new Patient("Joe Hepp","id-100", "heppelle@", "123456");
-    Problem problem = new Problem("Title", "Leg hurt");
-    Record record = new Record("Leg 1", "Leg hurt");
-    problem.addRecord(record);
-    p.addProblem(problem);
-    for Record rec in problem.getRecords(){
-        LatLng latlng = rec.getGeolocation();
-    }
-    /** BACKEND TESTING */
+     Patient p = new Patient("Joe Hepp","id-100", "heppelle@", "123456");
+     Problem problem = new Problem("Title", "Leg hurt");
+     Record record = new Record("Leg 1", "Leg hurt");
+     problem.addRecord(record);
+     p.addProblem(problem);
+     for Record rec in problem.getRecords(){
+     LatLng latlng = rec.getGeolocation();
+     }
+     /** BACKEND TESTING */
 
     //private static final LatLng VAN = new LatLng(49.246292, -123.116226);
     private Marker Van;
@@ -63,10 +60,10 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_maps);
+        setContentView(R.layout.activity_cpview_record_locations);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map3);
         mapFragment.getMapAsync(this);
     }
 
@@ -83,14 +80,18 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     //TODO: 1. Talk to backend. Get all records for patient.
     //TODO: 2. For each record, try getting the geolocation.
     //TODO: 3. if record has a geolocation info, create a marker from it.
+    private String patientID;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
 
+        Intent intent = getIntent();
+        patientID = intent.getStringExtra("patientID");
+        Patient patient = Backend.getInstance().GetCPPatient(patientID);
         int i,j;
-        ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
+        ArrayList<Problem> problems = patient.getProblemList();
         for (i = 0; i < problems.size(); i++) {
             ArrayList<Record> records = problems.get(i).getRecords();
             for( j = 0; j < records.size(); j++) {
@@ -128,10 +129,11 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
     @Override
     public void onInfoWindowClick(Marker marker) {
         //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
-        Intent intent = new Intent(ViewRecordLocationsActivity.this, ViewRecordActivity.class);
+        Intent intent = new Intent(CPViewRecordLocationsActivity.this, CPViewRecordActivity.class);
         List<Integer> index = (List<Integer>) marker.getTag();
-        intent.putExtra("P_Pos", index.get(0));
-        intent.putExtra("R_Pos", index.get(1));
+        intent.putExtra("problemIndex", index.get(0));
+        intent.putExtra("recordIndex", index.get(1));
+        intent.putExtra("patientID",patientID);
         Log.i("P",Integer.toString(index.get(0)));
         Log.i("R",Integer.toString(index.get(1)));
         startActivity(intent);

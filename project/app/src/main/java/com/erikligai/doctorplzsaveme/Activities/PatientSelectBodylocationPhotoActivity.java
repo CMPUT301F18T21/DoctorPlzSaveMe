@@ -19,6 +19,8 @@ public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
     private int chosen = -1;
     private ImageView front;
     private ImageView back;
+    private float BLX;
+    private float BLY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);
         RecordPosition = intent.getIntExtra("RecordPos",-1);
         patientID = intent.getStringExtra("patientId");
+        BLX = intent.getFloatExtra("xpos",-1);
+        BLY = intent.getFloatExtra("ypos",-1);
         doneBtn = findViewById(R.id.doneButton2);
         front = findViewById(R.id.frontDefault);
         back = findViewById(R.id.backDefault);
@@ -67,6 +71,8 @@ public class PatientSelectBodylocationPhotoActivity extends AppCompatActivity {
         intent.putExtra("RecordPos", RecordPosition);
         intent.putExtra("patientId",patientID);
         intent.putExtra("chosen",chosen);
+        intent.putExtra("xpos",BLX);
+        intent.putExtra("ypos",BLY);
         finish();
         startActivity(intent);
     }

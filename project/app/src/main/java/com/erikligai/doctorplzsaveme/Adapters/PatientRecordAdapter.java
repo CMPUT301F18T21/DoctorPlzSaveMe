@@ -78,8 +78,8 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
                 // this should start a new activity with the record view
                 Intent intent = new Intent(mContext, CPViewRecordActivity.class);
                 intent.putExtra("patientID", patientID); // attach patient id to intent
-                intent.putExtra("problemIndex", problemID); // attach problem index to intent
-                intent.putExtra("recordIndex", i+""); // attack record index to intent
+                intent.putExtra("problemIndex", Integer.parseInt(problemID)); // attach problem index to intent
+                intent.putExtra("recordIndex", Integer.parseInt(i+"")); // attack record index to intent
                 mContext.startActivity(intent); // go to record list of patient
                 Toast.makeText(mContext, mRecords.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
