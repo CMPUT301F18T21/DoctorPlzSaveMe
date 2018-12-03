@@ -99,7 +99,7 @@ public class CPPhotoFragment extends Fragment implements View.OnClickListener {
                 zoomImage(10);
                 break;
 
-            case R.id.imageView13:
+            case R.id.imageView12:
                 zoomImg.setVisibility(View.GONE);
                 break;
         }

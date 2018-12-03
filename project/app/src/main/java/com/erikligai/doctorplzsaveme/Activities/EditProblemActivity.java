@@ -62,7 +62,7 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
         editDesc.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

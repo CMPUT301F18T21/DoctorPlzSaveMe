@@ -92,10 +92,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     {
                         Backend.getInstance().getPatientProfile().setEmail(temp_email);
                         Backend.getInstance().getPatientProfile().setPhone(temp_phone);
-                        Toast.makeText(getApplicationContext(), (String) "Could not save profile!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Could not save profile!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No connection!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

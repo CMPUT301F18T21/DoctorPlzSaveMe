@@ -25,6 +25,7 @@ public class CareProviderActivity extends AppCompatActivity {
 
 
     private ArrayList<Patient> patientList;
+    private FloatingActionButton fab;
 //    private ArrayList<Patient> patientList;
 
 
@@ -42,9 +43,11 @@ public class CareProviderActivity extends AppCompatActivity {
 //        Log.d(TAG, "onCreate: started");
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(R.string.your_patient);
 
-
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,28 +86,31 @@ public class CareProviderActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the main_menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cp_activity, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the main_menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_cp_activity, menu);
+//        return true;
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
             case R.id.action_logout:
                 Backend.getInstance().clearCPData();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-                break;
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-        return true;
     }
 
     private void initRecyclerView() {
@@ -114,5 +120,16 @@ public class CareProviderActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
+                    fab.show();
+                }
+            }
+        });
     }
 }
