@@ -31,17 +31,6 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
 
     private GoogleMap mMap;
 
-    /** BACKEND TESTING
-    Patient p = new Patient("Joe Hepp","id-100", "heppelle@", "123456");
-    Problem problem = new Problem("Title", "Leg hurt");
-    Record record = new Record("Leg 1", "Leg hurt");
-    problem.addRecord(record);
-    p.addProblem(problem);
-    for Record rec in problem.getRecords(){
-        LatLng latlng = rec.getGeolocation();
-    }
-    /** BACKEND TESTING */
-
     //private static final LatLng VAN = new LatLng(49.246292, -123.116226);
     private Marker Van;
 
@@ -119,7 +108,6 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-
         //int num = (int) marker.getTag();                         // get data from marker(probably recordID)
         Toast.makeText(this, marker.getTitle(), Toast.LENGTH_SHORT).show();
         return false;
@@ -136,5 +124,4 @@ public class ViewRecordLocationsActivity extends FragmentActivity implements Goo
         Log.i("R",Integer.toString(index.get(1)));
         startActivity(intent);
     }
-
 }

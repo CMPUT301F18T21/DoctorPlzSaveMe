@@ -25,7 +25,6 @@ import java.util.List;
 public class SearchGeolocationActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
     private GoogleMap mMap;
 
-    //private static final LatLng VAN = new LatLng(49.246292, -123.116226);
     private Marker Van;
 
     @Override
@@ -44,7 +43,6 @@ public class SearchGeolocationActivity extends FragmentActivity implements Googl
             case android.R.id.home:
                 finish();
                 return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -67,7 +65,6 @@ public class SearchGeolocationActivity extends FragmentActivity implements Googl
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         int i,j;
         ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
         for (i = 0; i < problems.size(); i++) {
@@ -75,7 +72,6 @@ public class SearchGeolocationActivity extends FragmentActivity implements Googl
             for( j = 0; j < records.size(); j++) {
                 if (records.get(j).getGeolocation() != null) {
                     Van = mMap.addMarker(new MarkerOptions().position(records.get(j).getGeolocation()).title(problems.get(i).getTitle()).snippet(records.get(j).getTitle()));
-
                     List<Integer> index = new ArrayList<Integer>();
                     index.add(i);
                     index.add(j);
