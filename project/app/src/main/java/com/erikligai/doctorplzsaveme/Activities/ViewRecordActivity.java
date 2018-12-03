@@ -2,7 +2,6 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,20 +9,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.RecordFragments.BodyLocationFragment;
 import com.erikligai.doctorplzsaveme.RecordFragments.DetailFragment;
-import com.erikligai.doctorplzsaveme.RecordFragments.MapFragment;
+import com.erikligai.doctorplzsaveme.RecordFragments.GeolocationFragment;
 import com.erikligai.doctorplzsaveme.RecordFragments.PhotoFragment;
 
 public class ViewRecordActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private int problem_index,record_index;
-    private DetailFragment detailFragment;
-    private MapFragment mapFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -50,7 +46,7 @@ public class ViewRecordActivity extends AppCompatActivity {
 
                 case R.id.navigation_map:
                     getSupportActionBar().setTitle(R.string.title_map);
-                    MapFragment mapFragment = MapFragment.newInstance(problem_index,record_index );
+                    GeolocationFragment mapFragment = GeolocationFragment.newInstance(problem_index,record_index );
                     loadFragment(mapFragment);
                     return true;
             }
@@ -77,7 +73,6 @@ public class ViewRecordActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         DetailFragment detailFragment = DetailFragment.newInstance(problem_index,record_index);
-        MapFragment mapFragment = MapFragment.newInstance(problem_index,record_index );
         loadFragment(detailFragment);
     }
 
