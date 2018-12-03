@@ -127,9 +127,10 @@
             android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
+            android:textColor="#FFFFFF"
             android:backgroundTint="#308DC3"
             android:text="@string/edit_desc"
-            android:textColor="#FFFFFF" />
+             />
 
         <Button
             android:id="@+id/editDateButton"
