@@ -5,23 +5,27 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.erikligai.doctorplzsaveme.Adapters.PatientRecordAdapter;
+import com.erikligai.doctorplzsaveme.Adapters.CPRecordKeywordAdapter;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
-public class CPRecordActivity extends AppCompatActivity {
-    private static final String TAG = "PatientRecordActivity";
+public class CPSearchKeywordActivity extends AppCompatActivity {
 
-    PatientRecordAdapter adapter;
+
+    private static final String TAG = "CPSearchKeywordActivity";
+
+    CPRecordKeywordAdapter adapter;
     //    private ArrayList<Record> recordList = new ArrayList<>();
     private ArrayList<Record> recordList;
     Backend backend = Backend.getInstance();
@@ -32,7 +36,7 @@ public class CPRecordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cprecord);
+        setContentView(R.layout.activity_cpsearch_keyword);
 
         // pull patient's records from back end using passed in problem id
         Intent intent = getIntent(); // receive intent
@@ -68,7 +72,7 @@ public class CPRecordActivity extends AppCompatActivity {
     private void initRecyclerView() {
 //        Log.d(TAG, "initRecyclerView: init");
 
-        RecyclerView recyclerView = findViewById(R.id.patient_records_recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.cp_patient_records_recycler_view_keyword);
         TextView emptyView = findViewById(R.id.empty_view);
 
         if (recordList.isEmpty()) {
@@ -79,61 +83,34 @@ public class CPRecordActivity extends AppCompatActivity {
         } else {
             // display recyclerview
             recyclerView.setVisibility(View.VISIBLE);
-            adapter = new PatientRecordAdapter(recordList, this, patientID, problemID);
+            adapter = new CPRecordKeywordAdapter(recordList, this, patientID, problemID);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             // hide textview
             emptyView.setVisibility(View.GONE);
         }
     }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        adapter.notifyDataSetChanged();
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the main_menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.search_menu, menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-
-            case R.id.search_keyword:
-                Intent intent = new Intent(this, CPSearchKeywordActivity.class);
-//                intent.putExtra("patientID", backend.getPatientProfile().getID()); // send patientID
-                intent.putExtra("problemID", problemID); // send problemID
-                intent.putExtra("patientID", patientID); // send patientID
-                startActivity(intent);
-                return true;
-
-            case R.id.search_geo:
-                Intent geo_intent = new Intent(this, CPSearchGeolocationActivity.class);
-                geo_intent.putExtra("patientID", patientID);
-                geo_intent.putExtra("problemID", problemID);
-                startActivity(geo_intent);
-                return true;
-
-            case R.id.search_body:
-                Intent body_intent = new Intent(this, CPSearchBodyActivity.class);
-                body_intent.putExtra("patientID", patientID);
-                body_intent.putExtra("problemID", problemID);
-                startActivity(body_intent);
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
     }
 }
