@@ -134,21 +134,24 @@ public class MainRecordActivity extends AppCompatActivity {
 
             case R.id.search_keyword:
                 Intent intent = new Intent(this, SearchKeywordActivity.class);
-                intent.putExtra("patientID", backend.getPatientProfile().getID()); // send patientID
+//                intent.putExtra("patientID", backend.getPatientProfile().getID()); // send patientID
                 intent.putExtra("problemID", problem_index); // send problemID
                 startActivity(intent);
+                return true;
 
             case R.id.search_geo:
                 Intent geo_intent = new Intent(this, SearchGeolocationActivity.class);
                 geo_intent.putExtra("patientID", backend.getPatientProfile().getID());
                 geo_intent.putExtra("problemID", problem_index);
                 startActivity(geo_intent);
+                return true;
 
             case R.id.search_body:
                 Intent body_intent = new Intent(this, SearchBodyActivity.class);
                 body_intent.putExtra("patientID", backend.getPatientProfile().getID());
                 body_intent.putExtra("problemID", problem_index);
                 startActivity(body_intent);
+                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
