@@ -88,22 +88,5 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             }
         });
-
-//        displayQRButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-//                try {
-//                    BitMatrix bitMatrix = multiFormatWriter.encode(User_Id, BarcodeFormat.QR_CODE, 200,200);
-//                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-//                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-//                    qrCode.setImageBitmap(bitmap);
-//                } catch (WriterException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        });
-
     }
 }
