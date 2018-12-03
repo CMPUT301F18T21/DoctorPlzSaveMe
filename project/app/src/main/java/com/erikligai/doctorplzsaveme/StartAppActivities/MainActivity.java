@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         // IMPORTANT! sets backend context for writing/reading from file
         Backend.getInstance().setContext(getApplicationContext());
 
-        patientButton = (Button) findViewById(R.id.patient_button);
-        careProviderButton = (Button) findViewById(R.id.care_provider_button);
+        patientButton = findViewById(R.id.patient_button);
+        careProviderButton = findViewById(R.id.care_provider_button);
 
         // button listener for patientButton
         patientButton.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.commit();
                 } else if (r == -1) // could not connect to db so toast message it
                 {
-                    Toast.makeText(getApplicationContext(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

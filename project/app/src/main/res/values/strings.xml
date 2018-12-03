@@ -1,17 +1,20 @@
 <resources>
     <string name="app_name">DoctorPlzSaveMe</string>
     <string name="record">Records</string>
-    <string name="view_edit_record">View/Edit Record</string>
+    <string name="edit_record">Edit Record</string>
     <string name="view_problems">View Problems</string>
     <string name="action_search">Search</string>
     <string name="problems">Problems</string>
+    <string name="problem_detail">Problem Detail</string>
     <string name="view_edit_problem">View/Edit Problem</string>
     <string name="edit_date">Edit Start Date</string>
     <string name="edit_problem">Edit Problem</string>
     <string name="edit_desc">Edit Description</string>
     <string name="view_add_records">View/Add Records</string>
+    <string name="view_problem">View Problem</string>
     <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
+    <string name="delete_problem">Delete Problem</string>
+    <string name="delete_record">Delete Record</string>
     <string name="view_locations">View Locations</string>
     <string name="upload_body_location">Body Location Photos</string>
     <string name="view_edit_profile">View/Edit Profile</string>
@@ -30,6 +33,7 @@
     <string name="patient_or_cp">Are you a patient or care provider?</string>
     <string name="patient_button">PATIENT</string>
     <string name="care_provider_button">CARE PROVIDER</string>
+    <string name="your_patient">Your Patients</string>
 
     <string name="new_patient_title">New Patient</string>
     <string name="new_patient">It looks like you are a new patient! Please enter your info below.</string>

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class EditRecordThreeActivity extends AppCompatActivity implements View.OnClickListener{
     private Button backBtn2,nextBtn2;
-    private ImageView zoomImg;
+    private ImageView addBtn,zoomImg;
     private int problem_index, record_index;
     private Record record;
     private ArrayList<String> photos;
@@ -38,10 +38,12 @@ public class EditRecordThreeActivity extends AppCompatActivity implements View.O
         record_index = intent.getIntExtra("R_Pos",-1);
         backBtn2 = findViewById(R.id.backButton3);
         nextBtn2 = findViewById(R.id.nextButton3);
+        addBtn = findViewById(R.id.imageView12);
         zoomImg = findViewById(R.id.imageView13);
         backBtn2.setOnClickListener(this);
         nextBtn2.setOnClickListener(this);
         zoomImg.setOnClickListener(this);
+        addBtn.setOnClickListener(this);
 
 
         record = RecordBuffer.getInstance().getRecord();

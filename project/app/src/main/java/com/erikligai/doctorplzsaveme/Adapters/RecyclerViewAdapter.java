@@ -3,7 +3,6 @@ package com.erikligai.doctorplzsaveme.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,9 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CPViewRecordLocationsActivity;
-import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.PatientProblemsActivity;
+import com.erikligai.doctorplzsaveme.Activities.PatientProblemsActivity;
 import com.erikligai.doctorplzsaveme.R;
 
 import java.util.ArrayList;

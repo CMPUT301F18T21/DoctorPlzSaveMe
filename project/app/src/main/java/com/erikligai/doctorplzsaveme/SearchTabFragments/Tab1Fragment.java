@@ -29,8 +29,8 @@ public class Tab1Fragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_search_one, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.patient_problems_recycler_view_search);
-        TextView emptyView = (TextView) rootView.findViewById(R.id.empty_view);
+        RecyclerView recyclerView = rootView.findViewById(R.id.patient_problems_recycler_view_search);
+        TextView emptyView = rootView.findViewById(R.id.empty_view);
 
 //        Record record = new Record("title", "comment");
         Patient patient = new Patient("user2", ";lahjrg", "893482");

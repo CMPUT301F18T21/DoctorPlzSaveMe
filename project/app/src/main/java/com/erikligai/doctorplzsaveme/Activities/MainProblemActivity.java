@@ -40,7 +40,7 @@ public class MainProblemActivity extends AppCompatActivity {
 //        problems.add(p2);
 //        problems.add(p3);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -76,6 +76,18 @@ public class MainProblemActivity extends AppCompatActivity {
                 intent.putExtra("Pos", position);
                 Log.d("rview", Integer.toString(position));
                 startActivity(intent);
+            }
+        });
+
+        problemRView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
+                    fab.show();
+                }
             }
         });
     }

@@ -54,7 +54,7 @@ public class MainRecordActivity extends AppCompatActivity {
 //        records.add(r2);
 //        records.add(r3);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.record_toolbar);
+        Toolbar myToolbar = findViewById(R.id.record_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -90,6 +90,18 @@ public class MainRecordActivity extends AppCompatActivity {
                 intent.putExtra("P_Pos", problem_index);
                 startActivity(intent);
                 Log.d("rview", Integer.toString(position));
+            }
+        });
+
+        recordRecycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0 && fab.getVisibility() == View.VISIBLE) {
+                    fab.hide();
+                } else if (dy < 0 && fab.getVisibility() != View.VISIBLE) {
+                    fab.show();
+                }
             }
         });
     }

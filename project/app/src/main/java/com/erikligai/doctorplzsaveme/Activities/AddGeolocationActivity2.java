@@ -51,7 +51,7 @@ public class AddGeolocationActivity2 extends FragmentActivity implements GoogleM
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
 
-        mMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) AddGeolocationActivity2.this);
+        mMap.setOnMarkerClickListener(AddGeolocationActivity2.this);
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override

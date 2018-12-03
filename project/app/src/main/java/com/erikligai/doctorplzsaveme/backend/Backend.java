@@ -107,7 +107,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
                 {
                     this.patientProfile = patientProfile;
                     return true;
-                };
+                }
             } catch (Exception e) { return false; }
         }
         return false;
@@ -368,11 +368,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
      */
     public boolean isConnected(){
         try {
-            if (userIDExists(patientProfile.getID()) == 0)
-            {
-                return true;
-            }
-            return false;
+            return userIDExists(patientProfile.getID()) == 0;
         } catch (Exception e)
         {
             Log.e("isConnected: ", "failure: most likely caused by null patientProfile being called by CP code.");
