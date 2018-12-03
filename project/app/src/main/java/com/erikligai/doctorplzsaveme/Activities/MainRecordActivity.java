@@ -24,13 +24,13 @@ public class MainRecordActivity extends AppCompatActivity {
     private RecordAdapter adapter;
     private ArrayList<Record> records;
 
-    public int getProblem_index() {
-        return problem_index;
-    }
-
-    public void setProblem_index(int problem_index) {
-        this.problem_index = problem_index;
-    }
+//    public int getProblem_index() {
+//        return problem_index;
+//    }
+//
+//    public void setProblem_index(int problem_index) {
+//        this.problem_index = problem_index;
+//    }
 
     private int problem_index;
     private RecyclerView recordRecycler;
@@ -80,8 +80,9 @@ public class MainRecordActivity extends AppCompatActivity {
 
         emptyView = findViewById(R.id.empty_record_view);
 
-        adapter = new RecordAdapter(records);
-        adapter.setParentActivity(this);
+
+        adapter = new RecordAdapter(records, problem_index);
+//        adapter.setParentActivity(this);
         recordRecycler.setAdapter(adapter);
         adapter.setOnEntryClickListener(new RecordAdapter.OnEntryClickListener() {
             @Override

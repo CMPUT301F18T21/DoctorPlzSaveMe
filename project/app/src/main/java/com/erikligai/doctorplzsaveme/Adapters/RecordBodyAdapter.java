@@ -14,11 +14,8 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.erikligai.doctorplzsaveme.Activities.EditProblemActivity;
-import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
-import com.erikligai.doctorplzsaveme.Activities.PatientSlideshowActivity;
-import com.erikligai.doctorplzsaveme.Activities.PatientViewCommentActivity;
-import com.erikligai.doctorplzsaveme.Models.Problem;
+import com.erikligai.doctorplzsaveme.Activities.EditRecordActivity;
+import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
@@ -30,30 +27,35 @@ import java.util.Locale;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHolder> implements Filterable {
-    private final ArrayList<Problem> mDataset;
-    private ArrayList<Problem> mProblemsCopy;
+public class RecordBodyAdapter extends RecyclerView.Adapter<RecordBodyAdapter.MyViewHolder> implements Filterable {
+    private final ArrayList<Record> mDataset;
+    private ArrayList<Record> mRecordsCopy;
+
+    private int problem_index;
+
+//    MainRecordActivity parent_activity;
+
+//    public void setParentActivity(MainRecordActivity a) { parent_activity = a; }
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // each data item is just a string in this case
         final TextView title;
         final TextView date;
-        final TextView desc;
-        final TextView record_count;
+        final TextView comment;
         final ImageButton option;
 
         MyViewHolder(View v) {
             super(v);
             v.setOnClickListener(this);
 
-            title = v.findViewById(R.id.problem_item_title);
-            date = v.findViewById(R.id.problem_item_date);
-            desc = v.findViewById(R.id.problem_item_desc);
-            record_count = v.findViewById(R.id.problem_item_record_count);
-            option = v.findViewById(R.id.problem_item_options);
+            title = v.findViewById(R.id.record_item_title);
+            date = v.findViewById(R.id.record_item_date);
+            comment = v.findViewById(R.id.record_item_comment);
+            option = v.findViewById(R.id.record_item_options);
         }
 
         @Override
@@ -65,72 +67,67 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ProblemAdapter(ArrayList<Problem> myDataset) {
+    public RecordBodyAdapter(ArrayList<Record> myDataset, int problem_index) {
         this.mDataset = myDataset;
-        this.mProblemsCopy = new ArrayList<>(mDataset);
+        this.mRecordsCopy = new ArrayList<>(mDataset);
+        this.problem_index = problem_index;
     }
 
     // Create new views (invoked by the layout manager)
     @NonNull
     @Override
-    public ProblemAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
-                                                     int viewType) {
+    public RecordBodyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+                                                         int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_problem, parent, false);
-        return new MyViewHolder(v);
+                .inflate(R.layout.item_record, parent, false);
+        return new RecordBodyAdapter.MyViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecordBodyAdapter.MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Problem problem = mDataset.get(position);
+        Record record = mDataset.get(position);
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CANADA);
-        Date date = problem.getDate();
+        Date date = record.getDate();
         String f_date = df.format(date);
-        String r_count = String.valueOf(problem.countRecords()) + " Records";
-
-        holder.title.setText(problem.getTitle());
+        String title_data = record.getTitle();
+        String comment_data = record.getComment();
+        if (title_data.equals("")){
+            holder.title.setText("<no title>");
+        } else {
+            holder.title.setText(title_data);
+        }
+        if (comment_data.equals("")){
+            holder.comment.setText("<no comment>");
+        } else {
+            holder.comment.setText(comment_data);
+        }
         holder.date.setText(f_date);
-        holder.desc.setText(problem.getDescription());
-        holder.record_count.setText(r_count);
         holder.option.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //creating a popup menu
-                PopupMenu popup = new PopupMenu(view.getContext(),view);
+                PopupMenu popup = new PopupMenu(view.getContext(), view);
                 //inflating menu from xml resource
-                popup.inflate(R.menu.menu_problem_options);
+                popup.inflate(R.menu.menu_record_options);
                 //adding click listener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.problem_menu1:
+                            case R.id.record_menu1:
                                 //handle menu1 click
                                 ClickMenuOne();
                                 return true;
 
-                            case R.id.problem_menu2:
+                            case R.id.record_menu2:
                                 //handle menu2 click
                                 ClickMenuTwo();
-                                return true;
-
-                            case R.id.problem_menu3:
-                                //handle menu3 click
-                                ClickMenuThree();
-                                return true;
-                            case R.id.problem_menu4:
-                                //handle menu4 click
-                                ClickMenuFour();
-                                return true;
-                            case R.id.problem_menu5:
-                                //handle menu4 click
-                                ClickMenuFive();
                                 return true;
 
                             default:
@@ -143,38 +140,20 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
             }
 
-            void ClickMenuOne(){
-                Log.d("rview", "view/add");
-                Intent intent = new Intent(holder.itemView.getContext(), MainRecordActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
-                holder.itemView.getContext().startActivity(intent);
-            }
-
-            void ClickMenuTwo(){
-                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
+            void ClickMenuOne() {
+                Log.d("rview", "view/edit");
+                Log.d("rview", Integer.toString(holder.getAdapterPosition()));
+                Intent intent = new Intent(holder.itemView.getContext(), EditRecordActivity.class);
+                intent.putExtra("R_Pos", holder.getAdapterPosition());
+                intent.putExtra("P_Pos", problem_index);
                 Log.d("rview", "edit");
                 holder.itemView.getContext().startActivity(intent);
             }
 
-            void ClickMenuThree(){
+            void ClickMenuTwo() {
                 Log.d("rview", "delete");
-                Backend.getInstance().deletePatientProblem(holder.getAdapterPosition());
+                Backend.getInstance().deletePatientRecord(problem_index, holder.getAdapterPosition());
                 notifyDataSetChanged();
-            }
-
-            void ClickMenuFour(){
-                Intent intent = new Intent(holder.itemView.getContext(), PatientViewCommentActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
-                Log.d("rview", "edit");
-                holder.itemView.getContext().startActivity(intent);
-            }
-
-            void ClickMenuFive(){
-                Intent intent = new Intent(holder.itemView.getContext(), PatientSlideshowActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
-                Log.d("rview", "edit");
-                holder.itemView.getContext().startActivity(intent);
             }
         });
     }
@@ -185,13 +164,13 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         return mDataset.size();
     }
 
-    private OnEntryClickListener mOnEntryClickListener;
+    private RecordBodyAdapter.OnEntryClickListener mOnEntryClickListener;
 
     public interface OnEntryClickListener {
         void onEntryClick(int position);
     }
 
-    public void setOnEntryClickListener(OnEntryClickListener onEntryClickListener) {
+    public void setOnEntryClickListener(RecordBodyAdapter.OnEntryClickListener onEntryClickListener) {
         mOnEntryClickListener = onEntryClickListener;
     }
 
@@ -204,27 +183,47 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<Problem> filteredProblems = new ArrayList<>();
+            ArrayList<Record> filteredRecords = new ArrayList<>();
 
             Log.d(TAG, "search: " + constraint);
 
             if (constraint == null || constraint.length() == 0) {
-                filteredProblems.addAll(mProblemsCopy);
+                filteredRecords.addAll(mRecordsCopy);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 Log.d(TAG, "filterPattern:  " + filterPattern);
 
 
-                for (Problem problem : mProblemsCopy) {
-                    Log.d(TAG, "problemTitle: " + problem.getTitle().toLowerCase());
-                    if (problem.getTitle().toLowerCase().contains(filterPattern)) {
-                        filteredProblems.add(problem);
+                for (Record record : mRecordsCopy) {
+                    Log.d(TAG, "problemTitle: " + record.getTitle().toLowerCase());
+
+                    // here photoid of record is accessed
+                    String myPhotoID = record.getPhotoid();
+
+                    // parallel arrays
+                    ArrayList<String> current_patient_ids = Backend.getInstance().getPatientProfile().getPhotoIds();
+                    ArrayList<String> current_patient_labels = Backend.getInstance().getPatientProfile().getPhotoLabels();
+
+                    int counter = 0;
+
+                    for (String photo_id : current_patient_ids) {
+                        if (myPhotoID.equals(photo_id)) {
+                            if (current_patient_labels.get(counter).toLowerCase().contains(filterPattern)) {
+                                filteredRecords.add(record);
+                            }
+                        }
+                        counter++;
                     }
+
+
+//                    if (record.getTitle().toLowerCase().contains(filterPattern)) {
+//                        filteredRecords.add(record);
+//                    }
                 }
             }
             FilterResults results = new FilterResults();
-            results.values = filteredProblems;
+            results.values = filteredRecords;
 
             return results;
         }
@@ -237,4 +236,3 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
         }
     };
 }
-

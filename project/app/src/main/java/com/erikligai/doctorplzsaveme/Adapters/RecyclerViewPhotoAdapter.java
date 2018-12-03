@@ -62,7 +62,13 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Log.d(TAG, "onBindViewHolder called");
         viewHolder.imgViewIcon.setScaleType((ImageView.ScaleType.CENTER_CROP));
-        viewHolder.imgViewIcon.setImageBitmap(getBitmapFromString(photos.get(i)));
+        if(i == 0){
+            viewHolder.imgViewIcon.setImageResource(R.drawable.front);
+        } else if (i==1){
+            viewHolder.imgViewIcon.setImageResource(R.drawable.back);
+        } else {
+            viewHolder.imgViewIcon.setImageBitmap(getBitmapFromString(photos.get(i)));
+        }
         viewHolder.label.setText(photoLables.get(i));
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override

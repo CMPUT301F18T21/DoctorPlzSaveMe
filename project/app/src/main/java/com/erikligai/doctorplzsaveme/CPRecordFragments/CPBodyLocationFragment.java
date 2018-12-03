@@ -1,4 +1,4 @@
-package com.erikligai.doctorplzsaveme.RecordFragments;
+package com.erikligai.doctorplzsaveme.CPRecordFragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,27 +8,25 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
-import com.google.android.gms.maps.SupportMapFragment;
 
-public class BodyLocationFragment extends Fragment {
+public class CPBodyLocationFragment extends Fragment {
     private Record record;
     private Patient patient;
     private ImageView image, pointer;
 
-    public BodyLocationFragment(){}
+    public CPBodyLocationFragment(){}
 
-    public static BodyLocationFragment newInstance(int problem_index, int record_index) {
-        BodyLocationFragment fragment = new BodyLocationFragment();
+    public static CPBodyLocationFragment newInstance(String patient_id, int problem_index, int record_index) {
+        CPBodyLocationFragment fragment = new CPBodyLocationFragment();
         Bundle args = new Bundle();
+        args.putString("patient_id",patient_id);
         args.putInt("problem_index", problem_index);
         args.putInt("record_index",record_index);
         fragment.setArguments(args);
@@ -44,10 +42,11 @@ public class BodyLocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_record_two, container, false);
 
+        String patient_id = getArguments().getString("patient_id");
         int problem_index = getArguments().getInt("problem_index");
         int record_index = getArguments().getInt("record_index");
-        patient = Backend.getInstance().getPatientProfile();
-        record = Backend.getInstance().getPatientRecords(problem_index).get(record_index);
+        patient = Backend.getInstance().GetCPPatient(patient_id);
+        record = Backend.getInstance().GetCPPatientRecord(patient_id, problem_index,record_index);
 
         TextView emptyView = view.findViewById(R.id.empty_bodylocation_view);
 
@@ -85,8 +84,8 @@ public class BodyLocationFragment extends Fragment {
             public void run() {
                 pointer.setX(record.getXpos()*image.getWidth());
                 pointer.setY(record.getYpos()*image.getHeight());
-                pointer.setVisibility(View.VISIBLE);
             }
         });
     }
 }
+

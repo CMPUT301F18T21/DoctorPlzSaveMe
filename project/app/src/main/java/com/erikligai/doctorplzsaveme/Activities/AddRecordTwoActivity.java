@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
@@ -58,11 +60,14 @@ public class AddRecordTwoActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
 //                    textView.setText("Touch coordinates : " +
 //                            String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                    imageView.setX(event.getX());
-                    imageView.setY(event.getY());
+                    float x2=imageView2.getWidth();
+                    float x = event.getX()/imageView2.getWidth();
+                    float y = event.getY()/imageView2.getHeight();
+                    imageView.setX(x*imageView2.getWidth());
+                    imageView.setY(y*imageView2.getHeight());
                     imageView.setVisibility(View.VISIBLE);
-                    record.setXpos(event.getX());
-                    record.setYpos(event.getY());
+                    record.setXpos(x);
+                    record.setYpos(y);
                     if(record.getPhotoid().equals("")){
                         record.setPhotoid("front");
                     }
@@ -94,21 +99,26 @@ public class AddRecordTwoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        float x2=imageView2.getWidth();
     }
 
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
         updateImage();
+        imageView2.post(new Runnable() {
+            @Override
+            public void run() {
+                if(record.getXpos()!=0.0 || record.getYpos()!=0.0) {
+                    imageView.setX(record.getXpos()*imageView2.getWidth());
+                    imageView.setY(record.getYpos()*imageView2.getHeight());
+                    imageView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     private void updateImage(){
-        if(record.getXpos()!=0.0 || record.getYpos()!=0.0) {
-            imageView.setX(record.getXpos());
-            imageView.setY(record.getYpos());
-            imageView.setVisibility(View.VISIBLE);
-        }
         int index;
         if (record.getPhotoid().equals("")){
             index = 0;

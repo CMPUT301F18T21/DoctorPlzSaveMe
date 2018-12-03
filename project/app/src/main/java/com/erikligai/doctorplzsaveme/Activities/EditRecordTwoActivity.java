@@ -56,11 +56,16 @@ public class EditRecordTwoActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
 //                    textView.setText("Touch coordinates : " +
 //                            String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                    imageView.setX(event.getX());
-                    imageView.setY(event.getY());
+                    float x = event.getX()/imageView2.getWidth();
+                    float y = event.getY()/imageView2.getHeight();
+                    imageView.setX(x*imageView2.getWidth());
+                    imageView.setY(y*imageView2.getHeight());
                     imageView.setVisibility(View.VISIBLE);
-                    record.setXpos(event.getX());
-                    record.setYpos(event.getY());
+                    record.setXpos(x);
+                    record.setYpos(y);
+                    if(record.getPhotoid().equals("")){
+                        record.setPhotoid("front");
+                    }
                 }
                 return true;
             }
@@ -96,24 +101,32 @@ public class EditRecordTwoActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         super.onResume();
         updateImage();
+        imageView2.post(new Runnable() {
+            @Override
+            public void run() {
+                if(record.getXpos()!=0.0 || record.getYpos()!=0.0) {
+                    imageView.setX(record.getXpos()*imageView2.getWidth());
+                    imageView.setY(record.getYpos()*imageView2.getHeight());
+                    imageView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     private void updateImage(){
-        if(record.getPhotoid()!=null){
-            if(record.getXpos()!=0.0 && record.getYpos()!=0.0) {
-                imageView.setX(record.getXpos());
-                imageView.setY(record.getYpos());
-                imageView.setVisibility(View.VISIBLE);
-            }
-            int index = patient.getPhotoIds().indexOf(record.getPhotoid());
-            if(index == 0){
-                imageView2.setImageResource(R.drawable.front);
-            } else if (index == 1){
-                imageView2.setImageResource(R.drawable.back);
-            } else {
-                Bitmap bitmap = StringToBitMap(patient.getPhotos().get(index));
-                imageView2.setImageBitmap(bitmap);
-            }
+        int index;
+        if (record.getPhotoid().equals("")){
+            index = 0;
+        } else {
+            index = patient.getPhotoIds().indexOf(record.getPhotoid());
+        }
+        if(index == 0){
+            imageView2.setImageResource(R.drawable.front);
+        } else if (index == 1){
+            imageView2.setImageResource(R.drawable.back);
+        } else {
+            Bitmap bitmap = StringToBitMap(patient.getPhotos().get(index));
+            imageView2.setImageBitmap(bitmap);
         }
     }
 

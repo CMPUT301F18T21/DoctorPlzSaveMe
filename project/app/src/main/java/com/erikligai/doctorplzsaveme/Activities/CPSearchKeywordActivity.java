@@ -7,46 +7,43 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.erikligai.doctorplzsaveme.Adapters.RecordAdapter;
+import com.erikligai.doctorplzsaveme.Adapters.CPRecordKeywordAdapter;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
-public class SearchKeywordActivity extends AppCompatActivity {
+public class CPSearchKeywordActivity extends AppCompatActivity {
 
-    private static final String TAG = "SearchKeywordActivity";
 
-    RecordAdapter adapter;
+    private static final String TAG = "CPSearchKeywordActivity";
+
+    CPRecordKeywordAdapter adapter;
     //    private ArrayList<Record> recordList = new ArrayList<>();
     private ArrayList<Record> recordList;
     Backend backend = Backend.getInstance();
 
-    private String patientID = backend.getPatientProfile().getID();
-    private int problemID;
-
+    private String patientID;
+    private String problemID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_keyword);
+        setContentView(R.layout.activity_cpsearch_keyword);
 
         // pull patient's records from back end using passed in problem id
         Intent intent = getIntent(); // receive intent
-        problemID = intent.getIntExtra("problemID",0);
-//        patientID = intent.getExtras().getString("patientID");
-        Log.e("patientIDH", patientID);
-        Log.e("problemIDH", problemID+"");
-
-
+        problemID = intent.getExtras().getString("problemID");
+        patientID = intent.getExtras().getString("patientID");
+//        Log.e("patientIDH", patientID);
+//        Log.e("problemIDH", problemID);
 
 //        Date date = new Date();
 //        // format date into string
@@ -54,12 +51,10 @@ public class SearchKeywordActivity extends AppCompatActivity {
 //        String formattedDate = formatter.format(date);
 
 //        Record testRecord = new Record("testRecord", "comment");
-//        recordList.add(testRecord);
 ////
 //        backend.addPatientRecord(Integer.valueOf(problemID), testRecord);
 //        Log.e("marker", "REACHES");
-
-        recordList = backend.getPatientRecords(problemID);
+        recordList = backend.GetCPPatientRecords(patientID, Integer.valueOf(problemID));
 
 //        Log.e("BOOLEAN: ", recordList.get(0).toString());
 
@@ -77,9 +72,7 @@ public class SearchKeywordActivity extends AppCompatActivity {
     private void initRecyclerView() {
 //        Log.d(TAG, "initRecyclerView: init");
 
-
-
-        RecyclerView recyclerView = findViewById(R.id.patient_records_recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.cp_patient_records_recycler_view_keyword);
         TextView emptyView = findViewById(R.id.empty_view);
 
         if (recordList.isEmpty()) {
@@ -90,21 +83,9 @@ public class SearchKeywordActivity extends AppCompatActivity {
         } else {
             // display recyclerview
             recyclerView.setVisibility(View.VISIBLE);
-            adapter = new RecordAdapter(recordList, problemID);
+            adapter = new CPRecordKeywordAdapter(recordList, this, patientID, problemID);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-            adapter.setOnEntryClickListener(new RecordAdapter.OnEntryClickListener() {
-                @Override
-                public void onEntryClick(int position) {
-                    Intent intent = new Intent(getApplicationContext(), ViewRecordActivity.class);
-                    intent.putExtra("R_Pos", position);
-                    intent.putExtra("P_Pos", problemID);
-                    startActivity(intent);
-                    Log.d("rview", Integer.toString(position));
-                }
-            });
-
             // hide textview
             emptyView.setVisibility(View.GONE);
         }
@@ -133,4 +114,3 @@ public class SearchKeywordActivity extends AppCompatActivity {
         return true;
     }
 }
-

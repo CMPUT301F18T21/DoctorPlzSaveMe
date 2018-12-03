@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setCustomAnimations(R.anim.slide_in_bottom, R.anim.slide_out_bottom, R.anim.nothing, R.anim.slide_out_bottom);
                     fragmentTransaction.replace(R.id.bottom_layout, fragment);
-                    fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
+                    
                 } else // otherwise go to PatientActivity
                 {
                     startActivity(new Intent(MainActivity.this, PatientActivity.class));

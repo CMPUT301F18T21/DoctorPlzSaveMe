@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CPViewRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Record;
@@ -21,7 +20,9 @@ import com.erikligai.doctorplzsaveme.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdapter.PatientRecordViewHolder> implements Filterable {
+import static android.support.constraint.Constraints.TAG;
+
+public class CPRecordKeywordAdapter extends RecyclerView.Adapter<CPRecordKeywordAdapter.CPRecordKeywordViewHolder> implements Filterable {
     private Context mContext;
 
     private ArrayList<Record> mRecords;
@@ -30,13 +31,13 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
     private String patientID;
     private String problemID;
 
-    public static class PatientRecordViewHolder extends RecyclerView.ViewHolder {
+    public static class CPRecordKeywordViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView date;
         TextView comment;
         ConstraintLayout parentLayout;
 
-        public PatientRecordViewHolder(@NonNull View itemView) {
+        public CPRecordKeywordViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.record_title);
             date = itemView.findViewById(R.id.record_date);
@@ -45,7 +46,7 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
         }
     }
 
-    public PatientRecordAdapter(ArrayList<Record> records, Context mContext, String patientID, String problemID) {
+    public CPRecordKeywordAdapter(ArrayList<Record> records, Context mContext, String patientID, String problemID) {
         this.mRecords = records;
         this.mContext = mContext;
         this.mRecordsCopy = new ArrayList<>(mRecords);
@@ -55,13 +56,13 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
 
     @NonNull
     @Override
-    public PatientRecordViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public CPRecordKeywordAdapter.CPRecordKeywordViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.patient_record_item, viewGroup, false);
-        return new PatientRecordViewHolder(view);
+        return new CPRecordKeywordAdapter.CPRecordKeywordViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PatientRecordViewHolder patientRecordViewHolder, final int i) {
+    public void onBindViewHolder(@NonNull CPRecordKeywordAdapter.CPRecordKeywordViewHolder patientRecordViewHolder, final int i) {
         patientRecordViewHolder.title.setText(mRecords.get(i).getTitle()); // obtains id at index
 
         // format date into string
@@ -79,7 +80,7 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
                 Intent intent = new Intent(mContext, CPViewRecordActivity.class);
                 intent.putExtra("patientID", patientID); // attach patient id to intent
                 intent.putExtra("problemIndex", Integer.parseInt(problemID)); // attach problem index to intent
-                intent.putExtra("recordIndex", Integer.parseInt(i+"")); // attack record index to intent
+                intent.putExtra("recordIndex", Integer.parseInt(i + "")); // attack record index to intent
                 mContext.startActivity(intent); // go to record list of patient
             }
         });
@@ -107,11 +108,16 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (Record problem : mRecordsCopy) {
-                    if (problem.getTitle().toLowerCase().contains(filterPattern)) {
-                        filteredRecords.add(problem);
+
+                for (Record record : mRecordsCopy) {
+                    Log.d(TAG, "problemTitle: " + record.getTitle().toLowerCase());
+                    if (record.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredRecords.add(record);
                     }
                 }
+
+
+
             }
             FilterResults results = new FilterResults();
             results.values = filteredRecords;

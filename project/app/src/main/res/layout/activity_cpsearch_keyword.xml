@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/coordinatorLayoutPatientRecords"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".Activities.SearchBodyActivity">
+tools:context=".Activities.CPSearchKeywordActivity">
 
 <android.support.v7.widget.Toolbar
     android:id="@+id/my_toolbar"
@@ -17,7 +17,7 @@ tools:context=".Activities.SearchBodyActivity">
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 <android.support.v7.widget.RecyclerView
-    android:id="@+id/patient_records_recycler_view_body"
+    android:id="@+id/cp_patient_records_recycler_view_keyword"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"/>
@@ -28,6 +28,6 @@ tools:context=".Activities.SearchBodyActivity">
     android:layout_height="match_parent"
     android:gravity="center"
     android:visibility="gone"
-    android:text="This patient has no problems!" />
+    android:text="This problem has no records!" />
 
 </android.support.design.widget.CoordinatorLayout>

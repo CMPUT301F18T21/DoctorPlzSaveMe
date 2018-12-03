@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -88,27 +86,54 @@ public class CPRecordActivity extends AppCompatActivity {
             emptyView.setVisibility(View.GONE);
         }
     }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        adapter.notifyDataSetChanged();
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
-                return false;
-            }
-        });
+        // Inflate the main_menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.search_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
+            case R.id.search_keyword:
+                Intent intent = new Intent(this, CPSearchKeywordActivity.class);
+//                intent.putExtra("patientID", backend.getPatientProfile().getID()); // send patientID
+                intent.putExtra("problemID", problemID); // send problemID
+                intent.putExtra("patientID", patientID); // send patientID
+                startActivity(intent);
+                return true;
+
+            case R.id.search_geo:
+                Intent geo_intent = new Intent(this, CPSearchGeolocationActivity.class);
+                geo_intent.putExtra("patientID", patientID);
+                geo_intent.putExtra("problemID", problemID);
+                startActivity(geo_intent);
+                return true;
+
+            case R.id.search_body:
+                Intent body_intent = new Intent(this, CPSearchBodyActivity.class);
+                body_intent.putExtra("patientID", patientID);
+                body_intent.putExtra("problemID", problemID);
+                startActivity(body_intent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }
