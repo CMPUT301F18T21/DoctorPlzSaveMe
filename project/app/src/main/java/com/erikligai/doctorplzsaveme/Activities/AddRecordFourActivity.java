@@ -75,13 +75,8 @@ public class AddRecordFourActivity extends FragmentActivity implements OnMapRead
         if (geolocation != null) {
             mMap.addMarker(new MarkerOptions().position(geolocation).title("Marker in Edmonton"));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(geolocation,15));
-            //mMap.animateCamera(CameraUpdateFactory.zoomIn());
-
-            //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
         } else {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(edmonton,15));
-            //mMap.animateCamera(CameraUpdateFactory.zoomIn());
-            //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
         }
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {

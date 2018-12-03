@@ -42,8 +42,6 @@ public class PatientViewCommentActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-//        Log.d(TAG, "initRecyclerView: init");
-
         commentList = findViewById(R.id.patientCommentRecyclerView);
         // display recyclerview
         commentList.setVisibility(View.VISIBLE);

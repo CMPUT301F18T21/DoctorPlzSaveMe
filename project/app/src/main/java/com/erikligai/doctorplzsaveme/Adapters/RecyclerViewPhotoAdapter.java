@@ -35,8 +35,10 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 
 public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewPhotoAdapter.ViewHolder> {
+    /**
+     * Each ImageView is loaded with 
+     */
     private static final String TAG = "RecyclerViewPhotoAdapter";
-
     private Patient patient;
     private ArrayList<String> photoIds;
     private ArrayList<String> photos;

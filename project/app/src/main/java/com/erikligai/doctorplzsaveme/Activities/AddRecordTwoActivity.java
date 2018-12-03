@@ -100,7 +100,6 @@ public class AddRecordTwoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void openAddRecordActivity() {

@@ -55,7 +55,6 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
     }
 
     static final int ACTION_IMAGE_CAPTURE = 1;
-    //static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
         // finish current display before calling camera.
@@ -81,7 +80,6 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
         }
 
         Backend.getInstance().UpdatePatient();
-        //intent.putExtra("photoList", photoList);
         finish();
         startActivity(intent);
     }

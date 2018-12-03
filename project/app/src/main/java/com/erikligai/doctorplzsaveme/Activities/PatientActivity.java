@@ -43,18 +43,23 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        // invoke MainProblemActivity
         Button viewProblemsBtn = findViewById(R.id.viewProblemsButton);
         viewProblemsBtn.setOnClickListener(this); // calling onClick() method
 
+        // invoke EditProfileActivity
         Button editProfileBtn = findViewById(R.id.editProfileButton);
         editProfileBtn.setOnClickListener(this);
 
+        // invoke ViewRecordLocationsActivity
         Button viewLocationBtn = findViewById(R.id.viewLocationButton);
         viewLocationBtn.setOnClickListener(this);
 
+        // invoke uploadBodyLocationActivity
         Button uploadBodyLocationBtn = findViewById(R.id.uploadBodyLocationButton);
         uploadBodyLocationBtn.setOnClickListener(this);
 
+        // print welcome message on UL
         TextView welcome_text = findViewById(R.id.welcomeText);
         //String w_text = "Welcome, " + Backend.getInstance().getPatientProfile().getID();
         //welcome_text.setText(w_text);
@@ -91,7 +96,6 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
     public void uploadBodyLocation(View view) {
         Intent intent = new Intent(this, UploadBodyLocationActivity.class);
         startActivity(intent);
-        //dispatchTakePictureIntent();
     }
 
     public void editProfile(View view) {
@@ -103,45 +107,5 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(this, ViewRecordLocationsActivity.class);
         startActivity(intent);
     }
-
-
-    /** Functions for taking a photo
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);           //REQUEST_IMAGE_CAPTURE
-        }
-    }
-*/
-
-    /**
-    static final int ACTION_IMAGE_CAPTURE = 1;
-    //static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(takePictureIntent, ACTION_IMAGE_CAPTURE);
-    }
-
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //Map<String, Bitmap> photoMap = new HashMap();
-        ArrayList<Bitmap> photoList = new ArrayList<Bitmap>();
-        Intent intent = new Intent(this, EditPhotosActivity.class);
-        if (requestCode == ACTION_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            String id = System.currentTimeMillis()+"_.jpg";
-            photoList.add(photo);
-            //photoMap.put(id,photo);
-            Toast.makeText(getApplicationContext(), "Photo added!", Toast.LENGTH_SHORT).show();
-        }
-        //Backend.getInstance().getPatientProfile().getProblemList();
-        intent.putExtra("photoList", photoList);
-
-        startActivity(intent);
-    }
-     */
 }
 

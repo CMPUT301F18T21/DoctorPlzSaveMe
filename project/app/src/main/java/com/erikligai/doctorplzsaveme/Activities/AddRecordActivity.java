@@ -23,6 +23,7 @@ public class AddRecordActivity extends AppCompatActivity implements View.OnClick
 
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos", 0);
+
         // Get buttons
         backBtn1 = findViewById(R.id.backButton1);
         nextBtn1 = findViewById(R.id.nextButton1);
@@ -30,7 +31,6 @@ public class AddRecordActivity extends AppCompatActivity implements View.OnClick
         nextBtn1.setOnClickListener(this);
 
         // Set title & comment editText
-
         titleText = findViewById(R.id.editRecordTitle);
         commentText = findViewById(R.id.editRecordComment);
         String title = RecordBuffer.getInstance().getRecord().getTitle();
@@ -46,8 +46,6 @@ public class AddRecordActivity extends AppCompatActivity implements View.OnClick
         } else {
             commentText.setText(comment);
         }
-
-
     }
 
     public void onClick(View v) {

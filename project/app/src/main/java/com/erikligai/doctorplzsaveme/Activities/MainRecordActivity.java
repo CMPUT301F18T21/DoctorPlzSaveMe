@@ -25,23 +25,17 @@ import java.util.ArrayList;
 public class MainRecordActivity extends AppCompatActivity {
     private RecordAdapter adapter;
     private ArrayList<Record> records;
-
     public int getProblem_index() {
         return problem_index;
     }
-
     public void setProblem_index(int problem_index) {
         this.problem_index = problem_index;
     }
-
     private int problem_index;
     private RecyclerView recordRecycler;
     private TextView emptyView;
 
-    //sample record list
-//    Record r1 = new Record("Record1","recordDescription");
-//    Record r2 = new Record("Record1","recordDescription");
-//    Record r3 = new Record("Record1","recordDescription");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +44,6 @@ public class MainRecordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos",0);
         records = Backend.getInstance().getPatientRecords(problem_index);
-
-//        records.add(r1);
-//        records.add(r2);
-//        records.add(r3);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.record_toolbar);
         setSupportActionBar(myToolbar);
@@ -78,9 +68,7 @@ public class MainRecordActivity extends AppCompatActivity {
         recordRecycler.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recordRecycler.setLayoutManager(layoutManager);
-
         emptyView = findViewById(R.id.empty_record_view);
-
         adapter = new RecordAdapter(records);
         adapter.setParentActivity(this);
         recordRecycler.setAdapter(adapter);
@@ -96,13 +84,14 @@ public class MainRecordActivity extends AppCompatActivity {
         });
     }
 
+
     protected void onResume() {
         // TODO Auto-generated method stub
         super.onResume();
-        Log.d("abc","onresume");
         adapter.notifyDataSetChanged();
         checkEmpty();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,7 +109,6 @@ public class MainRecordActivity extends AppCompatActivity {
 
             case R.id.action_search:
                 // User chose the "Settings" item, show the app settings UI...
-                Log.d("toolbar", "search function!");
                 //calls ProblemSearchActivity
                 Intent intent = new Intent(this, RecordSearchActivity.class);
                 startActivity(intent);

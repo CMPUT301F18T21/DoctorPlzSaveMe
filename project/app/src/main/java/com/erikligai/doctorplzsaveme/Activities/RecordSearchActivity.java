@@ -34,7 +34,6 @@ public class RecordSearchActivity extends AppCompatActivity {
         adapter.addFragment(new Tab3Fragment(), getResources().getString(R.string.body_location));
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
     }
 
     @Override

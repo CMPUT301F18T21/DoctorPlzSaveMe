@@ -28,7 +28,6 @@ public class CPViewProblemActivity extends AppCompatActivity {
     private TextView problemDescription;
     private Button viewRecordsBtn;
     private FloatingActionButton fab;
-
     private Problem problem;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private int problemPos;
@@ -48,14 +47,11 @@ public class CPViewProblemActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Pos = intent.getStringExtra("problemID");
         patientID = intent.getStringExtra("patientID");
-
         problemPos = Integer.parseInt(Pos);
 
         Backend backend = Backend.getInstance();
         problem = backend.GetCPPatientProblem(patientID,problemPos);
-
         comments = problem.getComments();
-
         problemTitle.setText(problem.getTitle());
         problemDescription.setText(problem.getDescription());
 
@@ -77,13 +73,10 @@ public class CPViewProblemActivity extends AppCompatActivity {
                 openCPRecordActivity();
             }
         });
-
         initRecyclerView(patientID);
     }
 
     private void initRecyclerView(String patientID) {
-//        Log.d(TAG, "initRecyclerView: init");
-
         commentList = findViewById(R.id.commentRecyclerView);
         // display recyclerview
         commentList.setVisibility(View.VISIBLE);

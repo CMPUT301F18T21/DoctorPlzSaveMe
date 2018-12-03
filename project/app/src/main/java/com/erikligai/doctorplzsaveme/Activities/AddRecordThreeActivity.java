@@ -46,13 +46,6 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         zoomImg.setOnClickListener(this);
 
         photos = RecordBuffer.getInstance().getRecord().getPhotos();
-
-        //date = intent.getLongExtra("date",-1);
-        // Get buttons
-//        backBtn2 = findViewById(R.id.backButton2);
-//        nextBtn2 = findViewById(R.id.nextButton2);
-//        addPhotoBtn  =findViewById(R.id.addPhotoButton);
-//        addBodylocationBtn = findViewById(R.id.addBodylocationButton);
     }
 
     public void onClick(View v) {
@@ -118,7 +111,6 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
     }
 
     static final int ACTION_IMAGE_CAPTURE = 1;
-    //static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
         // finish current display before calling camera.

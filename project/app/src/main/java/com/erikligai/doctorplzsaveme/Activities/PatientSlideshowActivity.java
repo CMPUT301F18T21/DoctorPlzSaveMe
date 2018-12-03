@@ -19,6 +19,7 @@ public class PatientSlideshowActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        // create recycler view with RecyclerSlideshowAdapter.
         RecyclerView photoRecycler = findViewById(R.id.PhotoRecyclerView);
         photoRecycler.setHasFixedSize(true);
         RecyclerSlideshowAdapter adapter = new RecyclerSlideshowAdapter(this,intent.getIntExtra("Pos",-1));

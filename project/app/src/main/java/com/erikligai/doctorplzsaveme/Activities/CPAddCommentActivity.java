@@ -20,6 +20,7 @@ public class CPAddCommentActivity  extends AppCompatActivity {
     private int ProblemPosition;
     private String patientID;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,6 @@ public class CPAddCommentActivity  extends AppCompatActivity {
         saveBtn1 = findViewById(R.id.saveButton1);
         // Set comment editText
         commentText = findViewById(R.id.editComment);
-
         Intent intent = getIntent();
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);
         patientID = intent.getStringExtra("patientId");

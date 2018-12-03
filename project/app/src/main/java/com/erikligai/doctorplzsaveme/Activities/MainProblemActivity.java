@@ -29,15 +29,9 @@ public class MainProblemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Backend.getProblems(this);
-
         problems = Backend.getInstance().getPatientProblems();
 
         setContentView(R.layout.activity_main_problem);
-
-//        problems.add(p1);
-//        problems.add(p2);
-//        problems.add(p3);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -63,7 +57,6 @@ public class MainProblemActivity extends AppCompatActivity {
         problemRView.setNestedScrollingEnabled(false);
 
         emptyView = findViewById(R.id.empty_problem_view);
-
         problems = Backend.getInstance().getPatientProblems();
 
         adapter = new ProblemAdapter(problems);
@@ -105,7 +98,6 @@ public class MainProblemActivity extends AppCompatActivity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
