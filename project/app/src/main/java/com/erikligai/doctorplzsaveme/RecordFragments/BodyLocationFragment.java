@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -84,6 +85,7 @@ public class BodyLocationFragment extends Fragment {
             public void run() {
                 pointer.setX(record.getXpos()*image.getWidth());
                 pointer.setY(record.getYpos()*image.getHeight());
+                pointer.setVisibility(View.VISIBLE);
             }
         });
     }
