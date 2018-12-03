@@ -1,6 +1,5 @@
 package com.erikligai.doctorplzsaveme.Adapters;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
@@ -10,11 +9,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Activities.EditRecordActivity;
-import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
@@ -25,12 +25,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHolder> {
+import static android.support.constraint.Constraints.TAG;
+
+public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHolder> implements Filterable{
     private final ArrayList<Record> mDataset;
+    private ArrayList<Record> mProblemsCopy;
 
-    MainRecordActivity parent_activity;
+    private int problem_index;
 
-    public void setParentActivity(MainRecordActivity a) { parent_activity = a; }
+//    MainRecordActivity parent_activity;
+
+//    public void setParentActivity(MainRecordActivity a) { parent_activity = a; }
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -61,8 +67,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecordAdapter(ArrayList<Record> myDataset) {
-        mDataset = myDataset;
+    public RecordAdapter(ArrayList<Record> myDataset, int problem_index) {
+        this.mDataset = myDataset;
+        this.mProblemsCopy = new ArrayList<>(mDataset);
+        this.problem_index = problem_index;
     }
 
     // Create new views (invoked by the layout manager)
@@ -137,14 +145,14 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
                 Log.d("rview", Integer.toString(holder.getAdapterPosition()));
                 Intent intent = new Intent(holder.itemView.getContext(), EditRecordActivity.class);
                 intent.putExtra("R_Pos", holder.getAdapterPosition());
-                intent.putExtra("P_Pos", parent_activity.getProblem_index() );
+                intent.putExtra("P_Pos", problem_index);
                 Log.d("rview", "edit");
                 holder.itemView.getContext().startActivity(intent);
             }
 
             void ClickMenuTwo() {
                 Log.d("rview", "delete");
-                Backend.getInstance().deletePatientRecord(parent_activity.getProblem_index(), holder.getAdapterPosition());
+                Backend.getInstance().deletePatientRecord(problem_index, holder.getAdapterPosition());
                 notifyDataSetChanged();
             }
         });
@@ -165,4 +173,46 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
     public void setOnEntryClickListener(OnEntryClickListener onEntryClickListener) {
         mOnEntryClickListener = onEntryClickListener;
     }
+
+    @Override
+    public Filter getFilter() {
+        return patientProblemFilter;
+    }
+
+    private Filter patientProblemFilter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Record> filteredProblems = new ArrayList<>();
+
+            Log.d(TAG, "search: " + constraint);
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredProblems.addAll(mProblemsCopy);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                Log.d(TAG, "filterPattern:  " + filterPattern);
+
+
+                for (Record record : mProblemsCopy) {
+                    Log.d(TAG, "problemTitle: " + record.getTitle().toLowerCase());
+                    if (record.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredProblems.add(record);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredProblems;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mDataset.clear();
+            mDataset.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
