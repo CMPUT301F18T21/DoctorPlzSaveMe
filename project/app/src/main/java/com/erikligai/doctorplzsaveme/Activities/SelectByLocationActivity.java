@@ -16,6 +16,7 @@ public class SelectByLocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_by_location);
+
         RecyclerView photoRecycler = findViewById(R.id.PhotoRecyclerView2);
         photoRecycler.setHasFixedSize(true);
         RecyclerSelectBodyLocationAdapter adapter = new RecyclerSelectBodyLocationAdapter(this);
