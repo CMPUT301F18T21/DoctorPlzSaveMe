@@ -7,6 +7,7 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1586C7"
     tools:context=".Activities.MainRecordActivity">
 
     <android.support.v7.widget.Toolbar
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        app:backgroundTint="@android:color/holo_orange_dark"
+        app:backgroundTint="#308DC3"
         app:srcCompat="@drawable/ic_baseline_add_24px" />
 
 

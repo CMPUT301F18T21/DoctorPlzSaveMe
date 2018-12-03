@@ -64,12 +64,6 @@
         <activity
             android:name=".Activities.ViewRecordLocationsActivity"
             android:label="@string/title_activity_main_maps" />
-<<<<<<< HEAD
-        <activity
-            android:name=".StartAppActivities.NewProfileActivity"
-            android:label="@string/new_patient_title"></activity>
-=======
->>>>>>> 823121f0e9c60b49031a1c4ec42c045ce0b22c5a
         <activity android:name=".Activities.CareProviderActivity" />
         <activity android:name=".Activities.AddPatientActivity" />
         <activity android:name=".PatientProblemsActivity" /><![CDATA[
@@ -77,11 +71,8 @@
         ]]>
         <activity
             android:name=".Activities.EditProfileActivity"
-<<<<<<< HEAD
             android:label="@string/view_edit_profile_title"></activity>
-=======
             android:label="@string/view_edit_profile_title" />
->>>>>>> 823121f0e9c60b49031a1c4ec42c045ce0b22c5a
         <activity
             android:name=".Activities.AddGeolocationActivity2"
             android:label="@string/title_activity_add_geolocation2" />
@@ -103,25 +94,18 @@
         <activity android:name=".Activities.UploadBodyLocationActivity" />
         android:label="@string/view_edit_profile_title" />
         <activity android:name=".Activities.EditRecordThreeActivity" />
-<<<<<<< HEAD
-=======
-
         <activity android:name=".Activities.EditRecordFourActivity" />
 
->>>>>>> 823121f0e9c60b49031a1c4ec42c045ce0b22c5a
         <activity android:name=".Activities.PatientSelectBodylocationPhotoActivity" />
         <activity
             android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_problem" />
-<<<<<<< HEAD
         <activity android:name=".Activities.CPViewRecordLocationsActivity"></activity>
-=======
         <activity android:name=".Activities.EditRecordTwoActivity" />
         <activity android:name=".Activities.PatientSlideshowActivity"></activity>
 
         <activity android:name=".Activities.SelectByLocationActivity"></activity>
 
->>>>>>> 823121f0e9c60b49031a1c4ec42c045ce0b22c5a
     </application>
 
 </manifest>

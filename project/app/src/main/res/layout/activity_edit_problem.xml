@@ -101,6 +101,61 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.50" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/problem_date">
+
+        <Button
+            android:id="@+id/editProblemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#308DC3"
+            android:text="@string/edit_problem"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/editDescButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#308DC3"
+            android:text="@string/edit_desc"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/editDateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#308DC3"
+            android:text="@string/edit_date"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="#308DC3"
+            android:text="@string/save"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/problem_date"
         android:layout_width="0dp"
@@ -114,52 +169,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-    <Button
-        android:id="@+id/editProblemButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/edit_problem"
-        app:layout_constraintEnd_toStartOf="@+id/editDescButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/problem_date" />
 
-    <Button
-        android:id="@+id/editDescButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/edit_desc"
-        app:layout_constraintEnd_toStartOf="@+id/editDateButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editProblemButton"
-        app:layout_constraintTop_toBottomOf="@+id/problem_date" />
-
-    <Button
-        android:id="@+id/editDateButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
-        android:text="@string/edit_date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/editDescButton"
-        app:layout_constraintTop_toBottomOf="@+id/problem_date" />
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDescButton" />
 
 </android.support.constraint.ConstraintLayout>

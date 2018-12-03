@@ -70,7 +70,6 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
     public void uploadBodyLocation(View view) {
         Intent intent = new Intent(this, UploadBodyLocationActivity.class);
         startActivity(intent);
-        //dispatchTakePictureIntent();
     }
 
     public void editProfile(View view) {
