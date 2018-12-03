@@ -107,5 +107,6 @@
     <string name="no_location">No location are saved for this Record!\nYou can add one in the Edit Records menu!</string>
     <string name="change_body_photo">Change Body \nLocation Photo</string>
     <string name="no_photo">No photos are saved for this Record!\nYou can add one in the Edit Records menu!</string>
+    <string name="no_bodylocation">No Body Location are saved for this Record!\nYou can add one in the Edit Records menu!</string>
 </resources>
 

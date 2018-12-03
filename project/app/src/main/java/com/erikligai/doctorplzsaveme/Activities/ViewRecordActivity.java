@@ -38,6 +38,7 @@ public class ViewRecordActivity extends AppCompatActivity {
 
                 case R.id.navigation_bodylocation:
                     getSupportActionBar().setTitle(R.string.title_bodylocation);
+                    loadFragment(bodyLocationFragment);
                     return true;
 
                 case R.id.navigation_photo:

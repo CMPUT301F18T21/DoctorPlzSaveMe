@@ -38,7 +38,7 @@ public class RecordTest extends TestCase {
     public void testGeolocation(){
         Record record = new Record();
         LatLng geolocation = new LatLng(53.5444, -113.4909);
-        record.addGeolocation(geolocation);
+        record.setGeolocation(geolocation);
         assertEquals(geolocation,record.getGeolocation());
     }
 

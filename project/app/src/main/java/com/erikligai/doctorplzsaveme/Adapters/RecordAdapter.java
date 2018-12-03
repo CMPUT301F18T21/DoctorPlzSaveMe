@@ -27,10 +27,7 @@ import java.util.Locale;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHolder> {
     private final ArrayList<Record> mDataset;
-
-    MainRecordActivity parent_activity;
-
-    public void setParentActivity(MainRecordActivity a) { parent_activity = a; }
+    private final int problem_index;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -61,8 +58,9 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecordAdapter(ArrayList<Record> myDataset) {
+    public RecordAdapter(ArrayList<Record> myDataset, int problem_index) {
         mDataset = myDataset;
+        this.problem_index = problem_index;
     }
 
     // Create new views (invoked by the layout manager)
@@ -137,14 +135,14 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
                 Log.d("rview", Integer.toString(holder.getAdapterPosition()));
                 Intent intent = new Intent(holder.itemView.getContext(), EditRecordActivity.class);
                 intent.putExtra("R_Pos", holder.getAdapterPosition());
-                intent.putExtra("P_Pos", parent_activity.getProblem_index() );
+                intent.putExtra("P_Pos", problem_index );
                 Log.d("rview", "edit");
                 holder.itemView.getContext().startActivity(intent);
             }
 
             void ClickMenuTwo() {
                 Log.d("rview", "delete");
-                Backend.getInstance().deletePatientRecord(parent_activity.getProblem_index(), holder.getAdapterPosition());
+                Backend.getInstance().deletePatientRecord(problem_index, holder.getAdapterPosition());
                 notifyDataSetChanged();
             }
         });
