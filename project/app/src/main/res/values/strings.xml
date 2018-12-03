@@ -103,8 +103,10 @@
     <string name="title_map">Geolocation</string>
     <string name="timestamp">Timestamp</string>
 
-    <string name="no_location">No location are saved for this Record!\nYou can add one in the Records menu!</string>
-    <string name="change_body_photo">Change Body Location Photo</string>
+
+    <string name="no_location">No location are saved for this Record!\nYou can add one in the Edit Records menu!</string>
+    <string name="change_body_photo">Change Body \nLocation Photo</string>
+
     <string name="no_photo">No photos are saved for this Record!\nYou can add one in the Edit Records menu!</string>
 </resources>
 
