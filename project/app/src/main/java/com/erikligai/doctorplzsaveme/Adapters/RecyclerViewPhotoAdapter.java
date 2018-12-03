@@ -73,8 +73,6 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "photo menu displayed! ");
-                Toast.makeText(mContext, "photo menu displayed for: "+ photoLables.get(i), Toast.LENGTH_SHORT).show();
                 AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
                 final EditText input = new EditText(v.getContext());
                 alertDialog.setView(input);
