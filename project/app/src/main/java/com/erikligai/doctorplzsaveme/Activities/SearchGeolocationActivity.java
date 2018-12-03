@@ -25,8 +25,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.SphericalUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,16 +58,49 @@ public class SearchGeolocationActivity extends FragmentActivity implements Googl
             Geocoder geocoder = new Geocoder(this);
             try {
                 addressList = geocoder.getFromLocationName(location, 1);
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                LatLngBounds bound = toBounds(latLng);
+                mMap.clear();
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                int i,j;
+                ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
+                for (i = 0; i < problems.size(); i++) {
+                    ArrayList<Record> records = problems.get(i).getRecords();
+                    for( j = 0; j < records.size(); j++) {
+                        if (records.get(j).getGeolocation() != null) {
+                            if (bound.contains(records.get(j).getGeolocation())){
+                                Van = mMap.addMarker(new MarkerOptions().position(records.get(j).getGeolocation()).title(problems.get(i).getTitle()).snippet(records.get(j).getTitle()));
+                                List<Integer> index = new ArrayList<Integer>();
+                                index.add(i);
+                                index.add(j);
+                                Van.setTag(index);
+                                mMap.setOnMarkerClickListener(this);
+                            }
+                        }
+                    }
+                }
+                if (Van != null) {
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                }
+                
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+            } catch (Exception e) {
+                Toast.makeText(this, "Invalid search!", Toast.LENGTH_SHORT).show();
+                return;
             }
-            Address address = addressList.get(0);
-            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Marker"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
         }
+    }
+
+    public LatLngBounds toBounds(LatLng center) {
+        double radiusInMeters = 1000;
+        double distanceFromCenterToCorner = radiusInMeters * Math.sqrt(2.0);
+        LatLng southwestCorner =
+                SphericalUtil.computeOffset(center, distanceFromCenterToCorner, 225.0);
+        LatLng northeastCorner =
+                SphericalUtil.computeOffset(center, distanceFromCenterToCorner, 45.0);
+        return new LatLngBounds(southwestCorner, northeastCorner);
     }
 
 
