@@ -7,6 +7,11 @@
         android:title="@string/title_detail" />
 
     <item
+        android:id="@+id/navigation_bodylocation"
+        android:icon="@drawable/ic_accessibility_black_24dp"
+        android:title="@string/title_bodylocation" />
+
+    <item
         android:id="@+id/navigation_photo"
         android:icon="@drawable/ic_photo_library_black_24dp"
         android:title="@string/title_photo" />

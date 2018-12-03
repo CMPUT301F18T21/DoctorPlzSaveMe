@@ -2,19 +2,21 @@ package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.RecordFragments.BodyLocationFragment;
 import com.erikligai.doctorplzsaveme.RecordFragments.DetailFragment;
 import com.erikligai.doctorplzsaveme.RecordFragments.MapFragment;
+import com.erikligai.doctorplzsaveme.RecordFragments.PhotoFragment;
 
 public class ViewRecordActivity extends AppCompatActivity {
 
@@ -34,10 +36,18 @@ public class ViewRecordActivity extends AppCompatActivity {
                     DetailFragment detailFragment = DetailFragment.newInstance(problem_index,record_index);
                     loadFragment(detailFragment);
                     return true;
+
+                case R.id.navigation_bodylocation:
+                    getSupportActionBar().setTitle(R.string.title_bodylocation);
+                    BodyLocationFragment bodyLocationFragment = BodyLocationFragment.newInstance(problem_index,record_index );
+                    return true;
+
                 case R.id.navigation_photo:
                     getSupportActionBar().setTitle(R.string.title_photo);
-
+                    PhotoFragment photoFragment = PhotoFragment.newInstance(problem_index,record_index );
+                    loadFragment(photoFragment);
                     return true;
+
                 case R.id.navigation_map:
                     getSupportActionBar().setTitle(R.string.title_map);
                     MapFragment mapFragment = MapFragment.newInstance(problem_index,record_index );
@@ -69,6 +79,21 @@ public class ViewRecordActivity extends AppCompatActivity {
         DetailFragment detailFragment = DetailFragment.newInstance(problem_index,record_index);
         MapFragment mapFragment = MapFragment.newInstance(problem_index,record_index );
         loadFragment(detailFragment);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     private void loadFragment(Fragment fragment) {
