@@ -20,6 +20,6 @@ public class AddProblemUseCaseTest {
 
     @Test
     public void testAddProblem(){
-        onView(withId(R.id.editProblemTitle)).perform(typeText("Mole on my hand"),closeSoftKeyboard());
+        onView(withId(R.id.editProblemTitle)).perform(typeText("Mole on my hand"));
     }
 }
