@@ -73,7 +73,7 @@ public class AddRecordFourActivity extends FragmentActivity implements OnMapRead
         // Add a marker in Sydney and move the camera
         LatLng edmonton = new LatLng(53.5444, -113.4909);
         if (geolocation != null) {
-            mMap.addMarker(new MarkerOptions().position(geolocation).title("Marker in Edmonton"));
+            mMap.addMarker(new MarkerOptions().position(geolocation).title(geolocation.latitude + " : " + geolocation.longitude));
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(geolocation,15));
             //mMap.animateCamera(CameraUpdateFactory.zoomIn());
 
@@ -83,16 +83,6 @@ public class AddRecordFourActivity extends FragmentActivity implements OnMapRead
             //mMap.animateCamera(CameraUpdateFactory.zoomIn());
             //mMap.moveCamera(CameraUpdateFactory.zoomTo(10));
         }
-
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                int num = (int) marker.getTag();                                // get data from marker(probably recordID)
-
-                Intent I = new Intent(AddRecordFourActivity.this, MainRecordActivity.class);
-                startActivity(I);
-            }
-        });
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 

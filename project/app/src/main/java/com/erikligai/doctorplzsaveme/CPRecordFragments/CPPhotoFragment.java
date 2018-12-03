@@ -1,8 +1,7 @@
-package com.erikligai.doctorplzsaveme.RecordFragments;
+package com.erikligai.doctorplzsaveme.CPRecordFragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
@@ -16,20 +15,19 @@ import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-public class PhotoFragment extends Fragment implements View.OnClickListener {
+public class CPPhotoFragment extends Fragment implements View.OnClickListener {
     private Record record;
     private ArrayList<String> photos;
     private ImageView zoomImg;
 
-    public PhotoFragment(){}
+    public CPPhotoFragment(){}
 
-    public static PhotoFragment newInstance(int problem_index, int record_index) {
-        PhotoFragment fragment = new PhotoFragment();
+    public static CPPhotoFragment newInstance(String patient_id, int problem_index, int record_index) {
+        CPPhotoFragment fragment = new CPPhotoFragment();
         Bundle args = new Bundle();
+        args.putString("patient_id",patient_id);
         args.putInt("problem_index", problem_index);
         args.putInt("record_index",record_index);
         fragment.setArguments(args);
@@ -40,15 +38,15 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_record_three, container, false);
 
-
+        String patient_id = getArguments().getString("patient_id");
         int problem_index = getArguments().getInt("problem_index");
         int record_index = getArguments().getInt("record_index");
-        record = Backend.getInstance().getPatientRecords(problem_index).get(record_index);
+        record = Backend.getInstance().GetCPPatientRecord(patient_id,problem_index ,record_index);
         photos = record.getPhotos();
 
         zoomImg = view.findViewById(R.id.imageView12);
@@ -101,7 +99,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
                 zoomImage(10);
                 break;
 
-            case R.id.imageView12:
+            case R.id.imageView13:
                 zoomImg.setVisibility(View.GONE);
                 break;
         }

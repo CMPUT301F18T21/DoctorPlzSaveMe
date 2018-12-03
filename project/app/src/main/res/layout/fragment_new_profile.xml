@@ -29,7 +29,7 @@
             android:inputType="text"
             android:backgroundTint="#FFFFFF"
             android:nextFocusDown="@+id/emailInputText"
-            android:hint="username"/>
+            android:hint="username (8 or more char)"/>
 
         <EditText
             android:id="@+id/emailInputText"

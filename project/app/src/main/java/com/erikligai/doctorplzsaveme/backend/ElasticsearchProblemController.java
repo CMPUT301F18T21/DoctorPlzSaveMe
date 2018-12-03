@@ -1,10 +1,12 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.accounts.NetworkErrorException;
+import android.app.Instrumentation;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
+import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
@@ -16,13 +18,72 @@ import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Get;
 import io.searchbox.core.Index;
 
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.Date;
+
+/**
+ * Implements functions useful to check
+ * Memory usage.
+ *
+ * @author Pierre Malarme
+ * @version 1.0
+ *
+ */
+class Memory {
+
+    /**
+     * Function that get the size of an object.
+     *
+     * @param object
+     * @return Size in bytes of the object or -1 if the object
+     * is null.
+     * @throws IOException
+     */
+    public static final int sizeOf(Object object) throws IOException {
+
+        if (object == null)
+            return -1;
+
+        // Special output stream use to write the content
+        // of an output stream to an internal byte array.
+        ByteArrayOutputStream byteArrayOutputStream =
+                new ByteArrayOutputStream();
+
+        // Output stream that can write object
+        ObjectOutputStream objectOutputStream =
+                new ObjectOutputStream(byteArrayOutputStream);
+
+        // Write object and close the output stream
+        objectOutputStream.writeObject(object);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+
+        // Get the byte array
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+        // TODO can the toByteArray() method return a
+        // null array ?
+        return byteArray == null ? 0 : byteArray.length;
+
+
+    }
+
+}
+
+
+
+
 /**
  * This class is responsible for tasks that communicate with the DB using ES
  */
 public class ElasticsearchProblemController {
+
     private static JestDroidClient client;
 
-    private static String server = "http://es2.softwareprocess.ca:8080/";
+    private static String server = "http://cmput301.softwareprocess.es:8080/";
 
     /**
      * upload patient to DB Task
@@ -30,6 +91,12 @@ public class ElasticsearchProblemController {
     public static class SetPatientTask extends AsyncTask<Patient, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Patient... patient) {
+            try {
+                Log.e("SIZE: ", Integer.toString(Memory.sizeOf(patient[0])));
+            } catch (Exception e) {
+                Log.e("ERROR: ", " size failed");
+            }
+
             Index index = new Index.Builder(patient[0])
                     .index("cmput301f18t21test")
                     .type("Patient")

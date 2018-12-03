@@ -81,7 +81,6 @@ public class PatientRecordAdapter extends RecyclerView.Adapter<PatientRecordAdap
                 intent.putExtra("problemIndex", Integer.parseInt(problemID)); // attach problem index to intent
                 intent.putExtra("recordIndex", Integer.parseInt(i+"")); // attack record index to intent
                 mContext.startActivity(intent); // go to record list of patient
-                Toast.makeText(mContext, mRecords.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -80,6 +80,7 @@ public class MainRecordActivity extends AppCompatActivity {
 
         emptyView = findViewById(R.id.empty_record_view);
 
+
         adapter = new RecordAdapter(records, problem_index);
 //        adapter.setParentActivity(this);
         recordRecycler.setAdapter(adapter);

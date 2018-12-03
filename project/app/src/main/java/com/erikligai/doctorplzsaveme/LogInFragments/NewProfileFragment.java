@@ -48,6 +48,12 @@ public class NewProfileFragment extends Fragment {
                     Toast.makeText(getActivity(), (String) "A field is blank", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                if (userIDText.getText().toString().length() < 8)
+                {
+                    Toast.makeText(getActivity(), (String) "Username must be at least 8 characters!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 // check if that user id exists in db
                 int result = Backend.userIDExists(userIDText.getText().toString());
 

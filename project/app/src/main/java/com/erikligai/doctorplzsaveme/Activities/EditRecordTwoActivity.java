@@ -1,23 +1,29 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
+import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class EditRecordTwoActivity extends AppCompatActivity {
     private Button nextBtn;
     private Button backBtn;
     private Button changeBtn;
     private Record record;
+    private Patient patient;
     private ImageView imageView;
     private ImageView imageView2;
     private int problem_index;
@@ -33,6 +39,9 @@ public class EditRecordTwoActivity extends AppCompatActivity {
         problem_index = intent.getIntExtra("P_Pos", 0);
         record_index = intent.getIntExtra("R_Pos", 0);
 
+        record = RecordBuffer.getInstance().getRecord();
+        patient = Backend.getInstance().getPatientProfile();
+
         nextBtn = findViewById(R.id.cpRecordNext2);
         backBtn = findViewById(R.id.cpRecordBack2);
         changeBtn = findViewById(R.id.RecordChange);
@@ -41,24 +50,22 @@ public class EditRecordTwoActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         imageView.setVisibility(View.GONE);
 
-        if(RecordBuffer.getInstance().getRecord().getPhotoid()!=null){
-            imageView.setX(RecordBuffer.getInstance().getRecord().getXpos());
-            imageView.setY(RecordBuffer.getInstance().getRecord().getYpos());
-            imageView.setVisibility(View.VISIBLE);
-        }
-
         imageView2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
 //                    textView.setText("Touch coordinates : " +
 //                            String.valueOf(event.getX()) + "x" + String.valueOf(event.getY()));
-                    imageView.setX(event.getX());
-                    imageView.setY(event.getY());
+                    float x = event.getX()/imageView2.getWidth();
+                    float y = event.getY()/imageView2.getHeight();
+                    imageView.setX(x*imageView2.getWidth());
+                    imageView.setY(y*imageView2.getHeight());
                     imageView.setVisibility(View.VISIBLE);
-                    RecordBuffer.getInstance().getRecord().setPhotoid("front");
-                    RecordBuffer.getInstance().getRecord().setXpos(event.getX());
-                    RecordBuffer.getInstance().getRecord().setYpos(event.getY());
+                    record.setXpos(x);
+                    record.setYpos(y);
+                    if(record.getPhotoid().equals("")){
+                        record.setPhotoid("front");
+                    }
                 }
                 return true;
             }
@@ -82,13 +89,51 @@ public class EditRecordTwoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("fab", "add bodylocation photo");
                 //calls AddRecordActivity
-                Intent intent = new Intent(view.getContext(), PatientSelectBodylocationPhotoActivity.class);
+                Intent intent = new Intent(view.getContext(), SelectByLocationActivity.class);
                 intent.putExtra("P_Pos", problem_index);
                 intent.putExtra("R_Pos", record_index);
                 startActivity(intent);
             }
         });
+    }
 
+    protected void onResume() {
+        // TODO Auto-generated method stub
+        super.onResume();
+        updateImage();
+        imageView2.post(new Runnable() {
+            @Override
+            public void run() {
+                if(record.getXpos()!=0.0 || record.getYpos()!=0.0) {
+                    imageView.setX(record.getXpos()*imageView2.getWidth());
+                    imageView.setY(record.getYpos()*imageView2.getHeight());
+                    imageView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+    }
+
+    private void updateImage(){
+        int index;
+        if (record.getPhotoid().equals("")){
+            index = 0;
+        } else {
+            index = patient.getPhotoIds().indexOf(record.getPhotoid());
+        }
+        if(index == 0){
+            imageView2.setImageResource(R.drawable.front);
+        } else if (index == 1){
+            imageView2.setImageResource(R.drawable.back);
+        } else {
+            Bitmap bitmap = StringToBitMap(patient.getPhotos().get(index));
+            imageView2.setImageBitmap(bitmap);
+        }
+    }
+
+    public Bitmap StringToBitMap(String encodedString) {
+        byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+        return bitmap;
     }
 
     private void openEditRecordActivity() {

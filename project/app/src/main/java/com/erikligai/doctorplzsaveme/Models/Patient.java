@@ -1,19 +1,20 @@
 package com.erikligai.doctorplzsaveme.Models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Patient class, stores all info relating to that patient ('root of the data tree')
  * We pull/push this whole class from the DB at once so we have access to all the data
  */
 public class Patient {
-    private String id;
-    private String email;
-    private String phone;
-    private ArrayList<String> photoLabels;
-    private ArrayList<String> photoIds;
-    private ArrayList<String> photos;
-    private ArrayList<Problem> mProblemList;
+    private String Patient_id;
+    private String Patient_email;
+    private String Patient_phone;
+    private ArrayList<String> Patient_photoLabels;
+    private ArrayList<String> Patient_photoIds;
+    private ArrayList<String> Patient_photos;
+    private ArrayList<Problem> Patient_mProblemList;
 
      /**
      * Creates a Patient (extends Profile)
@@ -22,13 +23,19 @@ public class Patient {
      * @param phone: User's phone number
      */
     public Patient(String id, String email, String phone) {
-        this.id = id;
-        this.email = email;
-        this.phone = phone;
-        this.photoIds = new ArrayList<String>();
-        this.photos = new ArrayList<String>();
-        this.mProblemList = new ArrayList<Problem>();
-        this.photoLabels = new ArrayList<String>();
+        this.Patient_id = id;
+        this.Patient_email = email;
+        this.Patient_phone = phone;
+        this.Patient_photoIds = new ArrayList<String>();
+        this.Patient_photos = new ArrayList<String>();
+        this.Patient_mProblemList = new ArrayList<Problem>();
+        this.Patient_photoLabels = new ArrayList<String>();
+        Patient_photos.add("");
+        Patient_photos.add("");
+        Patient_photoIds.add("front");
+        Patient_photoIds.add("back");
+        Patient_photoLabels.add("Default Front");
+        Patient_photoLabels.add("Default Back");
     }
 
     /**
@@ -38,9 +45,9 @@ public class Patient {
      * @param PhotoLabel : String
      */
     public void addPhoto(String id, String photo, String PhotoLabel){
-        this.photoIds.add(id);
-        this.photos.add(photo);
-        this.photoLabels.add(PhotoLabel);
+        this.Patient_photoIds.add(id);
+        this.Patient_photos.add(photo);
+        this.Patient_photoLabels.add(PhotoLabel);
     }
 
     /**
@@ -49,7 +56,7 @@ public class Patient {
      * @param photoLabel : String
      */
     public void addPhotoLabel(Integer i, String photoLabel){
-        this.photoLabels.add(i,photoLabel);
+        this.Patient_photoLabels.add(i,photoLabel);
     }
 
     /**
@@ -57,7 +64,7 @@ public class Patient {
      * @return ArrayList<String> (photoIds)
      */
     public ArrayList<String> getPhotoIds(){
-        return this.photoIds;
+        return this.Patient_photoIds;
     }
 
     /**
@@ -65,7 +72,7 @@ public class Patient {
      * @return ArrayList<String>
      */
     public ArrayList<String> getPhotos(){
-        return this.photos;
+        return this.Patient_photos;
     }
 
     /**
@@ -73,7 +80,7 @@ public class Patient {
      * @return ArrayList<String>
      */
     public ArrayList<String> getPhotoLabels(){
-        return this.photoLabels;
+        return this.Patient_photoLabels;
     }
 
     /**
@@ -81,7 +88,7 @@ public class Patient {
      * @param newEmail : String
      */
     public void setEmail(String newEmail) {
-        this.email = newEmail;
+        this.Patient_email = newEmail;
     }
 
     /**
@@ -90,7 +97,7 @@ public class Patient {
     * @return Nothing 
     */
     public void setPhone(String newPhone) {
-        this.phone = newPhone;
+        this.Patient_phone = newPhone;
     }
 
      /**
@@ -98,7 +105,7 @@ public class Patient {
     *@return name String
      */
     public String getID() {
-        return this.id;
+        return this.Patient_id;
     }
 
      /**
@@ -106,7 +113,7 @@ public class Patient {
     *@return email String
      */
     public String getEmail() {
-        return this.email;
+        return this.Patient_email;
     }
 
      /**
@@ -114,7 +121,7 @@ public class Patient {
     *@return phone String
      */
     public String getPhone() {
-        return this.phone;
+        return this.Patient_phone;
     }
 
      /**
@@ -123,7 +130,7 @@ public class Patient {
      * @return Nothing
      */
     public void addProblem(Problem problem) {
-        mProblemList.add(problem);
+        Patient_mProblemList.add(problem);
     }
 
      /**
@@ -132,7 +139,7 @@ public class Patient {
      * @return boolean that returns true if problem is in patient's problem list, false if not
      */
     public boolean hasProblem(Problem problem) {
-        return mProblemList.contains(problem);
+        return Patient_mProblemList.contains(problem);
     }
 
     /**
@@ -141,7 +148,7 @@ public class Patient {
      * @return Nothing
      */
     public void deleteProblem(Problem problem) {
-        mProblemList.remove(problem);
+        Patient_mProblemList.remove(problem);
     }
 
      /**
@@ -149,7 +156,7 @@ public class Patient {
      * @return ArrayList<ProblemList> patient's problem list
      */
      public void deleteProblem(int index) {
-         mProblemList.remove(index);
+         Patient_mProblemList.remove(index);
      }
 
     /**
@@ -157,7 +164,7 @@ public class Patient {
      * @return ArrayList<Problem>
      */
     public ArrayList<Problem> getProblemList() {
-        return this.mProblemList;
+        return this.Patient_mProblemList;
     }
 
 

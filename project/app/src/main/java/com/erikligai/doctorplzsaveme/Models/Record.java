@@ -9,23 +9,24 @@ import java.util.Date;
  * Record class containing all data belonging to a record of a problem of a patient
  */
 public class Record {
-    private LatLng geolocation;
-    private String title;
-    private Date date;
-    private String comment;
-    private String photoid;
-    private float xpos;
-    private float ypos;
-    private ArrayList<String> photos;
+    private LatLng Record_geolocation;
+    private String Record_title;
+    private Date Record_date;
+    private String Record_comment;
+    private String Record_photoid;
+    private float Record_xpos;
+    private float Record_ypos;
+    private ArrayList<String> Record_photos;
 
     /**
      * Empty constructor for the Record, sets default values (utility constructor)
      */
     public Record() {
-        this.date = new Date();
-        this.title = "";
-        this.comment = "";
-        this.photos = new ArrayList<String>();
+        this.Record_date = new Date();
+        this.Record_title = "";
+        this.Record_comment = "";
+        this.Record_photos = new ArrayList<String>();
+        this.Record_photoid = "";
     }
 
     /**
@@ -35,9 +36,9 @@ public class Record {
 
      */
     public Record(String title, String comment){
-        this.title = title;
-        this.date = new Date();
-        this.comment = comment;
+        this.Record_title = title;
+        this.Record_date = new Date();
+        this.Record_comment = comment;
     }
 
      /**
@@ -45,7 +46,7 @@ public class Record {
     *@return comment String
      */
     public String getComment() {
-        return this.comment;
+        return this.Record_comment;
     }
 
       /**
@@ -53,7 +54,7 @@ public class Record {
     *@return date Date
      */
     public Date getDate() {
-        return this.date;
+        return this.Record_date;
     }
 
     /**
@@ -61,7 +62,7 @@ public class Record {
     *@return title String
      */
     public String getTitle() {
-        return this.title;
+        return this.Record_title;
     }
 
     /**
@@ -69,7 +70,7 @@ public class Record {
     *@return geolocation Geolocation
      */
     public LatLng getGeolocation() {
-        return this.geolocation;
+        return this.Record_geolocation;
     }
 
     /**
@@ -77,7 +78,7 @@ public class Record {
      * @return String
      */
     public String getPhotoid() {
-        return photoid;
+        return Record_photoid;
     }
 
     /**
@@ -85,7 +86,7 @@ public class Record {
      * @return float
      */
     public float getXpos() {
-        return xpos;
+        return Record_xpos;
     }
 
     /**
@@ -93,7 +94,7 @@ public class Record {
      * @return float
      */
     public float getYpos() {
-        return ypos;
+        return Record_ypos;
     }
 
     /**
@@ -101,7 +102,7 @@ public class Record {
      * @return ArrayList<String>
      */
     public ArrayList<String> getPhotos() {
-        return photos;
+        return Record_photos;
     }
 
     /**
@@ -109,7 +110,7 @@ public class Record {
      * @param title : String
      */
     public void setTitle(String title){
-        this.title = title;
+        this.Record_title = title;
     }
 
     /**
@@ -117,7 +118,7 @@ public class Record {
      * @param comment : String
      */
     public void setComment(String comment){
-        this.comment = comment;
+        this.Record_comment = comment;
     }
 
     /**
@@ -125,7 +126,7 @@ public class Record {
      * @param date : Date
      */
     public void setDate(Date date){
-        this.date = date;
+        this.Record_date = date;
     }
 
     /**
@@ -133,7 +134,7 @@ public class Record {
      * @param geolocation : LatLng
      */
     public void setGeolocation(LatLng geolocation) {
-        this.geolocation = geolocation;
+        this.Record_geolocation = geolocation;
     }
 
     /**
@@ -141,7 +142,7 @@ public class Record {
      * @param photoid : String
      */
     public void setPhotoid(String photoid) {
-        this.photoid = photoid;
+        this.Record_photoid = photoid;
     }
 
     /**
@@ -149,7 +150,7 @@ public class Record {
      * @param xpos : float
      */
     public void setXpos(float xpos) {
-        this.xpos = xpos;
+        this.Record_xpos = xpos;
     }
 
     /**
@@ -157,7 +158,7 @@ public class Record {
      * @param ypos : float
      */
     public void setYpos(float ypos) {
-        this.ypos = ypos;
+        this.Record_ypos = ypos;
     }
 
     /**
@@ -165,7 +166,7 @@ public class Record {
      * @param photos : ArrayList<String>
      */
     public void setPhotos(ArrayList<String> photos) {
-        this.photos = photos;
+        this.Record_photos = photos;
     }
 }
 
