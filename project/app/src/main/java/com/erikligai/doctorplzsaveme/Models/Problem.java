@@ -11,13 +11,11 @@ import io.searchbox.annotations.JestId;
  * Contains CP comments, Records belonging to the problem, etc
  */
 public class Problem {
-    String title;
-    String description;
-    Date date;
-    ArrayList<Record> records = new ArrayList<>();
-    ArrayList<Comment> comments = new ArrayList<>();
-    @JestId
-    String id;
+    private String Problem_title;
+    private String Problem_description;
+    private Date Problem_date;
+    private ArrayList<Record> Problem_records = new ArrayList<>();
+    private ArrayList<Comment> Problem_comments = new ArrayList<>();
 
     /**
      * Creates a Problem
@@ -29,12 +27,12 @@ public class Problem {
         if (title.length()>30){
             throw new TooLongProblemTitleException("This title is too long! Please enter a comment with less than 30 character!");
         }
-        this.title = title;
+        this.Problem_title = title;
         if (desc.length()>300){
             throw new TooLongProblemDescException("This description is too long! Please enter a comment with less than 300 character!");
         }
-        this.description = desc;
-        this.date = date;
+        this.Problem_description = desc;
+        this.Problem_date = date;
     }
 
     /**
@@ -42,7 +40,7 @@ public class Problem {
     *@return title String
      */
     public String getTitle() {
-        return this.title;
+        return this.Problem_title;
     }
 
     /**
@@ -50,7 +48,7 @@ public class Problem {
     *@return description String
      */
     public String getDescription() {
-        return description;
+        return this.Problem_description;
     }
 
     /**
@@ -59,7 +57,7 @@ public class Problem {
      */
     public Date getDate() {
 
-        return this.date;
+        return this.Problem_date;
     }
 
     /**
@@ -67,7 +65,7 @@ public class Problem {
      * @return ArrayList<Record> patient's record list
      */
     public ArrayList<Record> getRecords() {
-        return this.records;
+        return this.Problem_records;
     }
 
     /**
@@ -75,7 +73,7 @@ public class Problem {
      * @return ArrayList<Comment> patient's comment list
      */
     public ArrayList<Comment> getComments() {
-        return this.comments;
+        return this.Problem_comments;
     }
 
     /**
@@ -88,7 +86,7 @@ public class Problem {
         if (title.length()>30){
             throw new TooLongProblemTitleException("This title is too long! Please enter a comment with less than 30 character!");
         }
-        this.title = title;
+        this.Problem_title = title;
     }
 
     /**
@@ -101,7 +99,7 @@ public class Problem {
         if (desc.length()>300){
             throw new TooLongProblemDescException("This description is too long! Please enter a comment with less than 300 character!");
         }
-        this.description = desc;
+        this.Problem_description = desc;
     }
 
     /**
@@ -109,7 +107,7 @@ public class Problem {
      *@return Nothing
      */
     public void setDate(Date date){
-        this.date = date;
+        this.Problem_date = date;
     }
 
     /**
@@ -118,7 +116,7 @@ public class Problem {
     *@return Nothing
      */
     public void addComment(Comment comment) {
-        this.comments.add(comment);
+        this.Problem_comments.add(comment);
     }
 
     /**
@@ -127,7 +125,7 @@ public class Problem {
     *@return Nothing
      */
     public void addRecord(Record record) {
-        this.records.add(record);
+        this.Problem_records.add(record);
     }
 
     /**
@@ -137,23 +135,7 @@ public class Problem {
      */
     public void setComments(ArrayList<Comment> new_comments)
     {
-        this.comments = new_comments;
-    }
-    /**
-     * Returns the id of the problem
-     * @return id String
-     */
-    public String getId() {
-        return this.id;
-    }
-
-    /**
-     * Sets the id of the problem to id
-     * @param id: String
-     * @return Nothing
-     */
-    public void setId(String id) {
-        this.id = id;
+        this.Problem_comments = new_comments;
     }
 
     /**
@@ -161,6 +143,6 @@ public class Problem {
      * @return int
      */
     public int countRecords() {
-        return records.size();
+        return Problem_records.size();
     }
 }

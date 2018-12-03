@@ -8,7 +8,6 @@
     <string name="view_edit_problem">View/Edit Problem</string>
     <string name="edit_date">Edit Start Date</string>
     <string name="edit_problem">Edit Problem</string>
-
     <string name="edit_desc">Edit Description</string>
     <string name="view_add_records">View/Add Records</string>
     <string name="edit">Edit</string>
@@ -104,8 +103,10 @@
     <string name="title_map">Geolocation</string>
     <string name="timestamp">Timestamp</string>
 
+
     <string name="no_location">No location are saved for this Record!\nYou can add one in the Edit Records menu!</string>
     <string name="change_body_photo">Change Body \nLocation Photo</string>
+
     <string name="no_photo">No photos are saved for this Record!\nYou can add one in the Edit Records menu!</string>
     <string name="no_bodylocation">No Body Location are saved for this Record!\nYou can add one in the Edit Records menu!</string>
 </resources>

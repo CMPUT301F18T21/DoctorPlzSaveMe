@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
@@ -35,6 +36,7 @@ public class PatientActivity extends AppCompatActivity implements View.OnClickLi
         uploadBodyLocationBtn.setOnClickListener(this);
 
         TextView welcome_text = findViewById(R.id.welcomeText);
+
         String w_text = "Welcome, " + Backend.getInstance().getPatientProfile().getID();
         welcome_text.setText(w_text);
     }

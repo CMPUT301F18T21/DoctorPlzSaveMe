@@ -81,6 +81,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         serializePatientProfile();
         try {
             syncPatientES();
+            //setPatientProfile(patientProfile);
         } catch (Exception e) {
             Log.d("UpdatePatient: ", "Could not sync patient!");
             return false;
@@ -285,25 +286,20 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
             Patient es_patient = null;
             // get the DB patient
             es_patient = getPatientTask.execute(UserID).get();
-            Log.e("Here1: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!");
             // sync comments
             if (es_patient != null)
             {
-                for (int i = 0; i < patientProfile.getProblemList().size(); ++i)
-                {
-                    patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
-                }
-
-                Log.e("Here2: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!");
-            } else {
-                Log.e("Here3: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!"); throw new Exception(); } // es_patient should not be null if connected to DB
+                try {
+                    for (int i = 0; i < patientProfile.getProblemList().size(); ++i)
+                    {
+                        patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
+                    }
+                } catch (Exception e) {}
+            } else { throw new Exception(); } // es_patient should not be null if connected to DB
             ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
             // throw exception if we couldn't upload to DB
-            if (!setPatientTask.execute(patientProfile).get()) {
-                Log.e("Here4: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!"); throw new Exception(); }
+            if (!setPatientTask.execute(patientProfile).get()) { throw new Exception(); }
         } catch (Exception e) {
-
-            Log.e("Here5: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!");
             throw new InterruptedException("syncPatientES error");
         }
     }

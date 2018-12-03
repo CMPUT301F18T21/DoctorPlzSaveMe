@@ -11,8 +11,8 @@ import java.util.Locale;
 *Has a comment (String) and date (Date).
  */
 public class Comment {
-    private String comment;
-    private String date;
+    private String Comment_comment;
+    private String Comment_date;
 
     /**
      * Constructor for Comment that takes a comment (String) ands uses the current time to set
@@ -20,8 +20,8 @@ public class Comment {
      * @param comment : String
      */
     public Comment(String comment){
-        this.comment = comment;
-        this.date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        this.Comment_comment = comment;
+        this.Comment_date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
     }
     /**
     *Re-assigns the comment String to newComment
@@ -29,20 +29,20 @@ public class Comment {
     *@return Nothing
      */
     public void editComment(String newComment) {
-        this.comment = newComment;
+        this.Comment_comment = newComment;
     }
     /**
     *Returns the comment String of the Comment
     *@return comment : String
      */
     public String getComment(){
-        return this.comment;
+        return this.Comment_comment;
     }
     /**
     *Returns the date of the Comment
     *@return date : Date
      */
     public String getDate() {
-        return this.date;
+        return this.Comment_date;
     }
 }

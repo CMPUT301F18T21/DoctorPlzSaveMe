@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/search_keyword"
+        android:title="Search by keyword" />
+
+    <item
+        android:id="@+id/search_geo"
+        android:title="Search by geolocation" />
+
+    <item
+        android:id="@+id/search_body"
+        android:title="Search by body location" />
+
+</menu>

@@ -34,13 +34,13 @@ public class RecordTest extends TestCase {
         assertEquals("comment",record.getComment());
         assertEquals("newComment",record1.getComment());
     }
-
+/*
     public void testGeolocation(){
         Record record = new Record();
         LatLng geolocation = new LatLng(53.5444, -113.4909);
         record.setGeolocation(geolocation);
         assertEquals(geolocation,record.getGeolocation());
-    }
+    }*/
 
     public void testPhotoID(){
         Record record = new Record();
