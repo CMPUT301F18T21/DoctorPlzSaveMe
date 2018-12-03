@@ -19,6 +19,8 @@ import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class CPViewProblemActivity extends AppCompatActivity {
@@ -63,6 +65,10 @@ public class CPViewProblemActivity extends AppCompatActivity {
         problem = backend.GetCPPatientProblem(patientID,problemPos);
 
         comments = problem.getComments();
+        TextView emptyView = findViewById(R.id.empty_view);
+        if(comments.size()==0){
+            emptyView.setVisibility(View.VISIBLE);
+        }
 
         problemTitle.setText(problem.getTitle());
         problemDescription.setText(problem.getDescription());

@@ -35,6 +35,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:src="@drawable/ic_my_icon"
-        app:backgroundTint="#308DC3" />
+        app:backgroundTint="@color/colorPrimaryDarkCP" />
 
 </android.support.design.widget.CoordinatorLayout>

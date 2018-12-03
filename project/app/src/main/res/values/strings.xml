@@ -34,6 +34,7 @@
     <string name="patient_button">PATIENT</string>
     <string name="care_provider_button">CARE PROVIDER</string>
     <string name="your_patient">Your Patients</string>
+    <string name="comments">Comments</string>
 
     <string name="new_patient_title">New Patient</string>
     <string name="new_patient">It looks like you are a new patient! Please enter your info below.</string>
