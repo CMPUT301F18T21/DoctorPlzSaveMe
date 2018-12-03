@@ -104,6 +104,8 @@
         <activity android:name=".Activities.PatientSlideshowActivity" />
         <activity android:name=".Activities.SelectByLocationActivity" />
         <activity android:name=".Activities.SearchGeolocationActivity"></activity>
+        <activity android:name=".Activities.SearchKeywordActivity" />
+        <activity android:name=".Activities.SearchBodyActivity" />
     </application>
 
 </manifest>

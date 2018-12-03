@@ -22,7 +22,7 @@ import io.searchbox.core.Index;
 public class ElasticsearchProblemController {
     private static JestDroidClient client;
 
-    private static String server = "http://cmput301.softwareprocess.es:8080";
+    private static String server = "http://es2.softwareprocess.ca:8080/";
 
     /**
      * upload patient to DB Task
@@ -41,7 +41,7 @@ public class ElasticsearchProblemController {
                 if (result.isSucceeded()) {
                     return true;
                 } else {
-                    Log.i("Error", "SetPatientTask: The search query failed to find any problems that matched");
+                    Log.i("Error", "SetPatientTask: The search query failed to upload patient");
                     return false;
                 }
             } catch (Exception e) {

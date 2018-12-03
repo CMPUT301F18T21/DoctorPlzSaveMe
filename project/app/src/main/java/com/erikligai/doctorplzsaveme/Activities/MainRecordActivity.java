@@ -1,9 +1,9 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -13,9 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.erikligai.doctorplzsaveme.Activities.AddRecordActivity;
 import com.erikligai.doctorplzsaveme.Adapters.RecordAdapter;
-import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
@@ -118,13 +116,31 @@ public class MainRecordActivity extends AppCompatActivity {
                 finish();
                 return true;
 
-            case R.id.action_search:
-                // User chose the "Settings" item, show the app settings UI...
-                Log.d("toolbar", "search function!");
-                //calls ProblemSearchActivity
-                Intent intent = new Intent(this, RecordSearchActivity.class);
+//            case R.id.action_search:
+//                // User chose the "Settings" item, show the app settings UI...
+//                Log.d("toolbar", "search function!");
+//                //calls ProblemSearchActivity
+//                Intent intent = new Intent(this, RecordSearchActivity.class);
+//                startActivity(intent);
+//                return true;
+
+            case R.id.search_keyword:
+                Intent intent = new Intent(this, SearchKeywordActivity.class);
+                intent.putExtra("patientID", ); // send patientID
+                intent.putExtra("problemID", ); // send problemID
                 startActivity(intent);
-                return true;
+
+            case R.id.search_geo:
+                Intent geo_intent = new Intent(this, SearchGeolocationActivity.class);
+                geo_intent.putExtra("patientID", );
+                geo_intent.putExtra("problemID", );
+                startActivity(geo_intent);
+
+            case R.id.search_body:
+                Intent body_intent = new Intent(this, SearchBodyActivity.class);
+                body_intent.putExtra("patientID", );
+                body_intent.putExtra("problemID", );
+                startActivity(body_intent);
 
             default:
                 // If we got here, the user's action was not recognized.
