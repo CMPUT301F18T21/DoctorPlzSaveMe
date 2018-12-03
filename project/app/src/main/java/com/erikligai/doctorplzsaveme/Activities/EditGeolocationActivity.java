@@ -7,6 +7,10 @@ import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.R;
 
+/**
+ *  Add a new geolocation
+ */
+
 public class EditGeolocationActivity extends AppCompatActivity {
 
     // Get Buttons

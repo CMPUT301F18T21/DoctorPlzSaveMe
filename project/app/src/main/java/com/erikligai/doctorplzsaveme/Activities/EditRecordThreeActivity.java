@@ -22,6 +22,10 @@ import com.erikligai.doctorplzsaveme.R;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
+/**
+ *
+ */
+
 public class EditRecordThreeActivity extends AppCompatActivity implements View.OnClickListener{
     private Button backBtn2,nextBtn2;
     private ImageView zoomImg;
@@ -47,12 +51,6 @@ public class EditRecordThreeActivity extends AppCompatActivity implements View.O
         record = RecordBuffer.getInstance().getRecord();
         photos = record.getPhotos();
 
-        //date = intent.getLongExtra("date",-1);
-        // Get buttons
-//        backBtn2 = findViewById(R.id.backButton2);
-//        nextBtn2 = findViewById(R.id.nextButton2);
-//        addPhotoBtn  =findViewById(R.id.addPhotoButton);
-//        addBodylocationBtn = findViewById(R.id.addBodylocationButton);
     }
 
     public void onClick(View v) {

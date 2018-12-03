@@ -113,13 +113,6 @@ public class EditRecordFourActivity extends FragmentActivity implements OnMapRea
         });
     }
 
-//    @Override
-//    public boolean onMarkerClick(final Marker marker) {
-//
-//        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
-//        return false;
-//    }
-
     private void openEditRecordThreeActivity(){
         Intent intent = new Intent(this, EditRecordThreeActivity.class);
         intent.putExtra("R_Pos", record_index);
