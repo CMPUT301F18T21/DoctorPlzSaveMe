@@ -28,6 +28,6 @@ tools:context=".Activities.CPSearchKeywordActivity">
     android:layout_height="match_parent"
     android:gravity="center"
     android:visibility="gone"
-    android:text="This problem has no records!" />
+    android:text="This problem has no records to search!" />
 
 </android.support.design.widget.CoordinatorLayout>
