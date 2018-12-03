@@ -79,31 +79,25 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO: CHECK SET EMAIL/PHONE VALUES SO THEY ARE VALID
                 if (Backend.getInstance().isConnected()) {
+                    // in case uploading fails
+                    String temp_email = Backend.getInstance().getPatientProfile().getEmail();
+                    String temp_phone = Backend.getInstance().getPatientProfile().getPhone();
+                    // try to upload
                     Backend.getInstance().getPatientProfile().setEmail(EmailText.getText().toString());
                     Backend.getInstance().getPatientProfile().setPhone(PhoneText.getText().toString());
-                    Backend.getInstance().UpdatePatient();
-                    finish();
+                    if (Backend.getInstance().UpdatePatient())
+                    {
+                        finish();
+                    } else // if fail revert changes
+                    {
+                        Backend.getInstance().getPatientProfile().setEmail(temp_email);
+                        Backend.getInstance().getPatientProfile().setPhone(temp_phone);
+                        Toast.makeText(getApplicationContext(), (String) "Could not save profile!", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), (String) "No connection!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-//        displayQRButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-//                try {
-//                    BitMatrix bitMatrix = multiFormatWriter.encode(User_Id, BarcodeFormat.QR_CODE, 200,200);
-//                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-//                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-//                    qrCode.setImageBitmap(bitmap);
-//                } catch (WriterException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        });
-
     }
 }

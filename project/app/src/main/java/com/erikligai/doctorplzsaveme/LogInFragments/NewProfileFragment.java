@@ -50,6 +50,7 @@ public class NewProfileFragment extends Fragment {
                 }
                 // check if that user id exists in db
                 int result = Backend.userIDExists(userIDText.getText().toString());
+
                 // handle results
                 if (result == 1) // no patient with that ID
                 {
@@ -58,7 +59,11 @@ public class NewProfileFragment extends Fragment {
                             userIDText.getText().toString(),
                             emailInputText.getText().toString(),
                             phoneInputText.getText().toString());
-                    Backend.getInstance().setPatientProfile(new_patient);
+                    if(!Backend.getInstance().setPatientProfile(new_patient))
+                    {
+                        Toast.makeText(getActivity(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     Intent intent = new Intent(getActivity(), PatientActivity.class);
                     getActivity().onBackPressed();
                     getActivity().onBackPressed(); // messy but works

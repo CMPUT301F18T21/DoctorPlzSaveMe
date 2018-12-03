@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,7 @@ public class PatientLoginFragment extends Fragment {
                 integrator.setCameraId(0);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
-                integrator.initiateScan();
+                integrator.forSupportFragment(PatientLoginFragment.this).initiateScan();
             }
         });
 
@@ -140,5 +141,4 @@ public class PatientLoginFragment extends Fragment {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
 }

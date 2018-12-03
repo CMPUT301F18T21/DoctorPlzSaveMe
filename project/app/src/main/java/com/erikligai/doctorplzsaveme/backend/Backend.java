@@ -77,19 +77,15 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
      * syncs the current patient with DB (if it can) by fetching DB comments (if CP has made
      * a change to comments, overriding the local comments, and pushing the local profile to DB)
      */
-    public void UpdatePatient() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                serializePatientProfile();
-                try {
-                    syncPatientES();
-                } catch (Exception e)
-                {
-                    Log.d("UpdatePatient: ", "Could not sync patient!");
-                }
-            }
-        }).start();
+    public boolean UpdatePatient() {
+        serializePatientProfile();
+        try {
+            syncPatientES();
+        } catch (Exception e) {
+            Log.d("UpdatePatient: ", "Could not sync patient!");
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -97,15 +93,23 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
      * then updates to DB (if it can)
      * @param patientProfile : Patient
      */
-    public void setPatientProfile(Patient patientProfile) {
+    public boolean setPatientProfile(Patient patientProfile) {
         if (patientProfile == null)
         {
             Log.e("setPatientProfile: ", "patientProfile is null or empty!");
         } else
         {
-            this.patientProfile = patientProfile;
-            UpdatePatient();
+            try
+            {
+                ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
+                if (setPatientTask.execute(patientProfile).get())
+                {
+                    this.patientProfile = patientProfile;
+                    return true;
+                };
+            } catch (Exception e) { return false; }
         }
+        return false;
     }
 
     /**
@@ -281,6 +285,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
             Patient es_patient = null;
             // get the DB patient
             es_patient = getPatientTask.execute(UserID).get();
+            Log.e("Here1: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!");
             // sync comments
             if (es_patient != null)
             {
@@ -288,14 +293,19 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
                 {
                     patientProfile.getProblemList().get(i).setComments(es_patient.getProblemList().get(i).getComments());
                 }
-            } else { throw new Exception(); } // es_patient should not be null if connected to DB
+
+                Log.e("Here2: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!");
+            } else {
+                Log.e("Here3: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!"); throw new Exception(); } // es_patient should not be null if connected to DB
             ElasticsearchProblemController.SetPatientTask setPatientTask = new ElasticsearchProblemController.SetPatientTask();
             // throw exception if we couldn't upload to DB
-            if (!setPatientTask.execute(patientProfile).get()) { throw new Exception(); }
+            if (!setPatientTask.execute(patientProfile).get()) {
+                Log.e("Here4: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!"); throw new Exception(); }
         } catch (Exception e) {
+
+            Log.e("Here5: !!!!","!!!!!!!!!!!!!!!!!!!!!!!!");
             throw new InterruptedException("syncPatientES error");
         }
-
     }
 
     /**
@@ -346,6 +356,7 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     {
         try
         {
+            patientProfile = null;
             mContext.getApplicationContext().deleteFile(P_FILENAME);
         } catch (Exception e)
         {

@@ -17,7 +17,7 @@ public interface IPatientBackend {
     // THIS MUST BE CALLED WHENEVER A CHANGE TO PROFILE AND ITS MEMBERS IS MADE
     // syncs the current patient with DB (if it can) by fetching DB comments (if CP has made
     // a change to comments, overriding the local comments, and pushing the local profile to DB)
-    public void UpdatePatient();
+    public boolean UpdatePatient();
 
     // return the current patient profile
     public Patient getPatientProfile();
@@ -43,6 +43,6 @@ public interface IPatientBackend {
 
     // MUST BE CALLED UPON APP STARTUP TO BE ABLE TO READ/WRITE TO FILE
     public void setContext(Context context);
-    public void setPatientProfile(Patient patientProfile);
+    public boolean setPatientProfile(Patient patientProfile);
 
 }
