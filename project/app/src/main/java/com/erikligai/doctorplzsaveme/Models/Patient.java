@@ -29,6 +29,12 @@ public class Patient {
         this.photos = new ArrayList<String>();
         this.mProblemList = new ArrayList<Problem>();
         this.photoLabels = new ArrayList<String>();
+        photos.add("");
+        photos.add("");
+        photoIds.add("front");
+        photoIds.add("back");
+        photoLabels.add("Default Front");
+        photoLabels.add("Default Back");
     }
 
     /**

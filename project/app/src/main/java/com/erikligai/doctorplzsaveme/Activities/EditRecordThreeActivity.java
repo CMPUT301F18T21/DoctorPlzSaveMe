@@ -100,10 +100,10 @@ public class EditRecordThreeActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.imageView12:
-                if (photos.size()<12) {
+                if (photos.size()<11) {
                     dispatchTakePictureIntent();
                 } else {
-                    Toast.makeText(getApplicationContext(), "You can only add a maximum of 11 photos per Record!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Only a maximum of 11 photos per Record!", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -125,8 +125,7 @@ public class EditRecordThreeActivity extends AppCompatActivity implements View.O
         for (int i = 0; i < photos.size(); i++) {
             ImageView imageView = setImageView(i);
             Bitmap bitmap = StringToBitMap(photos.get(i));
-            Bitmap r_bitmap = RotateBitmap(bitmap, 90);
-            imageView.setImageBitmap(r_bitmap);
+            imageView.setImageBitmap(bitmap);
         }
     }
 
@@ -222,17 +221,9 @@ public class EditRecordThreeActivity extends AppCompatActivity implements View.O
         if(photos.get(index)!=null){
             Log.d("click", "click");
             Bitmap bitmap = StringToBitMap(photos.get(index));
-            Bitmap r_bitmap = RotateBitmap(bitmap, 90);
-            zoomImg.setImageBitmap(r_bitmap);
+            zoomImg.setImageBitmap(bitmap);
             zoomImg.setVisibility(View.VISIBLE);
         }
-    }
-
-    public static Bitmap RotateBitmap(Bitmap source, float angle)
-    {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
     private void openEditRecordTwoActivity() {

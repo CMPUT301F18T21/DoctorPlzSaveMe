@@ -72,4 +72,10 @@ public class EditRecordActivity extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        RecordBuffer.getInstance().ClearBuffer();
+        finish();
+    }
 }

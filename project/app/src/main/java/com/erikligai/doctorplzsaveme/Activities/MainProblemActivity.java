@@ -71,7 +71,7 @@ public class MainProblemActivity extends AppCompatActivity {
         adapter.setOnEntryClickListener(new ProblemAdapter.OnEntryClickListener() {
             @Override
             public void onEntryClick(int position) {
-                Intent intent = new Intent(getApplicationContext(), EditProblemActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainRecordActivity.class);
                 intent.putExtra("Pos", position);
                 Log.d("rview", Integer.toString(position));
                 startActivity(intent);

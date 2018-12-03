@@ -18,7 +18,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class GeolocationFragment extends Fragment implements OnMapReadyCallback {
 
     private int problem_index, record_index;
     private GoogleMap mMap;
@@ -28,10 +28,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private Record record;
     private TextView emptyView;
 
-    public MapFragment(){}
+    public GeolocationFragment(){}
 
-    public static MapFragment newInstance(int problem_index, int record_index) {
-        MapFragment fragment = new MapFragment();
+    public static GeolocationFragment newInstance(int problem_index, int record_index) {
+        GeolocationFragment fragment = new GeolocationFragment();
         Bundle args = new Bundle();
         args.putInt("problem_index", problem_index);
         args.putInt("record_index",record_index);
@@ -46,7 +46,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_view_record_three, container, false);
+        View view = inflater.inflate(R.layout.fragment_view_record_four, container, false);
         mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
