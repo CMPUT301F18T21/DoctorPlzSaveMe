@@ -97,28 +97,28 @@ public class MainProblemActivity extends AppCompatActivity {
 //        return true;
 //    }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                finish();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+//
+//            case R.id.action_search:
+//                // User chose the "Settings" item, show the app settings UI...
+//                Log.d("toolbar", "search function!");
+//                //calls ProblemSearchActivity
+//                Intent intent = new Intent(this, ProblemSearchActivity.class);
+//                startActivity(intent);
 //                return true;
-////
-////            case R.id.action_search:
-////                // User chose the "Settings" item, show the app settings UI...
-////                Log.d("toolbar", "search function!");
-////                //calls ProblemSearchActivity
-////                Intent intent = new Intent(this, ProblemSearchActivity.class);
-////                startActivity(intent);
-////                return true;
-//
-//            default:
-//                // If we got here, the user's action was not recognized.
-//                // Invoke the superclass to handle it.
-//                return super.onOptionsItemSelected(item);
-//
-//        }
-//    }
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

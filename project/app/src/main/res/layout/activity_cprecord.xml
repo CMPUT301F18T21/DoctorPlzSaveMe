@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorLayoutPatientProblems"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1586C7"
+    android:background="@color/colorPrimaryCP"
     tools:context=".Activities.CPRecordActivity">
 
     <android.support.v7.widget.Toolbar
@@ -15,20 +15,22 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/patient_records_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize"/>
+        android:paddingTop="?attr/actionBarSize"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"/>
 
     <TextView
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:visibility="gone"
-        android:text="This problem has no records!" />
+        android:text="This problem has no records!"
+        android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>
