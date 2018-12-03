@@ -111,8 +111,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         for (int i = 0; i < photos.size(); i++) {
             ImageView imageView = setImageView(view, i);
             Bitmap bitmap = StringToBitMap(photos.get(i));
-            Bitmap r_bitmap = RotateBitmap(bitmap, 90);
-            imageView.setImageBitmap(r_bitmap);
+            imageView.setImageBitmap(bitmap);
         }
     }
 
@@ -169,18 +168,11 @@ public class PhotoFragment extends Fragment implements View.OnClickListener {
         return bitmap;
     }
 
-    public static Bitmap RotateBitmap(Bitmap source, float angle)
-    {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
-    }
 
     public void zoomImage(int index){
         if(photos.get(index)!=null){
             Bitmap bitmap = StringToBitMap(photos.get(index));
-            Bitmap r_bitmap = RotateBitmap(bitmap, 90);
-            zoomImg.setImageBitmap(r_bitmap);
+            zoomImg.setImageBitmap(bitmap);
             zoomImg.setVisibility(View.VISIBLE);
         }
     }

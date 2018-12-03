@@ -59,17 +59,22 @@ public class RecyclerSelectBodyLocationAdapter extends RecyclerView.Adapter<Recy
             // do something with key and/or tab
         //SortedMap<String, Bitmap> photo = photos.entrySet().toArray();
         viewHolder.imgViewIcon.setScaleType((ImageView.ScaleType.CENTER_CROP));
-        viewHolder.imgViewIcon.setImageBitmap(getBitmapFromString(photos.get(i)));
+        if(i == 0){
+            viewHolder.imgViewIcon.setImageResource(R.drawable.front);
+        } else if (i==1){
+            viewHolder.imgViewIcon.setImageResource(R.drawable.back);
+        } else {
+            viewHolder.imgViewIcon.setImageBitmap(getBitmapFromString(photos.get(i)));
+        }
         viewHolder.label.setText(photoLables.get(i));
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "photo menu displayed! ");
-                Toast.makeText(mContext, "photo menu displayed for: "+ photoLables.get(i), Toast.LENGTH_SHORT).show();
                 AlertDialog alertDialog = new AlertDialog.Builder(v.getContext()).create();
 
                 alertDialog.setTitle(photoLables.get(i));
-                alertDialog.setMessage("Would you like to delete the photo you clicked?");
+                alertDialog.setMessage("Would you like to select this Body Location Photo?");
                 alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Select",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
