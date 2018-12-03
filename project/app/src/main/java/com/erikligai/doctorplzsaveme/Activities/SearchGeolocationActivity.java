@@ -83,7 +83,7 @@ public class SearchGeolocationActivity extends FragmentActivity implements Googl
                 if (Van != null) {
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
                 }
-                
+
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
             } catch (Exception e) {
                 Toast.makeText(this, "Invalid search!", Toast.LENGTH_SHORT).show();
