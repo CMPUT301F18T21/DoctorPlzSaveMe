@@ -1,24 +1,36 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.android.SphericalUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +48,61 @@ public class SearchGeolocationActivity extends FragmentActivity implements Googl
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
+    public void onMapSearch(View view) {
+        EditText locationSearch = (EditText) findViewById(R.id.editText);
+        String location = locationSearch.getText().toString();
+        List<Address> addressList = null;
+
+        if (location != null || !location.equals("")) {
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                addressList = geocoder.getFromLocationName(location, 1);
+                Address address = addressList.get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                LatLngBounds bound = toBounds(latLng);
+                mMap.clear();
+
+                int i,j;
+                ArrayList<Problem> problems = Backend.getInstance().getPatientProblems();
+                for (i = 0; i < problems.size(); i++) {
+                    ArrayList<Record> records = problems.get(i).getRecords();
+                    for( j = 0; j < records.size(); j++) {
+                        if (records.get(j).getGeolocation() != null) {
+                            if (bound.contains(records.get(j).getGeolocation())){
+                                Van = mMap.addMarker(new MarkerOptions().position(records.get(j).getGeolocation()).title(problems.get(i).getTitle()).snippet(records.get(j).getTitle()));
+                                List<Integer> index = new ArrayList<Integer>();
+                                index.add(i);
+                                index.add(j);
+                                Van.setTag(index);
+                                mMap.setOnMarkerClickListener(this);
+                            }
+                        }
+                    }
+                }
+                if (Van != null) {
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                }
+
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+            } catch (Exception e) {
+                Toast.makeText(this, "Invalid search!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+        }
+    }
+
+    public LatLngBounds toBounds(LatLng center) {
+        double radiusInMeters = 1000;
+        double distanceFromCenterToCorner = radiusInMeters * Math.sqrt(2.0);
+        LatLng southwestCorner =
+                SphericalUtil.computeOffset(center, distanceFromCenterToCorner, 225.0);
+        LatLng northeastCorner =
+                SphericalUtil.computeOffset(center, distanceFromCenterToCorner, 45.0);
+        return new LatLngBounds(southwestCorner, northeastCorner);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

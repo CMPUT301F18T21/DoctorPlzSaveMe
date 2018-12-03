@@ -103,9 +103,12 @@
         <activity android:name=".Activities.EditRecordTwoActivity" />
         <activity android:name=".Activities.PatientSlideshowActivity" />
         <activity android:name=".Activities.SelectByLocationActivity" />
-        <activity android:name=".Activities.SearchGeolocationActivity"></activity>
+        <activity android:name=".Activities.SearchGeolocationActivity" />
         <activity android:name=".Activities.SearchKeywordActivity" />
         <activity android:name=".Activities.SearchBodyActivity" />
+        <activity android:name=".Activities.CPSearchBodyActivity" />
+        <activity android:name=".Activities.CPSearchKeywordActivity" />
+        <activity android:name=".Activities.CPSearchGeolocationActivity"></activity>
     </application>
 
 </manifest>

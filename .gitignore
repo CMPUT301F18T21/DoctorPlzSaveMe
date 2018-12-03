@@ -1,6 +1,4 @@
 # Built application files
-*.apk
-*.ap_
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -12,10 +10,13 @@
 bin/
 gen/
 out/
+generated/
+intermediates/
+tmp/
+logs/
 
 # Gradle files
 .gradle/
-build/
 
 # Local configuration file (sdk path, etc)
 local.properties

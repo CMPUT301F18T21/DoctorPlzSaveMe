@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -26,8 +28,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHolder> {
+import static android.support.constraint.Constraints.TAG;
+
+public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHolder> implements Filterable {
     private final ArrayList<Problem> mDataset;
+    private ArrayList<Problem> mProblemsCopy;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -61,7 +66,8 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public ProblemAdapter(ArrayList<Problem> myDataset) {
-        mDataset = myDataset;
+        this.mDataset = myDataset;
+        this.mProblemsCopy = new ArrayList<>(mDataset);
     }
 
     // Create new views (invoked by the layout manager)
@@ -177,5 +183,47 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
     public void setOnEntryClickListener(OnEntryClickListener onEntryClickListener) {
         mOnEntryClickListener = onEntryClickListener;
     }
+
+    @Override
+    public Filter getFilter() {
+        return patientProblemFilter;
+    }
+
+    private Filter patientProblemFilter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<Problem> filteredProblems = new ArrayList<>();
+
+            Log.d(TAG, "search: " + constraint);
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredProblems.addAll(mProblemsCopy);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                Log.d(TAG, "filterPattern:  " + filterPattern);
+
+
+                for (Problem problem : mProblemsCopy) {
+                    Log.d(TAG, "problemTitle: " + problem.getTitle().toLowerCase());
+                    if (problem.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredProblems.add(problem);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredProblems;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mDataset.clear();
+            mDataset.addAll((ArrayList) results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
 
