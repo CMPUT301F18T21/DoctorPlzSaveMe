@@ -20,6 +20,10 @@ public class ViewRecordActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private int problem_index,record_index;
+    private DetailFragment detailFragment;
+    private BodyLocationFragment bodyLocationFragment;
+    private PhotoFragment photoFragment;
+    private GeolocationFragment geolocationFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -29,25 +33,21 @@ public class ViewRecordActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_detail:
                     getSupportActionBar().setTitle(R.string.title_detail);
-                    DetailFragment detailFragment = DetailFragment.newInstance(problem_index,record_index);
                     loadFragment(detailFragment);
                     return true;
 
                 case R.id.navigation_bodylocation:
                     getSupportActionBar().setTitle(R.string.title_bodylocation);
-                    BodyLocationFragment bodyLocationFragment = BodyLocationFragment.newInstance(problem_index,record_index );
                     return true;
 
                 case R.id.navigation_photo:
                     getSupportActionBar().setTitle(R.string.title_photo);
-                    PhotoFragment photoFragment = PhotoFragment.newInstance(problem_index,record_index );
                     loadFragment(photoFragment);
                     return true;
 
                 case R.id.navigation_map:
                     getSupportActionBar().setTitle(R.string.title_map);
-                    GeolocationFragment mapFragment = GeolocationFragment.newInstance(problem_index,record_index );
-                    loadFragment(mapFragment);
+                    loadFragment(geolocationFragment);
                     return true;
             }
             return false;
@@ -72,7 +72,11 @@ public class ViewRecordActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        DetailFragment detailFragment = DetailFragment.newInstance(problem_index,record_index);
+        detailFragment = DetailFragment.newInstance(problem_index,record_index);
+        bodyLocationFragment = BodyLocationFragment.newInstance(problem_index,record_index );
+        photoFragment = PhotoFragment.newInstance(problem_index,record_index );
+        geolocationFragment = GeolocationFragment.newInstance(problem_index,record_index );
+
         loadFragment(detailFragment);
     }
 
