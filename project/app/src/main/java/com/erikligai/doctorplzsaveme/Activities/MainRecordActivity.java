@@ -35,6 +35,7 @@ public class MainRecordActivity extends AppCompatActivity {
     private int problem_index;
     private RecyclerView recordRecycler;
     private TextView emptyView;
+    Backend backend = Backend.getInstance();
 
     //sample record list
 //    Record r1 = new Record("Record1","recordDescription");
@@ -102,10 +103,17 @@ public class MainRecordActivity extends AppCompatActivity {
         checkEmpty();
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_search_toolbar, menu);
+//        return true;
+//    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_search_toolbar, menu);
+        // Inflate the main_menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.search_menu, menu);
         return true;
     }
 
@@ -126,20 +134,20 @@ public class MainRecordActivity extends AppCompatActivity {
 
             case R.id.search_keyword:
                 Intent intent = new Intent(this, SearchKeywordActivity.class);
-                intent.putExtra("patientID", ); // send patientID
-                intent.putExtra("problemID", ); // send problemID
+                intent.putExtra("patientID", backend.getPatientProfile().getID()); // send patientID
+                intent.putExtra("problemID", problem_index); // send problemID
                 startActivity(intent);
 
             case R.id.search_geo:
                 Intent geo_intent = new Intent(this, SearchGeolocationActivity.class);
-                geo_intent.putExtra("patientID", );
-                geo_intent.putExtra("problemID", );
+                geo_intent.putExtra("patientID", backend.getPatientProfile().getID());
+                geo_intent.putExtra("problemID", problem_index);
                 startActivity(geo_intent);
 
             case R.id.search_body:
                 Intent body_intent = new Intent(this, SearchBodyActivity.class);
-                body_intent.putExtra("patientID", );
-                body_intent.putExtra("problemID", );
+                body_intent.putExtra("patientID", backend.getPatientProfile().getID());
+                body_intent.putExtra("problemID", problem_index);
                 startActivity(body_intent);
 
             default:
