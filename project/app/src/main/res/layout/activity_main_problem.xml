@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
+    android:background="#1586C7"
     android:layout_height="match_parent"
     tools:context=".Activities.MainProblemActivity">
 
@@ -15,7 +16,7 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/problems_recyclerview"
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        app:backgroundTint="@android:color/holo_orange_dark"
+        app:backgroundTint="#308DC3"
         app:srcCompat="@drawable/ic_baseline_add_24px" />
 
 </android.support.design.widget.CoordinatorLayout>

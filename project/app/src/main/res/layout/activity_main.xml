@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/login_image"
+            android:background="#FFFFFF"
             android:layout_weight="1"/>
 
         <FrameLayout

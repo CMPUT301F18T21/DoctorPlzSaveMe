@@ -27,8 +27,8 @@ public class CPViewRecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cp_view_record);
 
         Intent intent = getIntent();
-        ProblemPosition = Integer.valueOf(intent.getStringExtra("problemIndex"));
-        RecordPosition = Integer.valueOf(intent.getStringExtra("recordIndex"));
+        ProblemPosition = intent.getIntExtra("problemIndex",-1);
+        RecordPosition = intent.getIntExtra("recordIndex",-1);
         patientID = intent.getStringExtra("patientID");
 
         Backend backend = Backend.getInstance();
