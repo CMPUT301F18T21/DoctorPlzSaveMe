@@ -24,22 +24,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  care provider activity to view patients' records locations in a map
+ */
+
 public class CPViewRecordLocationsActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener,
         GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
     private GoogleMap mMap;
 
-    /** BACKEND TESTING
-     Patient p = new Patient("Joe Hepp","id-100", "heppelle@", "123456");
-     Problem problem = new Problem("Title", "Leg hurt");
-     Record record = new Record("Leg 1", "Leg hurt");
-     problem.addRecord(record);
-     p.addProblem(problem);
-     for Record rec in problem.getRecords(){
-     LatLng latlng = rec.getGeolocation();
-     }
-     /** BACKEND TESTING */
-
-    //private static final LatLng VAN = new LatLng(49.246292, -123.116226);
     private Marker Van;
 
     @Override
@@ -70,16 +62,8 @@ public class CPViewRecordLocationsActivity extends FragmentActivity implements G
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
      */
 
-    //TODO: 1. Talk to backend. Get all records for patient.
-    //TODO: 2. For each record, try getting the geolocation.
-    //TODO: 3. if record has a geolocation info, create a marker from it.
     private String patientID;
 
     @Override
@@ -112,23 +96,17 @@ public class CPViewRecordLocationsActivity extends FragmentActivity implements G
         if (Van != null) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Van.getPosition(), 10));
         }
-        //for record in recordList
-        // LatLng location = record.getGeolocation();
-        // mMap.addMarker(new MarkerOptions().position(location).title(record.getProblem));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(location)); // move camera to last added location.
     }
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
 
-        //int num = (int) marker.getTag();                         // get data from marker(probably recordID)
         Toast.makeText(this, marker.getTitle(), Toast.LENGTH_SHORT).show();
         return false;
     }
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        //int num = (int) marker.getTag();                                // get data from marker(probably recordID)
         Intent intent = new Intent(CPViewRecordLocationsActivity.this, CPViewRecordActivity.class);
         List<Integer> index = (List<Integer>) marker.getTag();
         intent.putExtra("problemIndex", index.get(0));

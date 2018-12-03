@@ -18,6 +18,9 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
+/*
+*  Adding a new patient to the app*/
+
 public class AddPatientActivity extends AppCompatActivity {
     private static final String TAG = "AddPatientActivity";
 
@@ -117,84 +120,4 @@ public class AddPatientActivity extends AppCompatActivity {
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // This activity should receive the care provider that was passed
-    // Then access the list of all patients, subtract the patients the care provider already has
-    // And display that filtered list for the care provider to choose from
-    // There should also be a search bar at the top to look for patient ID
-
-//    private void addPatients() {
-//        // this should add all patients that are not currently under the given care provider
-//        Log.d(TAG, "addPatients: preparing patients");
-//
-//        // Patients in this list are patients who are not in the care provider's patient list
-//        // All patients - care provider patients
-//
-//        patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
-//        patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
-//        patientList.add(new Patient("Daniil", "3", "asdf@ualberta.ca", "746746"));
-//        patientList.add(new Patient("Weng", "4", "crack@ualberta.ca", "0918234"));
-//        patientList.add(new Patient("Iyun", "5", "lksdfg@ualberta.ca", "1234869023"));
-//        patientList.add(new Patient("Bruce", "6", "owerti@ualberta.ca", "6458349"));
-//
-//        initRecyclerView();
-//    }
-//
-//    private void initRecyclerView() {
-//        Log.d(TAG, "initRecyclerView: init");
-//        RecyclerView recyclerView = findViewById(R.id.add_patient_recycler_view);
-//        adapter = new AddPatientAdapter(patientList, this);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//    }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.main_menu, menu);
-//
-//        MenuItem searchItem = menu.findItem(R.id.action_search);
-//        SearchView searchView = (SearchView) searchItem.getActionView();
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                adapter.getFilter().filter(s);
-//                return false;
-//            }
-//        });
-//        return true;
-//    }
 }

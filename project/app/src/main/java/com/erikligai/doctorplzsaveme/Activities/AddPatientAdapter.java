@@ -17,6 +17,10 @@ import com.erikligai.doctorplzsaveme.R;
 
 import java.util.ArrayList;
 
+/*
+*  Adapter to display recycler view of list of patients.
+*  */
+
 public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.AddPatientViewHolder> implements Filterable {
     private ArrayList<Patient> mPatients;
 
@@ -63,7 +67,6 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
             public void onClick(View v) {
                 // Here the name in the patient list is clicked
                 // this should add the patient to the care provider's patient list and return to patient list activity
-
                 // use global static variable of userid to retrieve care provider's patient list from backend
                 // check if clicked on patient already exists in list
                 // if not, add to list
@@ -71,13 +74,6 @@ public class AddPatientAdapter extends RecyclerView.Adapter<AddPatientAdapter.Ad
                 // return to CareProviderActivity
                 // Display toast message to notify care provider that patient was added
 
-
-
-
-//
-//                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getName());
-//                Toast.makeText(mContext, mPatients.get(i).getName(), Toast.LENGTH_SHORT).show();
-//                Log.d(TAG, "onClick: clicked on: " + mPatients.get(i).getID());
                 Toast.makeText(mContext, mPatients.get(i).getID(), Toast.LENGTH_SHORT).show();
             }
         });

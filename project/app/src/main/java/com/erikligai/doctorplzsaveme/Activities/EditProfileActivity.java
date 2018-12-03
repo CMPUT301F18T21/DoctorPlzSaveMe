@@ -19,6 +19,9 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+/**
+ *  Allow patient to edit profile detail.
+ */
 public class EditProfileActivity extends AppCompatActivity {
 
     private TextView UserIdText, EmailText, PhoneText;
@@ -43,7 +46,6 @@ public class EditProfileActivity extends AppCompatActivity {
         CancelButton = findViewById(R.id.cancelButton);
         SaveChangesButton = findViewById(R.id.saveChangesButton);
         logOutButton = findViewById(R.id.logOutButton);
-//        displayQRButton = findViewById(R.id.displayQRButton);
         ImageView qrCode = findViewById(R.id.qrImage);
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
@@ -77,7 +79,6 @@ public class EditProfileActivity extends AppCompatActivity {
         SaveChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: CHECK SET EMAIL/PHONE VALUES SO THEY ARE VALID
                 if (Backend.getInstance().isConnected()) {
                     // in case uploading fails
                     String temp_email = Backend.getInstance().getPatientProfile().getEmail();

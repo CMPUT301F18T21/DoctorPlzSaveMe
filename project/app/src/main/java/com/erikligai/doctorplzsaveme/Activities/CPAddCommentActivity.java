@@ -12,6 +12,10 @@ import android.widget.Toast;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
+/**
+ *  care provider action to add comments to a patient problem.
+ */
+
 public class CPAddCommentActivity  extends AppCompatActivity {
 
     private Button backBtn4,saveBtn1;

@@ -18,11 +18,14 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
+/**
+ *  care provider action to view patients' records.
+ */
+
 public class CPRecordActivity extends AppCompatActivity {
     private static final String TAG = "PatientRecordActivity";
 
     PatientRecordAdapter adapter;
-    //    private ArrayList<Record> recordList = new ArrayList<>();
     private ArrayList<Record> recordList;
     Backend backend = Backend.getInstance();
 
@@ -38,21 +41,7 @@ public class CPRecordActivity extends AppCompatActivity {
         Intent intent = getIntent(); // receive intent
         problemID = intent.getExtras().getString("problemID");
         patientID = intent.getExtras().getString("patientID");
-//        Log.e("patientIDH", patientID);
-//        Log.e("problemIDH", problemID);
-
-//        Date date = new Date();
-//        // format date into string
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");//formating according to my need
-//        String formattedDate = formatter.format(date);
-
-//        Record testRecord = new Record("testRecord", "comment");
-////
-//        backend.addPatientRecord(Integer.valueOf(problemID), testRecord);
-//        Log.e("marker", "REACHES");
         recordList = backend.GetCPPatientRecords(patientID, Integer.valueOf(problemID));
-
-//        Log.e("BOOLEAN: ", recordList.get(0).toString());
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -66,7 +55,6 @@ public class CPRecordActivity extends AppCompatActivity {
     // There should also be a search bar at the top to look for patient ID
 
     private void initRecyclerView() {
-//        Log.d(TAG, "initRecyclerView: init");
 
         RecyclerView recyclerView = findViewById(R.id.patient_records_recycler_view);
         TextView emptyView = findViewById(R.id.empty_view);
@@ -86,12 +74,6 @@ public class CPRecordActivity extends AppCompatActivity {
             emptyView.setVisibility(View.GONE);
         }
     }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        adapter.notifyDataSetChanged();
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +91,6 @@ public class CPRecordActivity extends AppCompatActivity {
 
             case R.id.search_keyword:
                 Intent intent = new Intent(this, CPSearchKeywordActivity.class);
-//                intent.putExtra("patientID", backend.getPatientProfile().getID()); // send patientID
                 intent.putExtra("problemID", problemID); // send problemID
                 intent.putExtra("patientID", patientID); // send patientID
                 startActivity(intent);

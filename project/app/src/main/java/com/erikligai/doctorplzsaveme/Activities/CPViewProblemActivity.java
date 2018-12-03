@@ -19,6 +19,10 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
+/**
+ *  care provider activity to show a patients specific problem
+ */
+
 public class CPViewProblemActivity extends AppCompatActivity {
 
     private commentAdapter adapter;
@@ -82,7 +86,6 @@ public class CPViewProblemActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView(String patientID) {
-//        Log.d(TAG, "initRecyclerView: init");
 
         commentList = findViewById(R.id.commentRecyclerView);
         // display recyclerview

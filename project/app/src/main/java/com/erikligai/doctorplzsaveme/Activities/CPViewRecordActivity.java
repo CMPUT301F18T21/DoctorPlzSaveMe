@@ -25,6 +25,10 @@ import com.erikligai.doctorplzsaveme.RecordFragments.GeolocationFragment;
 import com.erikligai.doctorplzsaveme.RecordFragments.PhotoFragment;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
+/**
+ *  care provider activity to view a specific records' details.
+ */
+
 public class CPViewRecordActivity extends AppCompatActivity {
 
     private Toolbar toolbar;

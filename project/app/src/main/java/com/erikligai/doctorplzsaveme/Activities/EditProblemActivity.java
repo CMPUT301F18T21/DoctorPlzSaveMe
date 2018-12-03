@@ -28,6 +28,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * allow patient to edit problem details.
+ */
+
 public class EditProblemActivity extends AppCompatActivity implements View.OnClickListener{
     private Problem problem;
     private TextView titleText,descText,dateText;

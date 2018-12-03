@@ -21,6 +21,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ *  Adapter for care provider view of patient problems.
+ *  uses recycler view.
+ */
+
 public class CPProblemAdapter extends RecyclerView.Adapter<CPProblemAdapter.MyViewHolder> {
     private final ArrayList<Problem> mDataset;
 

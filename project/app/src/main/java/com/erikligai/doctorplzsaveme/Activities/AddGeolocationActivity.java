@@ -8,6 +8,10 @@ import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.R;
 
+/*
+* Adding geolocation on a record
+* */
+
 public class AddGeolocationActivity extends AppCompatActivity {
     private Button backBtn3,nextBtn3;
 

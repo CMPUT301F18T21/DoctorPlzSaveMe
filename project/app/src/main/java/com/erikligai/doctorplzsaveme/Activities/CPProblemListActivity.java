@@ -15,6 +15,10 @@ import com.erikligai.doctorplzsaveme.R;
 
 import java.util.ArrayList;
 
+/**
+ *  care provider activity to show patients problems in a recycler view.
+ */
+
 public class CPProblemListActivity extends AppCompatActivity {
     private CPProblemAdapter adapter;
     private ArrayList<Problem> problems = new ArrayList<>();
@@ -31,13 +35,10 @@ public class CPProblemListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.problems);
 
-
-
         RecyclerView problemRView = findViewById(R.id.problems_recyclerview);
         problemRView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         problemRView.setLayoutManager(layoutManager);
-
 
         adapter = new CPProblemAdapter(problems);
         problemRView.setAdapter(adapter);
@@ -68,7 +69,6 @@ public class CPProblemListActivity extends AppCompatActivity {
 
             case R.id.action_search:
                 // User chose the "Settings" item, show the app settings UI...
-                Log.d("toolbar", "search function!");
                 //calls ProblemSearchActivity
                 Intent intent = new Intent(this, CPProblemSearchActivity.class);
                 startActivity(intent);

@@ -10,6 +10,10 @@ import android.widget.EditText;
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
 
+/**
+ *  Creating a new record inside of a problem.
+ */
+
 public class AddRecordActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button backBtn1,nextBtn1;

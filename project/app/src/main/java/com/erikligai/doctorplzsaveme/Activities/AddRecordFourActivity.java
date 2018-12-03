@@ -16,6 +16,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ *  Adding a geolocation when creating a new record.
+ */
+
 public class AddRecordFourActivity extends FragmentActivity implements OnMapReadyCallback,View.OnClickListener {
 
     private GoogleMap mMap;
@@ -57,14 +61,7 @@ public class AddRecordFourActivity extends FragmentActivity implements OnMapRead
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
      */
-
-    //TODO: Get onClick LatLng.
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -112,13 +109,6 @@ public class AddRecordFourActivity extends FragmentActivity implements OnMapRead
             }
         });
     }
-
-//    @Override
-//    public boolean onMarkerClick(final Marker marker) {
-//
-//        Toast.makeText(this, marker.getTitle() + " has been clicked ", Toast.LENGTH_SHORT).show();
-//        return false;
-//    }
 
     private void openAddRecordThreeActivity(){
         Intent intent = new Intent(this, AddRecordThreeActivity.class);

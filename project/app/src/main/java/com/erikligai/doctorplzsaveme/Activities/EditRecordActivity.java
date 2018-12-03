@@ -10,6 +10,10 @@ import android.widget.EditText;
 import com.erikligai.doctorplzsaveme.Models.RecordBuffer;
 import com.erikligai.doctorplzsaveme.R;
 
+/**
+ *  Allow patient to edit record details.
+ */
+
 public class EditRecordActivity extends AppCompatActivity {
 
     private Button backBtn,nextBtn;

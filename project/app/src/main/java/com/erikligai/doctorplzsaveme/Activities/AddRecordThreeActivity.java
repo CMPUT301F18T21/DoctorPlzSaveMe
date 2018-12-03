@@ -22,6 +22,10 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Adding photos to a record.
+ */
+
 public class AddRecordThreeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button backBtn3, nextBtn3;
@@ -46,13 +50,6 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
         zoomImg.setOnClickListener(this);
 
         photos = RecordBuffer.getInstance().getRecord().getPhotos();
-
-        //date = intent.getLongExtra("date",-1);
-        // Get buttons
-//        backBtn2 = findViewById(R.id.backButton2);
-//        nextBtn2 = findViewById(R.id.nextButton2);
-//        addPhotoBtn  =findViewById(R.id.addPhotoButton);
-//        addBodylocationBtn = findViewById(R.id.addBodylocationButton);
     }
 
     public void onClick(View v) {
@@ -142,8 +139,7 @@ public class AddRecordThreeActivity extends AppCompatActivity implements View.On
 
     private String getStringFromBitmap(Bitmap bitmapPicture) {
         /*
-         * This functions converts Bitmap picture to a string which can be
-         * JSONified.
+         * This functions converts Bitmap picture to a string
          * */
         final int COMPRESSION_QUALITY = 100;
         String encodedImage;

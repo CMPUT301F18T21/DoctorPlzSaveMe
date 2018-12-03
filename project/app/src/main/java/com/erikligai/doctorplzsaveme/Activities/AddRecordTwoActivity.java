@@ -24,6 +24,10 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.util.ArrayList;
 
+/**
+ * Adding body location photos in a record.
+ */
+
 public class AddRecordTwoActivity extends AppCompatActivity {
     private Button nextBtn;
     private Button backBtn;

@@ -13,6 +13,10 @@ import com.erikligai.doctorplzsaveme.R;
 
 import java.util.ArrayList;
 
+/**
+ *  Allow patient to edit body location photos.
+ */
+
 public class EditPhotosActivity extends AppCompatActivity {
 
     @Override

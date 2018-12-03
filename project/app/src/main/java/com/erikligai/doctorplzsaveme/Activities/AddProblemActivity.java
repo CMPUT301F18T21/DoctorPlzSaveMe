@@ -26,6 +26,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+*  Creating a new Problem for patient. Takes attributes to assign to a problem here.
+*  */
+
 public class AddProblemActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button nowDateBtn,cusDateBtn,backBtn,saveBtn;

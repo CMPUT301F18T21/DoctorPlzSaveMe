@@ -28,6 +28,10 @@ import com.google.maps.android.SphericalUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  Care provider to search for patient records' via geolocation.
+ */
+
 public class CPSearchGeolocationActivity extends FragmentActivity implements GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -114,17 +118,6 @@ public class CPSearchGeolocationActivity extends FragmentActivity implements Goo
             return super.onOptionsItemSelected(item);
     }
 }
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     */
-
-    //TODO: 1. Talk to backend. Get all records for patient.
-    //TODO: 2. For each record, try getting the geolocation.
-    //TODO: 3. if record has a geolocation info, create a marker from it.
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
