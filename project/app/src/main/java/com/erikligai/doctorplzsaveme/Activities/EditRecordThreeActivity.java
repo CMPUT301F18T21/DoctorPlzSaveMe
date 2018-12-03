@@ -120,6 +120,7 @@ public class EditRecordThreeActivity extends AppCompatActivity implements View.O
         displayPhotos();
     }
 
+
     public void displayPhotos() {
         for (int i = 0; i < photos.size(); i++) {
             ImageView imageView = setImageView(i);
