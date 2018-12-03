@@ -29,10 +29,10 @@ public class NewProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_profile, container, false);
 
-        createProfile = (Button) view.findViewById(R.id.createProfileButton);
-        emailInputText = (TextView) view.findViewById(R.id.emailInputText);
-        phoneInputText = (TextView) view.findViewById(R.id.phoneInputText);
-        userIDText = (TextView) view.findViewById(R.id.user_id_textview);
+        createProfile = view.findViewById(R.id.createProfileButton);
+        emailInputText = view.findViewById(R.id.emailInputText);
+        phoneInputText = view.findViewById(R.id.phoneInputText);
+        userIDText = view.findViewById(R.id.user_id_textview);
 
         createProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,13 +45,13 @@ public class NewProfileFragment extends Fragment {
                         emailInputText.getText().toString().equals("") ||
                         phoneInputText.getText().toString().equals(""))
                 {
-                    Toast.makeText(getActivity(), (String) "A field is blank", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "A field is blank", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (userIDText.getText().toString().length() < 8)
                 {
-                    Toast.makeText(getActivity(), (String) "Username must be at least 8 characters!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Username must be at least 8 characters!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // check if that user id exists in db
@@ -67,7 +67,7 @@ public class NewProfileFragment extends Fragment {
                             phoneInputText.getText().toString());
                     if(!Backend.getInstance().setPatientProfile(new_patient))
                     {
-                        Toast.makeText(getActivity(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Intent intent = new Intent(getActivity(), PatientActivity.class);
@@ -76,10 +76,10 @@ public class NewProfileFragment extends Fragment {
                     startActivity(intent);
                 } else if (result == 0) // patient with that ID already exists
                 {
-                    Toast.makeText(getActivity(), (String) "Username exists!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Username exists!", Toast.LENGTH_SHORT).show();
                 } else if (result == -1)
                 {
-                    Toast.makeText(getActivity(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.e("createProfile.onClick: ", "something went wrong!");
                 }

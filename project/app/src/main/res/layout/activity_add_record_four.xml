@@ -13,11 +13,12 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="1dp"
         map:layout_constraintBottom_toTopOf="@+id/nextButton1"
-        tools:context=".Activities.AddRecordFourActivity"
+        map:layout_constraintEnd_toEndOf="parent"
 
-        tools:layout_editor_absoluteX="0dp"></fragment>
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        tools:context=".Activities.AddRecordFourActivity"></fragment>
 
     <LinearLayout
         android:id="@+id/linearLayout3"

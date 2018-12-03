@@ -128,10 +128,6 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
                                 //handle menu4 click
                                 ClickMenuFour();
                                 return true;
-                            case R.id.problem_menu5:
-                                //handle menu4 click
-                                ClickMenuFive();
-                                return true;
 
                             default:
                                 return false;
@@ -145,32 +141,25 @@ public class ProblemAdapter extends RecyclerView.Adapter<ProblemAdapter.MyViewHo
 
             void ClickMenuOne(){
                 Log.d("rview", "view/add");
-                Intent intent = new Intent(holder.itemView.getContext(), MainRecordActivity.class);
+                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
                 intent.putExtra("Pos", holder.getAdapterPosition());
                 holder.itemView.getContext().startActivity(intent);
             }
 
             void ClickMenuTwo(){
-                Intent intent = new Intent(holder.itemView.getContext(), EditProblemActivity.class);
-                intent.putExtra("Pos", holder.getAdapterPosition());
-                Log.d("rview", "edit");
-                holder.itemView.getContext().startActivity(intent);
-            }
-
-            void ClickMenuThree(){
                 Log.d("rview", "delete");
                 Backend.getInstance().deletePatientProblem(holder.getAdapterPosition());
                 notifyDataSetChanged();
             }
 
-            void ClickMenuFour(){
+            void ClickMenuThree(){
                 Intent intent = new Intent(holder.itemView.getContext(), PatientViewCommentActivity.class);
                 intent.putExtra("Pos", holder.getAdapterPosition());
                 Log.d("rview", "edit");
                 holder.itemView.getContext().startActivity(intent);
             }
 
-            void ClickMenuFive(){
+            void ClickMenuFour(){
                 Intent intent = new Intent(holder.itemView.getContext(), PatientSlideshowActivity.class);
                 intent.putExtra("Pos", holder.getAdapterPosition());
                 Log.d("rview", "edit");

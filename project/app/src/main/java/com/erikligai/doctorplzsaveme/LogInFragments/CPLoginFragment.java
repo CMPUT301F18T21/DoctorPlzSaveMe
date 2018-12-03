@@ -28,8 +28,8 @@ public class CPLoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_cplogin, container, false);
 
-        logInButton = (Button) view.findViewById(R.id.cpLoginButton);
-        usernameText = (TextView) view.findViewById(R.id.cpUsernameText);
+        logInButton = view.findViewById(R.id.cpLoginButton);
+        usernameText = view.findViewById(R.id.cpUsernameText);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +50,7 @@ public class CPLoginFragment extends Fragment {
                             startActivity(new Intent(getActivity(), CareProviderActivity.class));
                         } else // error check if DB fetch failed
                         {
-                            Toast.makeText(getActivity(), (String) "Could not get patients!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Could not get patients!", Toast.LENGTH_SHORT).show();
                         }
                     } else if (r == 1)
                     // if we connected to DB but not found, prompt to add username and log in
@@ -67,11 +67,11 @@ public class CPLoginFragment extends Fragment {
                                         try {
                                             if (checkIfCPExistsTask.execute(usernameText.getText().toString()).get()!=0)
                                             {
-                                                Toast.makeText(getActivity(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getActivity(), "Could not login!", Toast.LENGTH_SHORT).show();
                                                 return;
                                             }
                                         } catch (Exception e) {
-                                            Toast.makeText(getActivity(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), "Could not login!", Toast.LENGTH_SHORT).show();
                                             return;
                                         }
                                         Backend.getInstance().setCP_ID(usernameText.getText().toString());
@@ -96,10 +96,10 @@ public class CPLoginFragment extends Fragment {
                                 .setNegativeButton("No", dialogClickListener).show();
                     } else if (r == -1) // couldn't connect to DB
                     {
-                        Toast.makeText(getActivity(), (String) "Could not connect to DB!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), (String) "Could not login!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Could not login!", Toast.LENGTH_SHORT).show();
                     // shouldn't happen really
                 }
             }

@@ -31,10 +31,10 @@ public class PatientLoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patient_login, container, false);
-        scanButton = (Button) view.findViewById(R.id.scan_button);
-        newProfileButton = (Button) view.findViewById(R.id.new_profile_button);
-        logInButton = (Button) view.findViewById(R.id.logInButton);
-        usernameText = (TextView) view.findViewById(R.id.usernameText);
+        scanButton = view.findViewById(R.id.scan_button);
+        newProfileButton = view.findViewById(R.id.new_profile_button);
+        logInButton = view.findViewById(R.id.logInButton);
+        usernameText = view.findViewById(R.id.usernameText);
 
         // button listener for scanButton
         scanButton.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class PatientLoginFragment extends Fragment {
                 integrator.setCameraId(0);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
-                integrator.forSupportFragment(PatientLoginFragment.this).initiateScan();
+                IntentIntegrator.forSupportFragment(PatientLoginFragment.this).initiateScan();
             }
         });
 
@@ -79,7 +79,7 @@ public class PatientLoginFragment extends Fragment {
                     startActivity(new Intent(getActivity(), PatientActivity.class));
                 } else // complain we couldn't get that profile
                 {
-                    Toast.makeText(getActivity().getApplicationContext(), (String) "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -116,7 +116,7 @@ public class PatientLoginFragment extends Fragment {
             if (result.getContents() == null) {
                 Toast.makeText(getActivity(), "Fail", Toast.LENGTH_LONG).show();
             } else {
-                int r = backend.userIDExists(result.getContents());
+                int r = Backend.userIDExists(result.getContents());
                 if (r == 0) {
                     Backend.getInstance().setPatientFromES(result.getContents()); // sets scanned user id to login
                     if (Backend.getInstance().getPatientProfile() == null)
@@ -128,7 +128,7 @@ public class PatientLoginFragment extends Fragment {
                         getActivity().onBackPressed();
                         startActivity(new Intent(getActivity(), PatientActivity.class));
                     } else {
-                        Toast.makeText(getActivity(), (String) "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Could not retrieve profile!", Toast.LENGTH_SHORT).show();
                     }
                 } else if (r == 1) {
                     Toast.makeText(getActivity(), "Username does not exist!", Toast.LENGTH_LONG).show();
