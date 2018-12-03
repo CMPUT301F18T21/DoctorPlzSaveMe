@@ -25,19 +25,16 @@ public class CPProblemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cpproblem_list);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle(R.string.problems);
 
-
-
         RecyclerView problemRView = findViewById(R.id.problems_recyclerview);
         problemRView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         problemRView.setLayoutManager(layoutManager);
-
 
         adapter = new CPProblemAdapter(problems);
         problemRView.setAdapter(adapter);

@@ -65,7 +65,7 @@
             android:label="@string/title_activity_main_maps" />
         <activity android:name=".Activities.CareProviderActivity" />
         <activity android:name=".Activities.AddPatientActivity" />
-        <activity android:name=".PatientProblemsActivity" />
+        <activity android:name=".Activities.PatientProblemsActivity" />
         <![CDATA[
         android:label="@string/new_patient_title" />
         ]]>

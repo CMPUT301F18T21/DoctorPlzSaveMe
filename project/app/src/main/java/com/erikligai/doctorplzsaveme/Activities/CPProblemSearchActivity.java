@@ -22,8 +22,8 @@ public class CPProblemSearchActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_cpproblem_search);
 
-        patientButton = (Button) findViewById(R.id.patient_button);
-        careProviderButton = (Button) findViewById(R.id.care_provider_button);
+        patientButton = findViewById(R.id.patient_button);
+        careProviderButton = findViewById(R.id.care_provider_button);
 
 
         // button listener for patientButton

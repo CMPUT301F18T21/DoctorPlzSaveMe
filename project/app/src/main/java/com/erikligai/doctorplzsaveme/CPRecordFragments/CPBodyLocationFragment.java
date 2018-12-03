@@ -84,6 +84,7 @@ public class CPBodyLocationFragment extends Fragment {
             public void run() {
                 pointer.setX(record.getXpos()*image.getWidth());
                 pointer.setY(record.getYpos()*image.getHeight());
+                pointer.setVisibility(View.VISIBLE);
             }
         });
     }

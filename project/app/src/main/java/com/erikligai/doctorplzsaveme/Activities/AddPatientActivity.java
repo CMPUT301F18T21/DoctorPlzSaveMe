@@ -59,7 +59,7 @@ public class AddPatientActivity extends AppCompatActivity {
                     Toast.makeText(AddPatientActivity.this, "username already in your list", Toast.LENGTH_LONG).show();
                     return;
                 }
-                int r = backend.userIDExists(userid);
+                int r = Backend.userIDExists(userid);
                 if (r == 0) {
                     backend.AddPatient(userid);
                     // go back to patient list
@@ -97,7 +97,7 @@ public class AddPatientActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Fail", Toast.LENGTH_LONG).show();
             } else {
-                int r = backend.userIDExists(result.getContents());
+                int r = Backend.userIDExists(result.getContents());
                 if (r == 0) {
                     backend.AddPatient(result.getContents());
 
