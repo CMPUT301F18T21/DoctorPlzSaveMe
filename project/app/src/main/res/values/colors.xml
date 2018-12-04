@@ -7,4 +7,7 @@
     <color name="colorPrimaryCP">#76d275</color>
     <color name="colorPrimaryDarkCP">#00701a</color>
     <color name="colorButtonCP">#43a047</color>
+    <color name="colorPrimaryBoth">#0097a7</color>
+    <color name="colorPrimaryBothDark">#006978</color>
+    <color name="colorPrimaryBothLight">#56c8d8</color>
 </resources>

@@ -16,7 +16,9 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/patient_rounded_corner"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/comment"
@@ -29,7 +31,9 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        android:background="@drawable/patient_rounded_corner"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/date"
@@ -41,7 +45,9 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3" />
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        android:background="@drawable/patient_rounded_corner"
+        android:padding="5dp"/>
 
     <View
         android:id="@+id/divider"
