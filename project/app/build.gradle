@@ -49,8 +49,8 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     implementation 'com.google.zxing:core:3.2.1'
 
-    implementation 'com.google.android.gms:play-services-location:11.0.2'
-    implementation 'com.google.android.gms:play-services-places:11.0.2'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
     implementation 'com.google.maps.android:android-maps-utils:0.4+'
 }
 //    androidTestImplementation 'com.android.support.test:rules:1.0.2'

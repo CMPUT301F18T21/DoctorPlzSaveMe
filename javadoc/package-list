@@ -1,2 +1,10 @@
-com.erikligai.doctorplzsaveme
+com.erikligai.doctorplzsaveme.Activities
+com.erikligai.doctorplzsaveme.Adapters
+com.erikligai.doctorplzsaveme.CPRecordFragments
+com.erikligai.doctorplzsaveme.Exceptions
+com.erikligai.doctorplzsaveme.LogInFragments
+com.erikligai.doctorplzsaveme.Models
+com.erikligai.doctorplzsaveme.RecordFragments
 com.erikligai.doctorplzsaveme.SearchTabFragments
+com.erikligai.doctorplzsaveme.StartAppActivities
+com.erikligai.doctorplzsaveme.backend

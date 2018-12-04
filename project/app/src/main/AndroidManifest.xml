@@ -24,10 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities$MainRecordActivity" />
-        <activity android:name=".Activities.MainProblemActivity" />
+        <activity android:name=".Activities$MainProblemActivity" />
         <activity android:name=".Activities$EditProblemActivity" />
         <activity android:name=".Activities$EditRecordActivity" />
-        <activity android:name=".Activities.AddProblemActivity" />
+        <activity android:name=".Activities$AddProblemActivity" />
         <activity android:name=".Activities$AddRecordActivity" />
         <activity android:name=".Activities$AddRecordThreeActivity" />
         <activity android:name=".Activities$AddRecordFourActivity" />
@@ -36,7 +36,7 @@
         <activity android:name=".Activities$CPViewRecordActivity" />
         <activity android:name=".Activities$CPAddCommentActivity" />
         <activity android:name=".Activities$AddRecordTwoActivity" />
-        <activity android:name=".Activities.CPViewGeolocationActivity" />
+        <activity android:name=".Activities$CPViewGeolocationActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
@@ -54,14 +54,14 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Activities.CPProblemListActivity" />
+        <activity android:name=".Activities$CPProblemListActivity" />
         <activity android:name=".Activities$CPProblemSearchActivity" />
         <activity android:name=".Activities$RecordSearchActivity" />
         <activity
-            android:name=".Activities.ViewRecordLocationsActivity"
+            android:name=".Activities$ViewRecordLocationsActivity"
             android:label="@string/title_activity_main_maps" />
         <activity android:name=".Activities$CareProviderActivity" />
-        <activity android:name=".Activities.AddPatientActivity" />
+        <activity android:name=".Activities$AddPatientActivity" />
         <activity android:name=".Activities$PatientProblemsActivity" />
         <![CDATA[
         android:label="@string/new_patient_title" />
@@ -71,8 +71,8 @@
             android:label="@string/view_edit_profile_title" /><![CDATA[
         android:label="@string/view_edit_profile_title" />
         ]]>
-        <activity android:name=".Activities.PatientActivity" />
-        <activity android:name=".Activities.CPRecordActivity" />
+        <activity android:name=".Activities$PatientActivity" />
+        <activity android:name=".Activities$CPRecordActivity" />
         <activity android:name=".Activities$PatientViewCommentActivity" />
 
         <provider
@@ -85,20 +85,20 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Activities.EditPhotosActivity" />
-        <activity android:name=".Activities.UploadBodyLocationActivity" />
+        <activity android:name=".Activities$EditPhotosActivity" />
+        <activity android:name=".Activities$UploadBodyLocationActivity" />
         android:label="@string/view_edit_profile_title" />
-        <activity android:name=".Activities.EditRecordThreeActivity" />
-        <activity android:name=".Activities.EditRecordFourActivity" />
+        <activity android:name=".Activities$EditRecordThreeActivity" />
+        <activity android:name=".Activities$EditRecordFourActivity" />
         <activity
             android:name=".Activities$ViewRecordActivity"
             android:label="@string/title_activity_view_problem" />
-        <activity android:name=".Activities.CPViewRecordLocationsActivity" />
+        <activity android:name=".Activities$CPViewRecordLocationsActivity" />
         <activity android:name=".Activities$EditRecordTwoActivity" />
         <activity android:name=".Activities$PatientSlideshowActivity" />
         <activity android:name=".Activities$SelectByLocationActivity" />
         <activity android:name=".Activities$SearchGeolocationActivity" />
-        <activity android:name=".Activities.SearchKeywordActivity" />
+        <activity android:name=".Activities$SearchKeywordActivity" />
         <activity android:name=".Activities$SearchBodyActivity" />
         <activity android:name=".Activities$CPSearchBodyActivity" />
         <activity android:name=".Activities$CPSearchKeywordActivity" />
