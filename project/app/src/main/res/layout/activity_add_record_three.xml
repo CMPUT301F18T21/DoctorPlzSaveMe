@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:windowBackground">
+    android:background="@color/colorButton">
 
 
     <ImageView
@@ -135,9 +135,9 @@
         android:id="@+id/imageView9"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:contentDescription="image9"
         app:layout_constraintBottom_toTopOf="@+id/imageView12"
@@ -151,8 +151,8 @@
         android:id="@+id/imageView10"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:contentDescription="image10"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
@@ -166,8 +166,8 @@
         android:id="@+id/imageView11"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:contentDescription="image11"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
@@ -179,21 +179,21 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_height="0dp"
         android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:clickable="true"
         android:contentDescription="image12"
+        android:focusable="true"
         android:padding="30dp"
         android:tint="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="@+id/imageView9"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:srcCompat="@drawable/ic_add_a_photo_black_24dp"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_add_a_photo_black_24dp" />
 
     <ImageView
         android:id="@+id/imageView13"
@@ -201,23 +201,23 @@
         android:layout_height="0dp"
         android:background="@color/common_google_signin_btn_text_light_default"
         android:clickable="true"
-        android:visibility="gone"
+        android:contentDescription="TODO"
         android:elevation="5dp"
+        android:focusable="true"
         android:padding="16dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="TODO"
-        android:focusable="true" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorButton"
     tools:context=".Activities.EditProblemActivity">
 
     <android.support.v7.widget.Toolbar
@@ -40,11 +41,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/patient_rounded_corner"
             android:ems="10"
+            android:hint="@string/edit_problem_hint"
             android:inputType="textPersonName"
             android:padding="5dp"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
-            android:hint="@string/edit_problem_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,12 +85,12 @@
             android:background="@drawable/patient_rounded_corner"
             android:ems="10"
             android:gravity="top|start"
+            android:hint="@string/edit_desc_hint"
             android:inputType="textMultiLine"
             android:lines="8"
             android:padding="5dp"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
-            android:hint="@string/edit_desc_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -120,10 +121,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="#308DC3"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/edit_problem"
             android:textColor="#FFFFFF" />
 
@@ -132,23 +133,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#308DC3"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/edit_desc"
-             />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/editDateButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="#308DC3"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/edit_date"
             android:textColor="#FFFFFF" />
 
@@ -157,10 +157,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="#308DC3"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/save"
             android:textColor="#FFFFFF" />
     </LinearLayout>
@@ -176,7 +176,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
 
 
 </android.support.constraint.ConstraintLayout>

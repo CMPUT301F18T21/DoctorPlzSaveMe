@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light">
+    android:background="@color/colorAccent">
 
 
     <EditText
@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:background="@drawable/patient_rounded_corner"
         android:ems="10"
         android:gravity="top|start"
         android:hint="@string/edit_desc_hint"
@@ -32,7 +32,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:background="@drawable/patient_rounded_corner"
         android:ems="10"
         android:hint="@string/edit_problem_hint"
         android:inputType="textPersonName"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#308DC3"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/now_date"
                 android:textColor="#FFFFFF" />
 
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#308DC3"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/custom_date"
                 android:textColor="#FFFFFF" />
         </LinearLayout>
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#308DC3"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/back"
                 android:textColor="#FFFFFF" />
 
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="#308DC3"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/save"
                 android:textColor="#FFFFFF" />
         </LinearLayout>

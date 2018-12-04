@@ -10,14 +10,15 @@
         android:id="@+id/user_id_textview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="24sp"
-        android:editable="false"
+        android:background="@drawable/patient_rounded_corner"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,11 +27,11 @@
         android:id="@+id/emailText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/patient_rounded_corner"
+        android:padding="5dp"
         android:ems="10"
         android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
@@ -43,11 +44,12 @@
         android:id="@+id/phoneText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="29dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="29dp"
         android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/patient_rounded_corner"
+        android:padding="5dp"
         android:ems="10"
         android:hint="@string/phone_number_hint"
         android:inputType="phone"
@@ -60,12 +62,12 @@
         android:id="@+id/saveChangesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginTop="16dp"
-        android:textColor="#FFFFFF"
         android:backgroundTint="#308DC3"
         android:text="@string/save_changes_button"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneText" />
 
@@ -73,11 +75,11 @@
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:textColor="#FFFFFF"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#308DC3"
         android:text="@string/cancel_button"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/saveChangesButton"
         app:layout_constraintTop_toBottomOf="@+id/phoneText" />
 
@@ -85,39 +87,39 @@
         android:id="@+id/logOutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
-        android:textColor="#FFFFFF"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="#308DC3"
         android:text="Log Out"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!--<Button-->
-        <!--android:id="@+id/displayQRButton"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="32dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:text="Show QR Code"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toStartOf="@+id/logOutButton"-->
-        <!--app:layout_constraintStart_toStartOf="parent" />-->
+    <!--android:id="@+id/displayQRButton"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="32dp"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:text="Show QR Code"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toStartOf="@+id/logOutButton"-->
+    <!--app:layout_constraintStart_toStartOf="parent" />-->
 
     <ImageView
         android:id="@+id/qrImage"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saveChangesButton"
-        app:srcCompat="@color/zxing_transparent"
-        android:contentDescription="TODO" />
+        app:srcCompat="@color/zxing_transparent" />
 
 
 </android.support.constraint.ConstraintLayout>

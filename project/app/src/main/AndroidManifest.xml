@@ -31,12 +31,10 @@
         <activity android:name=".Activities.AddRecordActivity" />
         <activity android:name=".Activities.AddRecordThreeActivity" />
         <activity android:name=".Activities.AddRecordFourActivity" />
-        <activity android:name=".Activities.ProblemSearchActivity" />
         <activity android:name=".Activities.CPViewProblemActivity" />
         <activity android:name=".Activities.CPViewRecordActivity" />
         <activity android:name=".Activities.CPAddCommentActivity" />
         <activity android:name=".Activities.AddRecordTwoActivity" />
-        <activity android:name=".Activities.CPViewGeolocationActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
@@ -54,9 +52,7 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Activities.CPProblemListActivity" />
         <activity android:name=".Activities.CPProblemSearchActivity" />
-        <activity android:name=".Activities.RecordSearchActivity" />
         <activity
             android:name=".Activities.ViewRecordLocationsActivity"
             android:label="@string/title_activity_main_maps" />
@@ -80,7 +76,6 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Activities.EditPhotosActivity" />
         <activity android:name=".Activities.UploadBodyLocationActivity" />
         android:label="@string/view_edit_profile_title" />
         <activity android:name=".Activities.EditRecordThreeActivity" />
