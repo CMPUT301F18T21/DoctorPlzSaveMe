@@ -120,7 +120,7 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
             Log.i("photoId", photoId);
             Backend.getInstance().getPatientProfile().addPhoto(photoId, photoStr, photoLabel);                           // store photo in backend.
             Toast.makeText(getApplicationContext(), "Photo added!", Toast.LENGTH_SHORT).show();
-            //Backend.getInstance().UpdatePatient();
+            //Backend.getInstance().UpdatePatientRunnable();
         }
     }
 
@@ -139,9 +139,4 @@ public class UploadBodyLocationActivity extends AppCompatActivity implements Vie
         return encodedImage;
     }
 
-    @Override
-    public void onBackPressed() {
-        Backend.getInstance().UpdatePatient();
-        finish();
-    }
 }

@@ -88,6 +88,27 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
     }
 
     /**
+     * THIS MUST BE CALLED WHENEVER A CHANGE TO PROFILE AND ITS MEMBERS IS MADE
+     * syncs the current patient with DB (if it can) by fetching DB comments (if CP has made
+     * a change to comments, overriding the local comments, and pushing the local profile to DB)
+     * THIS RUNS ON A SEPARATE THREAD SO IT DOES NOT CLOG THE UI
+     */
+    public void UpdatePatientRunnable() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                serializePatientProfile();
+                try {
+                    syncPatientES();
+                    //setPatientProfile(patientProfile);
+                } catch (Exception e) {
+                    Log.d("UpdatePatientRunnable: ", "Could not sync patient!");
+                }
+            }
+        });
+    }
+
+    /**
      * given a patientProfile class, set the patientProfile (done if user creates new profile)
      * then updates to DB (if it can)
      * @param patientProfile : Patient

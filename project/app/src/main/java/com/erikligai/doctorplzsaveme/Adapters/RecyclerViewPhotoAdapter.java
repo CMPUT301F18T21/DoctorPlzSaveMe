@@ -71,17 +71,17 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
                 alertDialog.setView(input);
                 alertDialog.setTitle(photoLables.get(i));
                 alertDialog.setMessage("Would you like to delete the photo you clicked?");
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Add Label",
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Add Label",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 //photoLables.add(i,input.getText().toString());
                                 Log.d("PhotoLabel",input.getText().toString());
                                 Backend.getInstance().getPatientProfile().addPhotoLabel(i,input.getText().toString());
-                                Backend.getInstance().UpdatePatient();
+                                Backend.getInstance().UpdatePatientRunnable();
                                 dialog.dismiss();
                             }
                         });
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "DELETE",
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "DELETE",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 if (i <= 1){
@@ -92,15 +92,17 @@ public class RecyclerViewPhotoAdapter extends RecyclerView.Adapter<RecyclerViewP
                                     Toast.makeText(mContext, "photo: "+ photoIds.get(i)+" removed!", Toast.LENGTH_SHORT).show();
                                     photos.remove(i);
                                     photoIds.remove(i);
+                                    photoLables.remove(i);
                                     Intent intent = new Intent(v.getContext(), UploadBodyLocationActivity.class);
                                     v.getContext().startActivity(intent);
                                     ((Activity)v.getContext()).finish();
+                                    Backend.getInstance().UpdatePatientRunnable();
                                     dialog.dismiss();
                                 }
 
                             }
                         });
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 

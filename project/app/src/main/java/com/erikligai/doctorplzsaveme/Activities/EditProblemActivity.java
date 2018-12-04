@@ -154,7 +154,12 @@ public class EditProblemActivity extends AppCompatActivity implements View.OnCli
             problem.setTitle(title);
             problem.setDesc(desc);
             problem.setDate(uf_date);
-            Backend.getInstance().UpdatePatient();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Backend.getInstance().UpdatePatientRunnable();
+                }
+            });
             finish();
         } catch (TooLongProblemTitleException | TooLongProblemDescException e) {
             e.printStackTrace();

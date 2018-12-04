@@ -92,11 +92,10 @@ public class RecordBuffer {
         r.setYpos(m_record.getYpos());
         r.setPhotos(m_record.getPhotos());
 
-        Backend.getInstance().UpdatePatient();
+        Backend.getInstance().UpdatePatientRunnable();
         ClearBuffer();
     }
     public void setImageID(String imageID){
         m_record.setPhotoid(imageID);
-
     }
 }
