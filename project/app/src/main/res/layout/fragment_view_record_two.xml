@@ -25,7 +25,8 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -33,7 +34,8 @@
             android:layout_height="10dp"
             android:tint="@color/zxing_viewfinder_laser"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_brightness_1_black_24dp" />
+            app:srcCompat="@drawable/ic_brightness_1_black_24dp"
+            android:contentDescription="TODO" />
 
     </FrameLayout>
 

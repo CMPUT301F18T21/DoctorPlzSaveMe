@@ -22,7 +22,8 @@
             android:layout_marginTop="64dp"
             android:layout_marginBottom="64dp"
             android:src="@drawable/logo"
-            android:layout_weight="1"/> <!-- https://logomakr.com -->
+            android:layout_weight="1"
+            android:contentDescription="TODO" /> <!-- https://logomakr.com -->
 
         <FrameLayout
             android:id="@+id/bottom_layout"

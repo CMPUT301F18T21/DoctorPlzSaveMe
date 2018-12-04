@@ -107,6 +107,8 @@
     <string name="title_photo">Photos</string>
     <string name="title_map">Geolocation</string>
     <string name="timestamp">Timestamp</string>
+    <string name="add_a_patient">Add a Patient</string>
+    <string name="add_a_comment">Add a Comment</string>
 
 
     <string name="no_location">No location are saved for this Record!\nYou can add one in the Edit Records menu!</string>

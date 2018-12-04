@@ -20,6 +20,7 @@ import com.erikligai.doctorplzsaveme.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -67,7 +68,7 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
         patientProblemViewHolder.description.setText(mProblems.get(i).getDescription()); // obtains email at index
 
         // format date into string
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");//formating according to my need
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy",Locale.CANADA);//formating according to my need
         String date = formatter.format(mProblems.get(i).getDate());
 
         patientProblemViewHolder.date.setText(date); // obtains phone at index

@@ -68,7 +68,8 @@
             android:layout_alignParentEnd="true"
             android:background="#FFFF"
             android:padding="20dp"
-            card_view:srcCompat="@drawable/ic_baseline_more_vert_24px" />
+            card_view:srcCompat="@drawable/ic_baseline_more_vert_24px"
+            android:contentDescription="TODO" />
 
 
     </RelativeLayout>

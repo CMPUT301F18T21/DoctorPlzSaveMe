@@ -19,6 +19,7 @@ import com.erikligai.doctorplzsaveme.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -66,7 +67,7 @@ public class CPRecordKeywordAdapter extends RecyclerView.Adapter<CPRecordKeyword
         patientRecordViewHolder.title.setText(mRecords.get(i).getTitle()); // obtains id at index
 
         // format date into string
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy"); // format date
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy",Locale.CANADA); // format date
         String date = formatter.format(mRecords.get(i).getDate());
 
         patientRecordViewHolder.date.setText(date); // obtains date at index

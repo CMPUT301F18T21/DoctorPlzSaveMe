@@ -1,5 +1,6 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,6 +36,7 @@ public class AddRecordTwoActivity extends AppCompatActivity {
     private ImageView imageView2;
     private int problem_index;
 
+    @SuppressLint("ClickableViewAccessibility")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_record_two);
@@ -55,6 +57,7 @@ public class AddRecordTwoActivity extends AppCompatActivity {
 
 
         imageView2.setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("ClickableViewAccessibility")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){

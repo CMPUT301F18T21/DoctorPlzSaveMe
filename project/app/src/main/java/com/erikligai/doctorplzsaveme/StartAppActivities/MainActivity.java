@@ -1,5 +1,6 @@
 package com.erikligai.doctorplzsaveme.StartAppActivities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CareProviderActivity;
+import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.LogInFragments.CPLoginFragment;
 import com.erikligai.doctorplzsaveme.LogInFragments.PatientLoginFragment;
@@ -72,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
              * Set the listener for careProviderButton
              */
             public void onClick(View v) {
+                ProgressDialog nDialog;
+                nDialog = new ProgressDialog(MainActivity.this);
+                nDialog.setMessage("Logging in...");
+                nDialog.setTitle("Please be patient");
+                nDialog.setIndeterminate(false);
+                nDialog.setCancelable(true);
+                nDialog.show();
+
                 boolean fetched_from_local = Backend.getInstance().deserializeCPProfile();
                 // if we didn't fetch a cp id from file, go to login page
                 if (!fetched_from_local) {
@@ -103,10 +113,12 @@ public class MainActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.bottom_layout, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
+                    nDialog.dismiss();
                 } else if (r == -1) // could not connect to db so toast message it
                 {
                     Toast.makeText(getApplicationContext(), "Could not connect to DB!", Toast.LENGTH_SHORT).show();
                 }
+                nDialog.dismiss();
             }
         });
 

@@ -69,7 +69,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/front" />
+        app:srcCompat="@drawable/front"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -77,5 +78,6 @@
         android:layout_height="10dp"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/redcircle" />
+        app:srcCompat="@drawable/redcircle"
+        android:contentDescription="TODO" />
 </android.support.constraint.ConstraintLayout>

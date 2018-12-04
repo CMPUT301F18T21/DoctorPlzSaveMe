@@ -192,7 +192,8 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView9"
         app:layout_constraintStart_toStartOf="@+id/imageView9"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:srcCompat="@drawable/ic_add_a_photo_black_24dp"/>
+        app:srcCompat="@drawable/ic_add_a_photo_black_24dp"
+        android:focusable="true" />
 
     <ImageView
         android:id="@+id/imageView13"
@@ -206,7 +207,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="TODO"
+        android:focusable="true" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"

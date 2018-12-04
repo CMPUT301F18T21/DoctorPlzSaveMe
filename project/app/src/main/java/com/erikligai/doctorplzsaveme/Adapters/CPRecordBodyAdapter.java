@@ -19,6 +19,7 @@ import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CPRecordBodyAdapter extends RecyclerView.Adapter<CPRecordBodyAdapter.CPRecordBodyViewHolder> implements Filterable {
     private Context mContext;
@@ -64,7 +65,7 @@ public class CPRecordBodyAdapter extends RecyclerView.Adapter<CPRecordBodyAdapte
         patientRecordViewHolder.title.setText(mRecords.get(i).getTitle()); // obtains id at index
 
         // format date into string
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy"); // format date
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy", Locale.CANADA); // format date
         String date = formatter.format(mRecords.get(i).getDate());
 
         patientRecordViewHolder.date.setText(date); // obtains date at index

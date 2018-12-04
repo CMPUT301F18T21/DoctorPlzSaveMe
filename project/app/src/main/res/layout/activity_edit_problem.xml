@@ -44,6 +44,7 @@
             android:padding="5dp"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
+            android:hint="@string/edit_problem_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -88,6 +89,7 @@
             android:padding="5dp"
             android:textColor="@android:color/darker_gray"
             android:textSize="18sp"
+            android:hint="@string/edit_desc_hint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

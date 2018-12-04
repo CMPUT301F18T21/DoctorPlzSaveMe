@@ -48,7 +48,7 @@ public class CPSearchGeolocationActivity extends FragmentActivity implements Goo
     }
 
     public void onMapSearch(View view) {
-    EditText locationSearch = (EditText) findViewById(R.id.editText);
+    EditText locationSearch = findViewById(R.id.editText);
     String location = locationSearch.getText().toString();
     List<Address> addressList = null;
 
