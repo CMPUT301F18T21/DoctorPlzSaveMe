@@ -94,10 +94,10 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
      * THIS RUNS ON A SEPARATE THREAD SO IT DOES NOT CLOG THE UI
      */
     public void UpdatePatientRunnable() {
+        serializePatientProfile();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                serializePatientProfile();
                 try {
                     syncPatientES();
                     //setPatientProfile(patientProfile);
