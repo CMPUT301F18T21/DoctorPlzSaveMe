@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.erikligai.doctorplzsaveme.Adapters.RecyclerSlideshowAdapter;
-import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewPhotoAdapter;
 import com.erikligai.doctorplzsaveme.R;
 
 public class PatientSlideshowActivity extends AppCompatActivity {

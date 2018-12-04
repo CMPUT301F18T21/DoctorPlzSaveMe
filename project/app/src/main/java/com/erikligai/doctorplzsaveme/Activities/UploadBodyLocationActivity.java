@@ -1,12 +1,9 @@
 package com.erikligai.doctorplzsaveme.Activities;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,17 +12,13 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewAdapter;
 import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewPhotoAdapter;
-import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.R;
 import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 
 public class UploadBodyLocationActivity extends AppCompatActivity implements View.OnClickListener {
 

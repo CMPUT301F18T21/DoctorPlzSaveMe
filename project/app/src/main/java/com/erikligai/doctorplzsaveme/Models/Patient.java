@@ -1,7 +1,6 @@
 package com.erikligai.doctorplzsaveme.Models;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Patient class, stores all info relating to that patient ('root of the data tree')

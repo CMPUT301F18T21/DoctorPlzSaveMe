@@ -4,10 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Button;
 
 import com.erikligai.doctorplzsaveme.Adapters.RecyclerSelectBodyLocationAdapter;
-import com.erikligai.doctorplzsaveme.Adapters.RecyclerViewPhotoAdapter;
 import com.erikligai.doctorplzsaveme.R;
 
 public class SelectByLocationActivity extends AppCompatActivity {

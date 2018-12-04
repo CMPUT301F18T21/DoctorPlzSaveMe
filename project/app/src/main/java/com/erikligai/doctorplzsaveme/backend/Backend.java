@@ -1,14 +1,12 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Comment;
 import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.erikligai.doctorplzsaveme.Models.Record;
-import com.google.common.util.concurrent.Service;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

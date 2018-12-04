@@ -1,7 +1,6 @@
 package com.erikligai.doctorplzsaveme;
 
 import com.erikligai.doctorplzsaveme.Models.Record;
-import com.google.android.gms.maps.model.LatLng;
 
 import junit.framework.TestCase;
 

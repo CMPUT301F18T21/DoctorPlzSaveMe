@@ -9,21 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.CPRecordFragments.CPBodyLocationFragment;
 import com.erikligai.doctorplzsaveme.CPRecordFragments.CPDetailFragment;
 import com.erikligai.doctorplzsaveme.CPRecordFragments.CPGeolocationFragment;
 import com.erikligai.doctorplzsaveme.CPRecordFragments.CPPhotoFragment;
-import com.erikligai.doctorplzsaveme.Models.Record;
 import com.erikligai.doctorplzsaveme.R;
-import com.erikligai.doctorplzsaveme.RecordFragments.BodyLocationFragment;
-import com.erikligai.doctorplzsaveme.RecordFragments.DetailFragment;
-import com.erikligai.doctorplzsaveme.RecordFragments.GeolocationFragment;
-import com.erikligai.doctorplzsaveme.RecordFragments.PhotoFragment;
-import com.erikligai.doctorplzsaveme.backend.Backend;
 
 public class CPViewRecordActivity extends AppCompatActivity {
 

@@ -7,14 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.erikligai.doctorplzsaveme.Activities.CareProviderActivity;
-import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.LogInFragments.CPLoginFragment;
 import com.erikligai.doctorplzsaveme.LogInFragments.PatientLoginFragment;

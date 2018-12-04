@@ -15,7 +15,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.erikligai.doctorplzsaveme.Activities.EditProblemActivity;
-import com.erikligai.doctorplzsaveme.Activities.MainRecordActivity;
 import com.erikligai.doctorplzsaveme.Activities.PatientSlideshowActivity;
 import com.erikligai.doctorplzsaveme.Activities.PatientViewCommentActivity;
 import com.erikligai.doctorplzsaveme.Models.Problem;

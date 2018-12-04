@@ -1,12 +1,10 @@
 package com.erikligai.doctorplzsaveme.backend;
 
 import android.accounts.NetworkErrorException;
-import android.app.Instrumentation;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.erikligai.doctorplzsaveme.Models.Patient;
-import com.erikligai.doctorplzsaveme.Models.Problem;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
@@ -22,7 +20,6 @@ import io.searchbox.core.Index;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.Date;
 
 /**
  * Implements functions useful to check

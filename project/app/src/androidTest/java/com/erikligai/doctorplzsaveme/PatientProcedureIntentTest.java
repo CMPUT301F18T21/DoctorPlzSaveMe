@@ -5,9 +5,7 @@ import com.erikligai.doctorplzsaveme.Activities.MainProblemActivity;
 import com.erikligai.doctorplzsaveme.Activities.PatientActivity;
 import com.erikligai.doctorplzsaveme.Activities.UploadBodyLocationActivity;
 import com.erikligai.doctorplzsaveme.Activities.ViewRecordLocationsActivity;
-import com.erikligai.doctorplzsaveme.Models.Patient;
 import com.erikligai.doctorplzsaveme.StartAppActivities.MainActivity;
-import com.erikligai.doctorplzsaveme.backend.Backend;
 
 import org.junit.Rule;
 import org.junit.Test;

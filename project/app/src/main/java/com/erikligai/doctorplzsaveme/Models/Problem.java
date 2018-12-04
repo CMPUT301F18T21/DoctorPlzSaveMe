@@ -4,7 +4,6 @@ import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemDescException;
 import com.erikligai.doctorplzsaveme.Exceptions.TooLongProblemTitleException;
 import java.util.ArrayList;
 import java.util.Date;
-import io.searchbox.annotations.JestId;
 
 /**
  * Problem class that stores info about a patient's specific problem
