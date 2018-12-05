@@ -13,7 +13,8 @@
         android:background="@color/colorPrimaryDarkCP"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolBarStyle" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/comment_fab"
@@ -38,7 +39,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/white_rounded_corner"
+        android:background="@drawable/white_rounded_corner_cp"
         android:padding="5dp"
         android:text="Problem Title"
         android:textSize="18sp"
@@ -54,7 +55,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/white_rounded_corner"
+        android:background="@drawable/white_rounded_corner_cp"
         android:padding="5dp"
         android:text="Problem Description"
         android:textSize="18sp"

@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.erikligai.doctorplzsaveme">
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-feature android:name="android.hardware.camera.any" android:required="false"/>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,25 +20,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".StartAppActivities.MainActivity">
+        <activity
+            android:name=".StartAppActivities.MainActivity"
+            android:theme="@style/PatientTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainRecordActivity" />
-        <activity android:name=".Activities.MainProblemActivity" />
-        <activity android:name=".Activities.EditProblemActivity" />
-        <activity android:name=".Activities.EditRecordActivity" />
-        <activity android:name=".Activities.AddProblemActivity" />
-        <activity android:name=".Activities.AddRecordActivity" />
-        <activity android:name=".Activities.AddRecordThreeActivity" />
-        <activity android:name=".Activities.AddRecordFourActivity" />
-        <activity android:name=".Activities.CPViewProblemActivity" />
-        <activity android:name=".Activities.CPViewRecordActivity" />
-        <activity android:name=".Activities.CPAddCommentActivity" />
-        <activity android:name=".Activities.AddRecordTwoActivity" />
+        <activity
+            android:name=".Activities.MainRecordActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.MainProblemActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.EditProblemActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.EditRecordActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.AddProblemActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.AddRecordActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.AddRecordThreeActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.AddRecordFourActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.CPViewProblemActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.CPViewRecordActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.CPAddCommentActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.AddRecordTwoActivity"
+            android:theme="@style/PatientTheme" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
@@ -52,19 +82,35 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".Activities.CPProblemSearchActivity" />
+        <activity
+            android:name=".Activities.CPProblemSearchActivity"
+            android:theme="@style/CPTheme" />
         <activity
             android:name=".Activities.ViewRecordLocationsActivity"
-            android:label="@string/title_activity_main_maps" />
-        <activity android:name=".Activities.CareProviderActivity" />
-        <activity android:name=".Activities.AddPatientActivity" />
-        <activity android:name=".Activities.PatientProblemsActivity" />
+            android:label="@string/title_activity_main_maps"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.CareProviderActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.AddPatientActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.PatientProblemsActivity"
+            android:theme="@style/CPTheme" />
         <activity
             android:name=".Activities.EditProfileActivity"
-            android:label="@string/view_edit_profile_title" />
-        <activity android:name=".Activities.PatientActivity" />
-        <activity android:name=".Activities.CPRecordActivity" />
-        <activity android:name=".Activities.PatientViewCommentActivity" />
+            android:label="@string/view_edit_profile_title"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.PatientActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.CPRecordActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.PatientViewCommentActivity"
+            android:theme="@style/PatientTheme" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -76,23 +122,47 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Activities.UploadBodyLocationActivity" />
-        android:label="@string/view_edit_profile_title" />
-        <activity android:name=".Activities.EditRecordThreeActivity" />
-        <activity android:name=".Activities.EditRecordFourActivity" />
+        <activity
+            android:name=".Activities.UploadBodyLocationActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.EditRecordThreeActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.EditRecordFourActivity"
+            android:theme="@style/PatientTheme" />
         <activity
             android:name=".Activities.ViewRecordActivity"
-            android:label="@string/title_activity_view_problem" />
+            android:label="@string/title_activity_view_problem"
+            android:theme="@style/PatientTheme" />
         <activity android:name=".Activities.CPViewRecordLocationsActivity" />
-        <activity android:name=".Activities.EditRecordTwoActivity" />
-        <activity android:name=".Activities.PatientSlideshowActivity" />
-        <activity android:name=".Activities.SelectByLocationActivity" />
-        <activity android:name=".Activities.SearchGeolocationActivity" />
-        <activity android:name=".Activities.SearchKeywordActivity" />
-        <activity android:name=".Activities.SearchBodyActivity" />
-        <activity android:name=".Activities.CPSearchBodyActivity" />
-        <activity android:name=".Activities.CPSearchKeywordActivity" />
-        <activity android:name=".Activities.CPSearchGeolocationActivity"></activity>
+        <activity
+            android:name=".Activities.EditRecordTwoActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.PatientSlideshowActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.SelectByLocationActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.SearchGeolocationActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.SearchKeywordActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.SearchBodyActivity"
+            android:theme="@style/PatientTheme" />
+        <activity
+            android:name=".Activities.CPSearchBodyActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.CPSearchKeywordActivity"
+            android:theme="@style/CPTheme" />
+        <activity
+            android:name=".Activities.CPSearchGeolocationActivity"
+            android:theme="@style/CPTheme"></activity>
     </application>
 
 </manifest>
