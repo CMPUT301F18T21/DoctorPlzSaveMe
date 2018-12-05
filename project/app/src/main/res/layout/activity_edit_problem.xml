@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorAccent"
     tools:context=".Activities.EditProblemActivity">
 
     <android.support.v7.widget.Toolbar
@@ -14,7 +14,8 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolBarStyle" />
 
     <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/title_switcher"
@@ -124,7 +125,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryLight"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/edit_problem"
             android:textColor="#FFFFFF" />
 
@@ -136,7 +137,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryLight"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/edit_desc"
             android:textColor="#FFFFFF" />
 
@@ -148,7 +149,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryLight"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/edit_date"
             android:textColor="#FFFFFF" />
 
@@ -160,7 +161,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimaryLight"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/save"
             android:textColor="#FFFFFF" />
     </LinearLayout>
