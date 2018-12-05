@@ -42,32 +42,14 @@ public class SearchKeywordActivity extends AppCompatActivity {
         // pull patient's records from back end using passed in problem id
         Intent intent = getIntent(); // receive intent
         problemID = intent.getIntExtra("problemID",0);
-//        patientID = intent.getExtras().getString("patientID");
-        Log.e("patientIDH", patientID);
-        Log.e("problemIDH", problemID+"");
-
-
-
-//        Date date = new Date();
-//        // format date into string
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");//formating according to my need
-//        String formattedDate = formatter.format(date);
-
-//        Record testRecord = new Record("testRecord", "comment");
-//        recordList.add(testRecord);
-////
-//        backend.addPatientRecord(Integer.valueOf(problemID), testRecord);
-//        Log.e("marker", "REACHES");
 
         recordList = backend.getPatientRecords(problemID);
-
-//        Log.e("BOOLEAN: ", recordList.get(0).toString());
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(R.string.problems);
+        getSupportActionBar().setTitle("Search by Keyword");
 
         initRecyclerView();
     }

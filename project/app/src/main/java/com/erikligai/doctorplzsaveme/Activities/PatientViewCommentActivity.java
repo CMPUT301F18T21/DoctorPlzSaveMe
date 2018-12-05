@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.erikligai.doctorplzsaveme.Adapters.commentAdapter;
@@ -37,6 +38,10 @@ public class PatientViewCommentActivity extends AppCompatActivity {
         problems = backend.getPatientProblems();
         problem = problems.get(problemPos);
         comments = problem.getComments();
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Comments");
 
         initRecyclerView();
     }

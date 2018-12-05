@@ -44,6 +44,7 @@ public class CPSearchBodyActivity extends AppCompatActivity {
         recordList = backend.GetCPPatientRecords(patientID, Integer.valueOf(problemID));
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Search Body Location");
 
         initRecyclerView();
     }
