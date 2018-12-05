@@ -80,7 +80,6 @@ public class PatientProblemAdapter extends RecyclerView.Adapter<PatientProblemAd
                 intent.putExtra("patientID", patientID); // attach patient id to intent
                 intent.putExtra("problemID", i+"");
                 mContext.startActivity(intent); // go to record list of patient
-                Toast.makeText(mContext, mProblems.get(i).getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
     }

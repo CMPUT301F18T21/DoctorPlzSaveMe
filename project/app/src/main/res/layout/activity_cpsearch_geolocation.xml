@@ -6,8 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-
+        android:layout_margin="8dp"
         android:orientation="horizontal">
 
         <EditText
@@ -26,6 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
+            android:backgroundTint="@color/colorButtonCP"
+            android:textColor="#FFFFFF"
             android:onClick="onMapSearch"
             android:text="Search" />
 

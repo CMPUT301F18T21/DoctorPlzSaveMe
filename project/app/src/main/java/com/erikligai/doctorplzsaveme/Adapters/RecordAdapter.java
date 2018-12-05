@@ -31,9 +31,6 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.MyViewHold
     private final ArrayList<Record> mDataset;
     private ArrayList<Record> mProblemsCopy;
 
-//    MainRecordActivity parent_activity;
-
-//    public void setParentActivity(MainRecordActivity a) { parent_activity = a; }
     private final int problem_index;
 
     // Provide a reference to the views for each data item

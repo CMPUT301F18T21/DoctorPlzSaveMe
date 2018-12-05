@@ -65,8 +65,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:backgroundTint="#308DC3"
         android:text="@string/save_changes_button"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneText" />
@@ -77,9 +77,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#308DC3"
-        android:text="@string/cancel_button"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:textColor="#FFFFFF"
+        android:text="@string/cancel_button"
         app:layout_constraintEnd_toStartOf="@+id/saveChangesButton"
         app:layout_constraintTop_toBottomOf="@+id/phoneText" />
 
@@ -89,9 +89,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="#308DC3"
-        android:text="Log Out"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:textColor="#FFFFFF"
+        android:text="Log Out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -76,7 +76,6 @@ public class CPViewProblemActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("fab", "add comment");
                 //calls AddRecordActivity
                 Intent intent = new Intent(view.getContext(), CPAddCommentActivity.class);
                 intent.putExtra("ProblemPos", problemPos);
@@ -96,8 +95,6 @@ public class CPViewProblemActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView(String patientID) {
-//        Log.d(TAG, "initRecyclerView: init");
-
         commentList = findViewById(R.id.commentRecyclerView);
         // display recyclerview
         commentList.setVisibility(View.VISIBLE);

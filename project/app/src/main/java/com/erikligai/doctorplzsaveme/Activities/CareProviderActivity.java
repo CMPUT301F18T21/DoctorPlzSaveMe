@@ -22,24 +22,17 @@ import java.util.ArrayList;
 public class CareProviderActivity extends AppCompatActivity {
     private static final String TAG = "CareProviderActivity";
 
-
     private ArrayList<Patient> patientList;
     private FloatingActionButton fab;
-//    private ArrayList<Patient> patientList;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_care_provider);
 
-
         // pull list of patients from backend
-        Backend backend = Backend.getInstance();
-        patientList = backend.GetPatients();
+        patientList = Backend.getInstance().GetPatients();
 
-//        Log.d(TAG, "onCreate: started");
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -53,36 +46,8 @@ public class CareProviderActivity extends AppCompatActivity {
                 // Here we start new activity where we can add a patient
                 // We don't need to pass care provider id since it's globally available
                 startActivity(new Intent(CareProviderActivity.this, AddPatientActivity.class));
-//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             }
         });
-
-        addPatients();
-    }
-
-    private void addPatients() {
-//        Log.d(TAG, "addPatients: preparing patients");
-
-        // Do I need this anymore? I pulled patient list from database in onCreate
-
-
-
-
-
-
-
-//        patientList.add(new Patient("Erik", "1", "ligai@ualberta.ca", "12312341"));
-//        patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
-        //patientList.add(new Patient("1", "ligai@ualberta.ca", "12312341"));
-        /*patientList.add(new Patient("Joe", "2", "qwer@ualberta.ca", "12348573"));
-        patientList.add(new Patient("Daniil", "3", "bam@ualberta.ca", "746746"));
-        patientList.add(new Patient("Weng", "4", "asdfadf@ualberta.ca", "0918234"));
-        patientList.add(new Patient("Iyun", "5", "asdfasdf@ualberta.ca", "1234869023"));
-        patientList.add(new Patient("Bruce", "6", "owerti@ualberta.ca", "6458349"));
-        */
-
-        initRecyclerView();
     }
 
     @Override
@@ -113,7 +78,6 @@ public class CareProviderActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-//        Log.d(TAG, "initRecyclerView: init");
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(patientList, this);
         recyclerView.setAdapter(adapter);
@@ -131,4 +95,12 @@ public class CareProviderActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        initRecyclerView();
+    }
+
 }

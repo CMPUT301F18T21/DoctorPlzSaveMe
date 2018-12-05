@@ -41,24 +41,10 @@ public class CPSearchBodyActivity extends AppCompatActivity {
         Intent intent = getIntent(); // receive intent
         problemID = intent.getExtras().getString("problemID");
         patientID = intent.getExtras().getString("patientID");
-//        Log.e("patientIDH", patientID);
-//        Log.e("problemIDH", problemID);
-
-//        Date date = new Date();
-//        // format date into string
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");//formating according to my need
-//        String formattedDate = formatter.format(date);
-
-//        Record testRecord = new Record("testRecord", "comment");
-////
-//        backend.addPatientRecord(Integer.valueOf(problemID), testRecord);
-//        Log.e("marker", "REACHES");
         recordList = backend.GetCPPatientRecords(patientID, Integer.valueOf(problemID));
-
-//        Log.e("BOOLEAN: ", recordList.get(0).toString());
-
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle("Search Body Location");
 
         initRecyclerView();
     }
@@ -69,8 +55,6 @@ public class CPSearchBodyActivity extends AppCompatActivity {
     // There should also be a search bar at the top to look for patient ID
 
     private void initRecyclerView() {
-//        Log.d(TAG, "initRecyclerView: init");
-
         RecyclerView recyclerView = findViewById(R.id.cp_patient_records_recycler_view_body);
         TextView emptyView = findViewById(R.id.empty_view);
 
