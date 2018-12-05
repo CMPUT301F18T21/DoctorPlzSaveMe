@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:layout_weight="1"
-            android:backgroundTint="#308DC3"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/back"
             android:textColor="#FFFFFF" />
 
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
-            android:backgroundTint="#308DC3"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:text="@string/save"
             android:textColor="#FFFFFF" />
 

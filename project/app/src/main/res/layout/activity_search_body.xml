@@ -5,7 +5,7 @@
     android:id="@+id/coordinatorLayoutPatientRecords"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryLight"
     tools:context=".Activities.SearchBodyActivity">
 
     <android.support.v7.widget.Toolbar
