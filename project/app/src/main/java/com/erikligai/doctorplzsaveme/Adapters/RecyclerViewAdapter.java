@@ -88,7 +88,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Intent intent = new Intent(mContext, PatientProblemsActivity.class);
                 intent.putExtra("patientID", mPatients.get(i).getID()); // attach patient id to intent
                 mContext.startActivity(intent); // go to problem list of patient
-                Toast.makeText(mContext, mPatients.get(i).getID(), Toast.LENGTH_SHORT).show();
             }
         });
     }
