@@ -10,7 +10,7 @@
     <color name="buttonInverseForeground">#e1e2e1</color>
     <color name="buttonInverseBorder">#2196f3</color>
     <color name="mainPatientBackground">#e1e2e1</color>
-    <color name="buttonInverseText">#2196f3</color>
+    <color name="buttonInverseText">#004ba0</color>
 
     <color name="white">#ffffff</color>
     <color name="colorButton">#6ab7ff</color>
