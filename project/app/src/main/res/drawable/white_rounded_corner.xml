@@ -4,7 +4,7 @@
         android:width="1dp"
         android:color="@color/colorPrimaryDarkCP" />
 
-    <solid android:color="@color/colorPrimaryCP" />
+    <solid android:color="@color/colorAccent" />
 
     <padding
         android:left="1dp"

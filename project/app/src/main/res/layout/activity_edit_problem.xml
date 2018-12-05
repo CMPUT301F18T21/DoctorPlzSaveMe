@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorButton"
+    android:background="@color/colorPrimary"
     tools:context=".Activities.EditProblemActivity">
 
     <android.support.v7.widget.Toolbar
@@ -124,7 +124,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:text="@string/edit_problem"
             android:textColor="#FFFFFF" />
 
@@ -136,7 +136,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:text="@string/edit_desc"
             android:textColor="#FFFFFF" />
 
@@ -148,7 +148,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:text="@string/edit_date"
             android:textColor="#FFFFFF" />
 
@@ -160,7 +160,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginRight="32dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/colorPrimaryLight"
             android:text="@string/save"
             android:textColor="#FFFFFF" />
     </LinearLayout>
