@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="#308DC3" />
+    <solid android:color="@color/buttonDrawableForeground" />
     <corners android:radius="10dp" />
-    <stroke android:width="3px" android:color="#FFFFFF" />
+    <stroke android:width="4px" android:color="@color/drawableWhite" />
 </shape>

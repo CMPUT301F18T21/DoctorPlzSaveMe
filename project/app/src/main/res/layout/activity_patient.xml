@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/loginFragmentBackground"
     tools:context=".Activities.PatientActivity">
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_marginLeft="32dp"
             android:layout_marginTop="8dp"
             android:text="@string/welcome"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/drawableWhite"
             android:textSize="24sp"/>
 
         <Button
@@ -34,9 +34,9 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/drawableWhite"
+            android:textColorHint="@color/hintForeground"
             android:textSize="18sp"
-            android:textColorHint="#B9B9C9"
             android:background="@drawable/button_border"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_problems" />
@@ -51,8 +51,7 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
+            android:textColor="@color/drawableWhite"
             android:background="@drawable/button_border"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_locations" />
@@ -66,8 +65,8 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
+            android:textColor="@color/drawableWhite"
+            android:textColorHint="@color/hintForeground"
             android:background="@drawable/button_border"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_edit_profile"/>
@@ -81,8 +80,8 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
+            android:textColor="@color/drawableWhite"
+            android:textColorHint="@color/hintForeground"
             android:background="@drawable/button_border"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/upload_body_location" />
