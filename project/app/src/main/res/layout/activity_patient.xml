@@ -5,7 +5,6 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/loginFragmentBackground"
     tools:context=".Activities.PatientActivity">
 
     <LinearLayout
@@ -17,14 +16,28 @@
 
         <TextView
             android:id="@+id/welcomeText"
+            android:layout_weight="20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/welcome"
-            android:textColor="@color/drawableWhite"
+            android:textColor="#000000"
             android:textSize="24sp"/>
+
+        <ImageView
+            android:id="@+id/login_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/logo"
+            android:layout_weight="1"
+            android:contentDescription="TODO" />
 
         <Button
             android:id="@+id/viewProblemsButton"
@@ -34,10 +47,10 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/drawableWhite"
+            android:textColor="@color/buttonInverseText"
             android:textColorHint="@color/hintForeground"
             android:textSize="18sp"
-            android:background="@drawable/button_border"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_problems" />
 
@@ -51,8 +64,8 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/drawableWhite"
-            android:background="@drawable/button_border"
+            android:textColor="@color/buttonInverseText"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_locations" />
 
@@ -65,9 +78,9 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/drawableWhite"
+            android:textColor="@color/buttonInverseText"
             android:textColorHint="@color/hintForeground"
-            android:background="@drawable/button_border"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_edit_profile"/>
 
@@ -80,9 +93,9 @@
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/drawableWhite"
+            android:textColor="@color/buttonInverseText"
             android:textColorHint="@color/hintForeground"
-            android:background="@drawable/button_border"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/upload_body_location" />
 
