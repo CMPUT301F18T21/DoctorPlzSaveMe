@@ -25,6 +25,7 @@
     <color name="colorButtonCP">#388e3c</color>
     <color name="colorStatusBarCP">#00600f</color>
     <color name="colorPrimaryBoth">#00bcd4</color>
-    <color name="colorPrimaryBothDark">#0097a7</color>
+    <color name="colorPrimaryBothDark">#00838f</color>
     <color name="colorPrimaryBothLight">#e0f7fa</color>
+    <color name="colorStatusBarBoth">#005662</color>
 </resources>

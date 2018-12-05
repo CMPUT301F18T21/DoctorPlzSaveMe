@@ -20,6 +20,7 @@ public class BodyLocationFragment extends Fragment {
     private Record record;
     private Patient patient;
     private ImageView image, pointer;
+    private TextView emptyView;
 
     public BodyLocationFragment(){}
 
@@ -46,7 +47,7 @@ public class BodyLocationFragment extends Fragment {
         patient = Backend.getInstance().getPatientProfile();
         record = Backend.getInstance().getPatientRecords(problem_index).get(record_index);
 
-        TextView emptyView = view.findViewById(R.id.empty_bodylocation_view);
+        emptyView = view.findViewById(R.id.empty_bodylocation_view);
 
         image = view.findViewById(R.id.imageView2);
         pointer = view.findViewById(R.id.imageView);
@@ -68,7 +69,13 @@ public class BodyLocationFragment extends Fragment {
 
     public void displayBodyLocation() {
         int photo_index = patient.getPhotoIds().indexOf(record.getPhotoid());
-        if (photo_index == 0){
+        if (photo_index == -1){
+            emptyView.setVisibility(View.VISIBLE);
+            record.setXpos(0);
+            record.setYpos(0);
+            record.setPhotoid("");
+            Backend.getInstance().UpdatePatientRunnable();
+        } else if (photo_index == 0){
             image.setImageResource(R.drawable.front);
         } else if (photo_index == 1){
             image.setImageResource(R.drawable.back);
@@ -80,9 +87,11 @@ public class BodyLocationFragment extends Fragment {
         image.post(new Runnable() {
             @Override
             public void run() {
-                pointer.setX(record.getXpos()*image.getWidth());
-                pointer.setY(record.getYpos()*image.getHeight());
-                pointer.setVisibility(View.VISIBLE);
+                if(record.getXpos()!=0.0 || record.getYpos()!=0.0) {
+                    pointer.setX(record.getXpos() * image.getWidth());
+                    pointer.setY(record.getYpos() * image.getHeight());
+                    pointer.setVisibility(View.VISIBLE);
+                }
             }
         });
     }

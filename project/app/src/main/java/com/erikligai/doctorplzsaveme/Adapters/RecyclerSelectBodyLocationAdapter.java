@@ -70,7 +70,7 @@ public class RecyclerSelectBodyLocationAdapter extends RecyclerView.Adapter<Recy
 
                 alertDialog.setTitle(photoLables.get(i));
                 alertDialog.setMessage("Would you like to select this Body Location Photo?");
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Select",
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Select",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 //photoLables.add(i,input.getText().toString());
@@ -81,7 +81,7 @@ public class RecyclerSelectBodyLocationAdapter extends RecyclerView.Adapter<Recy
                             }
                         });
 
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Cancel",
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 

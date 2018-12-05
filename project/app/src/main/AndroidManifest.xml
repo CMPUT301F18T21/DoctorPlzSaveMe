@@ -83,9 +83,6 @@
             android:required="false" />
 
         <activity
-            android:name=".Activities.CPProblemSearchActivity"
-            android:theme="@style/CPTheme" />
-        <activity
             android:name=".Activities.ViewRecordLocationsActivity"
             android:label="@string/title_activity_main_maps"
             android:theme="@style/PatientTheme" />
@@ -134,7 +131,7 @@
         <activity
             android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_problem"
-            android:theme="@style/PatientTheme" />
+            android:theme="@style/BothTheme" />
         <activity android:name=".Activities.CPViewRecordLocationsActivity" />
         <activity
             android:name=".Activities.EditRecordTwoActivity"

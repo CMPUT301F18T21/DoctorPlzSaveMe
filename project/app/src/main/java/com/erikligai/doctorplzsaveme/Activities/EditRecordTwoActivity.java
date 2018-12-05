@@ -95,6 +95,15 @@ public class EditRecordTwoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        int index = patient.getPhotoIds().indexOf(record.getPhotoid());
+        if (index == -1) {
+            record.setXpos(0);
+            record.setYpos(0);
+            record.setPhotoid("");
+            Backend.getInstance().UpdatePatientRunnable();
+        }
     }
 
     protected void onResume() {
