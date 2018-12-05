@@ -24,23 +24,12 @@ public class MainRecordActivity extends AppCompatActivity {
     private RecordAdapter adapter;
     private ArrayList<Record> records;
 
-//    public int getProblem_index() {
-//        return problem_index;
-//    }
-//
-//    public void setProblem_index(int problem_index) {
-//        this.problem_index = problem_index;
-//    }
 
     private int problem_index;
     private RecyclerView recordRecycler;
     private TextView emptyView;
     Backend backend = Backend.getInstance();
 
-    //sample record list
-//    Record r1 = new Record("Record1","recordDescription");
-//    Record r2 = new Record("Record1","recordDescription");
-//    Record r3 = new Record("Record1","recordDescription");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +38,6 @@ public class MainRecordActivity extends AppCompatActivity {
         Intent intent = getIntent();
         problem_index = intent.getIntExtra("Pos",0);
         records = Backend.getInstance().getPatientRecords(problem_index);
-
-//        records.add(r1);
-//        records.add(r2);
-//        records.add(r3);
 
         Toolbar myToolbar = findViewById(R.id.record_toolbar);
         setSupportActionBar(myToolbar);
@@ -82,7 +67,6 @@ public class MainRecordActivity extends AppCompatActivity {
 
 
         adapter = new RecordAdapter(records, problem_index);
-//        adapter.setParentActivity(this);
         recordRecycler.setAdapter(adapter);
         adapter.setOnEntryClickListener(new RecordAdapter.OnEntryClickListener() {
             @Override
@@ -116,13 +100,6 @@ public class MainRecordActivity extends AppCompatActivity {
         checkEmpty();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_search_toolbar, menu);
-//        return true;
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the main_menu; this adds items to the action bar if it is present.
@@ -136,18 +113,8 @@ public class MainRecordActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-
-//            case R.id.action_search:
-//                // User chose the "Settings" item, show the app settings UI...
-//                Log.d("toolbar", "search function!");
-//                //calls ProblemSearchActivity
-//                Intent intent = new Intent(this, RecordSearchActivity.class);
-//                startActivity(intent);
-//                return true;
-
             case R.id.search_keyword:
                 Intent intent = new Intent(this, SearchKeywordActivity.class);
-//                intent.putExtra("patientID", backend.getPatientProfile().getID()); // send patientID
                 intent.putExtra("problemID", problem_index); // send problemID
                 startActivity(intent);
                 return true;

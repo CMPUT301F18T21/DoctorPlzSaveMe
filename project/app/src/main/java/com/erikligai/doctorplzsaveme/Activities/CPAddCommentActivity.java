@@ -36,7 +36,7 @@ public class CPAddCommentActivity  extends AppCompatActivity {
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(R.string.add_a_patient);
+        getSupportActionBar().setTitle("Add a comment");
 
         Intent intent = getIntent();
         ProblemPosition = intent.getIntExtra("ProblemPos",-1);

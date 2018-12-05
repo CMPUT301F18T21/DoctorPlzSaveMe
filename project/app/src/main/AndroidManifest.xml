@@ -132,7 +132,9 @@
             android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_problem"
             android:theme="@style/BothTheme" />
-        <activity android:name=".Activities.CPViewRecordLocationsActivity" />
+        <activity
+            android:name=".Activities.CPViewRecordLocationsActivity"
+            android:theme="@style/BothTheme" />
         <activity
             android:name=".Activities.EditRecordTwoActivity"
             android:theme="@style/PatientTheme" />

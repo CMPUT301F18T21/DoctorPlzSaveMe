@@ -32,6 +32,7 @@ public class CPViewProblemActivity extends AppCompatActivity {
     private TextView problemDescription;
     private Button viewRecordsBtn;
     private FloatingActionButton fab;
+    TextView emptyView;
 
     private Problem problem;
     private ArrayList<Comment> comments = new ArrayList<Comment>();
@@ -65,7 +66,7 @@ public class CPViewProblemActivity extends AppCompatActivity {
         problem = backend.GetCPPatientProblem(patientID,problemPos);
 
         comments = problem.getComments();
-        TextView emptyView = findViewById(R.id.empty_view);
+        emptyView = findViewById(R.id.empty_view);
         if(comments.size()==0){
             emptyView.setVisibility(View.VISIBLE);
         }
@@ -113,6 +114,9 @@ public class CPViewProblemActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(comments.size()==0){
+            emptyView.setVisibility(View.VISIBLE);
+        }
         adapter.notifyDataSetChanged();
     }
 

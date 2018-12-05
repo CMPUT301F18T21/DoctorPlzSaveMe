@@ -460,7 +460,14 @@ public class Backend implements IPatientBackend, ICareProviderBackend {
         {
             if (patient.getID().equals(PatientID)) {
                 patient.getProblemList().get(problemIndex).addComment(new Comment(comment));
-                return UpdatePatient(patient);
+                if (UpdatePatient(patient))
+                {
+                    return true;
+                } else {
+                    patient.getProblemList().get(problemIndex).getComments().remove(
+                            patient.getProblemList().get(problemIndex).getComments().size()-1);
+                    return false;
+                }
             }
         }
         return false;
