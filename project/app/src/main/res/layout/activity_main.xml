@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="@color/drawableWhite"
         android:orientation="vertical">
 
         <ImageView
@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#FFFFFF"
+            android:background="@color/drawableWhite"
             android:layout_marginRight="64dp"
             android:layout_marginLeft="64dp"
             android:layout_marginTop="64dp"
@@ -29,7 +29,7 @@
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:background="@color/loginFragmentBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_border"
                     android:text="LOGIN AS A CARE PROVIDER"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="@color/drawableWhite" />
 
                 <Button
                     android:id="@+id/patient_button"
@@ -61,7 +61,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_border"
                     android:text="LOGIN AS A PATIENT"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="@color/drawableWhite" />
             </LinearLayout>
         </FrameLayout>
 

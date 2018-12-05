@@ -5,7 +5,6 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
     tools:context=".Activities.PatientActivity">
 
     <LinearLayout
@@ -17,27 +16,41 @@
 
         <TextView
             android:id="@+id/welcomeText"
+            android:layout_weight="20"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/welcome"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/buttonInverseText"
             android:textSize="24sp"/>
+
+        <ImageView
+            android:id="@+id/login_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/logo"
+            android:layout_weight="1"
+            android:contentDescription="TODO" />
 
         <Button
             android:id="@+id/viewProblemsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/buttonInverseText"
+            android:textColorHint="@color/hintForeground"
             android:textSize="18sp"
-            android:textColorHint="#B9B9C9"
-            android:background="@drawable/button_border"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_problems" />
 
@@ -46,14 +59,13 @@
             android:id="@+id/viewLocationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:textSize="18sp"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
-            android:background="@drawable/button_border"
+            android:textColor="@color/buttonInverseText"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_locations" />
 
@@ -61,14 +73,14 @@
             android:id="@+id/editProfileButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:textSize="18sp"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
-            android:background="@drawable/button_border"
+            android:textColor="@color/buttonInverseText"
+            android:textColorHint="@color/hintForeground"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/view_edit_profile"/>
 
@@ -76,14 +88,14 @@
             android:id="@+id/uploadBodyLocationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:textSize="18sp"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
-            android:background="@drawable/button_border"
+            android:textColor="@color/buttonInverseText"
+            android:textColorHint="@color/hintForeground"
+            android:background="@drawable/button_border_inverse"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/upload_body_location" />
 

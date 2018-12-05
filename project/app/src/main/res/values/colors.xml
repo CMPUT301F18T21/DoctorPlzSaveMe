@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- LOGIN -->
+    <color name="loginFragmentBackground">#1e88e5</color>
+    <color name="buttonDrawableForeground">#1976d2</color>
+    <color name="drawableWhite">#efefef</color>
+    <color name="hintForeground">#e1e2e1</color>
+
+    <!-- MAIN PATIENT ACTIVITY -->
+    <color name="buttonInverseForeground">#e1e2e1</color>
+    <color name="buttonInverseBorder">#2196f3</color>
+    <color name="mainPatientBackground">#e1e2e1</color>
+    <color name="buttonInverseText">#004ba0</color>
+
+    <color name="white">#ffffff</color>
+    <color name="colorButton">#6ab7ff</color>
+
     <color name="colorPrimary">#1e88e5</color>
     <color name="colorPrimaryLight">#e3f2fd</color>
     <color name="colorPrimaryDark">#1976d2</color>

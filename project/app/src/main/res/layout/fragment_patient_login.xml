@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/loginFragmentBackground"
     tools:context=".LogInFragments.PatientLoginFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryLight"
         android:orientation="vertical">
 
         <LinearLayout
@@ -22,11 +22,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:hint="username"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/drawableWhite"
+                android:backgroundTint="@color/drawableWhite"
                 android:layout_marginLeft="16dp"
                 android:layout_marginBottom="8dp"
-                android:textColorHint="#B9B9C9"/>
+                android:textColorHint="@color/hintForeground"/>
 
             <Button
                 android:id="@+id/logInButton"
@@ -35,7 +35,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/drawableWhite"
                 android:background="@drawable/button_border"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_marginBottom="8dp"
@@ -57,7 +57,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/button_border"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/drawableWhite"
                 style="?android:attr/borderlessButtonStyle"
                 android:text="SCAN PROFILE"/>
 
@@ -70,7 +70,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/drawableWhite"
                 android:background="@drawable/button_border"
                 style="?android:attr/borderlessButtonStyle"
                 android:text="NEW PROFILE"/>

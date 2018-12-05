@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="32dp"
-    android:background="@color/colorPrimary"
+    android:background="@color/loginFragmentBackground"
     tools:context=".LogInFragments.NewProfileFragment">
 
     <LinearLayout
@@ -22,12 +22,12 @@
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:ems="10"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
+            android:textColor="@color/drawableWhite"
+            android:textColorHint="@color/hintForeground"
             android:imeOptions="actionNext"
             android:singleLine="true"
             android:inputType="text"
-            android:backgroundTint="#FFFFFF"
+            android:backgroundTint="@color/drawableWhite"
             android:nextFocusDown="@+id/emailInputText"
             android:hint="username (8 or more char)"/>
 
@@ -39,9 +39,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
-            android:backgroundTint="#FFFFFF"
+            android:textColor="@color/drawableWhite"
+            android:textColorHint="@color/hintForeground"
+            android:backgroundTint="@color/drawableWhite"
             android:imeOptions="actionNext"
             android:hint="@string/email_hint"
             android:nextFocusDown="@+id/phoneInputText"
@@ -55,10 +55,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:ems="10"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
-            android:backgroundTint="#FFFFFF"
-
+            android:textColor="@color/drawableWhite"
+            android:textColorHint="@color/hintForeground"
+            android:backgroundTint="@color/drawableWhite"
             android:hint="@string/phone_number_hint"
             android:inputType="phone"/>
 
@@ -71,8 +70,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B9B9C9"
+            android:textColor="@color/drawableWhite"
+            android:textColorHint="@color/hintForeground"
             android:background="@drawable/button_border"
             style="?android:attr/borderlessButtonStyle"
             android:text="@string/create_profile_button"/>
